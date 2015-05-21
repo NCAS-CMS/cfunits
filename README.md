@@ -1,19 +1,12 @@
 Home page
 =========
 
-* [**cf-python**](http://cfpython.bitbucket.org "cf-python home page")
+* [**cfunits-python**](https://bitbucket.org/cfpython/cfunits-python "cfunits-python home page")
 
 ----------------------------------------------------------------------
 
 Documentation
 =============
-
-* Online documentation for the latest stable release: [**Version 1.0
-  HTML**](http://cfpython.bitbucket.org/docs/0.9.9/ "cf-python HTML
-  documentation")
-
-* Online documentation for previous releases: [**cf-python documention
-  archive**](http://cfpython.bitbucket.org/docs/archive.html)
 
 * Offline HTML documention for the installed version may be found by
   pointing a browser to ``docs/build/index.html``.
@@ -55,11 +48,11 @@ Dependencies
   the ``LD_LIBRARY_PATH`` environment variable.
 
 
-Installation (versions before 1.0b1)
-------------------------------------
+Installation
+------------
 
 1.  Download the cf package from [**cf-python
-    downloads**](https://bitbucket.org/cfpython/cf-python/downloads).
+    downloads**](https://bitbucket.org/cfpython/cfunits-python/downloads).
    
 2.  Unpack it with:
    
