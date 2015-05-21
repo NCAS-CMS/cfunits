@@ -1,47 +1,27 @@
-'''
+''' 
 
-CF is a netCDF convention which is in wide and growing use for the
-storage of model-generated and observational data relating to the
-atmosphere, ocean and Earth system.
+A python interface to UNIDATA's Udunits-2 package with CF extensions
 
-It has been agreed that the CF conventions should include an abstract
-data model for data and metadata corresponding to the most up to date
-standard, and such a model is has been proposed. This package is an
-implementation of this CF data model, and as such it is an API allows
-for the full scope of data and metadata interactions described by the
-CF conventions.
+Store, combine and compare physical units and convert numeric values
+to different units.
 
-With this package you can:
+Units are as defined in UNIDATA's Udunits-2 package , except for
+reference time units (such as 'days since 2000-12-1' in the
+'proleptic_gregorian' calendar), which are handled by the netCDF4
+python package.
 
-    * Read CF-netCDF and PP format files
+In addition, some units are either new to, modified from, or removed
+from the standard Udunits-2 database in order to be more consistent
+with the CF conventions.
 
-    * Aggregate collections of fields into as few multidimensional
-      fields as possible.
+See the cfunits-python home page (http://code.google.com/p/cf-python)
+for downloads, installation and source code.
 
-    * Write fields to CF-netCDF files on disk.
-
-    * Create, delete and modify a field's data and metadata.
-
-    * Select fields according to their metadata.
-
-    * Subspace a field's data to create a new field.
-
-    * Perform broadcastable, metadata-aware arithmetic and comparison
-      operations with fields.
-
-    * Collapse fields.
-
-All of the above use Large Amounts of Massive Arrays (LAMA)
-functionality, which allows multiple fields larger than the available
-memory to exist and be manipulated.
-
-See the cf-python home page (http://code.google.com/p/cf-python) for
-downloads, installation and source code.
 '''
 
 __Conventions__  = 'CF-1.5'
 __author__       = 'David Hassell'
-__date__         = '19 May 2015'
+__date__         = '27 May 2015'
 __version__      = '1.0b1'
 
 import imp

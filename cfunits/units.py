@@ -1234,8 +1234,8 @@ True if the units are reference time units, False otherwise.
 Note that time units (such as ``'days'``) are not reference time
 units.
 
-.. seealso:: `isdimensionless`, longitude`, `islongitude`,
-             `islatitude`, `ispressure`, `istime`
+.. seealso:: `isdimensionless`, `islongitude`, `islatitude`,
+             `ispressure`, `istime`
 
 :Examples:
 
@@ -1268,8 +1268,8 @@ True if the units are reference time units, False otherwise.
 Note that time units (such as ``'days'``) are not reference time
 units.
 
-.. seealso:: `isdimensionless`, longitude`, `islongitude`,
-             `islatitude`, `ispressure`, `istime`
+.. seealso:: `isdimensionless`, `islongitude`, `islatitude`,
+             `ispressure`, `istime`
 
 :Examples:
 
@@ -2315,16 +2315,6 @@ Inspect the attributes of an object.
     out : str
 
 :Examples:
-
->>> print x.inspect
-<CF CoordinateReference: rotated_latitude_longitude>
-----------------------------------------------------
-_dict: {'grid_north_pole_latitude': 38.0, 'grid_north_pole_longitude': 190.0}
-coord_terms: set([])
-coords: set(['dim2', 'dim1', 'aux2', 'aux3'])
-name: 'rotated_latitude_longitude'
-ncvar: 'rotated_latitude_longitude'
-type: 'grid_mapping'
 
 '''
     name = repr(self)
