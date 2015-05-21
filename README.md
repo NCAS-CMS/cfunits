@@ -21,7 +21,7 @@ Dependencies
 ------------
 
 * The package runs on [**Linux**](http://en.wikipedia.org/wiki/Linux)
-  and [**Mac OS**](http://en.wikipedia.org/wiki/Mac_OS)) operating
+  and [**Mac OS**](http://en.wikipedia.org/wiki/Mac_OS) operating
   systems.
 
 * Requires a [**python**](http://www.python.org) version from 2.6 up

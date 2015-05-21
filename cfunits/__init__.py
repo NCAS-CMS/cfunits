@@ -1,6 +1,4 @@
-''' 
-
-A python interface to UNIDATA's Udunits-2 package with CF extensions
+'''A python interface to UNIDATA's Udunits-2 package with CF extensions
 
 Store, combine and compare physical units and convert numeric values
 to different units.
@@ -14,14 +12,15 @@ In addition, some units are either new to, modified from, or removed
 from the standard Udunits-2 database in order to be more consistent
 with the CF conventions.
 
-See the cfunits-python home page (http://code.google.com/p/cf-python)
-for downloads, installation and source code.
+See the cfunits-python home page
+(https://bitbucket.org/cfpython/cfunits-python/) for downloads,
+installation and source code.
 
 '''
 
 __Conventions__  = 'CF-1.5'
 __author__       = 'David Hassell'
-__date__         = '27 May 2015'
+__date__         = '22 May 2015'
 __version__      = '1.0b1'
 
 import imp
