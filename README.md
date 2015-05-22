@@ -51,7 +51,7 @@ Dependencies
 Installation
 ------------
 
-1.  Download the cf package from [**cf-python
+1.  Download the cfunits package from [**cfunits-python
     downloads**](https://bitbucket.org/cfpython/cfunits-python/downloads).
    
 2.  Unpack it with:
@@ -61,16 +61,16 @@ Installation
 3.  Within the newly created directory ``cfunits-1.0b1``, run one of the
     following:
    
-    *  To install the cf package to a central location:
+    *  To install the cfunits package to a central location:
        
             python setup.py install
        
-    *  To install the cf package locally to the user in a default
+    *  To install the cfunits package locally to the user in a default
        location:
        
             python setup.py install --user
        
-    *  To install the cf package in the <directory> of your choice:
+    *  To install the cfunits package in the <directory> of your choice:
        
             python setup.py install --home=<directory>
 
