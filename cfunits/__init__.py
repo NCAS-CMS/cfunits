@@ -20,8 +20,8 @@ installation and source code.
 
 __Conventions__  = 'CF-1.5'
 __author__       = 'David Hassell'
-__date__         = '22 May 2015'
-__version__      = '1.0b1'
+__date__         = '27 May 2015'
+__version__      = '1.0'
 
 import imp
 import platform

@@ -1234,8 +1234,8 @@ True if the units are reference time units, False otherwise.
 Note that time units (such as ``'days'``) are not reference time
 units.
 
-.. seealso:: `isdimensionless`, `islongitude`, `islatitude`,
-             `ispressure`, `istime`
+.. seealso:: `isdimensionless`, `islongitude`,
+             `islatitude`, `ispressure`, `istime`
 
 :Examples:
 
@@ -1268,8 +1268,8 @@ True if the units are reference time units, False otherwise.
 Note that time units (such as ``'days'``) are not reference time
 units.
 
-.. seealso:: `isdimensionless`, `islongitude`, `islatitude`,
-             `ispressure`, `istime`
+.. seealso:: `isdimensionless`, `islongitude`,
+             `islatitude`, `ispressure`, `istime`
 
 :Examples:
 
@@ -1343,11 +1343,11 @@ True if the units are pressure units, false otherwise.
 
 >>> Units('bar').ispressure
 True
->>>> Units('hPa').ispressure
+>>> Units('hPa').ispressure
 True
 >>> print Units('meter^-1-kilogram-second^-2').ispressure
 True
->> Units('hours since 2100-1-1', calendar='noleap').ispressure
+>>> Units('hours since 2100-1-1', calendar='noleap').ispressure
 False
 
 '''
@@ -2304,6 +2304,7 @@ do not exist in any real world calendar.
     #--- End: def
 
 #--- End: class
+
 
 def cf_inspect(self):
     '''
