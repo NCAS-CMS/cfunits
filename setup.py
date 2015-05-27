@@ -24,7 +24,7 @@ for _module in ('netCDF4', 'numpy'):
                           (_module, error))
 #--- End: for
        
-version      = '1.0b1'
+version      = '1.0'
 packages     = ['cfunits']
 etc_files    = [f for f in find_package_data_files('cfunits/etc')]
 

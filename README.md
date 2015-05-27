@@ -56,13 +56,14 @@ Installation
    
 2.  Unpack it with:
    
-        tar zxvf cfunits-1.0b1.tar.gz
+        tar zxvf cfunits-1.0.tar.gz
    
-3.  Within the newly created directory ``cfunits-1.0b1``, run one of the
+3.  Within the newly created directory ``cfunits-1.0``, run one of the
     following:
    
     *  To install the cfunits package to a central location:
        
+            cd cfunits-1.0
             python setup.py install
        
     *  To install the cfunits package locally to the user in a default
