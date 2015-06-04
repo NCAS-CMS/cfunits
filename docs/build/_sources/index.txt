@@ -17,14 +17,14 @@ cfunits-python |release| documentation
 ----
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
 
    installation
 
 ----
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
 
    cfunits.Units
 

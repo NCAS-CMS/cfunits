@@ -24,7 +24,7 @@ package_data = etc_files
 #with open('README.md') as ldfile:
 #    long_description = ldfile.read()
 
-long_description = """*A python interface to UNIDATA's Udunits-2 package with CF
+long_description = """*A python interface to UNIDATA's Udunits-2 library with CF
 extensions*
 
 Store, combine and compare physical units and convert numeric values
@@ -38,7 +38,7 @@ python package <https://pypi.python.org/pypi/netCDF4>`_.
 
 In addition, some units are either new to, modified from, or removed
 from the standard Udunits-2 database in order to be more consistent
-with the CF conventions.
+with the `CF conventions <http://cfconventions.org/>`_.
 
 `Home page <https://bitbucket.org/cfpython/cfunits-python>`_
 
@@ -62,12 +62,12 @@ setup(name = "cfunits",
       download_url = "https://bitbucket.org/cfpython/cfunits-python/downloads",
       platforms    = ["Linux", "MacOS"],
       license      = ["MIT"],
-      keywords     = ['cf', 'udunits','netcdf','data','science', 'oceanography', 'meteorology', 'climate'],
+      keywords     = ['cf', 'udunits','UNIDATA', 'netcdf','data',
+                      'science', 'oceanography', 'meteorology', 'climate'],
       classifiers  = ["Development Status :: 5 - Production/Stable",
                       "Intended Audience :: Science/Research", 
                       "License :: OSI Approved :: MIT License", 
-                      "Topic :: Software Development :: Libraries :: Python Modules",
-                      "Topic :: System :: Archiving :: Compression",
+                      "Topic :: Scientific/Engineering",
                       "Operating System :: MacOS",
                       "Operating System :: POSIX :: Linux",
                       "Programming Language :: Python :: 2.6",

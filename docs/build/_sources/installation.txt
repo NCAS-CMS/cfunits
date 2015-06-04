@@ -1,18 +1,30 @@
+.. currentmodule:: cfunits
+.. default-role:: obj
+
+.. highlight:: bash
+
 Installation
 ============
 
-Downloads are available from
-`<https://bitbucket.org/cfpython/cfunits-python/downloads>`_,
-installation instructions, installation dependencies and the source
-code are available from
-`<https://bitbucket.org/cfpython/cfunits-python>`_.
+Install with pip
+----------------
 
-Installation instructions and hardware and software dependencies are
-detailed in the README.md file
-(`<https://bitbucket.org/cfpython/cfunits-python>`_), which is also
-contained with the downloaded source code.
+`cfunits` is in `PyPI <https://testpypi.python.org/pypi/cfunits>`_::
 
-Please raise any questions or problems through the cf-python issue
-tracker (`<https://bitbucket.org/cfpython/cfunits-python/issues>`_),
-you will need an account with `Bitbucket <https://bitbucket.org/>`_ to
-post).
+   $ pip install cfunits
+
+Install from source
+-------------------
+
+Downloads are available from `PyPI
+<https://testpypi.python.org/pypi/cfunits>`_ or from the `bitbucket
+repository <https://bitbucket.org/cfpython/cfunits-python/>`_.
+Installation instructions and dependencies are in the `README.md
+<https://bitbucket.org/cfpython/cfunits-python/src/master/README.md>`_
+file.
+
+Issues
+------
+
+Please raise any questions or problems through the `cfunits issue
+tracker <https://bitbucket.org/cfpython/cfunits-python/issues>`_.
