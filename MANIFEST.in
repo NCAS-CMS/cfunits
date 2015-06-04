@@ -14,3 +14,4 @@ prune docs/build/.doctrees
 recursive-exclude docs/build *.doctree
 recursive-exclude * *~ *.gz *.pyc
 recursive-exclude * *.o *.so .nfs*
+recursive-exclude * *.zip
