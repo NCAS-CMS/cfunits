@@ -15,16 +15,7 @@ def find_package_data_files(directory):
 #                    continue
                 yield filename.replace('cfunits/', '', 1)
 
-# Check that the dependencies are met
-for _module in ('netCDF4', 'numpy'):
-    try:
-        imp.find_module(_module)
-    except ImportError as error:
-        raise ImportError("Missing dependency. cfunits requires package %s. %s" %
-                          (_module, error))
-#--- End: for
-       
-version      = '1.0'
+version      = '1.0.1'
 packages     = ['cfunits']
 etc_files    = [f for f in find_package_data_files('cfunits/etc')]
 
@@ -33,20 +24,31 @@ package_data = etc_files
 #with open('README.md') as ldfile:
 #    long_description = ldfile.read()
 
-long_description = '''A python interface to UNIDATA's Udunits-2 package with CF
-extensions
+long_description = """*A python interface to UNIDATA's Udunits-2 package with CF
+extensions*
 
 Store, combine and compare physical units and convert numeric values
 to different units.
 
-Units are as defined in UNIDATA's Udunits-2 package , except for
-reference time units (such as 'days since 2000-12-1' in the
-'proleptic_gregorian' calendar), which are handled by the netCDF4
-python package.
+Units are as defined in `UNIDATA's Udunits-2 library
+<http://www.unidata.ucar.edu/software/udunits/>`_, except for
+reference time units (such as ``'days since 2000-12-1'`` in the
+``'proleptic_gregorian'`` calendar), which are handled by the `netCDF4
+python package <https://pypi.python.org/pypi/netCDF4>`_.
 
 In addition, some units are either new to, modified from, or removed
 from the standard Udunits-2 database in order to be more consistent
-with the CF conventions.'''
+with the CF conventions.
+
+`Home page <https://bitbucket.org/cfpython/cfunits-python>`_
+
+`Dependencies
+<https://bitbucket.org/cfpython/cfunits-python/src/master/README.md>`_
+
+`Changelog
+<https://bitbucket.org/cfpython/cfunits-python/src/master/Changelog.md>`_
+
+"""
 
 # classifiers list at: https://pypi.python.org/pypi?%3Aaction=list_classifiers
 
