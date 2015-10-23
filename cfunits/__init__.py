@@ -23,7 +23,7 @@ __author__       = 'David Hassell'
 __date__         = '04 June 2015'
 __version__      = '1.0.1'
 
-import imp
+from distutils.version import LooseVersion
 import platform
 
 # Check the version of python
@@ -34,14 +34,14 @@ if not '2.6.0' <= platform.python_version() < '3.0.0':
 
 # Check the version of numpy
 import numpy
-if numpy.__version__ < '1.7':
+if LooseVersion(numpy.__version__) < LooseVersion('1.7'):
     raise ImportError(
         "Bad numpy version: cf %s requires numpy >= 1.7. Got %s" %
         (__version__, numpy.__version__))
 
 # Check the version of netCDF4
 import netCDF4
-if netCDF4.__version__ < '0.9.7':
+if LooseVersion(netCDF4.__version__) < LooseVersion('0.9.7'):
     raise ImportError(
         "Bad netCDF4 version: cf %s requires netCDF4 >= 0.9.7. Got %s" %
         (__version__, netCDF4.__version__))
