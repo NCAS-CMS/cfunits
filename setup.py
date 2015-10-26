@@ -15,7 +15,7 @@ def find_package_data_files(directory):
 #                    continue
                 yield filename.replace('cfunits/', '', 1)
 
-version      = '1.0.1'
+version      = '1.1'
 packages     = ['cfunits']
 etc_files    = [f for f in find_package_data_files('cfunits/etc')]
 

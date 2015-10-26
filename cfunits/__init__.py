@@ -20,28 +20,30 @@ installation and source code.
 
 __Conventions__  = 'CF-1.5'
 __author__       = 'David Hassell'
-__date__         = '04 June 2015'
-__version__      = '1.0.1'
+__date__         = '?? October 2015'
+__version__      = '1.1'
 
-from distutils.version import LooseVersion
+from distutils.version import StrictVersion
 import platform
 
 # Check the version of python
-if not '2.6.0' <= platform.python_version() < '3.0.0':
-    raise RuntimeError(
+if not (StrictVersion('2.6.0')
+        <= StrictVersion(platform.python_version())
+        < StrictVersion('3.0.0')):
+    raise ValueError(
         "Bad python version: cf requires 2.6 <= python < 3.0. Got %s" %
         platform.python_version())
 
 # Check the version of numpy
 import numpy
-if LooseVersion(numpy.__version__) < LooseVersion('1.7'):
+if StrictVersion(numpy.__version__) < StrictVersion('1.7'):
     raise ImportError(
         "Bad numpy version: cf %s requires numpy >= 1.7. Got %s" %
         (__version__, numpy.__version__))
 
 # Check the version of netCDF4
 import netCDF4
-if LooseVersion(netCDF4.__version__) < LooseVersion('0.9.7'):
+if StrictVersion(netCDF4.__version__) < StrictVersion('0.9.7'):
     raise ImportError(
         "Bad netCDF4 version: cf %s requires netCDF4 >= 0.9.7. Got %s" %
         (__version__, netCDF4.__version__))
