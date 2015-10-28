@@ -6,8 +6,8 @@
 .. currentmodule:: cfunits
 .. default-role:: obj
 
-cfunits-python |release| documentation
-======================================
+cfunits |release| documentation
+===============================
 
 .. toctree::
    :maxdepth: 3
@@ -17,22 +17,14 @@ cfunits-python |release| documentation
 ----
 
 .. toctree::
-<<<<<<< HEAD
    :maxdepth: 3
-=======
-   :maxdepth: 1
->>>>>>> 8503d21b6cd26cba5193e8294b8f329650181cd0
 
    installation
 
 ----
 
 .. toctree::
-<<<<<<< HEAD
    :maxdepth: 3
-=======
-   :maxdepth: 2
->>>>>>> 8503d21b6cd26cba5193e8294b8f329650181cd0
 
    cfunits.Units
 

@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cfunits.Units.istime &mdash; Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Documentation" href="../index.html" />
+    <link rel="up" title="cfunits.Units" href="../cfunits.Units.html" />
+    <link rel="next" title="cfunits.Units.reftime" href="cfunits.Units.reftime.html" />
+    <link rel="prev" title="cfunits.Units.isreftime" href="cfunits.Units.isreftime.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="cfunits.Units.reftime.html" title="cfunits.Units.reftime"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="cfunits.Units.isreftime.html" title="cfunits.Units.isreftime"
+             accesskey="P">previous</a> |</li>
+  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 1.1</li>
+  
+        <li><a href="../index.html">Documentation</a> &raquo;</li>
+
+          <li><a href="../cfunits.Units.html" accesskey="U">cfunits.Units</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cfunits-units-istime">
+<h1>cfunits.Units.istime<a class="headerlink" href="#cfunits-units-istime" title="Permalink to this headline">¶</a></h1>
+<dl class="attribute">
+<dt id="cfunits.Units.istime">
+<tt class="descclassname">Units.</tt><tt class="descname">istime</tt><a class="headerlink" href="#cfunits.Units.istime" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if the units are time units, False otherwise.</p>
+<p>Note that reference time units (such as <tt class="docutils literal"><span class="pre">'days</span> <span class="pre">since</span> <span class="pre">2000-12-1'</span></tt>)
+are not time units, nor are calendar years and calendar months.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><tt class="xref py py-obj docutils literal"><span class="pre">iscalendartime</span></tt>, <tt class="xref py py-obj docutils literal"><span class="pre">isdimensionless</span></tt>, <tt class="xref py py-obj docutils literal"><span class="pre">islongitude</span></tt>,
+<tt class="xref py py-obj docutils literal"><span class="pre">islatitude</span></tt>, <tt class="xref py py-obj docutils literal"><span class="pre">ispressure</span></tt>, <tt class="xref py py-obj docutils literal"><span class="pre">isreftime</span></tt></p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Examples:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="p">(</span><span class="s">&#39;days&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">istime</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="p">(</span><span class="s">&#39;seconds&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">istime</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="p">(</span><span class="s">&#39;kg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">istime</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="p">()</span><span class="o">.</span><span class="n">istime</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="p">(</span><span class="s">&#39;hours since 2100-1-1&#39;</span><span class="p">,</span> <span class="n">calendar</span><span class="o">=</span><span class="s">&#39;noleap&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">istime</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="p">(</span><span class="n">calendar</span><span class="o">=</span><span class="s">&#39;360_day&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">istime</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="p">(</span><span class="s">&#39;calendar_years&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">istime</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="p">(</span><span class="s">&#39;calendar_months&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">istime</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="cfunits.Units.isreftime.html"
+                        title="previous chapter">cfunits.Units.isreftime</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="cfunits.Units.reftime.html"
+                        title="next chapter">cfunits.Units.reftime</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/generated/cfunits.Units.istime.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="cfunits.Units.reftime.html" title="cfunits.Units.reftime"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="cfunits.Units.isreftime.html" title="cfunits.Units.isreftime"
+             >previous</a> |</li>
+  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 1.1</li>
+  
+        <li><a href="../index.html">Documentation</a> &raquo;</li>
+
+          <li><a href="../cfunits.Units.html" >cfunits.Units</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, David Hassell.
+      Last updated on Oct 28, 2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

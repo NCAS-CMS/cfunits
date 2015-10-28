@@ -58,18 +58,24 @@ To install from [**PyPI**](https://pypi.python.org/pypi/cfunits):
 
 Alternatively, to install from source:
 
+To install from [**PyPI**](https://pypi.python.org/pypi/cfunits):
+
+    pip install cfunits
+
+Alternatively, to install from source:
+
 1.  Download the cfunits package from [**cfunits-python
     downloads**](https://bitbucket.org/cfpython/cfunits-python/downloads).
    
-2.  Unpack it with:
+2.  Unpack the library:
    
         tar zxvf cfunits-1.1.tar.gz
-          cd cfunits-1.1
+        cd cfunits-1.1
 	  
 3.   Install the package:
    
     *  To install to a central location:
-       
+     
             python setup.py install
        
     * To install locally to the user in a default location:

@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cfunits.Units.conform &mdash; Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Documentation" href="../index.html" />
+    <link rel="up" title="cfunits.Units" href="../cfunits.Units.html" />
+    <link rel="prev" title="cfunits.Units.log" href="cfunits.Units.log.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="cfunits.Units.log.html" title="cfunits.Units.log"
+             accesskey="P">previous</a> |</li>
+  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 1.1</li>
+  
+        <li><a href="../index.html">Documentation</a> &raquo;</li>
+
+          <li><a href="../cfunits.Units.html" accesskey="U">cfunits.Units</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cfunits-units-conform">
+<h1>cfunits.Units.conform<a class="headerlink" href="#cfunits-units-conform" title="Permalink to this headline">¶</a></h1>
+<dl class="staticmethod">
+<dt id="cfunits.Units.conform">
+<em class="property">static </em><tt class="descclassname">Units.</tt><tt class="descname">conform</tt><big>(</big><em>x</em>, <em>from_units</em>, <em>to_units</em>, <em>inplace=False</em><big>)</big><a class="reference external" href="https://bitbucket.org/cfpython/cfunits-python/src/v1.1/cfunits/units.py#cl-1709"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units.conform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Conform values in one unit to equivalent values in another, compatible
+unit. Returns the conformed values.</p>
+<p>The values may either be a numpy array or a python numeric type. The
+returned value is of the same type, except that input integers are
+converted to floats (see the <em>inplace</em> keyword).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first">x : numpy.ndarray or python numeric</p>
+<dl class="docutils">
+<dt>from_units <span class="classifier-delimiter">:</span> <span class="classifier">Units</span></dt>
+<dd><p class="first last">The original units of <tt class="xref py py-obj docutils literal"><span class="pre">x</span></tt></p>
+</dd>
+<dt>to_units <span class="classifier-delimiter">:</span> <span class="classifier">Units</span></dt>
+<dd><p class="first last">The units to which <tt class="xref py py-obj docutils literal"><span class="pre">x</span></tt> should be conformed to.</p>
+</dd>
+<dt>inplace <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional</span></dt>
+<dd><p class="first last">If True and <tt class="xref py py-obj docutils literal"><span class="pre">x</span></tt> is a numpy array then change it in place,
+creating no temporary copies, with one exception: If <tt class="xref py py-obj docutils literal"><span class="pre">x</span></tt> is of
+integer type and the conversion is not null, then it will not
+be changed inplace and the returned conformed array will be of
+float type.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first docutils">
+<dt>out <span class="classifier-delimiter">:</span> <span class="classifier">numpy.ndarray or python numeric</span></dt>
+<dd><p class="first last">The modified numeric values.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Examples:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="o">.</span><span class="n">conform</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">Units</span><span class="p">(</span><span class="s">&#39;km&#39;</span><span class="p">),</span> <span class="n">Units</span><span class="p">(</span><span class="s">&#39;m&#39;</span><span class="p">))</span>
+<span class="go">2000.0</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="o">.</span><span class="n">conform</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">Units</span><span class="p">(</span><span class="s">&#39;minute&#39;</span><span class="p">),</span> <span class="n">Units</span><span class="p">(</span><span class="s">&#39;second&#39;</span><span class="p">))</span>
+<span class="go">array([   0.,   60.,  120.,  180.,  240.])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">array([ 0.,  1.,  2.,  3.,  4.])</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="o">.</span><span class="n">conform</span><span class="p">(</span><span class="n">a</span><span class="p">,</span>
+<span class="go">                  Units(&#39;days since 2000-12-1&#39;),</span>
+<span class="go">                  Units(&#39;days since 2001-1-1&#39;), inplace=True)</span>
+<span class="go">array([-31., -30., -29., -28., -27.])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">array([-31., -30., -29., -28., -27.])</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Do not change the calendar of reference time units in the current
+version. Whilst this is possible, it will almost certainly result
+in an incorrect interpretation of the data or an error. Allowing
+the calendar to be changed is under development and will be
+available soon.</p>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="cfunits.Units.log.html"
+                        title="previous chapter">cfunits.Units.log</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/generated/cfunits.Units.conform.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="cfunits.Units.log.html" title="cfunits.Units.log"
+             >previous</a> |</li>
+  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 1.1</li>
+  
+        <li><a href="../index.html">Documentation</a> &raquo;</li>
+
+          <li><a href="../cfunits.Units.html" >cfunits.Units</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, David Hassell.
+      Last updated on Oct 28, 2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -27,6 +27,7 @@ from distutils.version import StrictVersion
 import imp
 import platform
 
+# Check the version of python
 if not (StrictVersion('2.6.0')
         <= StrictVersion(platform.python_version())
         < StrictVersion('3.0.0')):
