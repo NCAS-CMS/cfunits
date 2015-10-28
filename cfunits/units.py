@@ -6,12 +6,12 @@ import sys
 from numpy import array     as numpy_array
 from numpy import dtype     as numpy_dtype
 from numpy import empty     as numpy_empty
+from numpy import generic   as numpy_generic
 from numpy import ndarray   as numpy_ndarray
 from numpy import ones      as numpy_ones
 from numpy import reshape   as numpy_reshape
 from numpy import where     as numpy_where
 from numpy import zeros     as numpy_zeros
-
 
 # --------------------------------------------------------------------
 # Aliases for ctypes
@@ -1234,8 +1234,8 @@ True if the units are reference time units, False otherwise.
 Note that time units (such as ``'days'``) are not reference time
 units.
 
-.. seealso:: `isdimensionless`, `islongitude`, `islatitude`,
-             `ispressure`, `istime`
+.. seealso:: `isdimensionless`, `islongitude`,
+             `islatitude`, `ispressure`, `istime`
 
 :Examples:
 
@@ -1268,8 +1268,8 @@ True if the units are reference time units, False otherwise.
 Note that time units (such as ``'days'``) are not reference time
 units.
 
-.. seealso:: `isdimensionless`, `islongitude`, `islatitude`,
-             `ispressure`, `istime`
+.. seealso:: `isdimensionless`, `islongitude`,
+             `islatitude`, `ispressure`, `istime`
 
 :Examples:
 
@@ -1343,11 +1343,11 @@ True if the units are pressure units, false otherwise.
 
 >>> Units('bar').ispressure
 True
->>>> Units('hPa').ispressure
+>>> Units('hPa').ispressure
 True
 >>> print Units('meter^-1-kilogram-second^-2').ispressure
 True
->> Units('hours since 2100-1-1', calendar='noleap').ispressure
+>>> Units('hours since 2100-1-1', calendar='noleap').ispressure
 False
 
 '''
@@ -1815,6 +1815,10 @@ array([-31., -30., -29., -28., -27.])
         # ----------------------------------------------------------------
         # Find out if x is an numpy array or a python number
         # ----------------------------------------------------------------
+        if isinstance(x, numpy_generic):
+            # Convert a generic numpy scalar to a 0-d array
+            x = numpy_array(x)
+
         if not isinstance(x, numpy_ndarray):
             x_is_numpy = False
         else:
@@ -1829,7 +1833,6 @@ array([-31., -30., -29., -28., -27.])
             # ----------------------------------------------------------------
             if inplace:
                 if x.dtype.kind is 'i':
-#                    print 'INPLACE'
                     if x.dtype.char is 'i':
                         y      = x.view(dtype='float32')
                         y[...] = x
@@ -1842,10 +1845,8 @@ array([-31., -30., -29., -28., -27.])
                 # At numpy vn1.7 astype has many more keywords ...
                 if x.dtype.kind is 'i':
                     if x.dtype.char is 'i':
-#                        x = numpy_array(x, dtype='float32')
                         x = x.astype('float32')
                     elif x.dtype.char is 'l':
-#                        x = numpy_array(x, dtype=float)
                         x = x.astype(float)
                 else:
                     x = x.copy()
@@ -2160,7 +2161,7 @@ Attribute       Description
         A string of the form "time-units since <time-origin>"
         defining the reference-time units.
 
- '''
+'''
         if unit_string:
             _netCDF4_netcdftime_utime.__init__(self, unit_string, calendar)
         else:
@@ -2204,94 +2205,37 @@ Inspect the object for debugging.
         print cf_inspect(self)
     #--- End: def
 
-    def num2date(self,time_value):
-        """
-Return a 'datetime-like' object given a C{time_value} in units
-described by L{unit_string}, using L{calendar}.
+    def num2date(self, time_value):
+        '''Return a datetime-like object given a time value.
 
-dates are in UTC with no offset, even if L{unit_string} contains
-a time zone offset from UTC.
+The units of the time value are described by the `!unit_string` and
+`!calendar` attributes.
 
-Resolution is 1 second.
+See `netCDF4.netcdftime.utime.num2date` for details.
 
-Works for scalars, sequences and numpy arrays.
-Returns a scalar if input is a scalar, else returns a numpy array.
+In addition to `netCDF4.netcdftime.utime.num2date`, this method
+handles units of months and years.
 
-The datetime instances returned by C{num2date} are 'real' python datetime
-objects if the date falls in the Gregorian calendar (i.e.
-C{calendar='proleptic_gregorian'}, or C{calendar = 'standard'/'gregorian'} and
-the date is after 1582-10-15). Otherwise, they are 'phony' datetime
-objects which are actually instances of netcdftime.datetime.  This is
-because the python datetime module cannot handle the weird dates in some
-calendars (such as C{'360_day'} and C{'all_leap'}) which
-do not exist in any real world calendar.
-        """
-        isscalar = False
-        try:
-            time_value[0]
-        except:
-            isscalar = True
-        ismasked = False
-        if hasattr(time_value,'mask'):
-            mask = time_value.mask
-            ismasked = True
-        if not isscalar:
-            time_value = numpy_array(time_value, dtype='d')
-            shape = time_value.shape
-        # convert to desired units, remove time zone offset.
-        if self.units in ['second', 'seconds', 's', 'sec', 'secs']:
-            jdelta = time_value/86400. - self.tzoffset/1440.
-        elif self.units in ['minute','minutes', 'min']:
-            jdelta = time_value/1440. - self.tzoffset/1440.
-        elif self.units in ['hour', 'hours', 'h', 'hr']:
-            jdelta = time_value/24. - self.tzoffset/1440.
-        elif self.units in ['day', 'days', 'd']:
-            jdelta = time_value - self.tzoffset/1440.
-        elif self.units in ['month', 'months']:
-            jdelta = time_value*365.242198781/12 - self.tzoffset/1440.
-        elif self.units in ['year', 'years', 'yr']:
-            jdelta = time_value*365.242198781 - self.tzoffset/1440.
-        else:
-            raise ValueError("Can't convert %r to 'days'" % self.units)
-        jd = self._jd0 + jdelta
-        if self.calendar in ['julian','standard','gregorian','proleptic_gregorian']:
-            if not isscalar:
-                if ismasked:
-                    date = []
-                    for j,m in zip(jd.flat, mask.flat):
-                        if not m:
-                            date.append(DateFromJulianDay(j,self.calendar))
-                        else:
-                            date.append(None)
-                else:
-                    date = [DateFromJulianDay(j,self.calendar) for j in jd.flat]
-            else:
-                if ismasked and mask.item():
-                    date = None
-                else:
-                    date = DateFromJulianDay(jd,self.calendar)
-        elif self.calendar in ['noleap','365_day']:
-            if not isscalar:
-                date = [_DateFromNoLeapDay(j) for j in jd.flat]
-            else:
-                date = _DateFromNoLeapDay(jd)
-        elif self.calendar in ['all_leap','366_day']:
-            if not isscalar:
-                date = [_DateFromAllLeap(j) for j in jd.flat]
-            else:
-                date = _DateFromAllLeap(jd)
-        elif self.calendar == '360_day':
-            if not isscalar:
-                date = [_DateFrom360Day(j) for j in jd.flat]
-            else:
-                date = _DateFrom360Day(jd)
-        if isscalar:
-            return date
-        else:
-            return numpy_reshape(numpy_array(date),shape)
+'''
+        units = self.units
+        unit_string = self.unit_string
+
+        if units in ('month', 'months'):
+            # Convert months to days
+            unit_string = unit_string.replace(units, 'days', 1)
+            time_value = time_value*365.242198781/12
+
+        elif units in ('year', 'years', 'yr'):
+            # Convert years to days
+            unit_string = unit_string.replace(units, 'days', 1)
+            time_value = time_value*365.242198781
+
+        u = _netCDF4_netcdftime_utime(unit_string, self.calendar)        
+        return u.num2date(time_value)
     #--- End: def
 
     def origin_equals(self, other):
+
         '''
 
 '''

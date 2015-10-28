@@ -1,19 +1,15 @@
 Home page
 =========
 
-* [**cf-python**](http://cfpython.bitbucket.org "cf-python home page")
+* [**cfunits-python**](https://bitbucket.org/cfpython/cfunits-python "cfunits-python home page")
 
 ----------------------------------------------------------------------
 
 Documentation
 =============
 
-* Online documentation for the latest stable release: [**Version 1.0
-  HTML**](http://cfpython.bitbucket.org/docs/0.9.9/ "cf-python HTML
-  documentation")
-
-* Online documentation for previous releases: [**cf-python documention
-  archive**](http://cfpython.bitbucket.org/docs/archive.html)
+* [**Online documentation for the latest stable
+  release**](http://pythonhosted.org/cfunits "cfunits documentation")
 
 * Offline HTML documention for the installed version may be found by
   pointing a browser to ``docs/build/index.html``.
@@ -21,14 +17,11 @@ Documentation
 
 ----------------------------------------------------------------------
 
-Installation
+Dependencies
 ============
 
-Dependencies
-------------
-
 * The package runs on [**Linux**](http://en.wikipedia.org/wiki/Linux)
-  and [**Mac OS**](http://en.wikipedia.org/wiki/Mac_OS)) operating
+  and [**Mac OS**](http://en.wikipedia.org/wiki/Mac_OS) operating
   systems.
 
 * Requires a [**python**](http://www.python.org) version from 2.6 up
@@ -39,8 +32,8 @@ Dependencies
   newer.
 
 * Requires the [**python netCDF4
-  package**](https://pypi.python.org/pypi/netCDF4) at version 0.9.7 or
-  newer (the latest version is recommended). This package requires the
+  package**](https://pypi.python.org/pypi/netCDF4) at version 1.1.1 or
+  newer, *but not version 1.2*. This package requires the
   [**netCDF**](http://www.unidata.ucar.edu/software/netcdf),
   [**HDF5**](http://www.hdfgroup.org/HDF5) and
   [**zlib**](ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4)
@@ -54,35 +47,43 @@ Dependencies
   OS) is in a non-standard location then its path should be added to
   the ``LD_LIBRARY_PATH`` environment variable.
 
+----------------------------------------------------------------------
 
-Installation (versions before 1.0b1)
-------------------------------------
+Installation
+============
 
-1.  Download the cf package from [**cf-python
-    downloads**](https://bitbucket.org/cfpython/cf-python/downloads).
+To install from [**PyPI**](https://pypi.python.org/pypi/cfunits):
+
+    pip install cfunits
+
+Alternatively, to install from source:
+
+1.  Download the cfunits package from [**cfunits-python
+    downloads**](https://bitbucket.org/cfpython/cfunits-python/downloads).
    
 2.  Unpack it with:
    
-        tar zxvf cfunits-1.0b1.tar.gz
+        tar zxvf cfunits-1.1.tar.gz
+          cd cfunits-1.1
+	  
+3.   Install the package:
    
-3.  Within the newly created directory ``cfunits-1.0b1``, run one of the
-    following:
-   
-    *  To install the cf package to a central location:
+    *  To install to a central location:
        
             python setup.py install
        
-    *  To install the cf package locally to the user in a default
-       location:
+    * To install locally to the user in a default location:
        
             python setup.py install --user
        
-    *  To install the cf package in the <directory> of your choice:
+    *  To install to the <directory> of your choice:
        
             python setup.py install --home=<directory>
 
+----------------------------------------------------------------------
+
 Tests
------
+=====
 
 The test script is in the ``test`` directory:
 
