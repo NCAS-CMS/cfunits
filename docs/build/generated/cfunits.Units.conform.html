@@ -8,13 +8,13 @@
     
     <title>cfunits.Units.conform &mdash; Documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.1',
+        VERSION:     '1.1.4',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,39 +24,33 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/copybutton.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="Documentation" href="../index.html" />
-    <link rel="up" title="cfunits.Units" href="../cfunits.Units.html" />
-    <link rel="prev" title="cfunits.Units.log" href="cfunits.Units.log.html" /> 
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Documentation" href="../index.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="cfunits.Units.log.html" title="cfunits.Units.log"
-             accesskey="P">previous</a> |</li>
-  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 1.1</li>
+  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 1.1.4</li>
   
-        <li><a href="../index.html">Documentation</a> &raquo;</li>
-
-          <li><a href="../cfunits.Units.html" accesskey="U">cfunits.Units</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Documentation</a> &raquo;</li>
+ 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="cfunits-units-conform">
 <h1>cfunits.Units.conform<a class="headerlink" href="#cfunits-units-conform" title="Permalink to this headline">¶</a></h1>
 <dl class="staticmethod">
 <dt id="cfunits.Units.conform">
-<em class="property">static </em><tt class="descclassname">Units.</tt><tt class="descname">conform</tt><big>(</big><em>x</em>, <em>from_units</em>, <em>to_units</em>, <em>inplace=False</em><big>)</big><a class="reference external" href="https://bitbucket.org/cfpython/cfunits-python/src/v1.1/cfunits/units.py#cl-1709"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units.conform" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descclassname">Units.</code><code class="descname">conform</code><span class="sig-paren">(</span><em>x</em>, <em>from_units</em>, <em>to_units</em>, <em>inplace=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cfunits/units.html#Units.conform"><span class="viewcode-link">[source]</span></a><a class="reference external" href="https://bitbucket.org/cfpython/cfunits-python/src/v1.1.4/cfunits/units.py#/home/david/cfunits-python/cfunits/units.py-1709"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units.conform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Conform values in one unit to equivalent values in another, compatible
 unit. Returns the conformed values.</p>
 <p>The values may either be a numpy array or a python numeric type. The
@@ -69,14 +63,14 @@ converted to floats (see the <em>inplace</em> keyword).</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first">x : numpy.ndarray or python numeric</p>
 <dl class="docutils">
 <dt>from_units <span class="classifier-delimiter">:</span> <span class="classifier">Units</span></dt>
-<dd><p class="first last">The original units of <tt class="xref py py-obj docutils literal"><span class="pre">x</span></tt></p>
+<dd><p class="first last">The original units of <code class="xref py py-obj docutils literal"><span class="pre">x</span></code></p>
 </dd>
 <dt>to_units <span class="classifier-delimiter">:</span> <span class="classifier">Units</span></dt>
-<dd><p class="first last">The units to which <tt class="xref py py-obj docutils literal"><span class="pre">x</span></tt> should be conformed to.</p>
+<dd><p class="first last">The units to which <code class="xref py py-obj docutils literal"><span class="pre">x</span></code> should be conformed to.</p>
 </dd>
 <dt>inplace <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional</span></dt>
-<dd><p class="first last">If True and <tt class="xref py py-obj docutils literal"><span class="pre">x</span></tt> is a numpy array then change it in place,
-creating no temporary copies, with one exception: If <tt class="xref py py-obj docutils literal"><span class="pre">x</span></tt> is of
+<dd><p class="first last">If True and <code class="xref py py-obj docutils literal"><span class="pre">x</span></code> is a numpy array then change it in place,
+creating no temporary copies, with one exception: If <code class="xref py py-obj docutils literal"><span class="pre">x</span></code> is of
 integer type and the conversion is not null, then it will not
 be changed inplace and the returned conformed array will be of
 float type.</p>
@@ -131,17 +125,16 @@ available soon.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="cfunits.Units.log.html"
-                        title="previous chapter">cfunits.Units.log</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../_sources/generated/cfunits.Units.conform.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/generated/cfunits.Units.conform.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
@@ -158,26 +151,22 @@ available soon.</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
-        <li class="right" >
-          <a href="cfunits.Units.log.html" title="cfunits.Units.log"
-             >previous</a> |</li>
-  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 1.1</li>
+  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 1.1.4</li>
   
-        <li><a href="../index.html">Documentation</a> &raquo;</li>
-
-          <li><a href="../cfunits.Units.html" >cfunits.Units</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Documentation</a> &raquo;</li>
+ 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2015, David Hassell.
-      Last updated on Oct 28, 2015.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Last updated on Feb 17, 2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
     </div>
   </body>
 </html>

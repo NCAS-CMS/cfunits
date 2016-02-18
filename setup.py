@@ -11,7 +11,7 @@ def find_package_data_files(directory):
         for basename in files:
             if fnmatch.fnmatch(basename, '*'):
                 filename = os.path.join(root, basename)
-                yield filename.replace('cf/', '', 1)
+                yield filename.replace('cfunits/', '', 1)
 
 # Check that the dependencies are met
 for _module in ('netCDF4', 'numpy'):
@@ -22,7 +22,7 @@ for _module in ('netCDF4', 'numpy'):
                           (_module, error))
 #--- End: for
        
-version      = '1.1'
+version      = '1.1.4'
 packages     = ['cfunits']
 etc_files    = [f for f in find_package_data_files('cfunits/etc')]
 
