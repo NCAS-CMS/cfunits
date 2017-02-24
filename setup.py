@@ -13,16 +13,24 @@ def find_package_data_files(directory):
                 filename = os.path.join(root, basename)
                 yield filename.replace('cfunits/', '', 1)
 
-# Check that the dependencies are met
-for _module in ('netCDF4', 'numpy'):
-    try:
-        imp.find_module(_module)
-    except ImportError as error:
-        raise ImportError("Missing dependency. cf requires package %s. %s" %
-                          (_module, error))
-#--- End: for
-       
-version      = '1.1.4'
+def _read(fname):
+    """Returns content of a file.
+
+    """
+    fpath = os.path.dirname(__file__)
+    fpath = os.path.join(fpath, fname)
+    with open(fpath, 'r') as file_:
+        return file_.read()
+
+def _get_version():
+    """Returns library version by inspecting __init__.py file.
+
+    """
+    return re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
+                     _read("cf/__init__.py"),
+                     re.MULTILINE).group(1)
+      
+version      = '1.5'
 packages     = ['cfunits']
 etc_files    = [f for f in find_package_data_files('cfunits/etc')]
 

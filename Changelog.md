@@ -1,3 +1,10 @@
+Version 1.5 (24 February 2017)
+------------------------------
+
+* Removed explicit dependency checks
+
+* brough in line with cf-python v1.5
+	
 Version 1.1.4 (17 February 2016)
 --------------------------------
 
