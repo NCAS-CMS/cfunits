@@ -30,7 +30,7 @@ def _get_version():
                      _read("cf/__init__.py"),
                      re.MULTILINE).group(1)
       
-version      = '1.5'
+version      = '1.5.1'
 packages     = ['cfunits']
 etc_files    = [f for f in find_package_data_files('cfunits/etc')]
 
