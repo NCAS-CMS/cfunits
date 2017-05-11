@@ -258,14 +258,18 @@ add_unit_alias("10 dB", None, "bel", "bels")
 _netCDF4_netcdftime_utime = netCDF4.netcdftime.utime
 _datetime                 = netCDF4.netcdftime.datetime
 DateFromJulianDay         = netCDF4.netcdftime.DateFromJulianDay
-if netCDF4.__version__ <= '1.1.1':
-    _DateFromNoLeapDay = netCDF4.netcdftime._DateFromNoLeapDay
-    _DateFromAllLeap   = netCDF4.netcdftime._DateFromAllLeap
-    _DateFrom360Day    = netCDF4.netcdftime._DateFrom360Day
-else:
-    _DateFromNoLeapDay = netCDF4.netcdftime.netcdftime._DateFromNoLeapDay
-    _DateFromAllLeap   = netCDF4.netcdftime.netcdftime._DateFromAllLeap
-    _DateFrom360Day    = netCDF4.netcdftime.netcdftime._DateFrom360Day
+#if netCDF4.__version__ <= '1.1.1':
+#    _DateFromNoLeapDay = netCDF4.netcdftime._DateFromNoLeapDay
+#    _DateFromAllLeap   = netCDF4.netcdftime._DateFromAllLeap
+#    _DateFrom360Day    = netCDF4.netcdftime._DateFrom360Day
+#elif netCDF4.__version__ <= '1.2.4':
+#    _DateFromNoLeapDay = netCDF4.netcdftime.netcdftime._DateFromNoLeapDay
+#    _DateFromAllLeap   = netCDF4.netcdftime.netcdftime._DateFromAllLeap
+#    _DateFrom360Day    = netCDF4.netcdftime.netcdftime._DateFrom360Day
+#else:
+#    _DateFromNoLeapDay = netCDF4.netcdftime.DateFromNoLeapDay
+#    _DateFromAllLeap   = netCDF4.netcdftime.DateFromAllLeap
+#    _DateFrom360Day    = netCDF4.netcdftime.DateFrom360Day
 
 # --------------------------------------------------------------------
 # Aliases for netCDF4.netcdftime functions
