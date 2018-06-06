@@ -215,27 +215,27 @@ _ut_new_base_unit.restype = _c_void_p
 # the correct sievert mapping in place; because that mapping
 # was only an alias, the unit now doesn't depend on the mapping
 # persisting.
-assert(0 == _ut_unmap_symbol_to_unit(_ut_system, _c_char_p('Sv'), _UT_ASCII))
-assert(0 == _ut_map_symbol_to_unit(_c_char_p('Sv'), _UT_ASCII,
-                                   _ut_get_unit_by_name(_ut_system, _c_char_p('sverdrup'))))
+assert(0 == _ut_unmap_symbol_to_unit(_ut_system, _c_char_p(b'Sv'), _UT_ASCII))
+assert(0 == _ut_map_symbol_to_unit(_c_char_p(b'Sv'), _UT_ASCII,
+                                   _ut_get_unit_by_name(_ut_system, _c_char_p(b'sverdrup'))))
 
 # Add new base unit calendar_year
 calendar_year_unit = _ut_new_base_unit(_ut_system)
-assert(0 == _ut_map_symbol_to_unit(_c_char_p('cY'), _UT_ASCII, calendar_year_unit))
-assert(0 == _ut_map_unit_to_symbol(calendar_year_unit, _c_char_p('cY'), _UT_ASCII))
-assert(0 == _ut_map_name_to_unit(_c_char_p('calendar_year'), _UT_ASCII, calendar_year_unit))
-assert(0 == _ut_map_unit_to_name(calendar_year_unit, _c_char_p('calendar_year'), _UT_ASCII))
-assert(0 == _ut_map_name_to_unit(_c_char_p('calendar_years'), _UT_ASCII, calendar_year_unit))
+assert(0 == _ut_map_symbol_to_unit(_c_char_p(b'cY'), _UT_ASCII, calendar_year_unit))
+assert(0 == _ut_map_unit_to_symbol(calendar_year_unit, _c_char_p(b'cY'), _UT_ASCII))
+assert(0 == _ut_map_name_to_unit(_c_char_p(b'calendar_year'), _UT_ASCII, calendar_year_unit))
+assert(0 == _ut_map_unit_to_name(calendar_year_unit, _c_char_p(b'calendar_year'), _UT_ASCII))
+assert(0 == _ut_map_name_to_unit(_c_char_p(b'calendar_years'), _UT_ASCII, calendar_year_unit))
 
 # Add various aliases useful for CF.
 def add_unit_alias(definition, symbol, singular, plural):
-    unit = _ut_parse(_ut_system, _c_char_p(definition), _UT_ASCII)
+    unit = _ut_parse(_ut_system, _c_char_p(definition.encode('utf-8')), _UT_ASCII)
     if symbol is not None:
-        assert(0 == _ut_map_symbol_to_unit(_c_char_p(symbol), _UT_ASCII, unit))
+        assert(0 == _ut_map_symbol_to_unit(_c_char_p(symbol.encode('utf-8')), _UT_ASCII, unit))
     if singular is not None:
-        assert(0 == _ut_map_name_to_unit(_c_char_p(singular), _UT_ASCII, unit))
+        assert(0 == _ut_map_name_to_unit(_c_char_p(singular.encode('utf-8')), _UT_ASCII, unit))
     if plural is not None:
-        assert(0 == _ut_map_name_to_unit(_c_char_p(plural), _UT_ASCII, unit))
+        assert(0 == _ut_map_name_to_unit(_c_char_p(plural.encode('utf-8')), _UT_ASCII, unit))
 
 add_unit_alias("1.e-3", "psu", "practical_salinity_unit", "practical_salinity_units")
 add_unit_alias("calendar_year/12", "cM", "calendar_month", "calendar_months")
@@ -290,20 +290,20 @@ _cached_utime   = {}
 # Save some useful units
 # --------------------------------------------------------------------
 # A time ut_unit (equivalent to 'day', 'second', etc.)
-_day_ut_unit  = _ut_parse(_ut_system, _c_char_p('day'), _UT_ASCII)
+_day_ut_unit  = _ut_parse(_ut_system, _c_char_p(b'day'), _UT_ASCII)
 _cached_ut_unit['days'] = _day_ut_unit
 # A pressure ut_unit (equivalent to 'Pa', 'hPa', etc.)
-_pressure_ut_unit = _ut_parse(_ut_system, _c_char_p('pascal'), _UT_ASCII)
+_pressure_ut_unit = _ut_parse(_ut_system, _c_char_p(b'pascal'), _UT_ASCII)
 _cached_ut_unit['pascal'] = _pressure_ut_unit
 # A calendar time ut_unit (equivalent to 'cY', 'cM')
-_calendartime_ut_unit = _ut_parse(_ut_system, _c_char_p('calendar_year'), _UT_ASCII)
+_calendartime_ut_unit = _ut_parse(_ut_system, _c_char_p(b'calendar_year'), _UT_ASCII)
 _cached_ut_unit['calendar_year'] = _calendartime_ut_unit
 # A dimensionless unit one (equivalent to '', '1', '2', etc.)
 #_dimensionless_unit_one = _udunits.ut_get_dimensionless_unit_one(_ut_system)
 #_cached_ut_unit['']  = _dimensionless_unit_one
 #_cached_ut_unit['1'] = _dimensionless_unit_one
 
-_dimensionless_unit_one = _ut_parse(_ut_system, _c_char_p('1'), _UT_ASCII)
+_dimensionless_unit_one = _ut_parse(_ut_system, _c_char_p(b'1'), _UT_ASCII)
 _cached_ut_unit['']  = _dimensionless_unit_one
 _cached_ut_unit['1'] = _dimensionless_unit_one
 
@@ -705,7 +705,7 @@ array([-31., -30., -29., -28., -27.])
 
                 ut_unit = _cached_ut_unit.get(unit, None)
                 if ut_unit is None:                    
-                    ut_unit = _ut_parse(_ut_system, _c_char_p(unit), _UT_ASCII)
+                    ut_unit = _ut_parse(_ut_system, _c_char_p(unit.encode('utf-8')), _UT_ASCII)
                     if not ut_unit or not _ut_are_convertible(ut_unit, _day_ut_unit):
                         raise ValueError(
                             "Can't set unsupported unit in reference time: '%s'" % 
@@ -754,7 +754,7 @@ array([-31., -30., -29., -28., -27.])
                 # ----------------------------------------------------
                 ut_unit = _cached_ut_unit.get(units, None)
                 if ut_unit is None:
-                    ut_unit = _ut_parse(_ut_system, _c_char_p(units), _UT_ASCII)
+                    ut_unit = _ut_parse(_ut_system, _c_char_p(units.encode('utf-8')), _UT_ASCII)
                     if not ut_unit:
                         raise ValueError(
                             "Can't set unsupported unit: %r" % units)
