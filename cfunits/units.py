@@ -1175,7 +1175,7 @@ The augmented arithmetic assignment ``/=``
 x.__idiv__(y) <==> x/=y
 
 '''
-        return self / other
+        return self.__div__(other)
     #--- End def
 
     def __ipow__(self, other):
@@ -1243,7 +1243,7 @@ x.__rdiv__(y) <==> y/x
 x.__floordiv__(y) <==> x//y <==> x/y
 
 '''
-        return self / other
+        return self.__div__(other)
     #--- End def
 
     def __ifloordiv__(self, other):
@@ -1252,7 +1252,7 @@ x.__floordiv__(y) <==> x//y <==> x/y
 x.__ifloordiv__(y) <==> x//=y <==> x/=y
 
 '''
-        return self / other
+        return self.__div__(other)
     #--- End def
  
     def __rfloordiv__(self, other):
@@ -1274,7 +1274,7 @@ x.__rfloordiv__(y) <==> y//x <==> y/x
 x.__truediv__(y) <==> x/y
 
 '''
-        return self / other
+        return self.__div__(other)
     #--- End def
 
     def __itruediv__(self, other):
@@ -1283,7 +1283,7 @@ x.__truediv__(y) <==> x/y
 x.__itruediv__(y) <==> x/=y
 
 '''
-        return self / other
+        return self.__div__(other)
     #--- End def
  
     def __rtruediv__(self, other):
