@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import unittest
 import os
 import netCDF4
@@ -15,27 +17,27 @@ def run_test_suite(verbosity=2):
     runner.run(testsuite)
 
 if __name__ == '__main__':
-    print '-------------------------'
-    print 'CFUNITS-PYTHON TEST SUITE'
-    print '-------------------------'
-    print 'Run date:'              , datetime.datetime.now()
-    print 'HDF5 lib version:'      , netCDF4. __hdf5libversion__
-    print 'netcdf lib version:'    , netCDF4.__netcdf4libversion__
-    print 'netcdf4-python version:', netCDF4.__version__
-    print 'numpy version:'         , numpy.__version__
-    print 'cfunits-python version:', cfunits.__version__
-    print 'cfunits-python path:'   , os.path.abspath(cfunits.__file__)
-    print ''
+    print('-------------------------')
+    print('CFUNITS-PYTHON TEST SUITE')
+    print('-------------------------')
+    print('Run date:'              , datetime.datetime.now())
+    print('HDF5 lib version:'      , netCDF4. __hdf5libversion__)
+    print('netcdf lib version:'    , netCDF4.__netcdf4libversion__)
+    print('netcdf4-python version:', netCDF4.__version__)
+    print('numpy version:'         , numpy.__version__)
+    print('cfunits-python version:', cfunits.__version__)
+    print('cfunits-python path:'   , os.path.abspath(cfunits.__file__))
+    print('')
 
     run_test_suite()
 
-    print ''
-    print '--------'
-    print 'Versions'
-    print '--------'
-    print 'HDF5 lib version:'      , netCDF4. __hdf5libversion__
-    print 'netcdf lib version:'    , netCDF4.__netcdf4libversion__
-    print 'netcdf4-python version:', netCDF4.__version__
-    print 'numpy version:'         , numpy.__version__
-    print 'cfunits-python version:', cfunits.__version__
-    print 'cfunits-python path:'   , os.path.abspath(cfunits.__file__)
+    print('')
+    print('--------')
+    print('Versions')
+    print('--------')
+    print('HDF5 lib version:'      , netCDF4. __hdf5libversion__)
+    print('netcdf lib version:'    , netCDF4.__netcdf4libversion__)
+    print('netcdf4-python version:', netCDF4.__version__)
+    print('numpy version:'         , numpy.__version__)
+    print('cfunits-python version:', cfunits.__version__)
+    print('cfunits-python path:'   , os.path.abspath(cfunits.__file__))

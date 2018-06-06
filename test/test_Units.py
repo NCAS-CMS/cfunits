@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import cfunits as cf
 import math
 import os
@@ -135,8 +137,8 @@ class UnitsTest(unittest.TestCase):
 #--- End: class
 
 if __name__ == '__main__':
-    print 'cfunits-python version:', cf.__version__
-    print 'cfunits-python path:'   , os.path.abspath(cf.__file__)
-    print ''
+    print('cfunits-python version:', cf.__version__)
+    print('cfunits-python path:'   , os.path.abspath(cf.__file__))
+    print('')
     unittest.main(verbosity=2)
 

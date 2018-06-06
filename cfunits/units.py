@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import ctypes
 import netCDF4
 import operator
@@ -62,9 +64,9 @@ _ut_read_xml = _udunits.ut_read_xml
 _ut_read_xml.argtypes = (_c_char_p, )
 _ut_read_xml.restype = _c_void_p
 
-#print 'units: before _udunits.ut_read_xml(',_unit_database,')'
+#print('units: before _udunits.ut_read_xml(',_unit_database,')')
 _ut_system = _ut_read_xml(None)
-#print 'units: after  _udunits.ut_read_xml(',_unit_database,')'
+#print('units: after  _udunits.ut_read_xml(',_unit_database,')')
 
 # Reinstate the reporting of error messages
 #_ut_set_error_message_handler(_udunits.ut_write_to_stderr)
@@ -2011,7 +2013,7 @@ array([-31., -30., -29., -28., -27.])
                 # ctypes object
                 itemsize = x.dtype.itemsize
                 pointer  = x.ctypes.data_as(_ctypes_POINTER[itemsize])
-#                print 'U1 ', type(x)
+#                print('U1 ', type(x))
                 # Convert the array in place
                 _cv_convert_array[itemsize](cv_converter,
                                             pointer,
@@ -2033,7 +2035,7 @@ array([-31., -30., -29., -28., -27.])
 
             _cv_free(cv_converter)
         #--- End: if
-#        print 'U', type(x)
+#        print('U', type(x))
 
         # ------------------------------------------------------------
         # Apply an offset for reference-time units
@@ -2057,7 +2059,7 @@ array([-31., -30., -29., -28., -27.])
 
             x -= offset
         #--- End: if
-#        print 'U', type(x)
+#        print('U', type(x))
         return x
     #--- End: def
 
@@ -2117,7 +2119,7 @@ Return a string containing a description of the units.
         string = '\n'.join(string)
        
         if display:
-            print string
+            print(string)
         else:
             return string
     #--- End: def
@@ -2209,7 +2211,7 @@ Inspect the object for debugging.
     None
 
 '''
-        print cf_inspect(self)
+        print(cf_inspect(self))
     #--- End: def
 
     def log(self, base):
@@ -2351,7 +2353,7 @@ Inspect the object for debugging.
     None
 
 '''
-        print cf_inspect(self)
+        print(cf_inspect(self))
     #--- End: def
 
     def num2date(self, time_value):
