@@ -16,6 +16,17 @@ from numpy import reshape   as numpy_reshape
 from numpy import where     as numpy_where
 from numpy import zeros     as numpy_zeros
 
+
+def _bytes_to_str(byte_string):
+    """Convert a byte string to a regular string."""
+    try:
+        as_string = byte_string.decode()
+    except AttributeError:
+        as_string = byte_string
+    finally:
+        return str(as_string)
+
+
 # --------------------------------------------------------------------
 # Aliases for ctypes
 # --------------------------------------------------------------------
@@ -685,6 +696,7 @@ array([-31., -30., -29., -28., -27.])
             return
 
         if units is not None:
+            units = _bytes_to_str(units)
             try:
                 units = units.strip()
             except AttributeError:
@@ -794,13 +806,12 @@ array([-31., -30., -29., -28., -27.])
             self._ut_unit = _ut_unit
             self._isreftime = False
 
-            units = self.formatted(names, definition)
+            units = _bytes_to_str(self.formatted(names, definition))
             _cached_ut_unit[units] = _ut_unit
             self._units = units
 
             self._calendar  = None
             self._utime     = None
- 
             return
         #--- End: if
 
