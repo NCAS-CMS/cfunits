@@ -1,35 +1,33 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>cfunits.Units &mdash; Documentation</title>
-    
+    <title>cfunits.Units &#8212; Documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.1.4',
+        VERSION:     '1.6',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/copybutton.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="Documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="cfunits.Units.calendar" href="generated/cfunits.Units.calendar.html" />
     <link rel="prev" title="Installation" href="installation.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -42,9 +40,9 @@
         <li class="right" >
           <a href="installation.html" title="Installation"
              accesskey="P">previous</a> |</li>
-  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 1.1.4</li>
+  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 1.6</li>
   
-        <li class="nav-item nav-item-0"><a href="index.html">Documentation</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Documentation</a> &#187;</li>
  
       </ul>
     </div>  
@@ -58,11 +56,11 @@
 <h1>cfunits.Units<a class="headerlink" href="#cfunits-units" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="cfunits.Units">
-<em class="property">class </em><code class="descclassname">cfunits.</code><code class="descname">Units</code><span class="sig-paren">(</span><em>units=None</em>, <em>calendar=None</em>, <em>names=None</em>, <em>definition=None</em>, <em>_ut_unit=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cfunits/units.html#Units"><span class="viewcode-link">[source]</span></a><a class="reference external" href="https://bitbucket.org/cfpython/cfunits-python/src/v1.1.4/cfunits/units.py#/home/david/cfunits-python/cfunits/units.py-399"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="http://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<em class="property">class </em><code class="descclassname">cfunits.</code><code class="descname">Units</code><span class="sig-paren">(</span><em>units=None</em>, <em>calendar=None</em>, <em>formatted=False</em>, <em>names=False</em>, <em>definition=False</em>, <em>_ut_unit=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cfunits/units.html#Units"><span class="viewcode-link">[source]</span></a><a class="reference external" href="https://bitbucket.org/cfpython/cfunits-python/src/v1.6/cfunits/units.py#/home/david/cfunits-python/cfunits/units.py-450"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
 <p>Store, combine and compare physical units and convert numeric values
 to different units.</p>
-<p>Units are as defined in UNIDATA&#8217;s Udunits-2 package, with a few
+<p>Units are as defined in UNIDATA’s Udunits-2 package, with a few
 exceptions for greater consistency with the CF conventions namely
 support for CF calendars and new units definitions.</p>
 <p><strong>Modifications to the standard Udunits database</strong></p>
@@ -91,17 +89,17 @@ Udunits-2 database (version 2.1.24):</p>
 <td>New unit</td>
 </tr>
 <tr class="row-odd"><td>level</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 <td>1</td>
 <td>New unit</td>
 </tr>
 <tr class="row-even"><td>sigma_level</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 <td>1</td>
 <td>New unit</td>
 </tr>
 <tr class="row-odd"><td>layer</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 <td>1</td>
 <td>New unit</td>
 </tr>
@@ -111,7 +109,7 @@ Udunits-2 database (version 2.1.24):</p>
 <td>New unit</td>
 </tr>
 <tr class="row-odd"><td>bel</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 <td>10 dB</td>
 <td>New unit</td>
 </tr>
@@ -121,24 +119,24 @@ Udunits-2 database (version 2.1.24):</p>
 <td>Added symbol</td>
 </tr>
 <tr class="row-odd"><td>sievert</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 <td>J kg-1</td>
 <td>Removed symbol</td>
 </tr>
 </tbody>
 </table>
-<p>Plural forms of the new units&#8217; names are allowed, such as
+<p>Plural forms of the new units’ names are allowed, such as
 <code class="docutils literal"><span class="pre">practical_salinity_units</span></code>.</p>
 <p>The modified database is in the <em>udunits</em> subdirectory of the <em>etc</em>
 directory found in the same location as this module.</p>
 <p><strong>Accessing units</strong></p>
 <p>Units may be set, retrieved and deleted via the <a class="reference internal" href="generated/cfunits.Units.units.html#cfunits.Units.units" title="cfunits.Units.units"><code class="xref py py-obj docutils literal"><span class="pre">units</span></code></a> attribute. Its
-value is a string that can be recognized by UNIDATA&#8217;s Udunits-2
+value is a string that can be recognized by UNIDATA’s Udunits-2
 package, with the few exceptions given in the CF conventions.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s">&#39;m s-1&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;m s-1&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span>
 <span class="go">&lt;Cf Units: &#39;m s-1&#39;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s">&#39;days since 2004-3-1&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;days since 2004-3-1&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span>
 <span class="go">&lt;CF Units: days since 2004-3-1&gt;</span>
 </pre></div>
@@ -153,14 +151,14 @@ of 0 (such as <code class="docutils literal"><span class="pre">kilometres</span>
 equivalence and equality are based on internally stored binary
 representations of the units, rather than their string
 representations.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s">&#39;m/s&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s">&#39;m s-1&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">w</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s">&#39;km.s-1&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s">&#39;0.001 kilometer.second-1&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s">&#39;gram&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;m/s&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;m s-1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">w</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;km.s-1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;0.001 kilometer.second-1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;gram&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">equivalent</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">u</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">v</span><span class="p">),</span>  <span class="n">u</span> <span class="o">==</span> <span class="n">v</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">equivalent</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">u</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">v</span><span class="p">),</span>  <span class="n">u</span> <span class="o">==</span> <span class="n">v</span>
 <span class="go">(True, True, True)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">equivalent</span><span class="p">(</span><span class="n">w</span><span class="p">),</span> <span class="n">u</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
 <span class="go">(True, False)</span>
@@ -173,25 +171,25 @@ representations.</p>
 <p><strong>Time and reference time units</strong></p>
 <p>Time units may be given as durations of time (<em>time units</em>) or as an
 amount of time since a reference time (<em>reference time units</em>):</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">Units</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s">&#39;s&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s">&#39;day&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s">&#39;days since 1970-01-01&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s">&#39;seconds since 1992-10-8 15:15:42.5 -6:00&#39;</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">Units</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;s&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;day&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;days since 1970-01-01&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;seconds since 1992-10-8 15:15:42.5 -6:00&#39;</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">It is recommended that the units <code class="docutils literal"><span class="pre">year</span></code> and <code class="docutils literal"><span class="pre">month</span></code> be used
 with caution, as explained in the following excerpt from the CF
-conventions: &#8220;The Udunits package defines a year to be exactly
+conventions: “The Udunits package defines a year to be exactly
 365.242198781 days (the interval between 2 successive passages of
 the sun through vernal equinox). It is not a calendar year. Udunits
 includes the following definitions for years: a common_year is 365
 days, a leap_year is 366 days, a Julian_year is 365.25 days, and a
 Gregorian_year is 365.2425 days. For similar reasons the unit
 <code class="docutils literal"><span class="pre">month</span></code>, which is defined to be exactly year/12, should also be
-used with caution.&#8221;</p>
+used with caution.”</p>
 </div>
 <p><strong>Calendar</strong></p>
 <p>The date given in reference time units is associated with one of the
@@ -200,11 +198,11 @@ calendars recognized by the CF conventions and may be set with the
 calendar is not set then, for the purposes of calculation and
 comparison, it defaults to the mixed Gregorian/Julian calendar as
 defined by Udunits:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s">&#39;days since 2000-1-1&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;days since 2000-1-1&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">calendar</span>
 <span class="go">AttributeError: Can&#39;t get &#39;Units&#39; attribute &#39;calendar&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s">&#39;days since 2000-1-1&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">.</span><span class="n">calendar</span> <span class="o">=</span> <span class="s">&#39;gregorian&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;days since 2000-1-1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">.</span><span class="n">calendar</span> <span class="o">=</span> <span class="s1">&#39;gregorian&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
 <span class="go">True</span>
 </pre></div>
@@ -225,29 +223,29 @@ defined by Udunits:</p>
 <div><code class="docutils literal"><span class="pre">+=,</span> <span class="pre">-=,</span> <span class="pre">*=,</span> <span class="pre">/=,</span> <span class="pre">**=</span></code></div></blockquote>
 <p>The comparison operations return a boolean and all other operations
 return a new units object or modify the units object in place.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s">&#39;m&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
 <span class="go">&lt;CF Units: m&gt;</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">u</span> <span class="o">*</span> <span class="mi">1000</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">u</span> <span class="o">*</span> <span class="mi">1000</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v</span>
 <span class="go">&lt;CF Units: 1000 m&gt;</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">==</span> <span class="n">v</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">==</span> <span class="n">v</span>
 <span class="go">False</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">!=</span> <span class="n">v</span>
 <span class="go">True</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">**=</span> <span class="mi">2</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">**=</span> <span class="mi">2</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span>
 <span class="go">&lt;CF Units: m2&gt;</span>
 </pre></div>
 </div>
 <p>It is also possible to create the logarithm of a unit corresponding to
 the given logarithmic base:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s">&#39;seconds&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;seconds&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="go">&lt;CF Units: lg(re 1 s)&gt;</span>
 </pre></div>
@@ -255,13 +253,13 @@ the given logarithmic base:</p>
 <p><strong>Modifying data for equivalent units</strong></p>
 <p>Any numpy array or python numeric type may be modified for equivalent
 units using the <a class="reference internal" href="generated/cfunits.Units.conform.html#cfunits.Units.conform" title="cfunits.Units.conform"><code class="xref py py-obj docutils literal"><span class="pre">conform</span></code></a> static method.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="o">.</span><span class="n">conform</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">Units</span><span class="p">(</span><span class="s">&#39;km&#39;</span><span class="p">),</span> <span class="n">Units</span><span class="p">(</span><span class="s">&#39;m&#39;</span><span class="p">))</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="o">.</span><span class="n">conform</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;km&#39;</span><span class="p">),</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">))</span>
 <span class="go">2000.0</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="o">.</span><span class="n">conform</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">Units</span><span class="p">(</span><span class="s">&#39;minute&#39;</span><span class="p">),</span> <span class="n">Units</span><span class="p">(</span><span class="s">&#39;second&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="o">.</span><span class="n">conform</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;minute&#39;</span><span class="p">),</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;second&#39;</span><span class="p">))</span>
 <span class="go">array([   0.,   60.,  120.,  180.,  240.])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <span class="go">array([ 0.,  1.,  2.,  3.,  4.])</span>
@@ -269,7 +267,7 @@ units using the <a class="reference internal" href="generated/cfunits.Units.conf
 </div>
 <p>If the <em>inplace</em> keyword is True, then a numpy array is modified in
 place, without any copying overheads:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="o">.</span><span class="n">conform</span><span class="p">(</span><span class="n">a</span><span class="p">,</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="o">.</span><span class="n">conform</span><span class="p">(</span><span class="n">a</span><span class="p">,</span>
 <span class="go">                  Units(&#39;days since 2000-12-1&#39;),</span>
 <span class="go">                  Units(&#39;days since 2001-1-1&#39;), inplace=True)</span>
 <span class="go">array([-31., -30., -29., -28., -27.])</span>
@@ -283,25 +281,25 @@ place, without any copying overheads:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
-<dt>units <span class="classifier-delimiter">:</span> <span class="classifier">str or cf.Units, optional</span></dt>
+<dt>units: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#str" title="(in Python v2.7)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a> or <code class="xref py py-obj docutils literal"><span class="pre">cf.Units</span></code>, optional</dt>
 <dd><p class="first last">Set the new units from this string.</p>
 </dd>
-<dt>calendar <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
+<dt>calendar: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#str" title="(in Python v2.7)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>, optional</dt>
 <dd><p class="first last">Set the calendar for reference time units.</p>
 </dd>
-<dt>format <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional</span></dt>
+<dt>formatted: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#bool" title="(in Python v2.7)"><code class="xref py py-obj docutils literal"><span class="pre">bool</span></code></a>, optional</dt>
 <dd><p class="first last">Format the string representation of the units in a
-standardized manner. See the <a class="reference external" href="http://docs.python.org/2.7/library/functions.html#format" title="(in Python v2.7)"><code class="xref py py-obj docutils literal"><span class="pre">format</span></code></a> method.</p>
+standardized manner. See the <a class="reference internal" href="generated/cfunits.Units.formatted.html#cfunits.Units.formatted" title="cfunits.Units.formatted"><code class="xref py py-obj docutils literal"><span class="pre">formatted</span></code></a> method.</p>
 </dd>
-<dt>names <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional</span></dt>
+<dt>names: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#bool" title="(in Python v2.7)"><code class="xref py py-obj docutils literal"><span class="pre">bool</span></code></a>, optional</dt>
 <dd><p class="first last">Format the string representation of the units using names
-instead of symbols. See the <a class="reference external" href="http://docs.python.org/2.7/library/functions.html#format" title="(in Python v2.7)"><code class="xref py py-obj docutils literal"><span class="pre">format</span></code></a> method.</p>
+instead of symbols. See the <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#format" title="(in Python v2.7)"><code class="xref py py-obj docutils literal"><span class="pre">format</span></code></a> method.</p>
 </dd>
-<dt>definition <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional</span></dt>
+<dt>definition: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#bool" title="(in Python v2.7)"><code class="xref py py-obj docutils literal"><span class="pre">bool</span></code></a>, optional</dt>
 <dd><p class="first last">Format the string representation of the units using basic
-units. See the <a class="reference external" href="http://docs.python.org/2.7/library/functions.html#format" title="(in Python v2.7)"><code class="xref py py-obj docutils literal"><span class="pre">format</span></code></a> method.</p>
+units. See the <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#format" title="(in Python v2.7)"><code class="xref py py-obj docutils literal"><span class="pre">format</span></code></a> method.</p>
 </dd>
-<dt>_ut_unit <span class="classifier-delimiter">:</span> <span class="classifier">int, optional</span></dt>
+<dt>_ut_unit: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#int" title="(in Python v2.7)"><code class="xref py py-obj docutils literal"><span class="pre">int</span></code></a>, optional</dt>
 <dd><p class="first last">Set the new units from this Udunits binary unit
 representation. This should be an integer returned by a call
 to <code class="xref py py-obj docutils literal"><span class="pre">ut_parse</span></code> function of Udunits. Ignored if <a class="reference internal" href="generated/cfunits.Units.units.html#cfunits.Units.units" title="cfunits.Units.units"><code class="xref py py-obj docutils literal"><span class="pre">units</span></code></a> is set.</p>
@@ -359,6 +357,27 @@ to <code class="xref py py-obj docutils literal"><span class="pre">ut_parse</spa
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/cfunits.Units.conform.html#cfunits.Units.conform" title="cfunits.Units.conform"><code class="xref py py-obj docutils literal"><span class="pre">conform</span></code></a></td>
+<td>Conform values in one unit to equivalent values in another, compatible unit.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/cfunits.Units.copy.html#cfunits.Units.copy" title="cfunits.Units.copy"><code class="xref py py-obj docutils literal"><span class="pre">copy</span></code></a></td>
+<td>Return a deep copy.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/cfunits.Units.dump.html#cfunits.Units.dump" title="cfunits.Units.dump"><code class="xref py py-obj docutils literal"><span class="pre">dump</span></code></a></td>
+<td>Return a string containing a description of the units.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/cfunits.Units.equals.html#cfunits.Units.equals" title="cfunits.Units.equals"><code class="xref py py-obj docutils literal"><span class="pre">equals</span></code></a></td>
+<td>Return True if and only if numeric values in one unit are convertible to numeric values in the other unit and their conversion is a scale factor of 1.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/cfunits.Units.equivalent.html#cfunits.Units.equivalent" title="cfunits.Units.equivalent"><code class="xref py py-obj docutils literal"><span class="pre">equivalent</span></code></a></td>
+<td>Returns True if numeric values in one unit are convertible to numeric values in the other unit.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/cfunits.Units.formatted.html#cfunits.Units.formatted" title="cfunits.Units.formatted"><code class="xref py py-obj docutils literal"><span class="pre">formatted</span></code></a></td>
+<td>Formats the string stored in the <code class="xref py py-obj docutils literal"><span class="pre">units</span></code> attribute in a standardized manner.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/cfunits.Units.log.html#cfunits.Units.log" title="cfunits.Units.log"><code class="xref py py-obj docutils literal"><span class="pre">log</span></code></a></td>
+<td>Return the logarithmic unit corresponding to the given logarithmic base.</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -370,6 +389,9 @@ to <code class="xref py py-obj docutils literal"><span class="pre">ut_parse</spa
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/cfunits.Units.conform.html#cfunits.Units.conform" title="cfunits.Units.conform"><code class="xref py py-obj docutils literal"><span class="pre">conform</span></code></a></td>
+<td>Conform values in one unit to equivalent values in another, compatible unit.</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -400,21 +422,18 @@ to <code class="xref py py-obj docutils literal"><span class="pre">ut_parse</spa
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/cfunits.Units.txt"
+      <li><a href="_sources/cfunits.Units.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -433,16 +452,16 @@ to <code class="xref py py-obj docutils literal"><span class="pre">ut_parse</spa
         <li class="right" >
           <a href="installation.html" title="Installation"
              >previous</a> |</li>
-  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 1.1.4</li>
+  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 1.6</li>
   
-        <li class="nav-item nav-item-0"><a href="index.html">Documentation</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Documentation</a> &#187;</li>
  
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, David Hassell.
-      Last updated on Feb 17, 2016.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+        &#169; Copyright 2015, David Hassell.
+      Last updated on Aug 23, 2018.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

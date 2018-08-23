@@ -1,35 +1,33 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Introduction &mdash; Documentation</title>
-    
+    <title>Introduction &#8212; Documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.1.4',
+        VERSION:     '1.6',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/copybutton.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="Documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Installation" href="installation.html" />
-    <link rel="prev" title="cfunits 1.1.4 documentation" href="index.html" /> 
+    <link rel="prev" title="cfunits 1.6 documentation" href="index.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -40,11 +38,11 @@
           <a href="installation.html" title="Installation"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="cfunits 1.1.4 documentation"
+          <a href="index.html" title="cfunits 1.6 documentation"
              accesskey="P">previous</a> |</li>
-  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 1.1.4</li>
+  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 1.6</li>
   
-        <li class="nav-item nav-item-0"><a href="index.html">Documentation</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Documentation</a> &#187;</li>
  
       </ul>
     </div>  
@@ -56,9 +54,9 @@
             
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>A python interface to <a class="reference external" href="http://www.unidata.ucar.edu/software/udunits">UNIDATA&#8217;s Udunits-2 library</a> with CF extensions</p>
+<p>A python interface to <a class="reference external" href="http://www.unidata.ucar.edu/software/udunits">UNIDATA’s Udunits-2 library</a> with CF extensions</p>
 <p>Store, combine and compare physical units and convert numeric values to different units.</p>
-<p>Units are as defined in UNIDATA&#8217;s Udunits-2 library, except for
+<p>Units are as defined in UNIDATA’s Udunits-2 library, except for
 reference time units (such as <code class="docutils literal"><span class="pre">'days</span> <span class="pre">since</span> <span class="pre">2000-12-1'</span></code> in the
 <code class="docutils literal"><span class="pre">'proleptic_gregorian'</span></code> calendar), which are handled by the <a class="reference external" href="https://pypi.python.org/pypi/netCDF4">netCDF4
 python package</a>.</p>
@@ -75,28 +73,25 @@ with the <a class="reference external" href="http://cfconventions.org/">CF conve
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
-                        title="previous chapter">cfunits 1.1.4 documentation</a></p>
+                        title="previous chapter">cfunits 1.6 documentation</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="installation.html"
                         title="next chapter">Installation</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/introduction.txt"
+      <li><a href="_sources/introduction.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -113,18 +108,18 @@ with the <a class="reference external" href="http://cfconventions.org/">CF conve
           <a href="installation.html" title="Installation"
              >next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="cfunits 1.1.4 documentation"
+          <a href="index.html" title="cfunits 1.6 documentation"
              >previous</a> |</li>
-  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 1.1.4</li>
+  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 1.6</li>
   
-        <li class="nav-item nav-item-0"><a href="index.html">Documentation</a> &raquo;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Documentation</a> &#187;</li>
  
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, David Hassell.
-      Last updated on Feb 17, 2016.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+        &#169; Copyright 2015, David Hassell.
+      Last updated on Aug 23, 2018.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

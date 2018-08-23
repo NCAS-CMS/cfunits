@@ -1,43 +1,50 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>cfunits.Units.formatted &mdash; Documentation</title>
-    
+    <title>cfunits.Units.formatted &#8212; Documentation</title>
     <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.1.4',
+        VERSION:     '1.6',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/copybutton.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="Documentation" href="../index.html" /> 
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="cfunits.Units.log" href="cfunits.Units.log.html" />
+    <link rel="prev" title="cfunits.Units.equivalent" href="cfunits.Units.equivalent.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 1.1.4</li>
+        <li class="right" >
+          <a href="cfunits.Units.log.html" title="cfunits.Units.log"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="cfunits.Units.equivalent.html" title="cfunits.Units.equivalent"
+             accesskey="P">previous</a> |</li>
+  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 1.6</li>
   
-        <li class="nav-item nav-item-0"><a href="../index.html">Documentation</a> &raquo;</li>
- 
+        <li class="nav-item nav-item-0"><a href="../index.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../cfunits.Units.html" accesskey="U">cfunits.Units</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -50,7 +57,7 @@
 <h1>cfunits.Units.formatted<a class="headerlink" href="#cfunits-units-formatted" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="cfunits.Units.formatted">
-<code class="descclassname">Units.</code><code class="descname">formatted</code><span class="sig-paren">(</span><em>names=None</em>, <em>definition=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cfunits/units.html#Units.formatted"><span class="viewcode-link">[source]</span></a><a class="reference external" href="https://bitbucket.org/cfpython/cfunits-python/src/v1.1.4/cfunits/units.py#/home/david/cfunits-python/cfunits/units.py-1635"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units.formatted" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">Units.</code><code class="descname">formatted</code><span class="sig-paren">(</span><em>names=None</em>, <em>definition=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cfunits/units.html#Units.formatted"><span class="viewcode-link">[source]</span></a><a class="reference external" href="https://bitbucket.org/cfpython/cfunits-python/src/v1.6/cfunits/units.py#/home/david/cfunits-python/cfunits/units.py-1805"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units.formatted" title="Permalink to this definition">¶</a></dt>
 <dd><p>Formats the string stored in the <code class="xref py py-obj docutils literal"><span class="pre">units</span></code> attribute in a standardized
 manner. The <code class="xref py py-obj docutils literal"><span class="pre">units</span></code> attribute is modified in place and its new value
 is returned.</p>
@@ -59,19 +66,20 @@ is returned.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt>names <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional</span></dt>
+<dt>names: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#bool" title="(in Python v2.7)"><code class="xref py py-obj docutils literal"><span class="pre">bool</span></code></a>, optional</dt>
 <dd><p class="first last">Use unit names instead of symbols.</p>
 </dd>
-<dt>definition <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional</span></dt>
-<dd><p class="first last">The formatted string is given in terms of basic-units instead
+<dt>definition: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#bool" title="(in Python v2.7)"><code class="xref py py-obj docutils literal"><span class="pre">bool</span></code></a>, optional</dt>
+<dd><p class="first last">The formatted string is given in terms of basic units instead
 of stopping any expansion at the highest level possible.</p>
 </dd>
 </dl>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first docutils">
-<dt>out <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
-<dd><p class="first last">The formatted string.</p>
+<dt>out: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#str" title="(in Python v2.7)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/2.7/library/constants.html#None" title="(in Python v2.7)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a></dt>
+<dd><p class="first last">The formatted string. If the units have not yet been set, then
+<a class="reference external" href="https://docs.python.org/2.7/library/constants.html#None" title="(in Python v2.7)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a> is returned.</p>
 </dd>
 </dl>
 </td>
@@ -80,7 +88,7 @@ of stopping any expansion at the highest level possible.</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s">&#39;W&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;W&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span>
 <span class="go">&#39;W&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -96,23 +104,43 @@ of stopping any expansion at the highest level possible.</p>
 <span class="go">&#39;W&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span><span class="o">=</span><span class="s">&#39;dram&#39;</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span><span class="o">=</span><span class="s1">&#39;dram&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="go">&#39;1.848345703125e-06 meter^3&#39;</span>
 </pre></div>
 </div>
 <p>Formatting is also available during object initialization:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s">&#39;m/s&#39;</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;m/s&#39;</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span>
 <span class="go">&#39;m.s-1&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s">&#39;dram&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;dram&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span>
 <span class="go">&#39;1.848345703125e-06 m3&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s">&#39;W&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">definition</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;Watt&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span>
+<span class="go">&#39;Watt&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;Watt&#39;</span><span class="p">,</span> <span class="n">formatted</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span>
+<span class="go">&#39;W&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;Watt&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span>
+<span class="go">&#39;watt&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">Units</span><span class="p">(</span><span class="s1">&#39;Watt&#39;</span><span class="p">,</span> <span class="n">definition</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span>
+<span class="go">&#39;m2.kg.s-3&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">Units</span><span class="p">(</span><span class="s1">&#39;Watt&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">definition</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span>
 <span class="go">&#39;meter^2-kilogram-second^-3&#39;</span>
 </pre></div>
@@ -127,24 +155,27 @@ of stopping any expansion at the highest level possible.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="cfunits.Units.equivalent.html"
+                        title="previous chapter">cfunits.Units.equivalent</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="cfunits.Units.log.html"
+                        title="next chapter">cfunits.Units.log</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/generated/cfunits.Units.formatted.txt"
+      <li><a href="../_sources/generated/cfunits.Units.formatted.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -157,16 +188,23 @@ of stopping any expansion at the highest level possible.</p>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
-  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 1.1.4</li>
+        <li class="right" >
+          <a href="cfunits.Units.log.html" title="cfunits.Units.log"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="cfunits.Units.equivalent.html" title="cfunits.Units.equivalent"
+             >previous</a> |</li>
+  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 1.6</li>
   
-        <li class="nav-item nav-item-0"><a href="../index.html">Documentation</a> &raquo;</li>
- 
+        <li class="nav-item nav-item-0"><a href="../index.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../cfunits.Units.html" >cfunits.Units</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, David Hassell.
-      Last updated on Feb 17, 2016.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+        &#169; Copyright 2015, David Hassell.
+      Last updated on Aug 23, 2018.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

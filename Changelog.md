@@ -1,3 +1,9 @@
+Version 1.6 (23 August 2018)
+----------------------------
+
+* Bad units now do not raise an exception, but may be checked with
+  the "isvalid" atttribute.
+	
 Version 1.5 (24 February 2017)
 ------------------------------
 
