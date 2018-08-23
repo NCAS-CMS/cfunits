@@ -4,7 +4,7 @@ import os
 import fnmatch
 import sys
 import imp
-import subprocess
+import re
 
 def find_package_data_files(directory):
     for root, dirs, files in os.walk(directory):
@@ -27,10 +27,10 @@ def _get_version():
 
     """
     return re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
-                     _read("cf/__init__.py"),
+                     _read("cfunits/__init__.py"),
                      re.MULTILINE).group(1)
       
-version      = '1.6'
+version      = _get_version()
 packages     = ['cfunits']
 etc_files    = [f for f in find_package_data_files('cfunits/etc')]
 

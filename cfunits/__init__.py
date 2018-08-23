@@ -21,17 +21,15 @@ installation and source code.
 __Conventions__  = 'CF-1.5'
 __author__       = 'David Hassell'
 __date__         = '2018-08-23'
-__version__      = '1.6'
+__version__      = '1.7'
 
 from distutils.version import StrictVersion
 import platform
 
 # Check the version of python
-if not (StrictVersion('2.6.0')
-        <= StrictVersion(platform.python_version())
-        < StrictVersion('3.0.0')):
+if not (StrictVersion('2.6.0') <= StrictVersion(platform.python_version())):
     raise ValueError(
-        "Bad python version: cf requires 2.6 <= python < 3.0. Got %s" %
+        "Bad python version: cf requires 2.6 <= python. Got %s" %
         platform.python_version())
 
 from .units import Units

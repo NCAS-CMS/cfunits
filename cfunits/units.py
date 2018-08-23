@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import ctypes
 import netCDF4
 import operator
@@ -13,6 +15,17 @@ from numpy import ones      as numpy_ones
 from numpy import reshape   as numpy_reshape
 from numpy import where     as numpy_where
 from numpy import zeros     as numpy_zeros
+
+
+def _bytes_to_str(byte_string):
+    """Convert a byte string to a regular string."""
+    try:
+        as_string = byte_string.decode()
+    except AttributeError:
+        as_string = byte_string
+    finally:
+        return str(as_string)
+
 
 # --------------------------------------------------------------------
 # Aliases for ctypes
@@ -62,9 +75,9 @@ _ut_read_xml = _udunits.ut_read_xml
 _ut_read_xml.argtypes = (_c_char_p, )
 _ut_read_xml.restype = _c_void_p
 
-#print 'units: before _udunits.ut_read_xml(',_unit_database,')'
+#print('units: before _udunits.ut_read_xml(',_unit_database,')')
 _ut_system = _ut_read_xml(None)
-#print 'units: after  _udunits.ut_read_xml(',_unit_database,')'
+#print('units: after  _udunits.ut_read_xml(',_unit_database,')')
 
 # Reinstate the reporting of error messages
 #_ut_set_error_message_handler(_udunits.ut_write_to_stderr)
@@ -213,27 +226,27 @@ _ut_new_base_unit.restype = _c_void_p
 # the correct sievert mapping in place; because that mapping
 # was only an alias, the unit now doesn't depend on the mapping
 # persisting.
-assert(0 == _ut_unmap_symbol_to_unit(_ut_system, _c_char_p('Sv'), _UT_ASCII))
-assert(0 == _ut_map_symbol_to_unit(_c_char_p('Sv'), _UT_ASCII,
-                                   _ut_get_unit_by_name(_ut_system, _c_char_p('sverdrup'))))
+assert(0 == _ut_unmap_symbol_to_unit(_ut_system, _c_char_p(b'Sv'), _UT_ASCII))
+assert(0 == _ut_map_symbol_to_unit(_c_char_p(b'Sv'), _UT_ASCII,
+                                   _ut_get_unit_by_name(_ut_system, _c_char_p(b'sverdrup'))))
 
 # Add new base unit calendar_year
 calendar_year_unit = _ut_new_base_unit(_ut_system)
-assert(0 == _ut_map_symbol_to_unit(_c_char_p('cY'), _UT_ASCII, calendar_year_unit))
-assert(0 == _ut_map_unit_to_symbol(calendar_year_unit, _c_char_p('cY'), _UT_ASCII))
-assert(0 == _ut_map_name_to_unit(_c_char_p('calendar_year'), _UT_ASCII, calendar_year_unit))
-assert(0 == _ut_map_unit_to_name(calendar_year_unit, _c_char_p('calendar_year'), _UT_ASCII))
-assert(0 == _ut_map_name_to_unit(_c_char_p('calendar_years'), _UT_ASCII, calendar_year_unit))
+assert(0 == _ut_map_symbol_to_unit(_c_char_p(b'cY'), _UT_ASCII, calendar_year_unit))
+assert(0 == _ut_map_unit_to_symbol(calendar_year_unit, _c_char_p(b'cY'), _UT_ASCII))
+assert(0 == _ut_map_name_to_unit(_c_char_p(b'calendar_year'), _UT_ASCII, calendar_year_unit))
+assert(0 == _ut_map_unit_to_name(calendar_year_unit, _c_char_p(b'calendar_year'), _UT_ASCII))
+assert(0 == _ut_map_name_to_unit(_c_char_p(b'calendar_years'), _UT_ASCII, calendar_year_unit))
 
 # Add various aliases useful for CF.
 def add_unit_alias(definition, symbol, singular, plural):
-    unit = _ut_parse(_ut_system, _c_char_p(definition), _UT_ASCII)
+    unit = _ut_parse(_ut_system, _c_char_p(definition.encode('utf-8')), _UT_ASCII)
     if symbol is not None:
-        assert(0 == _ut_map_symbol_to_unit(_c_char_p(symbol), _UT_ASCII, unit))
+        assert(0 == _ut_map_symbol_to_unit(_c_char_p(symbol.encode('utf-8')), _UT_ASCII, unit))
     if singular is not None:
-        assert(0 == _ut_map_name_to_unit(_c_char_p(singular), _UT_ASCII, unit))
+        assert(0 == _ut_map_name_to_unit(_c_char_p(singular.encode('utf-8')), _UT_ASCII, unit))
     if plural is not None:
-        assert(0 == _ut_map_name_to_unit(_c_char_p(plural), _UT_ASCII, unit))
+        assert(0 == _ut_map_name_to_unit(_c_char_p(plural.encode('utf-8')), _UT_ASCII, unit))
 
 add_unit_alias("1.e-3", "psu", "practical_salinity_unit", "practical_salinity_units")
 add_unit_alias("calendar_year/12", "cM", "calendar_month", "calendar_months")
@@ -284,20 +297,20 @@ _cached_utime   = {}
 # Save some useful units
 # --------------------------------------------------------------------
 # A time ut_unit (equivalent to 'day', 'second', etc.)
-_day_ut_unit  = _ut_parse(_ut_system, _c_char_p('day'), _UT_ASCII)
+_day_ut_unit  = _ut_parse(_ut_system, _c_char_p(b'day'), _UT_ASCII)
 _cached_ut_unit['days'] = _day_ut_unit
 # A pressure ut_unit (equivalent to 'Pa', 'hPa', etc.)
-_pressure_ut_unit = _ut_parse(_ut_system, _c_char_p('pascal'), _UT_ASCII)
+_pressure_ut_unit = _ut_parse(_ut_system, _c_char_p(b'pascal'), _UT_ASCII)
 _cached_ut_unit['pascal'] = _pressure_ut_unit
 # A calendar time ut_unit (equivalent to 'cY', 'cM')
-_calendartime_ut_unit = _ut_parse(_ut_system, _c_char_p('calendar_year'), _UT_ASCII)
+_calendartime_ut_unit = _ut_parse(_ut_system, _c_char_p(b'calendar_year'), _UT_ASCII)
 _cached_ut_unit['calendar_year'] = _calendartime_ut_unit
 # A dimensionless unit one (equivalent to '', '1', '2', etc.)
 #_dimensionless_unit_one = _udunits.ut_get_dimensionless_unit_one(_ut_system)
 #_cached_ut_unit['']  = _dimensionless_unit_one
 #_cached_ut_unit['1'] = _dimensionless_unit_one
 
-_dimensionless_unit_one = _ut_parse(_ut_system, _c_char_p('1'), _UT_ASCII)
+_dimensionless_unit_one = _ut_parse(_ut_system, _c_char_p(b'1'), _UT_ASCII)
 _cached_ut_unit['']  = _dimensionless_unit_one
 _cached_ut_unit['1'] = _dimensionless_unit_one
 
@@ -690,6 +703,7 @@ array([-31., -30., -29., -28., -27.])
         #--- End: if
         
         if units is not None:
+            units = _bytes_to_str(units)
             try:
                 units = units.strip()
             except AttributeError:
@@ -710,7 +724,7 @@ array([-31., -30., -29., -28., -27.])
                 
                 ut_unit = _cached_ut_unit.get(unit, None)
                 if ut_unit is None:                    
-                    ut_unit = _ut_parse(_ut_system, _c_char_p(unit), _UT_ASCII)
+                    ut_unit = _ut_parse(_ut_system, _c_char_p(unit.encode('utf-8')), _UT_ASCII)
                     if not ut_unit or not _ut_are_convertible(ut_unit, _day_ut_unit):
                         ut_unit = None
                         self._isvalid = False
@@ -769,7 +783,7 @@ array([-31., -30., -29., -28., -27.])
                 # ----------------------------------------------------
                 ut_unit = _cached_ut_unit.get(units, None)
                 if ut_unit is None:
-                    ut_unit = _ut_parse(_ut_system, _c_char_p(units), _UT_ASCII)
+                    ut_unit = _ut_parse(_ut_system, _c_char_p(units.encode('utf-8')), _UT_ASCII)
                     if not ut_unit:
                         ut_unit = None
                         self._isvalid = False
@@ -818,13 +832,12 @@ array([-31., -30., -29., -28., -27.])
             self._ut_unit = _ut_unit
             self._isreftime = False
 
-            units = self.formatted(names, definition)
+            units = _bytes_to_str(self.formatted(names, definition))
             _cached_ut_unit[units] = _ut_unit
             self._units = units
 
             self._calendar  = None
             self._utime     = None
- 
             return
         #--- End: if
 
@@ -1199,7 +1212,7 @@ The augmented arithmetic assignment ``/=``
 x.__idiv__(y) <==> x/=y
 
 '''
-        return self / other
+        return self.__div__(other)
     #--- End def
 
     def __ipow__(self, other):
@@ -1267,7 +1280,7 @@ x.__rdiv__(y) <==> y/x
 x.__floordiv__(y) <==> x//y <==> x/y
 
 '''
-        return self / other
+        return self.__div__(other)
     #--- End def
 
     def __ifloordiv__(self, other):
@@ -1276,7 +1289,7 @@ x.__floordiv__(y) <==> x//y <==> x/y
 x.__ifloordiv__(y) <==> x//=y <==> x/=y
 
 '''
-        return self / other
+        return self.__div__(other)
     #--- End def
  
     def __rfloordiv__(self, other):
@@ -1298,7 +1311,7 @@ x.__rfloordiv__(y) <==> y//x <==> y/x
 x.__truediv__(y) <==> x/y
 
 '''
-        return self / other
+        return self.__div__(other)
     #--- End def
 
     def __itruediv__(self, other):
@@ -1307,7 +1320,7 @@ x.__truediv__(y) <==> x/y
 x.__itruediv__(y) <==> x/=y
 
 '''
-        return self / other
+        return self.__div__(other)
     #--- End def
  
     def __rtruediv__(self, other):
@@ -2053,7 +2066,7 @@ array([-31., -30., -29., -28., -27.])
                 # ctypes object
                 itemsize = x.dtype.itemsize
                 pointer  = x.ctypes.data_as(_ctypes_POINTER[itemsize])
-#                print 'U1 ', type(x)
+#                print('U1 ', type(x))
                 # Convert the array in place
                 _cv_convert_array[itemsize](cv_converter,
                                             pointer,
@@ -2075,7 +2088,7 @@ array([-31., -30., -29., -28., -27.])
 
             _cv_free(cv_converter)
         #--- End: if
-#        print 'U', type(x)
+#        print('U', type(x))
 
         # ------------------------------------------------------------
         # Apply an offset for reference-time units
@@ -2099,7 +2112,7 @@ array([-31., -30., -29., -28., -27.])
 
             x -= offset
         #--- End: if
-#        print 'U', type(x)
+#        print('U', type(x))
         return x
     #--- End: def
 
@@ -2159,7 +2172,7 @@ Return a string containing a description of the units.
         string = '\n'.join(string)
        
         if display:
-            print string
+            print(string)
         else:
             return string
     #--- End: def
