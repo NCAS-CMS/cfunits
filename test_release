@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -x
+
+if [[ ! $1 ]] ; then 
+  echo "No version \$1 (e.g. 1.6)"
+  exit 1
+fi
+
+vn=$1
+
+cp dist/cfunits-$vn.tar.gz ~/tmp
+cd ~/tmp
+rm -fr ~/tmp/test ~/tmp/bin ~/tmp/lib ~/tmp/cfunits-$vn
+tar zxvf cfunits-$vn.tar.gz
+cd cfunits-$vn
+python setup.py install --home=~/tmp
+
+cp -pr test ~/tmp
+cd ~/tmp
+
+export PYTHONPATH=~/tmp/lib/python:$PYTHONPATH
+python test/run_tests.py
+
+set -x
