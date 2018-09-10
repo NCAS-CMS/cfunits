@@ -1,3 +1,12 @@
+Version 1.8 (10 September 2018)
+-------------------------------
+
+* Trap "ValueError: negative reference year in time units, must be
+  >= 1" so that a Units object is returned that has isvalid=False.
+
+* Added "message" attribute that reports on why bad units are
+  bad. Is "None" if units are OK.
+	
 Version 1.7 (23 August 2018)
 ----------------------------
 

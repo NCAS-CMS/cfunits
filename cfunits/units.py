@@ -688,7 +688,8 @@ array([-31., -30., -29., -28., -27.])
 
 '''
         self._isvalid = True
-        
+        self._message = None
+
         if isinstance(units, self.__class__):
             self.__dict__ = units.__dict__
             return
@@ -699,6 +700,7 @@ array([-31., -30., -29., -28., -27.])
             _calendar = _canonical_calendar.get(calendar.lower())
             if _calendar is None:
                 self._isvalid = False
+                self._message = 'unknown calendar: {!r}'.format(calendar)
                 _calendar = calendar
         #--- End: if
         
@@ -716,8 +718,8 @@ array([-31., -30., -29., -28., -27.])
                 # Set the calendar
                 if calendar is None:
                     _calendar = _default_calendar
-                else:
-                    _calendar = _canonical_calendar[calendar.lower()]
+#                else:
+#                    _calendar = _canonical_calendar[calendar.lower()]
 
                 units_split = units.split(' since ')
                 unit        = units_split[0].strip()
@@ -752,7 +754,7 @@ array([-31., -30., -29., -28., -27.])
                     if utime is None:
                         try:
                             utime = Utime(_calendar, unit_string)
-                        except ValueError:
+                        except ValueError as error:
                             # Assume that the value error came from
                             # Utime complaining about the units. In
                             # this case, change the units to something
@@ -763,8 +765,10 @@ array([-31., -30., -29., -28., -27.])
                             # incorrect, then we'll just end up with
                             # another error, this time untrapped
                             # (possibly due to a wrong calendar).
-                            utime = Utime(_calendar, 
-                                          'days since %s' % units_split[1].strip())
+                            self._isvalid = False
+                            self._message = str(error)
+                            utime = Utime(_calendar,)
+#                                         'days since %s' % units_split[1].strip())
                             utime.unit_string = unit_string
                             utime.units       = unit
                         #--- End: try
@@ -1421,6 +1425,40 @@ False
 
 '''
         return self._isreftime
+    #--- End: def
+
+    # ----------------------------------------------------------------
+    # Attribute (read only)
+    # ----------------------------------------------------------------
+    @property
+    def message(self):
+        '''
+
+True if the units are reference time units, False otherwise.
+
+Note that time units (such as ``'days'``) are not reference time
+units.
+
+.. seealso:: `isdimensionless`, `islongitude`,
+             `islatitude`, `ispressure`, `istime`
+
+:Examples:
+
+>>> print Units('days since 2000-12-1 03:00').isreftime
+True
+>>> print Units('hours since 2100-1-1', calendar='noleap').isreftime
+True
+>>> print Units(calendar='360_day').isreftime
+True
+>>> print Units('days').isreftime
+False
+>>> print Units('kg').isreftime
+False
+>>> print Units().isreftime
+False
+
+'''
+        return self._message
     #--- End: def
 
     # ----------------------------------------------------------------
@@ -2356,7 +2394,11 @@ Attribute       Description
 
 '''
         if unit_string:
+#            try:
             _netCDF4_netcdftime_utime.__init__(self, unit_string, calendar)
+#            except ValueError:
+#                #
+#                pass
         else:
             self.calendar    = calendar
             self._jd0        = None
