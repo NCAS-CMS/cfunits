@@ -20,8 +20,8 @@ installation and source code.
 
 __Conventions__  = 'CF-1.5'
 __author__       = 'David Hassell'
-__date__         = '2018-08-23'
-__version__      = '1.7'
+__date__         = '2018-09-13'
+__version__      = '1.8'
 
 from distutils.version import StrictVersion
 import platform

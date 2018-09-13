@@ -1,4 +1,4 @@
-Version 1.8 (10 September 2018)
+Version 1.8 (13 September 2018)
 -------------------------------
 
 * Trap "ValueError: negative reference year in time units, must be
