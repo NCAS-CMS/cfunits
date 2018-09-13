@@ -33,7 +33,7 @@ Dependencies
 
 * Requires the [**python netCDF4
   package**](https://pypi.python.org/pypi/netCDF4) at version 1.1.1 or
-  newer, *but not version 1.2*. This package requires the
+  newer, *but not version 1.2.0*. This package requires the
   [**netCDF**](http://www.unidata.ucar.edu/software/netcdf),
   [**HDF5**](http://www.hdfgroup.org/HDF5) and
   [**zlib**](ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4)
