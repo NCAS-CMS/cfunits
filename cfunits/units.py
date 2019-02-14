@@ -461,9 +461,7 @@ off by default.
 # ====================================================================
 
 class Units(object):
-    '''
-
-Store, combine and compare physical units and convert numeric values
+    '''Store, combine and compare physical units and convert numeric values
 to different units.
 
 Units are as defined in UNIDATA's Udunits-2 package, with a few
@@ -582,6 +580,28 @@ AttributeError: Can't get 'Units' attribute 'calendar'
 True
 
 
+**Invalid units**
+
+If the string defining the units is not a valid UDUNITS2 string (or
+one of the CF exceptions, see above) then no exception is raised, but
+the `isvalid` attribute returns `False` instead of `True`:
+
+>>> u = Units('M/S')
+>>> u
+<CF Units: M/S (not valid)>
+>>> u.isvalid
+False
+>>> print(u)
+'M/S'
+>>> v = Units('m/s')
+>>> v
+<CF Units: m/s>
+>>> v.isvalid
+True
+>>> print(v)
+'m/s'
+
+
 **Arithmetic with units**
 
 The following operators, operations and assignments are overloaded:
@@ -654,7 +674,7 @@ array([-31., -30., -29., -28., -27.])
 >>> a
 array([-31., -30., -29., -28., -27.])
 
-'''
+    '''
     def __init__(self, units=None, calendar=None, formatted=False,
                  names=False, definition=False, _ut_unit=None):
         '''
@@ -924,7 +944,12 @@ array([-31., -30., -29., -28., -27.])
 x.__repr__() <==> repr(x)
 
 '''
-        return '<CF {0}: {1}>'.format(self.__class__.__name__, self)
+        if not self.isvalid:
+            isvalid = ' (not valid)'
+        else:
+            isvalid = ''
+            
+        return '<CF {0}: {1}{2}>'.format(self.__class__.__name__, self, isvalid)
     #--- End: def
 
     def __str__(self):
@@ -1689,7 +1714,22 @@ False
     # ----------------------------------------------------------------
     @property
     def isvalid(self):
-        '''
+        '''Whether or not the units are valid.
+
+**Examples:**
+
+>>> v = Units('m/s')
+>>> v.isvalid
+True
+
+>>> u = Units('M/S')
+>>> u
+<CF Units: M/S (not valid)>
+>>> u.isvalid
+False
+>>> print(u)
+'M/S'
+
         '''
         return getattr(self, '_isvalid', False)
     #--- End: def

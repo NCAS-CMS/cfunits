@@ -3,7 +3,7 @@
 set -x
 
 if [[ ! $1 ]] ; then 
-  echo "No version \$1 (e.g. 1.6)"
+  echo "No version \$1 (e.g. 1.9)"
   exit 1
 fi
 
@@ -16,10 +16,12 @@ tar zxvf cfunits-$vn.tar.gz
 cd cfunits-$vn
 python setup.py install --home=~/tmp
 
-cp -pr test ~/tmp
-cd ~/tmp
+#rm -fr ~/tmp/test
+#cp -pr test ~/tmp
 
 export PYTHONPATH=~/tmp/lib/python:$PYTHONPATH
-python test/run_tests.py
+
+cd ~/tmp/cfunits-$vn/test
+python run_tests.py
 
 set -x

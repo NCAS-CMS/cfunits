@@ -18,10 +18,10 @@ installation and source code.
 
 '''
 
-__Conventions__  = 'CF-1.5'
+__Conventions__  = 'CF-1.7'
 __author__       = 'David Hassell'
-__date__         = '2018-09-13'
-__version__      = '1.8'
+__date__         = '2019-02-14'
+__version__      = '1.9'
 
 from distutils.version import StrictVersion
 import platform

@@ -1,3 +1,8 @@
+Version 1.9 (14 February 2019)
+------------------------------
+
+* Updated documentation to mention the isvalid attribute.
+	
 Version 1.8 (13 September 2018)
 -------------------------------
 
