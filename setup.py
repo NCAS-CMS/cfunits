@@ -33,14 +33,17 @@ def _get_version():
 version      = _get_version()
 packages     = ['cfunits']
 etc_files    = [f for f in find_package_data_files('cfunits/etc')]
+test_files    = [f for f in find_package_data_files('cfunits/test')]
 
-package_data = etc_files
+package_data = etc_files + test_files
 
 #with open('README.md') as ldfile:
 #    long_description = ldfile.read()
 
 long_description = """*A python interface to UNIDATA's Udunits-2 library with CF
 extensions*
+
+**Note: Versions 3.0.0 and later are only compatible with version Python 3. Use version 1.9 for Python 2 compatibility.**
 
 Store, combine and compare physical units and convert numeric values
 to different units.
@@ -71,8 +74,10 @@ setup(name = "cfunits",
       long_description = long_description,
       version      = version,
       description  = "A python interface to UNIDATA's Udunits-2 package with CF extensions ",
+      maintainer   = "David Hassell",
       author       = "David Hassell",
-      author_email = "d.c.hassell@reading.ac.uk",
+      maintainer_email = "david.hassell@ncas.ac.uk",
+      author_email = "david.hassell@ncas.ac.uk",
       url          = "https://bitbucket.org/cfpython/cfunits-python",
       download_url = "https://bitbucket.org/cfpython/cfunits-python/downloads",
       platforms    = ["Linux", "MacOS"],
@@ -85,11 +90,11 @@ setup(name = "cfunits",
                       "Topic :: Scientific/Engineering",
                       "Operating System :: MacOS",
                       "Operating System :: POSIX :: Linux",
-                      "Programming Language :: Python :: 2.6",
-                      "Programming Language :: Python :: 2.7",],
+                      "Programming Language :: Python :: 3",],
       packages     = ['cfunits'],
       package_data = {'cfunits': package_data},
-      requires = ['netCDF4 (>=0.9.7)',
-                  'numpy (>=1.7)',                      
-              ],
+      install_requires = [
+          'cftime>=1.0.0',
+          'numpy>=1.15',
+      ],
   )

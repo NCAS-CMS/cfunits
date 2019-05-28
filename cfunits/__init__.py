@@ -20,17 +20,18 @@ installation and source code.
 
 __Conventions__  = 'CF-1.7'
 __author__       = 'David Hassell'
-__date__         = '2019-02-14'
-__version__      = '1.9'
+__date__         = '2019-05-28'
+__version__      = '3.0.0'
 
-from distutils.version import StrictVersion
+from distutils.version import LooseVersion
 import platform
 
 # Check the version of python
-if not (StrictVersion('2.6.0') <= StrictVersion(platform.python_version())):
+minimum_vn = '3.0.0'
+if LooseVersion(platform.python_version()) < LooseVersion(minimum_vn):
     raise ValueError(
-        "Bad python version: cf requires 2.6 <= python. Got %s" %
-        platform.python_version())
+        "Bad python version: cf requires python version {} or later. Got {}".format(
+            minimum_vn,  platform.python_version()))
 
 from .units import Units
 
