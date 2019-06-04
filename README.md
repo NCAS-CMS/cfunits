@@ -1,7 +1,8 @@
 Home page
 =========
 
-* [**cfunits-python**](https://bitbucket.org/cfpython/cfunits-python "cfunits-python home page")
+* [**cfunits-python**](https://bitbucket.org/cfpython/cfunits-python
+  "cfunits-python home page")
 
 ----------------------------------------------------------------------
 
@@ -24,20 +25,15 @@ Dependencies
   and [**Mac OS**](http://en.wikipedia.org/wiki/Mac_OS) operating
   systems.
 
-* Requires a [**python**](http://www.python.org) version from 2.6 up
-  to, but not including, 3.0.
+* Requires a [**python**](http://www.python.org) version 3 or newer.
  
 * Requires the [**python numpy
-  package**](https://pypi.python.org/pypi/numpy) at version 1.7 or
+  package**](https://pypi.python.org/pypi/numpy) at version 1.15 or
   newer.
 
-* Requires the [**python netCDF4
-  package**](https://pypi.python.org/pypi/netCDF4) at version 1.1.1 or
-  newer, *but not version 1.2.0*. This package requires the
-  [**netCDF**](http://www.unidata.ucar.edu/software/netcdf),
-  [**HDF5**](http://www.hdfgroup.org/HDF5) and
-  [**zlib**](ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4)
-  libraries.
+* Requires the [**python cftime
+  package**](https://pypi.python.org/pypi/cftime) at version 1.0.0 or
+  newer.
 
 * Requires the [**UNIDATA Udunits-2
   library**](http://www.unidata.ucar.edu/software/udunits). This is a

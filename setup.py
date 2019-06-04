@@ -51,8 +51,8 @@ to different units.
 Units are as defined in `UNIDATA's Udunits-2 library
 <http://www.unidata.ucar.edu/software/udunits/>`_, except for
 reference time units (such as ``'days since 2000-12-1'`` in the
-``'proleptic_gregorian'`` calendar), which are handled by the `netCDF4
-python package <https://pypi.python.org/pypi/netCDF4>`_.
+``'proleptic_gregorian'`` calendar), which are handled by the `cftime
+python package <https://pypi.python.org/pypi/cftime>`_.
 
 In addition, some units are either new to, modified from, or removed
 from the standard Udunits-2 database in order to be more consistent
@@ -82,7 +82,7 @@ setup(name = "cfunits",
       download_url = "https://bitbucket.org/cfpython/cfunits-python/downloads",
       platforms    = ["Linux", "MacOS"],
       license      = ["MIT"],
-      keywords     = ['cf', 'udunits','UNIDATA', 'netcdf','data',
+      keywords     = ['cf', 'udunits', 'UNIDATA', 'netcdf','data',
                       'science', 'oceanography', 'meteorology', 'climate'],
       classifiers  = ["Development Status :: 5 - Production/Stable",
                       "Intended Audience :: Science/Research", 
