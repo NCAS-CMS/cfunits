@@ -250,7 +250,7 @@ add_unit_alias("10 dB", None, "bel", "bels")
 # Aliases for netCDF4.netcdftime classes
 # --------------------------------------------------------------------
 import cftime    
-_netCDF4_netcdftime_utime = cftime.utime
+#_netCDF4_netcdftime_utime = cftime.utime
 _datetime                 = cftime.datetime
     
 # --------------------------------------------------------------------
@@ -653,6 +653,7 @@ array([-31., -30., -29., -28., -27.])
 
         '''
         self._isvalid = True
+        self._reason_notvalid = ''
         
         if isinstance(units, self.__class__):
             self.__dict__ = units.__dict__
@@ -663,6 +664,7 @@ array([-31., -30., -29., -28., -27.])
         if calendar is not None:
             _calendar = _canonical_calendar.get(calendar.lower())
             if _calendar is None:
+                self._reason_notvalid = self._reason_notvalid + 'Invalid calendar={!r}'.format(calendar)
                 self._isvalid = False
                 _calendar = calendar
         #--- End: if
@@ -681,8 +683,11 @@ array([-31., -30., -29., -28., -27.])
                 if calendar is None:
                     _calendar = _default_calendar
                 else:
-                    _calendar = _canonical_calendar[calendar.lower()]
-
+                    _calendar = _canonical_calendar.get(calendar.lower())
+                    if _calendar is None:
+                        _calendar = calendar
+                #--- End: if
+                        
                 units_split = units.split(' since ')
                 unit        = units_split[0].strip()
                 
@@ -716,7 +721,8 @@ array([-31., -30., -29., -28., -27.])
                     if utime is None:
                         try:
                             utime = Utime(_calendar, unit_string)
-                        except ValueError:
+                        except Exception as error:
+                            self._reason_notvalid = self._reason_notvalid + '; '+str(error)
                             self._isvalid = False
 #                            # Assume that the value error came from
 #                            # Utime complaining about the units. In
@@ -728,7 +734,7 @@ array([-31., -30., -29., -28., -27.])
 #                            # incorrect, then we'll just end up with
 #                            # another error, this time untrapped
 #                            # (possibly due to a wrong calendar).
-#                            utime = Utime(_calendar, 
+#                            utime = Utime(_calendidar, 
 #                                          'days since %s' % units_split[1].strip())
 #                            utime.unit_string = unit_string
 #                            utime.units       = unit
@@ -785,8 +791,11 @@ array([-31., -30., -29., -28., -27.])
             self._ut_unit   = None
             self._isreftime = True
             self._calendar  = calendar
-            self._utime     = Utime(_canonical_calendar[calendar.lower()])
-
+            try:
+                self._utime = Utime(_canonical_calendar[calendar.lower()])
+            except Exception as error:
+                self._reason_notvalid = self._reason_notvalid + 'Invalid calendar={!r}'.format(calendar)
+                self._isvalid = True
             return
         #--- End: if
 
@@ -1543,19 +1552,26 @@ False
         return bool(_ut_are_convertible(ut_unit, _day_ut_unit))
     #--- End: def
  
-    # ----------------------------------------------------------------
-    # Attribute (read only)
-    # ----------------------------------------------------------------
     @property
     def isvalid(self):
         '''
+
+    .. seealso:: `reason_notvalid`
+
         '''
         return getattr(self, '_isvalid', False)
-    #--- End: def
+
     
-    # ----------------------------------------------------------------
-    # Attribute (read only)
-    # ----------------------------------------------------------------
+    @property
+    def reason_notvalid(self):
+        '''
+
+    .. seealso:: `isvalid`
+
+        '''
+        return getattr(self, '_reason_notvalid', '')
+
+    
     @property
     def reftime(self):
         '''The reference date-time of reference time units.
@@ -1640,42 +1656,45 @@ May be any string allowed by the units CF property.
     #--- End: def
 
     def equivalent(self, other):
-        '''Returns True if numeric values in one unit are convertible to numeric
-values in the other unit.
+        '''Returns True if numeric values in one unit are convertible to
+    numeric values in the other unit.
+    
+    .. seealso:: `equals`
+    
+    :Parameters:
+    
+        other: `Units`
+            The other units.
+    
+    :Returns:
+    
+        `bool`
+            True if the units are equivalent, False otherwise.
+    
+    **Examples:**
+    
+    >>> u = Units('m')
+    >>> v = Units('km')
+    >>> w = Units('s')
 
-.. seealso:: `equals`
-
-:Parameters:
-
-    other: `Units`
-        The other units.
-
-:Returns:
-
-    `bool`
-        True if the units are equivalent, False otherwise.
-
-**Examples:**
-
->>> u = Units('m')
->>> v = Units('km')
->>> w = Units('s')
-
->>> u.equivalent(v)
-True
->>> u.equivalent(w)
-False
-
->>> u = Units('days since 2000-1-1')
->>> v = Units('days since 2000-1-1', calendar='366_day')
->>> w = Units('seconds since 1978-3-12', calendar='gregorian)
-
->>> u.equivalent(v)
-False
->>> u.equivalent(w)
-True
+    >>> u.equivalent(v)
+    True
+    >>> u.equivalent(w)
+    False
+    
+    >>> u = Units('days since 2000-1-1')
+    >>> v = Units('days since 2000-1-1', calendar='366_day')
+    >>> w = Units('seconds since 1978-3-12', calendar='gregorian)
+    
+    >>> u.equivalent(v)
+    False
+    >>> u.equivalent(w)
+    True
 
         '''
+        if not self.isvalid or not other.isvalid:
+            return False
+        
         isreftime1 = self._isreftime
         isreftime2 = other._isreftime
 
@@ -1700,7 +1719,7 @@ True
          
         # Still here? Then units are not equivalent.
         return False
-    #--- End: def
+
 
     def formatted(self, names=None, definition=None):
         '''Formats the string stored in the `units` attribute in a standardized
@@ -2019,50 +2038,53 @@ Equivalent to ``copy.deepcopy(u)``.
     #--- End: def
 
     def equals(self, other, rtol=None, atol=None):
-        '''Return True if and only if numeric values in one unit are convertible
-to numeric values in the other unit and their conversion is a scale
-factor of 1.
-
-.. seealso:: `equivalent`
-
-:Parameters:
-
-    other: `Units`
-        The other units.
-
-:Returns:
-
-    `bool`
-        True if the units are equal, False otherwise.
-
-**Examples:**
-
->>> u = Units('km')
->>> v = Units('1000m')
->>> w = Units('100000m')
->>> u.equals(v)
-True
->>> u.equals(w)
-False
-
->>> u = Units('m s-1')
->>> m = Units('m')
->>> s = Units('s')
->>> u.equals(m)
-False
->>> u.equals(m/s)
-True
->>> (m/s).equals(u)
-True
-
-Undefined units are considered equal:
-
->>> u = Units()
->>> v = Units()
->>> u.equals(v)
-True
+        '''Return True if and only if numeric values in one unit are
+    convertible to numeric values in the other unit and their
+    conversion is a scale factor of 1.
+    
+    .. seealso:: `equivalent`
+    
+    :Parameters:
+    
+        other: `Units`
+            The other units.
+    
+    :Returns:
+    
+        `bool`
+            True if the units are equal, False otherwise.
+    
+    **Examples:**
+    
+    >>> u = Units('km')
+    >>> v = Units('1000m')
+    >>> w = Units('100000m')
+    >>> u.equals(v)
+    True
+    >>> u.equals(w)
+    False
+    
+    >>> u = Units('m s-1')
+    >>> m = Units('m')
+    >>> s = Units('s')
+    >>> u.equals(m)
+    False
+    >>> u.equals(m/s)
+    True
+    >>> (m/s).equals(u)
+    True
+    
+    Undefined units are considered equal:
+    
+    >>> u = Units()
+    >>> v = Units()
+    >>> u.equals(v)
+    True
 
         '''
+        if not self.isvalid or not other.isvalid:
+            return False
+        
         try:
             if _ut_compare(self._ut_unit, other._ut_unit):
                 return False
@@ -2084,12 +2106,11 @@ True
                 return False
             
             return utime0.origin_equals(utime1)
-        #--- End: if
 
         # One unit is a reference-time and the other is not so they're
         # not equal
         return False
-    #--- End: def
+
 
     def log(self, base):
         '''Return the logarithmic unit corresponding to the given logarithmic
@@ -2147,9 +2168,7 @@ base.
 #
 # ====================================================================
 class Utime(cftime.utime):
-    '''
-
-Performs conversions of netCDF time coordinate data to/from datetime
+    '''Performs conversions of netCDF time coordinate data to/from datetime
 objects.
 
 This object is (currently) functionally equivalent to a
@@ -2168,25 +2187,26 @@ Attribute       Description
 `!units`        
 ==============  ======================================================
 
-'''
+    '''
     def __init__(self, calendar, unit_string=None):
         '''**Initialization**
 
-:Parameters:
-
-    calendar: `str`
-        The calendar used in the time calculations. Must be one of:
-        ``'gregorian'``, ``'360_day'``, ``'365_day'``, ``'366_day'``,
-        ``'julian'``, ``'proleptic_gregorian'``, although this is not
-        checked.
-
-    unit_string: `str`, optional
-        A string of the form "time-units since <time-origin>"
-        defining the reference-time units.
+    :Parameters:
+    
+        calendar: `str`
+            The calendar used in the time calculations. Must be one
+            of: ``'gregorian'``, ``'360_day'``, ``'365_day'``,
+            ``'366_day'``, ``'julian'``, ``'proleptic_gregorian'``,
+            although this is not checked.
+    
+        unit_string: `str`, optional
+            A string of the form "time-units since <time-origin>"
+            defining the reference-time units.
 
         '''
         if unit_string:
-            _netCDF4_netcdftime_utime.__init__(self, unit_string, calendar)
+            super().__init__(unit_string, calendar)
+#            _netCDF4_netcdftime_utime.__init__(self, unit_string, calendar)
         else:
             self.calendar    = calendar
             self._jd0        = None
@@ -2194,7 +2214,7 @@ Attribute       Description
             self.tzoffset    = None
             self.unit_string = None
             self.units       = None
-    #--- End: def
+
 
     def __repr__(self):
         '''x.__repr__() <==> repr(x)
@@ -2208,20 +2228,20 @@ Attribute       Description
 
         x.append(self.calendar)
 
-        return "<Utime: %s>" % ' '.join(x)
-    #--- End: def 
+        return "<Utime: {}>".format(' '.join(x))
+
 
     def num2date(self, time_value):
         '''Return a datetime-like object given a time value.
 
-The units of the time value are described by the `!unit_string` and
-`!calendar` attributes.
-
-See `netCDF4.netcdftime.utime.num2date` for details.
-
-In addition to `netCDF4.netcdftime.utime.num2date`, this method
-handles units of months and years as defined by Udunits, ie. 1 year =
-365.242198781 days, 1 month = 365.242198781/12 days.
+    The units of the time value are described by the `!unit_string`
+    and `!calendar` attributes.
+    
+    See `netCDF4.netcdftime.utime.num2date` for details.
+    
+    In addition to `netCDF4.netcdftime.utime.num2date`, this method
+    handles units of months and years as defined by Udunits, ie. 1
+    year = 365.242198781 days, 1 month = 365.242198781/12 days.
 
         '''
         units = self.units
@@ -2236,21 +2256,21 @@ handles units of months and years as defined by Udunits, ie. 1 year =
             unit_string = unit_string.replace(units, 'days', 1)
             time_value = numpy_array(time_value)*365.242198781
 
-        u = _netCDF4_netcdftime_utime(unit_string, self.calendar)        
+        u = cftime.utime(unit_string, self.calendar)        
 
         return u.num2date(time_value)
-    #--- End: def
 
+    
     def origin_equals(self, other):
         '''
-
-'''
+        
+        '''
         if self is other:
             return True
         else:
             return (self._jd0     == other._jd0     and
                     self.calendar == other.calendar and
                     self.tzoffset == other.tzoffset)
-    #--- End: def
+
 
 #--- End: class
