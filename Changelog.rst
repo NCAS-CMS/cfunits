@@ -1,3 +1,12 @@
+version 3.1.0
+-------------
+----
+
+**2019-08-02**
+
+* Added `reason_notvalid` attribute, and improved handling of invalid
+  calendars.
+
 version 3.0.0
 -------------
 ----
