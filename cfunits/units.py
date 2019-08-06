@@ -428,9 +428,7 @@ off by default.
 # ====================================================================
 
 class Units():
-    '''
-
-Store, combine and compare physical units and convert numeric values
+    '''Store, combine and compare physical units and convert numeric values
 to different units.
 
 Units are as defined in UNIDATA's Udunits-2 package, with a few
@@ -621,7 +619,7 @@ array([-31., -30., -29., -28., -27.])
 >>> a
 array([-31., -30., -29., -28., -27.])
 
-'''
+    '''
     def __init__(self, units=None, calendar=None, formatted=False,
                  names=False, definition=False, _ut_unit=None):
         '''**Initialization**
@@ -913,82 +911,82 @@ x.__hash__() <==> hash(x)
             string.append('{0}'.format(self._calendar))
 
         return ' '.join(string)
-    #--- End: def
+
 
     def __deepcopy__(self, memo):
         '''Used if copy.deepcopy is called on the variable.
 
         '''
         return self
-    #--- End: def
+
 
     def __bool__(self):
         '''Truth value testing and the built-in operation ``bool``
 
-x.__bool__() <==> x!=0
+    x.__bool__() <==> x!=0
 
         '''
         return self._ut_unit is not None
-    #--- End: def
+
 
     def __eq__(self, other):
         '''The rich comparison operator ``==``
 
-x.__eq__(y) <==> x==y
+    x.__eq__(y) <==> x==y
 
         '''
         return self.equals(other)
-    #--- End: def
+
 
     def __ne__(self, other):
         '''The rich comparison operator ``!=``
 
-x.__ne__(y) <==> x!=y
+    x.__ne__(y) <==> x!=y
 
         '''
         return not self.equals(other)
-    #--- End: def
+
 
     def __gt__(self, other):
         '''The rich comparison operator ``>``
 
-x.__gt__(y) <==> x>y
+    x.__gt__(y) <==> x>y
 
         '''
         return self._comparison(other, '__gt__')
-    #--- End: def
+
 
     def __ge__(self, other):
         '''The rich comparison operator ````
 
-x.__ge__(y) <==> x>y
+    x.__ge__(y) <==> x>y
 
         '''
         return self._comparison(other, '__ge__')
-    #--- End: def
+
 
     def __lt__(self, other):
         '''The rich comparison operator ````
 
-x.__lt__(y) <==> x<y
+    x.__lt__(y) <==> x<y
 
         '''
         return self._comparison(other, '__lt__')
-    #--- End: def
+
 
     def __le__(self, other):
         '''The rich comparison operator ````
 
-x.__le__(y) <==> x<=y
+    x.__le__(y) <==> x<=y
 
         '''
         return self._comparison(other, '__le__')
-    #--- End: def
+
 
     def __sub__(self, other):
         '''The binary arithmetic operation ``-``
 
-x.__sub__(y) <==> x-y
+    x.__sub__(y) <==> x-y
 
         '''
         if (self._isreftime or
@@ -1000,12 +998,12 @@ x.__sub__(y) <==> x-y
             return type(self)(_ut_unit=_ut_unit)
         except:
             raise ValueError("Can't do %r - %r" % (self, other))
-    #--- End: def
+
 
     def __add__(self, other):
         '''The binary arithmetic operation ``+``
 
-x.__add__(y) <==> x+y
+    x.__add__(y) <==> x+y
 
         '''
         if (self._isreftime or
@@ -1017,12 +1015,12 @@ x.__add__(y) <==> x+y
             return type(self)(_ut_unit=_ut_unit)
         except:
             raise ValueError("Can't do %r + %r" % (self, other))
-    #--- End: def
+
 
     def __mul__(self, other):
         '''The binary arithmetic operation ``*``
 
-x.__mul__(y) <==> x*y
+    x.__mul__(y) <==> x*y
 
         '''
         if isinstance(other, self.__class__):
@@ -1033,7 +1031,6 @@ x.__mul__(y) <==> x*y
                 ut_unit=_ut_multiply(self._ut_unit, other._ut_unit)
             except:
                 raise ValueError("Can't do %r * %r" % (self, other))
-            #--- End: try
         else:   
             if self._isreftime:
                 raise ValueError("Can't do %r * %r" % (self, other))
@@ -1045,7 +1042,7 @@ x.__mul__(y) <==> x*y
         #--- End: if
 
         return type(self)(_ut_unit=ut_unit)
-    #--- End: def
+
 
     def __div__(self, other):
         '''x.__div__(y) <==> x/y
@@ -1283,19 +1280,22 @@ x.__pos__() <==> +x
         return self
     #--- End def
 
+    # ----------------------------------------------------------------
+    # Private methods
+    # ----------------------------------------------------------------
     def _comparison(self, other, method):
         '''
-'''
+        '''
         try:
             cv_converter = _ut_get_converter(self._ut_unit, other._ut_unit)
         except:
             raise ValueError(
-"Units are not compatible: {0!r}, {1!r}".format(self, other))
+                "Units are not compatible: {0!r}, {1!r}".format(self, other))
 
         if not cv_converter:
             _cv_free(cv_converter)
             raise ValueError(
-"Units are not compatible: {0!r}, {1!r}".format(self, other))
+                "Units are not compatible: {0!r}, {1!r}".format(self, other))
 
         y  = _c_double(1.0)
         pointer = ctypes.pointer(y)
@@ -1306,129 +1306,120 @@ x.__pos__() <==> +x
         _cv_free(cv_converter)
 
         return getattr(operator, method)(y.value, 1)
-    #--- End: def
+
 
     # ----------------------------------------------------------------
-    # Attribute (read only)
+    # Attributes
     # ----------------------------------------------------------------
     @property
     def isreftime(self):
         '''True if the units are reference time units, False otherwise.
 
-Note that time units (such as ``'days'``) are not reference time
-units.
-
-.. seealso:: `isdimensionless`, `islongitude`,
-             `islatitude`, `ispressure`, `istime`
-
-**Examples:**
-
->>> Units('days since 2000-12-1 03:00').isreftime
-True
->>> Units('hours since 2100-1-1', calendar='noleap').isreftime
-True
->>> Units(calendar='360_day').isreftime
-True
->>> Units('days').isreftime
-False
->>> Units('kg').isreftime
-False
->>> Units().isreftime
-False
+    Note that time units (such as ``'days'``) are not reference time
+    units.
+    
+    .. seealso:: `isdimensionless`, `islongitude`, `islatitude`,
+                 `ispressure`, `istime`
+    
+    **Examples:**
+    
+    >>> Units('days since 2000-12-1 03:00').isreftime
+    True
+    >>> Units('hours since 2100-1-1', calendar='noleap').isreftime
+    True
+    >>> Units(calendar='360_day').isreftime
+    True
+    >>> Units('days').isreftime
+    False
+    >>> Units('kg').isreftime
+    False
+    >>> Units().isreftime
+    False
 
         '''
         return self._isreftime
-    #--- End: def
 
-    # ----------------------------------------------------------------
-    # Attribute (read only)
-    # ----------------------------------------------------------------
+
     @property
     def iscalendartime(self):
         '''True if the units are calendar time units, False otherwise.
 
-Note that regular time units (such as ``'days'``) are not calendar
-time units.
-
-.. seealso:: `isdimensionless`, `islongitude`, `islatitude`,
-             `ispressure`, `isreftime`, `istime`
-
-**Examples:**
-
->>> Units('calendar_months').iscalendartime
-True
->>> Units('calendar_years').iscalendartime
-True
->>> Units('days').iscalendartime
-False
->>> Units('km s-1').iscalendartime
-False
->>> Units('kg').isreftime
-False
->>> Units('').isreftime
-False
->>> Units().isreftime
-False
+    Note that regular time units (such as ``'days'``) are not calendar
+    time units.
+    
+    .. seealso:: `isdimensionless`, `islongitude`, `islatitude`,
+                 `ispressure`, `isreftime`, `istime`
+    
+    **Examples:**
+    
+    >>> Units('calendar_months').iscalendartime
+    True
+    >>> Units('calendar_years').iscalendartime
+    True
+    >>> Units('days').iscalendartime
+    False
+    >>> Units('km s-1').iscalendartime
+    False
+    >>> Units('kg').isreftime
+    False
+    >>> Units('').isreftime
+    False
+    >>> Units().isreftime
+    False
 
         '''
         return bool(_ut_are_convertible(self._ut_unit, _calendartime_ut_unit))
-    #--- End: def
 
-    # ----------------------------------------------------------------
-    # Attribute (read only)
-    # ----------------------------------------------------------------
+
     @property
     def isdimensionless(self):
         '''True if the units are dimensionless, false otherwise.
 
-.. seealso:: `islongitude`, `islatitude`, `ispressure`, `isreftime`,
-             `istime`
-
-**Examples:**
-
->>> Units('').isdimensionless
-True
->>> Units('1').isdimensionless
-True
->>> Units('100').isdimensionless
-True
->>> Units('m/m').isdimensionless
-True
->>> Units('m km-1').isdimensionless
-True
->>> Units().isdimensionless
-False
->>> Units('m').isdimensionless
-False
->>> Units('m/s').isdimensionless
-False
->>> Units('days since 2000-1-1', calendar='noleap').isdimensionless
-False
+    .. seealso:: `islongitude`, `islatitude`, `ispressure`, `isreftime`,
+                 `istime`
+    
+    **Examples:**
+    
+    >>> Units('').isdimensionless
+    True
+    >>> Units('1').isdimensionless
+    True
+    >>> Units('100').isdimensionless
+    True
+    >>> Units('m/m').isdimensionless
+    True
+    >>> Units('m km-1').isdimensionless
+    True
+    >>> Units().isdimensionless
+    False
+    >>> Units('m').isdimensionless
+    False
+    >>> Units('m/s').isdimensionless
+    False
+    >>> Units('days since 2000-1-1', calendar='noleap').isdimensionless
+    False
 
         '''
         return bool(_ut_are_convertible(self._ut_unit, _dimensionless_unit_one))
-    #--- End: def
 
-    # ----------------------------------------------------------------
-    # Attribute (read only)
-    # ----------------------------------------------------------------
+
     @property
     def ispressure(self):
         '''True if the units are pressure units, false otherwise.
-
-.. seealso:: `isdimensionless`, `islongitude`, `islatitude`,
-             `isreftime`, `istime`
-
-**Examples:**
-
->>> Units('bar').ispressure
-True
->>> Units('hPa').ispressure
-True
->>> Units('meter^-1-kilogram-second^-2').ispressure
-True
->>> Units('hours since 2100-1-1', calendar='noleap').ispressure
-False
+  
+    .. seealso:: `isdimensionless`, `islongitude`, `islatitude`,
+                 `isreftime`, `istime`
+    
+    **Examples:**
+    
+    >>> Units('bar').ispressure
+    True
+    >>> Units('hPa').ispressure
+    True
+    >>> Units('meter^-1-kilogram-second^-2').ispressure
+    True
+    >>> Units('hours since 2100-1-1', calendar='noleap').ispressure
+    False
 
         '''
         ut_unit = self._ut_unit
@@ -1436,104 +1427,99 @@ False
             return False
         
         return bool(_ut_are_convertible(ut_unit, _pressure_ut_unit))
-    #--- End: def
 
-    # ----------------------------------------------------------------
-    # Attribute (read only)
-    # ----------------------------------------------------------------
+
     @property
     def islatitude(self):
         '''True if and only if the units are latitude units.
 
-This is the case if and only if the `units` attribute is one of
-``'degrees_north'``, ``'degree_north'``, ``'degree_N'``,
-``'degrees_N'``, ``'degreeN'``, and ``'degreesN'``.
-
-Note that units of ``'degrees'`` are not latitude units.
-
-.. seealso:: `isdimensionless`, `islongitude`, `ispressure`,
-             `isreftime`, `istime`
-
-**Examples:**
-
->>> Units('degrees_north').islatitude
-True
->>> Units('degrees').islatitude
-False
->>> Units('degrees_east').islatitude
-False
->>> Units('kg').islatitude
-False
->>> Units().islatitude
-False
+    This is the case if and only if the `units` attribute is one of
+    ``'degrees_north'``, ``'degree_north'``, ``'degree_N'``,
+    ``'degrees_N'``, ``'degreeN'``, and ``'degreesN'``.
+    
+    Note that units of ``'degrees'`` are not latitude units.
+    
+    .. seealso:: `isdimensionless`, `islongitude`, `ispressure`,
+                 `isreftime`, `istime`
+    
+    **Examples:**
+    
+    >>> Units('degrees_north').islatitude
+    True
+    >>> Units('degrees').islatitude
+    False
+    >>> Units('degrees_east').islatitude
+    False
+    >>> Units('kg').islatitude
+    False
+    >>> Units().islatitude
+    False
 
         '''
         return self._units in ('degrees_north', 'degree_north', 'degree_N',
                                'degrees_N', 'degreeN', 'degreesN')
-    #--- End: def
 
-    # ----------------------------------------------------------------
-    # Attribute (read only)
-    # ----------------------------------------------------------------
+
     @property
     def islongitude(self):
         '''True if and only if the units are longitude units.
 
-This is the case if and only if the `units` attribute is one of
-``'degrees_east'``, ``'degree_east'``, ``'degree_E'``,
-``'degrees_E'``, ``'degreeE'``, and ``'degreesE'``.
-
-Note that units of ``'degrees'`` are not longitude units.
-
-.. seealso:: `isdimensionless`, `islatitude`, `ispressure`,
-             `isreftime`, `istime`
-
-**Examples:**
-
->>> Units('degrees_east').islongitude
-True
->>> Units('degrees').islongitude
-False
->>> Units('degrees_north').islongitude
-False
->>> Units('kg').islongitude
-False
->>> Units().islongitude
-False
+    This is the case if and only if the `units` attribute is one of
+    ``'degrees_east'``, ``'degree_east'``, ``'degree_E'``,
+    ``'degrees_E'``, ``'degreeE'``, and ``'degreesE'``.
+    
+    Note that units of ``'degrees'`` are not longitude units.
+    
+    .. seealso:: `isdimensionless`, `islatitude`, `ispressure`,
+                 `isreftime`, `istime`
+    
+    **Examples:**
+    
+    >>> Units('degrees_east').islongitude
+    True
+    >>> Units('degrees').islongitude
+    False
+    >>> Units('degrees_north').islongitude
+    False
+    >>> Units('kg').islongitude
+    False
+    >>> Units().islongitude
+    False
 
         '''
         return self._units in ('degrees_east', 'degree_east', 'degree_E',
                                'degrees_E', 'degreeE', 'degreesE')
-    #--- End: def
+
 
     @property
     def istime(self):
         '''True if the units are time units, False otherwise.
 
-Note that reference time units (such as ``'days since 2000-12-1'``)
-are not time units, nor are calendar years and calendar months.
-
-.. seealso:: `iscalendartime`, `isdimensionless`, `islongitude`,
-             `islatitude`, `ispressure`, `isreftime`
-
-**Examples:**
-
->>> Units('days').istime
-True
->>> Units('seconds').istime
-True
->>> Units('kg').istime
-False
->>> Units().istime
-False
->>> Units('hours since 2100-1-1', calendar='noleap').istime
-False
->>> Units(calendar='360_day').istime
-False
->>> Units('calendar_years').istime
-False
->>> Units('calendar_months').istime
-False
+    Note that reference time units (such as ``'days since
+    2000-12-1'``) are not time units, nor are calendar years and
+    calendar months.
+    
+    .. seealso:: `iscalendartime`, `isdimensionless`, `islongitude`,
+                 `islatitude`, `ispressure`, `isreftime`
+    
+    **Examples:**
+    
+    >>> Units('days').istime
+    True
+    >>> Units('seconds').istime
+    True
+    >>> Units('kg').istime
+    False
+    >>> Units().istime
+    False
+    >>> Units('hours since 2100-1-1', calendar='noleap').istime
+    False
+    >>> Units(calendar='360_day').istime
+    False
+    >>> Units('calendar_years').istime
+    False
+    >>> Units('calendar_months').istime
+    False
 
         '''
         if self._isreftime:
@@ -1544,17 +1530,11 @@ False
             return False
 
         return bool(_ut_are_convertible(ut_unit, _day_ut_unit))
-    #--- End: def
-        ut_unit = self._ut_unit
-        if ut_unit is None:
-            return False
- 
-        return bool(_ut_are_convertible(ut_unit, _day_ut_unit))
-    #--- End: def
+
  
     @property
     def isvalid(self):
-        '''
+        '''TODO
 
     .. seealso:: `reason_notvalid`
 
@@ -1564,7 +1544,7 @@ False
     
     @property
     def reason_notvalid(self):
-        '''
+        '''TODO
 
     .. seealso:: `isvalid`
 
@@ -1576,16 +1556,16 @@ False
     def reftime(self):
         '''The reference date-time of reference time units.
 
-.. seealso:: `calendar`, `isreftime`, `units`
-
-**Examples:**
-
->>> Units('days since 1900-1-1').reftime
-<Datetime: 1900-01-01 00:00:00>
->>> str(Units('days since 1900-1-1 03:00').reftime)
-'1900-01-01 03:00:00'
-
-TODO
+    .. seealso:: `calendar`, `isreftime`, `units`
+    
+    **Examples:**
+    
+    >>> Units('days since 1900-1-1').reftime
+    <Datetime: 1900-01-01 00:00:00>
+    >>> str(Units('days since 1900-1-1 03:00').reftime)
+    '1900-01-01 03:00:00'
+    
+    TODO
         '''    
         utime = self._utime
         if utime:
@@ -1594,31 +1574,28 @@ TODO
                 return origin
         #--- End: if
 
-        raise AttributeError(
-            "{0!r} has no attribute 'reftime'".format(self))
-    #--- End: def
+        raise AttributeError("{0!r} has no attribute 'reftime'".format(self))
 
-    # ----------------------------------------------------------------
-    # Attribute (read only)
-    # ----------------------------------------------------------------
+
     @property
     def calendar(self):
         '''The calendar for reference time units.
 
-May be any string allowed by the calendar CF property.
-
-If it is unset then the default CF calendar is assumed when required.
-
-.. seealso:: `units`
-
-**Examples:**
-
->>> Units(calendar='365_day').calendar
-'365_day'
->>> Units('days since 2001-1-1', calendar='noleap').calendar
-'noleap'
->>> Units('days since 2001-1-1').calendar
-AttributeError: Units has no attribute 'calendar'
+    May be any string allowed by the calendar CF property.
+    
+    If it is unset then the default CF calendar is assumed when
+    required.
+    
+    .. seealso:: `units`
+    
+    **Examples:**
+    
+    >>> Units(calendar='365_day').calendar
+    '365_day'
+    >>> Units('days since 2001-1-1', calendar='noleap').calendar
+    'noleap'
+    >>> Units('days since 2001-1-1').calendar
+    AttributeError: Units has no attribute 'calendar'
 
         '''
         value = self._calendar
@@ -1627,24 +1604,24 @@ AttributeError: Units has no attribute 'calendar'
 
         raise AttributeError("%s has no attribute 'calendar'" %
                              self.__class__.__name__)    
-    #--- End: def
+
 
     @property
     def units(self):
         '''The units.
 
-May be any string allowed by the units CF property.
-
-.. seealso:: `calendar`
-
-**Examples:**
-
->>> Units('kg').units
-'kg'
->>> Units('seconds').units
-'seconds'
->>> Units('days since 2000-1-1', calendar='366_day').units
-'days since 2000-1-1'
+    May be any string allowed by the units CF property.
+    
+    .. seealso:: `calendar`
+    
+    **Examples:**
+    
+    >>> Units('kg').units
+    'kg'
+    >>> Units('seconds').units
+    'seconds'
+    >>> Units('days since 2000-1-1', calendar='366_day').units
+    'days since 2000-1-1'
 
         '''
         value = self._units
@@ -1653,8 +1630,11 @@ May be any string allowed by the units CF property.
 
         raise AttributeError("'%s' object has no attribute 'units'" %
                              self.__class__.__name__)
-    #--- End: def
 
+
+    # ----------------------------------------------------------------
+    # Methods
+    # ----------------------------------------------------------------
     def equivalent(self, other):
         '''Returns True if numeric values in one unit are convertible to
     numeric values in the other unit.
@@ -1722,75 +1702,76 @@ May be any string allowed by the units CF property.
 
 
     def formatted(self, names=None, definition=None):
-        '''Formats the string stored in the `units` attribute in a standardized
-manner. The `units` attribute is modified in place and its new value
-is returned.
-
-:Parameters:
-
-    names: `bool`, optional
-        Use unit names instead of symbols.
-
-    definition: `bool`, optional
-        The formatted string is given in terms of basic units instead
-        of stopping any expansion at the highest level possible.
-
-:Returns:
-
-    `str` or `None`
-        The formatted string. If the units have not yet been set, then
-        `None` is returned.
-
-**Examples:**
-
->>> u = Units('W')
->>> u.units
-'W'
->>> u.units = u.format(names=True)
->>> u.units
-'watt'
->>> u.units = u.format(definition=True)
->>> u.units
-'m2.kg.s-3'
->>> u.units = u.format(names=True, definition=True)
-'meter^2-kilogram-second^-3'
->>> u.units = u.format()
->>> u.units
-'W'
-
->>> u.units = 'dram'
->>> u.format(names=True)
-'1.848345703125e-06 meter^3'
-
-Formatting is also available during object initialization:
-
->>> u = Units('m/s', format=True)
->>> u.units
-'m.s-1'
-
->>> u = Units('dram', names=True)
->>> u.units
-'1.848345703125e-06 m3'
-
->>> u = Units('Watt')
->>> u.units
-'Watt'
-
->>> u = Units('Watt', formatted=True)
->>> u.units
-'W'
-
->>> u = Units('Watt', names=True)
->>> u.units
-'watt'
-
->>> u = Units('Watt', definition=True)
->>> u.units
-'m2.kg.s-3'
-
->>> u = Units('Watt', names=True, definition=True)
->>> u.units
-'meter^2-kilogram-second^-3'
+        '''Formats the string stored in the `units` attribute in a
+    standardized manner. The `units` attribute is modified in place
+    and its new value is returned.
+    
+    :Parameters:
+    
+        names: `bool`, optional
+            Use unit names instead of symbols.
+    
+        definition: `bool`, optional
+            The formatted string is given in terms of basic units
+            instead of stopping any expansion at the highest level
+            possible.
+    
+    :Returns:
+    
+        `str` or `None`
+            The formatted string. If the units have not yet been set,
+            then `None` is returned.
+    
+    **Examples:**
+    
+    >>> u = Units('W')
+    >>> u.units
+    'W'
+    >>> u.units = u.format(names=True)
+    >>> u.units
+    'watt'
+    >>> u.units = u.format(definition=True)
+    >>> u.units
+    'm2.kg.s-3'
+    >>> u.units = u.format(names=True, definition=True)
+    'meter^2-kilogram-second^-3'
+    >>> u.units = u.format()
+    >>> u.units
+    'W'
+    
+    >>> u.units = 'dram'
+    >>> u.format(names=True)
+    '1.848345703125e-06 meter^3'
+    
+    Formatting is also available during object initialization:
+    
+    >>> u = Units('m/s', format=True)
+    >>> u.units
+    'm.s-1'
+    
+    >>> u = Units('dram', names=True)
+    >>> u.units
+    '1.848345703125e-06 m3'
+    
+    >>> u = Units('Watt')
+    >>> u.units
+    'Watt'
+    
+    >>> u = Units('Watt', formatted=True)
+    >>> u.units
+    'W'
+    
+    >>> u = Units('Watt', names=True)
+    >>> u.units
+    'watt'
+    
+    >>> u = Units('Watt', definition=True)
+    >>> u.units
+    'm2.kg.s-3'
+    
+    >>> u = Units('Watt', names=True, definition=True)
+    >>> u.units
+    'meter^2-kilogram-second^-3'
 
         '''
         ut_unit = self._ut_unit
@@ -1815,66 +1796,64 @@ Formatting is also available during object initialization:
             return out
 
         return out.decode('utf-8')
-    #--- End: def
+
 
     @staticmethod
     def conform(x, from_units, to_units, inplace=False):
         '''Conform values in one unit to equivalent values in another, compatible
-unit. Returns the conformed values.
+    unit. Returns the conformed values.
+    
+    The values may either be a numpy array or a python numeric type. The
+    returned value is of the same type, except that input integers are
+    converted to floats (see the *inplace* keyword).
+    
+    .. warning::
+    
+       Do not change the calendar of reference time units in the
+       current version. Whilst this is possible, it will almost
+       certainly result in an incorrect interpretation of the data or
+       an error.
 
-The values may either be a numpy array or a python numeric type. The
-returned value is of the same type, except that input integers are
-converted to floats (see the *inplace* keyword).
-
-:Parameters:
-
-    x: `numpy.ndarray` or python numeric
-
-    from_units: `Units`
-        The original units of `x`
-
-    to_units: `Units`
-        The units to which `x` should be conformed to.
-
-    inplace: `bool`, optional
-        If True and `x` is a numpy array then change it in place,
-        creating no temporary copies, with one exception: If `x` is of
-        integer type and the conversion is not null, then it will not
-        be changed inplace and the returned conformed array will be of
-        float type.
-
-:Returns:
-
-    `numpy.ndarray` or python numeric
-        The modified numeric values.
-
-**Examples:**
-
->>> Units.conform(2, Units('km'), Units('m'))
-2000.0
-
->>> import numpy
->>> a = numpy.arange(5.0)
->>> Units.conform(a, Units('minute'), Units('second'))
-array([   0.,   60.,  120.,  180.,  240.])
->>> a
-array([ 0.,  1.,  2.,  3.,  4.])
-
->>> Units.conform(a,
-                  Units('days since 2000-12-1'),
-                  Units('days since 2001-1-1'), inplace=True)
-array([-31., -30., -29., -28., -27.])
->>> a
-array([-31., -30., -29., -28., -27.])
-
-
-.. warning::
-
-   Do not change the calendar of reference time units in the current
-   version. Whilst this is possible, it will almost certainly result
-   in an incorrect interpretation of the data or an error. Allowing
-   the calendar to be changed is under development and will be
-   available soon.
+    :Parameters:
+    
+        x: `numpy.ndarray` or python numeric
+    
+        from_units: `Units`
+            The original units of `x`
+    
+        to_units: `Units`
+            The units to which `x` should be conformed to.
+    
+        inplace: `bool`, optional
+            If True and `x` is a numpy array then change it in place,
+            creating no temporary copies, with one exception: If `x`
+            is of integer type and the conversion is not null, then it
+            will not be changed inplace and the returned conformed
+            array will be of float type.
+    
+    :Returns:
+    
+        `numpy.ndarray` or python numeric
+            The modified numeric values.
+    
+    **Examples:**
+    
+    >>> Units.conform(2, Units('km'), Units('m'))
+    2000.0
+    
+    >>> import numpy
+    >>> a = numpy.arange(5.0)
+    >>> Units.conform(a, Units('minute'), Units('second'))
+    array([   0.,   60.,  120.,  180.,  240.])
+    >>> a
+    array([ 0.,  1.,  2.,  3.,  4.])
+    
+    >>> Units.conform(a,
+                      Units('days since 2000-12-1'),
+                      Units('days since 2001-1-1'), inplace=True)
+    array([-31., -30., -29., -28., -27.])
+    >>> a
+    array([-31., -30., -29., -28., -27.])
 
         '''
         if from_units.equals(to_units):
@@ -2018,24 +1997,24 @@ array([-31., -30., -29., -28., -27.])
         #--- End: if
 
         return x
-    #--- End: def
+
 
     def copy(self):
         '''Return a deep copy.
 
-Equivalent to ``copy.deepcopy(u)``.
-
-:Returns:
-
-        The deep copy.
-
-**Examples:**
-
->>> v = u.copy()
-
+    Equivalent to ``copy.deepcopy(u)``.
+    
+    :Returns:
+    
+            The deep copy.
+    
+    **Examples:**
+    
+    >>> v = u.copy()
+    
         '''
         return self
-    #--- End: def
+
 
     def equals(self, other, rtol=None, atol=None):
         '''Return True if and only if numeric values in one unit are
@@ -2114,36 +2093,36 @@ Equivalent to ``copy.deepcopy(u)``.
 
     def log(self, base):
         '''Return the logarithmic unit corresponding to the given logarithmic
-base.
+    base.
 
-:Parameters:
-
-    base: `int` or `float`
-        The logarithmic base.
-
-:Returns:
-
-    `Units`
-        The logarithmic unit corresponding to the given logarithmic
-        base.
-
-**Examples:**
-
->>> u = Units('W', names=True)
->>> u
-<Units: watt>
-
->>> u.log(10)
-<Units: lg(re 1 W)>
->>> u.log(2)
-<Units: lb(re 1 W)>
-
->>> import math
->>> u.log(math.e)
-<Units: ln(re 1 W)>
-
->>> u.log(3.5)
-<Units: 0.798235600147928 ln(re 1 W)>
+    :Parameters:
+    
+        base: `int` or `float`
+            The logarithmic base.
+    
+    :Returns:
+    
+        `Units`
+            The logarithmic unit corresponding to the given
+            logarithmic base.
+    
+    **Examples:**
+    
+    >>> u = Units('W', names=True)
+    >>> u
+    <Units: watt>
+    
+    >>> u.log(10)
+    <Units: lg(re 1 W)>
+    >>> u.log(2)
+    <Units: lb(re 1 W)>
+    
+    >>> import math
+    >>> u.log(math.e)
+    <Units: ln(re 1 W)>
+    
+    >>> u.log(3.5)
+    <Units: 0.798235600147928 ln(re 1 W)>
 
         '''
         try:
@@ -2157,7 +2136,7 @@ base.
 
         raise ValueError(
             "Can't take the logarithm to the base %r of %r" % (base, self))
-    #--- End def
+
 
 #--- End: class
 
