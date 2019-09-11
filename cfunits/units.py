@@ -717,11 +717,13 @@ array([-31., -30., -29., -28., -27.])
                     utime = _cached_utime.get((_calendar, unit_string), None)
 
                     if utime is None:
+                        utime = Utime(_calendar, unit_string)
                         try:
                             utime = Utime(_calendar, unit_string)
                         except Exception as error:
                             self._reason_notvalid = self._reason_notvalid + '; '+str(error)
                             self._isvalid = False
+                            print('arse')
 #                            # Assume that the value error came from
 #                            # Utime complaining about the units. In
 #                            # this case, change the units to something
@@ -743,7 +745,7 @@ array([-31., -30., -29., -28., -27.])
                 #--- End: if
 
                 self._isreftime = True
-                self._calendar  = calendar
+                self._calendar  = _calendar
                 self._utime     = utime
             
             else:
@@ -1635,7 +1637,7 @@ x.__pos__() <==> +x
     # ----------------------------------------------------------------
     # Methods
     # ----------------------------------------------------------------
-    def equivalent(self, other):
+    def equivalent(self, other, verbose=False):
         '''Returns True if numeric values in one unit are convertible to
     numeric values in the other unit.
     
@@ -1672,11 +1674,22 @@ x.__pos__() <==> +x
     True
 
         '''
-        if not self.isvalid or not other.isvalid:
+#        if not self.isvalid or not other.isvalid:
+#            return False
+        
+        if not self.isvalid:
+            if verbose:
+                print("{}: {!r} is not valid".format(self.__class__.__name__, self)) # pragma: no cover
+            return False
+        
+        if not other.isvalid:
+            if verbose:
+                print("{}: {!r} is not valid".format(self.__class__.__name__, other)) # pragma: no cover
             return False
         
         isreftime1 = self._isreftime
         isreftime2 = other._isreftime
+        print('arse')
 
         if isreftime1 and isreftime2:
             # Both units are reference-time units
