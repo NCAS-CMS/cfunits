@@ -701,53 +701,39 @@ array([-31., -30., -29., -28., -27.])
                         _cached_ut_unit[unit] = ut_unit
                 #--- End: if
                 
-#                ut_unit = _cached_ut_unit.get(unit, None)
-#                if ut_unit is None:                    
-#                    ut_unit = _ut_parse(_ut_system, _c_char_p(unit.encode('utf-8')), _UT_ASCII)
-#                    if not ut_unit or not _ut_are_convertible(ut_unit, _day_ut_unit):
-#                        raise ValueError(
-#                            "Can't set unsupported unit in reference time: '%s'" % 
-#                            value)
-#                    _cached_ut_unit[unit] = ut_unit
-#                #--- End: if
-
-                utime = _cached_utime.get((_calendar, units), None)
-
-                if not utime:                       
+                utime = None
+                
+                if (_calendar, units) in _cached_utime:
+                    utime = _cached_utime[(_calendar, units)]
+                else:
                     # Create a new Utime object
                     unit_string = '{} since {}'.format(unit, units_split[1].strip())
-                    utime = _cached_utime.get((_calendar, unit_string), None)
 
-                    if utime is None:
+                    if (_calendar, unit_string) in _cached_utime:
+                        utime = _cached_utime[(_calendar, unit_string)]
+                    else:
                         try:
                             utime = Utime(_calendar, unit_string)
                         except Exception as error:
-                            self._reason_notvalid = self._reason_notvalid + '; '+str(error)
-                            self._isvalid = False
-
-#                            # Assume that the value error came from
-#                            # Utime complaining about the units. In
-#                            # this case, change the units to something
-#                            # acceptable to Utime and afterwards
-#                            # overwrite the Utime.units and
-#                            # Utime.unit_string attributes with the
-#                            # correct values. If this assumption was
-#                            # incorrect, then we'll just end up with
-#                            # another error, this time untrapped
-#                            # (possibly due to a wrong calendar).
-#                            utime = Utime(_calendidar, 
-#                                          'days since %s' % units_split[1].strip())
-#                            utime.unit_string = unit_string
-#                            utime.units       = unit
-
+                            utime = None
+                            if unit in ('month', 'months', 'year', 'years', 'yr'):
+                                temp_unit_string = 'days since {}'.format(units_split[1].strip())
+                                try:
+                                    _ = Utime(_calendar, temp_unit_string)
+                                except Exception as error:
+                                    self._reason_notvalid = self._reason_notvalid + '; '+str(error)
+                                    self._isvalid = False
+                            else:
+                                self._reason_notvalid = self._reason_notvalid + '; '+str(error)
+                                self._isvalid = False
+                        #--- End: try
+                        
                         _cached_utime[(_calendar, unit_string)] = utime
-                    #--- End: if
-                    _cached_utime[(calendar, units)] = utime
                 #--- End: if
 
                 self._isreftime = True
                 self._calendar  = calendar
-                self._canonical_calendar  = _calendar
+                self._canonical_calendar = _calendar
                 self._utime     = utime
             
             else:
@@ -1617,12 +1603,17 @@ x.__pos__() <==> +x
     '1900-01-01 03:00:00'
     
     TODO
-        '''    
-        utime = self._utime
-        if utime:
-            origin = utime.origin
-            if origin:
-                return origin
+        '''
+        if self.isreftime:
+            utime = self._utime
+            if utime:
+                origin = utime.origin
+                if origin:
+                    return origin
+            else:
+                # Some refrence date-times do not have a utime, such
+                # as those defined by monts or years
+                return cftime.datetime(*cftime._parse_date(self.units.split(' since ')[1]))
         #--- End: if
 
         raise AttributeError("{0!r} has no attribute 'reftime'".format(self))
@@ -1729,6 +1720,31 @@ x.__pos__() <==> +x
         isreftime1 = self._isreftime
         isreftime2 = other._isreftime
 
+#        if isreftime1 and isreftime2:
+#            # Both units are reference-time units
+#            if self._canonical_calendar != other._canonical_calendar:
+#                if verbose:
+#                    print("{}: Incompatible calendars: {!r}, {!r}".format(
+#                        self.__class__.__name__,
+#                        self._calendar, other._calendar)) # pragma: no cover
+#                return False
+#
+#            reftime0 = getattr(self, 'reftime', None)
+#            reftime1 = getattr(other, 'reftime', None)
+#            if reftime0 != reftime1:
+#                if verbose:
+#                    print("{}: Different reference date-times: {!r}, {!r}".format(
+#                        self.__class__.__name__,
+#                        reftime0, reftime1)) # pragma: no cover
+#                return False
+#
+#        elif isreftime1 or isreftime2:
+#            if verbose:
+#                print("{}: Only one is reference time".format(
+#                    self.__class__.__name__)) # pragma: no cover
+#            return False
+
+        
         if isreftime1 and isreftime2:
             # Both units are reference-time units
             units0 = self._units
@@ -1743,17 +1759,22 @@ x.__pos__() <==> +x
                 return out
             else:
                 return False
-        #--- End: if
-        
-        if not self.isvalid:
+
+        elif isreftime1 or isreftime2:
             if verbose:
-                print("{}: {!r} is not valid".format(self.__class__.__name__, self)) # pragma: no cover
+                print("{}: Only one is reference time".format(
+                    self.__class__.__name__)) # pragma: no cover
             return False
         
-        if not other.isvalid:
-            if verbose:
-                print("{}: {!r} is not valid".format(self.__class__.__name__, other)) # pragma: no cover
-            return False
+#        if not self.isvalid:
+#            if verbose:
+#                print("{}: {!r} is not valid".format(self.__class__.__name__, self)) # pragma: no cover
+#            return False
+#        
+#        if not other.isvalid:
+#            if verbose:
+#                print("{}: {!r} is not valid".format(self.__class__.__name__, other)) # pragma: no cover
+#            return False
         
 #         if isreftime1 and isreftime2:
 #            # Both units are reference-time units
@@ -1770,12 +1791,12 @@ x.__pos__() <==> +x
             # Both units are null and therefore equivalent
             return True
 
-        if not isreftime1 and not isreftime2:
+#        if not isreftime1 and not isreftime2:
             # Both units are not reference-time units
-            return bool(_ut_are_convertible(self._ut_unit, other._ut_unit))
+        return bool(_ut_are_convertible(self._ut_unit, other._ut_unit))
          
         # Still here? Then units are not equivalent.
-        return False
+#        return False
 
 
     def formatted(self, names=None, definition=None):
@@ -2093,7 +2114,7 @@ x.__pos__() <==> +x
         return self
 
 
-    def equals(self, other, rtol=None, atol=None):
+    def equals(self, other, rtol=None, atol=None, verbose=False):
         '''Return True if and only if numeric values in one unit are
     convertible to numeric values in the other unit and their
     conversion is a scale factor of 1.
@@ -2138,34 +2159,103 @@ x.__pos__() <==> +x
     True
 
         '''
-        if not self.isvalid or not other.isvalid:
+        isreftime1 = self._isreftime
+        isreftime2 = other._isreftime
+
+        if isreftime1 and isreftime2:
+            # Both units are reference-time units
+            if self._canonical_calendar != other._canonical_calendar:
+                if verbose:
+                    print("{}: Incompatible calendars: {!r}, {!r}".format(
+                        self.__class__.__name__,
+                        self._calendar, other._calendar)) # pragma: no cover
+                return False
+
+            reftime0 = getattr(self, 'reftime', None)
+            reftime1 = getattr(other, 'reftime', None)
+            if reftime0 != reftime1:
+                if verbose:
+                    print("{}: Different reference date-times: {!r}, {!r}".format(
+                        self.__class__.__name__,
+                        reftime0, reftime1)) # pragma: no cover
+                return False
+
+        elif isreftime1 or isreftime2:
+            if verbose:
+                print("{}: Only one is reference time".format(
+                    self.__class__.__name__)) # pragma: no cover
             return False
+
         
+#            utime0 = self._utime
+#            utime1 = other._utime
+#            if utime0 is not None and utime1 is not None:
+#                return utime0.origin_equals(utime1)
+#            elif utime0 is None and utime1 is None:
+#                return self.reftime
+#
+#        
+#        
+#            units0 = self._units
+#            units1 = other._units
+#            if units0 and units1 or (not units0 and not units1):
+#                out = (self._canonical_calendar == other._canonical_calendar)
+#                if verbose and not out:
+#                    print("{}: Incompatible calendars: {!r}, {!r}".format(
+#                        self.__class__.__name__,
+#                        self._calendar, other._calendar)) # pragma: no cover
+#                
+#                return out
+#            else:
+#                return False
+        #--- End: if
+#        if not self.isvalid:
+#            if verbose:
+#                print("{}: {!r} is not valid".format(self.__class__.__name__, self)) # pragma: no cover
+#            return False
+#        
+#        if not other.isvalid:
+#            if verbose:
+#                print("{}: {!r} is not valid".format(self.__class__.__name__, other)) # pragma: no cover
+#            return False
+#        
+        
+#        if not self.isvalid or not other.isvalid:
+#            print ('ppp')
+#            return False
+
+
         try:
-            if _ut_compare(self._ut_unit, other._ut_unit):
+            if not _ut_compare(self._ut_unit, other._ut_unit):                
+                return True
+            elif verbose:
+                print("{}: Different units: {!r}, {!r}".format(
+                    self.__class__.__name__,
+                    self.units, other.units)) # pragma: no cover
                 return False
         except AttributeError:
             return False
 
-        isreftime1 = self._isreftime
-        isreftime2 = other._isreftime
 
-        if not isreftime1 and not isreftime2:
-            # Neither units is reference-time so they're equal
-            return True
-
-        if isreftime1 and isreftime2:
-            # Both units are reference-time
-            utime0 = self._utime
-            utime1 = other._utime
-            if utime0.calendar != utime1.calendar:
-                return False
-            
-            return utime0.origin_equals(utime1)
+#isreftime1 = self._isreftime
+#        isreftime2 = other._isreftime
+#
+#        if not isreftime1 and not isreftime2:
+#            # Neither units is reference-time so they're equal
+#            return True
+#
+#        if isreftime1 and isreftime2:
+#            # Both units are reference-time
+#            utime0 = self._utime
+#            utime1 = other._utime
+#            if utime0.calendar != utime1.calendar:
+#                return False
+#            
+#            return utime0.origin_equals(utime1)
 
         # One unit is a reference-time and the other is not so they're
         # not equal
-        return False
+#        return False
 
 
     def log(self, base):
@@ -2323,16 +2413,16 @@ Attribute       Description
         return u.num2date(time_value)
 
     
-    def origin_equals(self, other):
-        '''
-        
-        '''
-        if self is other:
-            return True
-        else:
-            return (self._jd0     == other._jd0     and
-                    self.calendar == other.calendar and
-                    self.tzoffset == other.tzoffset)
+#    def origin_equals(self, other):
+#        '''
+#        
+#        '''
+#        if self is other:
+#            return True
+#        else:
+#            return (self._jd0     == other._jd0     and
+#                    self.calendar == other.calendar and
+#                    self.tzoffset == other.tzoffset)
 
 
 #--- End: class
