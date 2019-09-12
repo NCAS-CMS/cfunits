@@ -56,9 +56,9 @@ _ut_read_xml = _udunits.ut_read_xml
 _ut_read_xml.argtypes = (_c_char_p, )
 _ut_read_xml.restype = _c_void_p
 
-#print ('units: before _udunits.ut_read_xml(',_unit_database,')')
+#print('units: before _udunits.ut_read_xml(',_unit_database,')')
 _ut_system = _ut_read_xml(None)
-#print ('units: after  _udunits.ut_read_xml(',_unit_database,')')
+#print('units: after  _udunits.ut_read_xml(',_unit_database,')')
 
 # Reinstate the reporting of error messages
 #_ut_set_error_message_handler(_udunits.ut_write_to_stderr)

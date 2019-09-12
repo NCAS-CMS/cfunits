@@ -1,3 +1,12 @@
+version 3.2.0
+-------------
+----
+
+**2019-09-12**
+
+* Added `_canonical_calendar` attribute.
+* Improved testing in `Unit.equivalent`.
+
 version 3.1.1
 -------------
 ----

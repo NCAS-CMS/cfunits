@@ -20,18 +20,18 @@ installation and source code.
 
 __Conventions__  = 'CF-1.7'
 __author__       = 'David Hassell'
-__date__         = '2019-08-02'
-__version__      = '3.1.1'
+__date__         = '2019-09-12'
+__version__      = '3.2.0'
 
 from distutils.version import LooseVersion
 import platform
 
 # Check the version of python
-minimum_vn = '3.0.0'
-if LooseVersion(platform.python_version()) < LooseVersion(minimum_vn):
+_minimum_vn = '3.0.0'
+if LooseVersion(platform.python_version()) < LooseVersion(_minimum_vn):
     raise ValueError(
-        "Bad python version: cf requires python version {} or later. Got {}".format(
-            minimum_vn,  platform.python_version()))
+        "Bad python version: cfunits requires python version {} or later. Got {}".format(
+            _minimum_vn, platform.python_version()))
 
 from .units import Units
 
