@@ -1,12 +1,14 @@
 import ctypes
-#import netCDF4
 import operator
 import sys
 
-from numpy import array     as numpy_array
-from numpy import dtype     as numpy_dtype
-from numpy import generic   as numpy_generic
-from numpy import ndarray   as numpy_ndarray
+from numpy import array      as numpy_array
+from numpy import asanyarray as numpy_asanyarray
+from numpy import dtype      as numpy_dtype
+from numpy import generic    as numpy_generic
+from numpy import ndarray    as numpy_ndarray
+
+
 
 # --------------------------------------------------------------------
 # Aliases for ctypes
@@ -299,6 +301,8 @@ _canonical_calendar = {'gregorian'          : 'gregorian'          ,
                        'julian'             : 'julian'             ,
                        }
 
+_months_or_years = ('month', 'months', 'year', 'years', 'yr')
+
 ## --------------------------------------------------------------------
 ## Set month lengths in days for non-leap years (_days_in_month[0,1:])
 ## and leap years (_days_in_month[1,1:])
@@ -420,12 +424,12 @@ off by default.
 #    return year, month, day
 ##--- End: def
 
-
-# ====================================================================
-#
-# Units object
-#
-# ====================================================================
+# --------------------------------------------------------------------
+# Constants, as defined by UDUNITS
+# --------------------------------------------------------------------
+_year_length = 365.242198781
+_month_length = _year_length / 12
+    
 
 class Units():
     '''Store, combine and compare physical units and convert numeric values
@@ -716,7 +720,7 @@ array([-31., -30., -29., -28., -27.])
                             utime = Utime(_calendar, unit_string)
                         except Exception as error:
                             utime = None
-                            if unit in ('month', 'months', 'year', 'years', 'yr'):
+                            if unit in _months_or_years: #('month', 'months', 'year', 'years', 'yr'):
                                 temp_unit_string = 'days since {}'.format(units_split[1].strip())
                                 try:
                                     _ = Utime(_calendar, temp_unit_string)
@@ -1896,38 +1900,38 @@ x.__pos__() <==> +x
         return out.decode('utf-8')
 
 
-    @staticmethod
-    def conform(x, from_units, to_units, inplace=False):
-        '''Conform values in one unit to equivalent values in another, compatible
-    unit. Returns the conformed values.
+    @classmethod
+    def conform(cls, x, from_units, to_units, inplace=False):
+        '''Conform values in one unit to equivalent values in another,
+    compatible unit.
+
+    Returns the conformed values.
     
-    The values may either be a numpy array or a python numeric type. The
-    returned value is of the same type, except that input integers are
-    converted to floats (see the *inplace* keyword).
+    The values may either be a numpy array or a python numeric
+    type. The returned value is of the same type, except that input
+    integers are converted to floats (see the *inplace* keyword).
     
-    .. warning::
-    
-       Do not change the calendar of reference time units in the
-       current version. Whilst this is possible, it will almost
-       certainly result in an incorrect interpretation of the data or
-       an error.
+    .. warning:: Do not change the calendar of reference time units in
+                 the current version. Whilst this is possible, it will
+                 almost certainly result in an incorrect
+                 interpretation of the data or an error.
 
     :Parameters:
     
-        x: `numpy.ndarray` or python numeric
+        x: `numpy.ndarray` or python numeric object
     
         from_units: `Units`
-            The original units of `x`
+            The original units of *x*
     
         to_units: `Units`
-            The units to which `x` should be conformed to.
+            The units to which *x* should be conformed to.
     
         inplace: `bool`, optional
-            If True and `x` is a numpy array then change it in place,
-            creating no temporary copies, with one exception: If `x`
-            is of integer type and the conversion is not null, then it
-            will not be changed inplace and the returned conformed
-            array will be of float type.
+            If `True` and *x* is a numpy array then change it in
+            place, creating no temporary copies, with one exception:
+            If *x* is of integer type and the conversion is not null,
+            then it will not be changed inplace and the returned
+            conformed array will be of float type.
     
     :Returns:
     
@@ -1943,15 +1947,15 @@ x.__pos__() <==> +x
     >>> a = numpy.arange(5.0)
     >>> Units.conform(a, Units('minute'), Units('second'))
     array([   0.,   60.,  120.,  180.,  240.])
-    >>> a
-    array([ 0.,  1.,  2.,  3.,  4.])
+    >>> print(a)
+    [ 0.  1.  2.  3.  4.]
     
     >>> Units.conform(a,
                       Units('days since 2000-12-1'),
                       Units('days since 2001-1-1'), inplace=True)
     array([-31., -30., -29., -28., -27.])
-    >>> a
-    array([-31., -30., -29., -28., -27.])
+    >>> print(a)
+    [-31. -30. -29. -28. -27.]
 
         '''
         if from_units.equals(to_units):
@@ -1962,15 +1966,15 @@ x.__pos__() <==> +x
         #--- End: if
 
         if not from_units.equivalent(to_units):
-            raise ValueError("Units are not convertible: %r, %r" %
-                             (from_units, to_units))
+            raise ValueError("Units are not convertible: {!r}, {1r}".format(
+                from_units, to_units))
 
         ut_unit1 = from_units._ut_unit
         ut_unit2 = to_units._ut_unit
 
         if ut_unit1 is None or ut_unit2 is None:
-            raise ValueError("Units are not convertible: %r, %r" %
-                             (from_units, to_units))
+            raise ValueError("Units are not convertible: {!r}, {1r}".format(
+                from_units, to_units))
 
         convert = _ut_compare(ut_unit1, ut_unit2)
 
@@ -1979,14 +1983,43 @@ x.__pos__() <==> +x
             # Both units are time-reference units, so calculate the
             # non-zero offset in units of days.
             # --------------------------------------------------------
+            units0, reftime0 = from_units.units.split(' since ')
+            units1, reftime1 = to_units.units.split(' since ')
+            if units0 in _months_or_years:
+                from_units = cls('days since '+reftime0,
+                                 calendar=getattr(from_units, 'calendar', None))
+                x = numpy_asanyarray(x)
+                if inplace:
+                    if units0 in ('month', 'months'):                    
+                        x *= _month_length
+                    else:
+                        x *= _year_length
+                else:
+                    if units0 in ('month', 'months'):
+                        x = x * _month_length
+                    else:
+                        x = x * _year_length
+                        
+                    inplace = True
+
+                ut_unit1 = from_units._ut_unit
+                ut_unit2 = to_units._ut_unit
+
+                convert = _ut_compare(ut_unit1, ut_unit2)
+            #--- End: if
+            
+            if units1 in _months_or_years:
+                to_units = cls('days since '+reftime1,
+                               calendar=getattr(to_units, 'calendar', None))
+                
             offset = to_units._utime._jd0 - from_units._utime._jd0
         else:
             offset = 0
 
-        # ----------------------------------------------------------------
+        # ------------------------------------------------------------
         # If the two units are identical then no need to alter the
         # value, so return it unchanged.
-        # ----------------------------------------------------------------
+        # ------------------------------------------------------------
 #        if not convert and not offset:
 #            return x
 
@@ -1994,13 +2027,13 @@ x.__pos__() <==> +x
             cv_converter = _ut_get_converter(ut_unit1, ut_unit2)
             if not cv_converter:
                 _cv_free(cv_converter)
-                raise ValueError("Units are not convertible: %r, %r" %
-                                 (from_units, to_units))
+                raise ValueError("Units are not convertible: {!r}, {1r}".format(
+                    from_units, to_units))
         #-- End: if
 
-        # ----------------------------------------------------------------
+        # ------------------------------------------------------------
         # Find out if x is an numpy array or a python number
-        # ----------------------------------------------------------------
+        # ------------------------------------------------------------
         if isinstance(x, numpy_generic):
             # Convert a generic numpy scalar to a 0-d array
             x = numpy_array(x)
@@ -2014,9 +2047,9 @@ x.__pos__() <==> +x
                 x = numpy_array(x, order='C')
 #ARRRGGHH dch
 
-            # ----------------------------------------------------------------
+            # --------------------------------------------------------
             # Convert an integer numpy array to a float numpy array
-            # ----------------------------------------------------------------
+            # --------------------------------------------------------
             if inplace:
                 if x.dtype.kind is 'i':
                     if x.dtype.char is 'i':
@@ -2066,7 +2099,6 @@ x.__pos__() <==> +x
                                     pointer)
                 # Reset the number
                 x = y.value
-            #--- End: if
 
             _cv_free(cv_converter)
         #--- End: if
@@ -2089,10 +2121,8 @@ x.__pos__() <==> +x
                 _cv_free(cv_converter)
 
                 offset *= scale.item()
-            #--- End: if
 
             x -= offset
-        #--- End: if
 
         return x
 
@@ -2402,11 +2432,11 @@ Attribute       Description
         if units in ('month', 'months'):
             # Convert months to days
             unit_string = unit_string.replace(units, 'days', 1)
-            time_value = numpy_array(time_value)*365.242198781/12
+            time_value = numpy_array(time_value)*_month_length #365.242198781/12
         elif units in ('year', 'years', 'yr'):
             # Convert years to days
             unit_string = unit_string.replace(units, 'days', 1)
-            time_value = numpy_array(time_value)*365.242198781
+            time_value = numpy_array(time_value)*_year_length #365.242198781
 
         u = cftime.utime(unit_string, self.calendar)        
 
