@@ -624,30 +624,31 @@ array([-31., -30., -29., -28., -27.])
                  names=False, definition=False, _ut_unit=None):
         '''**Initialization**
 
-:Parameters:
-
-    units: `str` or `Units`, optional
-        Set the new units from this string.
-
-    calendar: `str`, optional
-        Set the calendar for reference time units.
-
-    formatted: `bool`, optional
-        Format the string representation of the units in a
-        standardized manner. See the `formatted` method.
-
-    names: `bool`, optional
-        Format the string representation of the units using names
-        instead of symbols. See the `format` method.
-
-    definition: `bool`, optional
-        Format the string representation of the units using basic
-        units. See the `format` method.
-
-    _ut_unit: `int`, optional
-        Set the new units from this Udunits binary unit
-        representation. This should be an integer returned by a call
-        to `ut_parse` function of Udunits. Ignored if `units` is set.
+    :Parameters:
+    
+        units: `str` or `Units`, optional
+            Set the new units from this string.
+    
+        calendar: `str`, optional
+            Set the calendar for reference time units.
+    
+        formatted: `bool`, optional
+            Format the string representation of the units in a
+            standardized manner. See the `formatted` method.
+    
+        names: `bool`, optional
+            Format the string representation of the units using names
+            instead of symbols. See the `format` method.
+    
+        definition: `bool`, optional
+            Format the string representation of the units using basic
+            units. See the `format` method.
+    
+        _ut_unit: `int`, optional
+            Set the new units from this Udunits binary unit
+            representation. This should be an integer returned by a
+            call to `ut_parse` function of Udunits. Ignored if `units`
+            is set.
 
         '''
         self._isvalid = True
@@ -662,7 +663,8 @@ array([-31., -30., -29., -28., -27.])
         if calendar is not None:
             _calendar = _canonical_calendar.get(calendar.lower())
             if _calendar is None:
-                self._reason_notvalid = self._reason_notvalid + 'Invalid calendar={!r}'.format(calendar)
+                self._reason_notvalid = self._reason_notvalid + 'Invalid calendar={!r}'.format(
+                    calendar)
                 self._isvalid = False
                 _calendar = calendar
         #--- End: if
@@ -717,13 +719,12 @@ array([-31., -30., -29., -28., -27.])
                     utime = _cached_utime.get((_calendar, unit_string), None)
 
                     if utime is None:
-                        utime = Utime(_calendar, unit_string)
                         try:
                             utime = Utime(_calendar, unit_string)
                         except Exception as error:
                             self._reason_notvalid = self._reason_notvalid + '; '+str(error)
                             self._isvalid = False
-                            print('arse')
+
 #                            # Assume that the value error came from
 #                            # Utime complaining about the units. In
 #                            # this case, change the units to something
@@ -745,7 +746,8 @@ array([-31., -30., -29., -28., -27.])
                 #--- End: if
 
                 self._isreftime = True
-                self._calendar  = _calendar
+                self._calendar  = calendar
+                self._canonical_calendar  = _calendar
                 self._utime     = utime
             
             else:
@@ -758,6 +760,7 @@ array([-31., -30., -29., -28., -27.])
                     if not ut_unit:
                         ut_unit = None
                         self._isvalid = False
+                        self._reason_notvalid = "Invalid units: {!r}; Not recognised by UDUNITS".format(units)
                     else:
                         _cached_ut_unit[units] = ut_unit
                 #--- End: if
@@ -772,6 +775,7 @@ array([-31., -30., -29., -28., -27.])
 
                 self._isreftime = False
                 self._calendar  = None
+                self._canonial_calendar  = None
                 self._utime     = None
             #--- End: if
 
@@ -791,10 +795,12 @@ array([-31., -30., -29., -28., -27.])
             self._ut_unit   = None
             self._isreftime = True
             self._calendar  = calendar
+            self._canonical_calendar = _canonical_calendar[calendar.lower()]
             try:
                 self._utime = Utime(_canonical_calendar[calendar.lower()])
             except Exception as error:
-                self._reason_notvalid = self._reason_notvalid + 'Invalid calendar={!r}'.format(calendar)
+                self._reason_notvalid = self._reason_notvalid + 'Invalid calendar={!r}'.format(
+                    calendar)
                 self._isvalid = True
             return
         #--- End: if
@@ -819,33 +825,34 @@ array([-31., -30., -29., -28., -27.])
         #-------------------------------------------------------------
         # Nothing has been set
         #-------------------------------------------------------------
-        self._units     = None
-        self._ut_unit   = None 
-        self._isreftime = False
-        self._calendar  = None        
-        self._utime     = None
-    #--- End: def
+        self._units              = None
+        self._ut_unit            = None 
+        self._isreftime          = False
+        self._calendar           = None        
+        self._canonical_calendar = None
+        self._utime              = None
+
 
     def __getstate__(self):
         '''Called when pickling.
 
-:Returns:
-
-    `dict`
-        A dictionary of the instance's attributes
-
-**Examples:**
-
->>> u = Units('days since 3-4-5', calendar='gregorian')
->>> u.__getstate__()
-{'calendar': 'gregorian',
- 'units': 'days since 3-4-5'}
+    :Returns:
+    
+        `dict`
+            A dictionary of the instance's attributes
+    
+    **Examples:**
+    
+    >>> u = Units('days since 3-4-5', calendar='gregorian')
+    >>> u.__getstate__()
+    {'calendar': 'gregorian',
+     'units': 'days since 3-4-5'}
 
         '''
         return dict([(attr, getattr(self, attr))
                      for attr in ('_units', '_calendar')
                      if hasattr(self, attr)])
-    #--- End: def
+
 
     def __setstate__(self, odict):
         '''
@@ -1536,20 +1543,62 @@ x.__pos__() <==> +x
  
     @property
     def isvalid(self):
-        '''TODO
+        '''Whether the units are valid.
 
     .. seealso:: `reason_notvalid`
 
+    **Examples:**
+
+    >>> u = Units('km')
+    >>>  u.isvalid                                                               
+    True
+    >>> u.reason_notvalid                                                       
+    ''
+
+    >>> u = Units('Bad Units')                                                 
+    >>> u.isvalid                                                               
+    False
+    >>> u.reason_notvalid                                                       
+    "Invalid units: 'Bad Units'; Not recognised by UDUNITS"
+
+    >>> u = Units(days since 2000-1-1', calendar='Bad Calendar')
+    >>>  u.isvalid                                                               
+    False
+    >>> u.reason_notvalid                                                       
+    "Invalid calendar='Bad Calendar'; calendar must be one of ['standard', 'gregorian', 'proleptic_gregorian', 'noleap', 'julian', 'all_leap', '365_day', '366_day', '360_day'], got 'bad calendar'"
+        
         '''
         return getattr(self, '_isvalid', False)
 
     
     @property
     def reason_notvalid(self):
-        '''TODO
+        '''The reason for invalid units.
+
+    If the units are valid then the reason is an empty string.
 
     .. seealso:: `isvalid`
+        
+    **Examples:**
 
+    >>> u = Units('km')
+    >>>  u.isvalid                                                               
+    True
+    >>> u.reason_notvalid                                                       
+    ''
+
+    >>> u = Units('Bad Units')                                                 
+    >>> u.isvalid                                                               
+    False
+    >>> u.reason_notvalid                                                       
+    "Invalid units: 'Bad Units'; Not recognised by UDUNITS"
+
+    >>> u = Units(days since 2000-1-1', calendar='Bad Calendar')
+    >>>  u.isvalid                                                               
+    False
+    >>> u.reason_notvalid                                                       
+    "Invalid calendar='Bad Calendar'; calendar must be one of ['standard', 'gregorian', 'proleptic_gregorian', 'noleap', 'julian', 'all_leap', '365_day', '366_day', '360_day'], got 'bad calendar'"
+        
         '''
         return getattr(self, '_reason_notvalid', '')
 
@@ -1677,6 +1726,25 @@ x.__pos__() <==> +x
 #        if not self.isvalid or not other.isvalid:
 #            return False
         
+        isreftime1 = self._isreftime
+        isreftime2 = other._isreftime
+
+        if isreftime1 and isreftime2:
+            # Both units are reference-time units
+            units0 = self._units
+            units1 = other._units
+            if units0 and units1 or (not units0 and not units1):
+                out = (self._canonical_calendar == other._canonical_calendar)
+                if verbose and not out:
+                    print("{}: Incompatible calendars: {!r}, {!r}".format(
+                        self.__class__.__name__,
+                        self._calendar, other._calendar)) # pragma: no cover
+                
+                return out
+            else:
+                return False
+        #--- End: if
+        
         if not self.isvalid:
             if verbose:
                 print("{}: {!r} is not valid".format(self.__class__.__name__, self)) # pragma: no cover
@@ -1687,19 +1755,15 @@ x.__pos__() <==> +x
                 print("{}: {!r} is not valid".format(self.__class__.__name__, other)) # pragma: no cover
             return False
         
-        isreftime1 = self._isreftime
-        isreftime2 = other._isreftime
-        print('arse')
-
-        if isreftime1 and isreftime2:
-            # Both units are reference-time units
-            units0 = self._units
-            units1 = other._units
-            if units0 and units1 or (not units0 and not units1):
-                return self._utime.calendar == other._utime.calendar
-            else:
-                return False
-        #--- End: if
+#         if isreftime1 and isreftime2:
+#            # Both units are reference-time units
+#            units0 = self._units
+#            units1 = other._units
+#            if units0 and units1 or (not units0 and not units1):
+#                return self._calendar == other._calendar
+#            else:
+#                return False
+#        #--- End: if
 
         # Still here? 
         if not self and not other:
@@ -2180,7 +2244,8 @@ Attribute       Description
 ==============  ======================================================
 
     '''
-    def __init__(self, calendar, unit_string=None):
+    def __init__(self, calendar, unit_string=None,
+                 only_use_cftime_datetimes=True):
         '''**Initialization**
 
     :Parameters:
@@ -2195,10 +2260,15 @@ Attribute       Description
             A string of the form "time-units since <time-origin>"
             defining the reference-time units.
 
+        only_use_cftime_datetimes: `bool`, optional
+            If `False`, datetime.datetime objects are returned from
+            `num2date` where possible; By default. dates which
+            subclass `cftime.datetime` are returned for all calendars.
+
         '''
         if unit_string:
-            super().__init__(unit_string, calendar)
-#            _netCDF4_netcdftime_utime.__init__(self, unit_string, calendar)
+            super().__init__(unit_string, calendar,
+                             only_use_cftime_datetimes=only_use_cftime_datetimes)
         else:
             self.calendar    = calendar
             self._jd0        = None
