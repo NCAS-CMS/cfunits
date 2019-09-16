@@ -1,3 +1,11 @@
+version 3.2.2
+-------------
+----
+
+**2019-09-16**
+
+* Added `_units_since_reftime` attribute.
+
 version 3.2.0
 -------------
 ----

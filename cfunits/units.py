@@ -679,6 +679,8 @@ array([-31., -30., -29., -28., -27.])
             except AttributeError:
                 raise ValueError("Can't set unsupported unit: {!r}".format(units))
 
+            unit = None
+            
             if ' since ' in units:
                 # --------------------------------------------------------
                 # Set a reference time unit
@@ -694,6 +696,8 @@ array([-31., -30., -29., -28., -27.])
                         
                 units_split = units.split(' since ')
                 unit        = units_split[0].strip()
+
+                _units_since_reftime = unit
                 
                 ut_unit = _cached_ut_unit.get(unit, None)
                 if ut_unit is None:                    
@@ -771,6 +775,7 @@ array([-31., -30., -29., -28., -27.])
 
             self._ut_unit = ut_unit
             self._units   = units
+            self._units_since_reftime = unit
 
             if formatted or names or definition:
                 self._units = self.formatted(names, definition)
@@ -786,14 +791,15 @@ array([-31., -30., -29., -28., -27.])
             self._isreftime = True
             self._calendar  = calendar
             self._canonical_calendar = _canonical_calendar[calendar.lower()]
+            self._units_since_reftime = None
             try:
                 self._utime = Utime(_canonical_calendar[calendar.lower()])
             except Exception as error:
                 self._reason_notvalid = self._reason_notvalid + 'Invalid calendar={!r}'.format(
                     calendar)
                 self._isvalid = True
+                
             return
-        #--- End: if
 
         if _ut_unit is not None:
             #---------------------------------------------------------
@@ -806,21 +812,24 @@ array([-31., -30., -29., -28., -27.])
             _cached_ut_unit[units] = _ut_unit
             self._units = units
 
+            self._units_since_reftime = None
+
             self._calendar  = None
             self._utime     = None
- 
+
+
             return
-        #--- End: if
 
         #-------------------------------------------------------------
         # Nothing has been set
         #-------------------------------------------------------------
-        self._units              = None
-        self._ut_unit            = None 
-        self._isreftime          = False
-        self._calendar           = None        
-        self._canonical_calendar = None
-        self._utime              = None
+        self._units               = None
+        self._ut_unit             = None 
+        self._isreftime           = False
+        self._calendar            = None        
+        self._canonical_calendar  = None
+        self._utime               = None
+        self._units_since_reftime = None
 
 
     def __getstate__(self):
