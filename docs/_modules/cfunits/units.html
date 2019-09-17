@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>cfunits.units &#8212; Documentation</title>
-    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
@@ -15,37 +15,67 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 3.0.0</li>
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
-        <li class="nav-item nav-item-0"><a href="../../index.html">Documentation</a> &#187;</li>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
-      </ul>
-    </div>  
-
-    <div class="document">
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><b><a href="../../index.html">cfunits 3.2.2</a></b></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html"><strong>Installation</strong></a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cfunits.Units.html">cfunits.Units</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body" role="main">
             
   <h1>Source code for cfunits.units</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">ctypes</span>
-<span class="c1">#import netCDF4</span>
 <span class="kn">import</span> <span class="nn">operator</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
-<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span>     <span class="k">as</span> <span class="n">numpy_array</span>
-<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">dtype</span>     <span class="k">as</span> <span class="n">numpy_dtype</span>
-<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">generic</span>   <span class="k">as</span> <span class="n">numpy_generic</span>
-<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">ndarray</span>   <span class="k">as</span> <span class="n">numpy_ndarray</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span>      <span class="k">as</span> <span class="n">numpy_array</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">asanyarray</span> <span class="k">as</span> <span class="n">numpy_asanyarray</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">dtype</span>      <span class="k">as</span> <span class="n">numpy_dtype</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">generic</span>    <span class="k">as</span> <span class="n">numpy_generic</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">ndarray</span>    <span class="k">as</span> <span class="n">numpy_ndarray</span>
+
+
 
 <span class="c1"># --------------------------------------------------------------------</span>
 <span class="c1"># Aliases for ctypes</span>
@@ -95,9 +125,9 @@
 <span class="n">_ut_read_xml</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">(</span><span class="n">_c_char_p</span><span class="p">,</span> <span class="p">)</span>
 <span class="n">_ut_read_xml</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">_c_void_p</span>
 
-<span class="c1">#print (&#39;units: before _udunits.ut_read_xml(&#39;,_unit_database,&#39;)&#39;)</span>
+<span class="c1">#print(&#39;units: before _udunits.ut_read_xml(&#39;,_unit_database,&#39;)&#39;)</span>
 <span class="n">_ut_system</span> <span class="o">=</span> <span class="n">_ut_read_xml</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
-<span class="c1">#print (&#39;units: after  _udunits.ut_read_xml(&#39;,_unit_database,&#39;)&#39;)</span>
+<span class="c1">#print(&#39;units: after  _udunits.ut_read_xml(&#39;,_unit_database,&#39;)&#39;)</span>
 
 <span class="c1"># Reinstate the reporting of error messages</span>
 <span class="c1">#_ut_set_error_message_handler(_udunits.ut_write_to_stderr)</span>
@@ -289,7 +319,7 @@
 <span class="c1"># Aliases for netCDF4.netcdftime classes</span>
 <span class="c1"># --------------------------------------------------------------------</span>
 <span class="kn">import</span> <span class="nn">cftime</span>    
-<span class="n">_netCDF4_netcdftime_utime</span> <span class="o">=</span> <span class="n">cftime</span><span class="o">.</span><span class="n">utime</span>
+<span class="c1">#_netCDF4_netcdftime_utime = cftime.utime</span>
 <span class="n">_datetime</span>                 <span class="o">=</span> <span class="n">cftime</span><span class="o">.</span><span class="n">datetime</span>
     
 <span class="c1"># --------------------------------------------------------------------</span>
@@ -337,6 +367,8 @@
                        <span class="s1">&#39;366_day&#39;</span>            <span class="p">:</span> <span class="s1">&#39;366_day&#39;</span>            <span class="p">,</span>
                        <span class="s1">&#39;julian&#39;</span>             <span class="p">:</span> <span class="s1">&#39;julian&#39;</span>             <span class="p">,</span>
                        <span class="p">}</span>
+
+<span class="n">_months_or_years</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;months&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;years&#39;</span><span class="p">,</span> <span class="s1">&#39;yr&#39;</span><span class="p">)</span>
 
 <span class="c1">## --------------------------------------------------------------------</span>
 <span class="c1">## Set month lengths in days for non-leap years (_days_in_month[0,1:])</span>
@@ -459,17 +491,15 @@
 <span class="c1">#    return year, month, day</span>
 <span class="c1">##--- End: def</span>
 
-
-<span class="c1"># ====================================================================</span>
-<span class="c1">#</span>
-<span class="c1"># Units object</span>
-<span class="c1">#</span>
-<span class="c1"># ====================================================================</span>
+<span class="c1"># --------------------------------------------------------------------</span>
+<span class="c1"># Constants, as defined by UDUNITS</span>
+<span class="c1"># --------------------------------------------------------------------</span>
+<span class="n">_year_length</span> <span class="o">=</span> <span class="mf">365.242198781</span>
+<span class="n">_month_length</span> <span class="o">=</span> <span class="n">_year_length</span> <span class="o">/</span> <span class="mi">12</span>
+    
 
 <div class="viewcode-block" id="Units"><a class="viewcode-back" href="../../cfunits.Units.html#cfunits.Units">[docs]</a><span class="k">class</span> <span class="nc">Units</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-
-<span class="sd">Store, combine and compare physical units and convert numeric values</span>
+    <span class="sd">&#39;&#39;&#39;Store, combine and compare physical units and convert numeric values</span>
 <span class="sd">to different units.</span>
 
 <span class="sd">Units are as defined in UNIDATA&#39;s Udunits-2 package, with a few</span>
@@ -660,38 +690,40 @@
 <span class="sd">&gt;&gt;&gt; a</span>
 <span class="sd">array([-31., -30., -29., -28., -27.])</span>
 
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">calendar</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">formatted</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
                  <span class="n">names</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">definition</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">_ut_unit</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;**Initialization**</span>
 
-<span class="sd">:Parameters:</span>
-
-<span class="sd">    units: `str` or `Units`, optional</span>
-<span class="sd">        Set the new units from this string.</span>
-
-<span class="sd">    calendar: `str`, optional</span>
-<span class="sd">        Set the calendar for reference time units.</span>
-
-<span class="sd">    formatted: `bool`, optional</span>
-<span class="sd">        Format the string representation of the units in a</span>
-<span class="sd">        standardized manner. See the `formatted` method.</span>
-
-<span class="sd">    names: `bool`, optional</span>
-<span class="sd">        Format the string representation of the units using names</span>
-<span class="sd">        instead of symbols. See the `format` method.</span>
-
-<span class="sd">    definition: `bool`, optional</span>
-<span class="sd">        Format the string representation of the units using basic</span>
-<span class="sd">        units. See the `format` method.</span>
-
-<span class="sd">    _ut_unit: `int`, optional</span>
-<span class="sd">        Set the new units from this Udunits binary unit</span>
-<span class="sd">        representation. This should be an integer returned by a call</span>
-<span class="sd">        to `ut_parse` function of Udunits. Ignored if `units` is set.</span>
+<span class="sd">    :Parameters:</span>
+<span class="sd">    </span>
+<span class="sd">        units: `str` or `Units`, optional</span>
+<span class="sd">            Set the new units from this string.</span>
+<span class="sd">    </span>
+<span class="sd">        calendar: `str`, optional</span>
+<span class="sd">            Set the calendar for reference time units.</span>
+<span class="sd">    </span>
+<span class="sd">        formatted: `bool`, optional</span>
+<span class="sd">            Format the string representation of the units in a</span>
+<span class="sd">            standardized manner. See the `formatted` method.</span>
+<span class="sd">    </span>
+<span class="sd">        names: `bool`, optional</span>
+<span class="sd">            Format the string representation of the units using names</span>
+<span class="sd">            instead of symbols. See the `format` method.</span>
+<span class="sd">    </span>
+<span class="sd">        definition: `bool`, optional</span>
+<span class="sd">            Format the string representation of the units using basic</span>
+<span class="sd">            units. See the `format` method.</span>
+<span class="sd">    </span>
+<span class="sd">        _ut_unit: `int`, optional</span>
+<span class="sd">            Set the new units from this Udunits binary unit</span>
+<span class="sd">            representation. This should be an integer returned by a</span>
+<span class="sd">            call to `ut_parse` function of Udunits. Ignored if `units`</span>
+<span class="sd">            is set.</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_isvalid</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
         
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">units</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">=</span> <span class="n">units</span><span class="o">.</span><span class="vm">__dict__</span>
@@ -702,6 +734,8 @@
         <span class="k">if</span> <span class="n">calendar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">_calendar</span> <span class="o">=</span> <span class="n">_canonical_calendar</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">calendar</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
             <span class="k">if</span> <span class="n">_calendar</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span> <span class="o">+</span> <span class="s1">&#39;Invalid calendar={!r}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">calendar</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_isvalid</span> <span class="o">=</span> <span class="bp">False</span>
                 <span class="n">_calendar</span> <span class="o">=</span> <span class="n">calendar</span>
         <span class="c1">#--- End: if</span>
@@ -712,6 +746,8 @@
             <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t set unsupported unit: {!r}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">units</span><span class="p">))</span>
 
+            <span class="n">unit</span> <span class="o">=</span> <span class="bp">None</span>
+            
             <span class="k">if</span> <span class="s1">&#39; since &#39;</span> <span class="ow">in</span> <span class="n">units</span><span class="p">:</span>
                 <span class="c1"># --------------------------------------------------------</span>
                 <span class="c1"># Set a reference time unit</span>
@@ -720,10 +756,15 @@
                 <span class="k">if</span> <span class="n">calendar</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
                     <span class="n">_calendar</span> <span class="o">=</span> <span class="n">_default_calendar</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">_calendar</span> <span class="o">=</span> <span class="n">_canonical_calendar</span><span class="p">[</span><span class="n">calendar</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
-
+                    <span class="n">_calendar</span> <span class="o">=</span> <span class="n">_canonical_calendar</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">calendar</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+                    <span class="k">if</span> <span class="n">_calendar</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                        <span class="n">_calendar</span> <span class="o">=</span> <span class="n">calendar</span>
+                <span class="c1">#--- End: if</span>
+                        
                 <span class="n">units_split</span> <span class="o">=</span> <span class="n">units</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; since &#39;</span><span class="p">)</span>
                 <span class="n">unit</span>        <span class="o">=</span> <span class="n">units_split</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+                <span class="n">_units_since_reftime</span> <span class="o">=</span> <span class="n">unit</span>
                 
                 <span class="n">ut_unit</span> <span class="o">=</span> <span class="n">_cached_ut_unit</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">ut_unit</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>                    
@@ -735,50 +776,39 @@
                         <span class="n">_cached_ut_unit</span><span class="p">[</span><span class="n">unit</span><span class="p">]</span> <span class="o">=</span> <span class="n">ut_unit</span>
                 <span class="c1">#--- End: if</span>
                 
-<span class="c1">#                ut_unit = _cached_ut_unit.get(unit, None)</span>
-<span class="c1">#                if ut_unit is None:                    </span>
-<span class="c1">#                    ut_unit = _ut_parse(_ut_system, _c_char_p(unit.encode(&#39;utf-8&#39;)), _UT_ASCII)</span>
-<span class="c1">#                    if not ut_unit or not _ut_are_convertible(ut_unit, _day_ut_unit):</span>
-<span class="c1">#                        raise ValueError(</span>
-<span class="c1">#                            &quot;Can&#39;t set unsupported unit in reference time: &#39;%s&#39;&quot; % </span>
-<span class="c1">#                            value)</span>
-<span class="c1">#                    _cached_ut_unit[unit] = ut_unit</span>
-<span class="c1">#                #--- End: if</span>
-
-                <span class="n">utime</span> <span class="o">=</span> <span class="n">_cached_utime</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">_calendar</span><span class="p">,</span> <span class="n">units</span><span class="p">),</span> <span class="bp">None</span><span class="p">)</span>
-
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">utime</span><span class="p">:</span>                       
+                <span class="n">utime</span> <span class="o">=</span> <span class="bp">None</span>
+                
+                <span class="k">if</span> <span class="p">(</span><span class="n">_calendar</span><span class="p">,</span> <span class="n">units</span><span class="p">)</span> <span class="ow">in</span> <span class="n">_cached_utime</span><span class="p">:</span>
+                    <span class="n">utime</span> <span class="o">=</span> <span class="n">_cached_utime</span><span class="p">[(</span><span class="n">_calendar</span><span class="p">,</span> <span class="n">units</span><span class="p">)]</span>
+                <span class="k">else</span><span class="p">:</span>
                     <span class="c1"># Create a new Utime object</span>
                     <span class="n">unit_string</span> <span class="o">=</span> <span class="s1">&#39;{} since {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">units_split</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-                    <span class="n">utime</span> <span class="o">=</span> <span class="n">_cached_utime</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">_calendar</span><span class="p">,</span> <span class="n">unit_string</span><span class="p">),</span> <span class="bp">None</span><span class="p">)</span>
 
-                    <span class="k">if</span> <span class="n">utime</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">_calendar</span><span class="p">,</span> <span class="n">unit_string</span><span class="p">)</span> <span class="ow">in</span> <span class="n">_cached_utime</span><span class="p">:</span>
+                        <span class="n">utime</span> <span class="o">=</span> <span class="n">_cached_utime</span><span class="p">[(</span><span class="n">_calendar</span><span class="p">,</span> <span class="n">unit_string</span><span class="p">)]</span>
+                    <span class="k">else</span><span class="p">:</span>
                         <span class="k">try</span><span class="p">:</span>
                             <span class="n">utime</span> <span class="o">=</span> <span class="n">Utime</span><span class="p">(</span><span class="n">_calendar</span><span class="p">,</span> <span class="n">unit_string</span><span class="p">)</span>
-                        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                            <span class="bp">self</span><span class="o">.</span><span class="n">_isvalid</span> <span class="o">=</span> <span class="bp">False</span>
-<span class="c1">#                            # Assume that the value error came from</span>
-<span class="c1">#                            # Utime complaining about the units. In</span>
-<span class="c1">#                            # this case, change the units to something</span>
-<span class="c1">#                            # acceptable to Utime and afterwards</span>
-<span class="c1">#                            # overwrite the Utime.units and</span>
-<span class="c1">#                            # Utime.unit_string attributes with the</span>
-<span class="c1">#                            # correct values. If this assumption was</span>
-<span class="c1">#                            # incorrect, then we&#39;ll just end up with</span>
-<span class="c1">#                            # another error, this time untrapped</span>
-<span class="c1">#                            # (possibly due to a wrong calendar).</span>
-<span class="c1">#                            utime = Utime(_calendar, </span>
-<span class="c1">#                                          &#39;days since %s&#39; % units_split[1].strip())</span>
-<span class="c1">#                            utime.unit_string = unit_string</span>
-<span class="c1">#                            utime.units       = unit</span>
-
+                        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                            <span class="n">utime</span> <span class="o">=</span> <span class="bp">None</span>
+                            <span class="k">if</span> <span class="n">unit</span> <span class="ow">in</span> <span class="n">_months_or_years</span><span class="p">:</span> <span class="c1">#(&#39;month&#39;, &#39;months&#39;, &#39;year&#39;, &#39;years&#39;, &#39;yr&#39;):</span>
+                                <span class="n">temp_unit_string</span> <span class="o">=</span> <span class="s1">&#39;days since {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">units_split</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+                                <span class="k">try</span><span class="p">:</span>
+                                    <span class="n">_</span> <span class="o">=</span> <span class="n">Utime</span><span class="p">(</span><span class="n">_calendar</span><span class="p">,</span> <span class="n">temp_unit_string</span><span class="p">)</span>
+                                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span> <span class="o">+</span> <span class="s1">&#39;; &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">_isvalid</span> <span class="o">=</span> <span class="bp">False</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span> <span class="o">+</span> <span class="s1">&#39;; &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">_isvalid</span> <span class="o">=</span> <span class="bp">False</span>
+                        <span class="c1">#--- End: try</span>
+                        
                         <span class="n">_cached_utime</span><span class="p">[(</span><span class="n">_calendar</span><span class="p">,</span> <span class="n">unit_string</span><span class="p">)]</span> <span class="o">=</span> <span class="n">utime</span>
-                    <span class="c1">#--- End: if</span>
-                    <span class="n">_cached_utime</span><span class="p">[(</span><span class="n">calendar</span><span class="p">,</span> <span class="n">units</span><span class="p">)]</span> <span class="o">=</span> <span class="n">utime</span>
                 <span class="c1">#--- End: if</span>
 
                 <span class="bp">self</span><span class="o">.</span><span class="n">_isreftime</span> <span class="o">=</span> <span class="bp">True</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_calendar</span>  <span class="o">=</span> <span class="n">calendar</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_canonical_calendar</span> <span class="o">=</span> <span class="n">_calendar</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_utime</span>     <span class="o">=</span> <span class="n">utime</span>
             
             <span class="k">else</span><span class="p">:</span>
@@ -791,6 +821,7 @@
                     <span class="k">if</span> <span class="ow">not</span> <span class="n">ut_unit</span><span class="p">:</span>
                         <span class="n">ut_unit</span> <span class="o">=</span> <span class="bp">None</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">_isvalid</span> <span class="o">=</span> <span class="bp">False</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span> <span class="o">=</span> <span class="s2">&quot;Invalid units: {!r}; Not recognised by UDUNITS&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">units</span><span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">_cached_ut_unit</span><span class="p">[</span><span class="n">units</span><span class="p">]</span> <span class="o">=</span> <span class="n">ut_unit</span>
                 <span class="c1">#--- End: if</span>
@@ -805,11 +836,13 @@
 
                 <span class="bp">self</span><span class="o">.</span><span class="n">_isreftime</span> <span class="o">=</span> <span class="bp">False</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_calendar</span>  <span class="o">=</span> <span class="bp">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_canonial_calendar</span>  <span class="o">=</span> <span class="bp">None</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_utime</span>     <span class="o">=</span> <span class="bp">None</span>
             <span class="c1">#--- End: if</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">_ut_unit</span> <span class="o">=</span> <span class="n">ut_unit</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_units</span>   <span class="o">=</span> <span class="n">units</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_units_since_reftime</span> <span class="o">=</span> <span class="n">unit</span>
 
             <span class="k">if</span> <span class="n">formatted</span> <span class="ow">or</span> <span class="n">names</span> <span class="ow">or</span> <span class="n">definition</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_units</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">formatted</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">definition</span><span class="p">)</span>
@@ -824,10 +857,16 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_ut_unit</span>   <span class="o">=</span> <span class="bp">None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_isreftime</span> <span class="o">=</span> <span class="bp">True</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_calendar</span>  <span class="o">=</span> <span class="n">calendar</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_utime</span>     <span class="o">=</span> <span class="n">Utime</span><span class="p">(</span><span class="n">_canonical_calendar</span><span class="p">[</span><span class="n">calendar</span><span class="o">.</span><span class="n">lower</span><span class="p">()])</span>
-
+            <span class="bp">self</span><span class="o">.</span><span class="n">_canonical_calendar</span> <span class="o">=</span> <span class="n">_canonical_calendar</span><span class="p">[</span><span class="n">calendar</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_units_since_reftime</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_utime</span> <span class="o">=</span> <span class="n">Utime</span><span class="p">(</span><span class="n">_canonical_calendar</span><span class="p">[</span><span class="n">calendar</span><span class="o">.</span><span class="n">lower</span><span class="p">()])</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span> <span class="o">+</span> <span class="s1">&#39;Invalid calendar={!r}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">calendar</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_isvalid</span> <span class="o">=</span> <span class="bp">True</span>
+                
             <span class="k">return</span>
-        <span class="c1">#--- End: if</span>
 
         <span class="k">if</span> <span class="n">_ut_unit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="c1">#---------------------------------------------------------</span>
@@ -840,42 +879,46 @@
             <span class="n">_cached_ut_unit</span><span class="p">[</span><span class="n">units</span><span class="p">]</span> <span class="o">=</span> <span class="n">_ut_unit</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_units</span> <span class="o">=</span> <span class="n">units</span>
 
+            <span class="bp">self</span><span class="o">.</span><span class="n">_units_since_reftime</span> <span class="o">=</span> <span class="bp">None</span>
+
             <span class="bp">self</span><span class="o">.</span><span class="n">_calendar</span>  <span class="o">=</span> <span class="bp">None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_utime</span>     <span class="o">=</span> <span class="bp">None</span>
- 
+
+
             <span class="k">return</span>
-        <span class="c1">#--- End: if</span>
 
         <span class="c1">#-------------------------------------------------------------</span>
         <span class="c1"># Nothing has been set</span>
         <span class="c1">#-------------------------------------------------------------</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_units</span>     <span class="o">=</span> <span class="bp">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_ut_unit</span>   <span class="o">=</span> <span class="bp">None</span> 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_isreftime</span> <span class="o">=</span> <span class="bp">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_calendar</span>  <span class="o">=</span> <span class="bp">None</span>        
-        <span class="bp">self</span><span class="o">.</span><span class="n">_utime</span>     <span class="o">=</span> <span class="bp">None</span>
-    <span class="c1">#--- End: def</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_units</span>               <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ut_unit</span>             <span class="o">=</span> <span class="bp">None</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">_isreftime</span>           <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_calendar</span>            <span class="o">=</span> <span class="bp">None</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_canonical_calendar</span>  <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_utime</span>               <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_units_since_reftime</span> <span class="o">=</span> <span class="bp">None</span>
+
 
     <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Called when pickling.</span>
 
-<span class="sd">:Returns:</span>
-
-<span class="sd">    `dict`</span>
-<span class="sd">        A dictionary of the instance&#39;s attributes</span>
-
-<span class="sd">**Examples:**</span>
-
-<span class="sd">&gt;&gt;&gt; u = Units(&#39;days since 3-4-5&#39;, calendar=&#39;gregorian&#39;)</span>
-<span class="sd">&gt;&gt;&gt; u.__getstate__()</span>
-<span class="sd">{&#39;calendar&#39;: &#39;gregorian&#39;,</span>
-<span class="sd"> &#39;units&#39;: &#39;days since 3-4-5&#39;}</span>
+<span class="sd">    :Returns:</span>
+<span class="sd">    </span>
+<span class="sd">        `dict`</span>
+<span class="sd">            A dictionary of the instance&#39;s attributes</span>
+<span class="sd">    </span>
+<span class="sd">    **Examples:**</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; u = Units(&#39;days since 3-4-5&#39;, calendar=&#39;gregorian&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; u.__getstate__()</span>
+<span class="sd">    {&#39;calendar&#39;: &#39;gregorian&#39;,</span>
+<span class="sd">     &#39;units&#39;: &#39;days since 3-4-5&#39;}</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">attr</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">))</span>
                      <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;_units&#39;</span><span class="p">,</span> <span class="s1">&#39;_calendar&#39;</span><span class="p">)</span>
                      <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">)])</span>
-    <span class="c1">#--- End: def</span>
+
 
     <span class="k">def</span> <span class="nf">__setstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">odict</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
@@ -943,82 +986,82 @@
             <span class="n">string</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;{0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_calendar</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
-    <span class="c1">#--- End: def</span>
+
 
     <span class="k">def</span> <span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Used if copy.deepcopy is called on the variable.</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span>
-    <span class="c1">#--- End: def</span>
+
 
     <span class="k">def</span> <span class="nf">__bool__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Truth value testing and the built-in operation ``bool``</span>
 
-<span class="sd">x.__bool__() &lt;==&gt; x!=0</span>
+<span class="sd">    x.__bool__() &lt;==&gt; x!=0</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ut_unit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span>
-    <span class="c1">#--- End: def</span>
+
 
     <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The rich comparison operator ``==``</span>
 
-<span class="sd">x.__eq__(y) &lt;==&gt; x==y</span>
+<span class="sd">    x.__eq__(y) &lt;==&gt; x==y</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
-    <span class="c1">#--- End: def</span>
+
 
     <span class="k">def</span> <span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The rich comparison operator ``!=``</span>
 
-<span class="sd">x.__ne__(y) &lt;==&gt; x!=y</span>
+<span class="sd">    x.__ne__(y) &lt;==&gt; x!=y</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
-    <span class="c1">#--- End: def</span>
+
 
     <span class="k">def</span> <span class="fm">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The rich comparison operator ``&gt;``</span>
 
-<span class="sd">x.__gt__(y) &lt;==&gt; x&gt;y</span>
+<span class="sd">    x.__gt__(y) &lt;==&gt; x&gt;y</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_comparison</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="s1">&#39;__gt__&#39;</span><span class="p">)</span>
-    <span class="c1">#--- End: def</span>
+
 
     <span class="k">def</span> <span class="fm">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The rich comparison operator ````</span>
 
-<span class="sd">x.__ge__(y) &lt;==&gt; x&gt;y</span>
+<span class="sd">    x.__ge__(y) &lt;==&gt; x&gt;y</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_comparison</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="s1">&#39;__ge__&#39;</span><span class="p">)</span>
-    <span class="c1">#--- End: def</span>
+
 
     <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The rich comparison operator ````</span>
 
-<span class="sd">x.__lt__(y) &lt;==&gt; x&lt;y</span>
+<span class="sd">    x.__lt__(y) &lt;==&gt; x&lt;y</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_comparison</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="s1">&#39;__lt__&#39;</span><span class="p">)</span>
-    <span class="c1">#--- End: def</span>
+
 
     <span class="k">def</span> <span class="fm">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The rich comparison operator ````</span>
 
-<span class="sd">x.__le__(y) &lt;==&gt; x&lt;=y</span>
+<span class="sd">    x.__le__(y) &lt;==&gt; x&lt;=y</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_comparison</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="s1">&#39;__le__&#39;</span><span class="p">)</span>
-    <span class="c1">#--- End: def</span>
+
 
     <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The binary arithmetic operation ``-``</span>
 
-<span class="sd">x.__sub__(y) &lt;==&gt; x-y</span>
+<span class="sd">    x.__sub__(y) &lt;==&gt; x-y</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_isreftime</span> <span class="ow">or</span>
@@ -1030,12 +1073,12 @@
             <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span><span class="n">_ut_unit</span><span class="o">=</span><span class="n">_ut_unit</span><span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t do </span><span class="si">%r</span><span class="s2"> - </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">))</span>
-    <span class="c1">#--- End: def</span>
+
 
     <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The binary arithmetic operation ``+``</span>
 
-<span class="sd">x.__add__(y) &lt;==&gt; x+y</span>
+<span class="sd">    x.__add__(y) &lt;==&gt; x+y</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_isreftime</span> <span class="ow">or</span>
@@ -1047,12 +1090,12 @@
             <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span><span class="n">_ut_unit</span><span class="o">=</span><span class="n">_ut_unit</span><span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t do </span><span class="si">%r</span><span class="s2"> + </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">))</span>
-    <span class="c1">#--- End: def</span>
+
 
     <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The binary arithmetic operation ``*``</span>
 
-<span class="sd">x.__mul__(y) &lt;==&gt; x*y</span>
+<span class="sd">    x.__mul__(y) &lt;==&gt; x*y</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">):</span>
@@ -1063,7 +1106,6 @@
                 <span class="n">ut_unit</span><span class="o">=</span><span class="n">_ut_multiply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ut_unit</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">_ut_unit</span><span class="p">)</span>
             <span class="k">except</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t do </span><span class="si">%r</span><span class="s2"> * </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">))</span>
-            <span class="c1">#--- End: try</span>
         <span class="k">else</span><span class="p">:</span>   
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_isreftime</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t do </span><span class="si">%r</span><span class="s2"> * </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">))</span>
@@ -1075,7 +1117,7 @@
         <span class="c1">#--- End: if</span>
 
         <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span><span class="n">_ut_unit</span><span class="o">=</span><span class="n">ut_unit</span><span class="p">)</span>
-    <span class="c1">#--- End: def</span>
+
 
     <span class="k">def</span> <span class="fm">__div__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;x.__div__(y) &lt;==&gt; x/y</span>
@@ -1313,19 +1355,22 @@
         <span class="k">return</span> <span class="bp">self</span>
     <span class="c1">#--- End def</span>
 
+    <span class="c1"># ----------------------------------------------------------------</span>
+    <span class="c1"># Private methods</span>
+    <span class="c1"># ----------------------------------------------------------------</span>
     <span class="k">def</span> <span class="nf">_comparison</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">method</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">cv_converter</span> <span class="o">=</span> <span class="n">_ut_get_converter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ut_unit</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">_ut_unit</span><span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="s2">&quot;Units are not compatible: {0!r}, {1!r}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">))</span>
+                <span class="s2">&quot;Units are not compatible: {0!r}, {1!r}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">cv_converter</span><span class="p">:</span>
             <span class="n">_cv_free</span><span class="p">(</span><span class="n">cv_converter</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="s2">&quot;Units are not compatible: {0!r}, {1!r}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">))</span>
+                <span class="s2">&quot;Units are not compatible: {0!r}, {1!r}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">))</span>
 
         <span class="n">y</span>  <span class="o">=</span> <span class="n">_c_double</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
         <span class="n">pointer</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">pointer</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
@@ -1336,129 +1381,120 @@
         <span class="n">_cv_free</span><span class="p">(</span><span class="n">cv_converter</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">method</span><span class="p">)(</span><span class="n">y</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="c1">#--- End: def</span>
+
 
     <span class="c1"># ----------------------------------------------------------------</span>
-    <span class="c1"># Attribute (read only)</span>
+    <span class="c1"># Attributes</span>
     <span class="c1"># ----------------------------------------------------------------</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">isreftime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;True if the units are reference time units, False otherwise.</span>
 
-<span class="sd">Note that time units (such as ``&#39;days&#39;``) are not reference time</span>
-<span class="sd">units.</span>
-
-<span class="sd">.. seealso:: `isdimensionless`, `islongitude`,</span>
-<span class="sd">             `islatitude`, `ispressure`, `istime`</span>
-
-<span class="sd">**Examples:**</span>
-
-<span class="sd">&gt;&gt;&gt; Units(&#39;days since 2000-12-1 03:00&#39;).isreftime</span>
-<span class="sd">True</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;hours since 2100-1-1&#39;, calendar=&#39;noleap&#39;).isreftime</span>
-<span class="sd">True</span>
-<span class="sd">&gt;&gt;&gt; Units(calendar=&#39;360_day&#39;).isreftime</span>
-<span class="sd">True</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;days&#39;).isreftime</span>
-<span class="sd">False</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;kg&#39;).isreftime</span>
-<span class="sd">False</span>
-<span class="sd">&gt;&gt;&gt; Units().isreftime</span>
-<span class="sd">False</span>
+<span class="sd">    Note that time units (such as ``&#39;days&#39;``) are not reference time</span>
+<span class="sd">    units.</span>
+<span class="sd">    </span>
+<span class="sd">    .. seealso:: `isdimensionless`, `islongitude`, `islatitude`,</span>
+<span class="sd">                 `ispressure`, `istime`</span>
+<span class="sd">    </span>
+<span class="sd">    **Examples:**</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;days since 2000-12-1 03:00&#39;).isreftime</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;hours since 2100-1-1&#39;, calendar=&#39;noleap&#39;).isreftime</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; Units(calendar=&#39;360_day&#39;).isreftime</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;days&#39;).isreftime</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;kg&#39;).isreftime</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; Units().isreftime</span>
+<span class="sd">    False</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_isreftime</span>
-    <span class="c1">#--- End: def</span>
 
-    <span class="c1"># ----------------------------------------------------------------</span>
-    <span class="c1"># Attribute (read only)</span>
-    <span class="c1"># ----------------------------------------------------------------</span>
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">iscalendartime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;True if the units are calendar time units, False otherwise.</span>
 
-<span class="sd">Note that regular time units (such as ``&#39;days&#39;``) are not calendar</span>
-<span class="sd">time units.</span>
-
-<span class="sd">.. seealso:: `isdimensionless`, `islongitude`, `islatitude`,</span>
-<span class="sd">             `ispressure`, `isreftime`, `istime`</span>
-
-<span class="sd">**Examples:**</span>
-
-<span class="sd">&gt;&gt;&gt; Units(&#39;calendar_months&#39;).iscalendartime</span>
-<span class="sd">True</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;calendar_years&#39;).iscalendartime</span>
-<span class="sd">True</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;days&#39;).iscalendartime</span>
-<span class="sd">False</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;km s-1&#39;).iscalendartime</span>
-<span class="sd">False</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;kg&#39;).isreftime</span>
-<span class="sd">False</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;&#39;).isreftime</span>
-<span class="sd">False</span>
-<span class="sd">&gt;&gt;&gt; Units().isreftime</span>
-<span class="sd">False</span>
+<span class="sd">    Note that regular time units (such as ``&#39;days&#39;``) are not calendar</span>
+<span class="sd">    time units.</span>
+<span class="sd">    </span>
+<span class="sd">    .. seealso:: `isdimensionless`, `islongitude`, `islatitude`,</span>
+<span class="sd">                 `ispressure`, `isreftime`, `istime`</span>
+<span class="sd">    </span>
+<span class="sd">    **Examples:**</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;calendar_months&#39;).iscalendartime</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;calendar_years&#39;).iscalendartime</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;days&#39;).iscalendartime</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;km s-1&#39;).iscalendartime</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;kg&#39;).isreftime</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;&#39;).isreftime</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; Units().isreftime</span>
+<span class="sd">    False</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">_ut_are_convertible</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ut_unit</span><span class="p">,</span> <span class="n">_calendartime_ut_unit</span><span class="p">))</span>
-    <span class="c1">#--- End: def</span>
 
-    <span class="c1"># ----------------------------------------------------------------</span>
-    <span class="c1"># Attribute (read only)</span>
-    <span class="c1"># ----------------------------------------------------------------</span>
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">isdimensionless</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;True if the units are dimensionless, false otherwise.</span>
 
-<span class="sd">.. seealso:: `islongitude`, `islatitude`, `ispressure`, `isreftime`,</span>
-<span class="sd">             `istime`</span>
-
-<span class="sd">**Examples:**</span>
-
-<span class="sd">&gt;&gt;&gt; Units(&#39;&#39;).isdimensionless</span>
-<span class="sd">True</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;1&#39;).isdimensionless</span>
-<span class="sd">True</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;100&#39;).isdimensionless</span>
-<span class="sd">True</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;m/m&#39;).isdimensionless</span>
-<span class="sd">True</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;m km-1&#39;).isdimensionless</span>
-<span class="sd">True</span>
-<span class="sd">&gt;&gt;&gt; Units().isdimensionless</span>
-<span class="sd">False</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;m&#39;).isdimensionless</span>
-<span class="sd">False</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;m/s&#39;).isdimensionless</span>
-<span class="sd">False</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;days since 2000-1-1&#39;, calendar=&#39;noleap&#39;).isdimensionless</span>
-<span class="sd">False</span>
+<span class="sd">    .. seealso:: `islongitude`, `islatitude`, `ispressure`, `isreftime`,</span>
+<span class="sd">                 `istime`</span>
+<span class="sd">    </span>
+<span class="sd">    **Examples:**</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;&#39;).isdimensionless</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;1&#39;).isdimensionless</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;100&#39;).isdimensionless</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;m/m&#39;).isdimensionless</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;m km-1&#39;).isdimensionless</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; Units().isdimensionless</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;m&#39;).isdimensionless</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;m/s&#39;).isdimensionless</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;days since 2000-1-1&#39;, calendar=&#39;noleap&#39;).isdimensionless</span>
+<span class="sd">    False</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">_ut_are_convertible</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ut_unit</span><span class="p">,</span> <span class="n">_dimensionless_unit_one</span><span class="p">))</span>
-    <span class="c1">#--- End: def</span>
 
-    <span class="c1"># ----------------------------------------------------------------</span>
-    <span class="c1"># Attribute (read only)</span>
-    <span class="c1"># ----------------------------------------------------------------</span>
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">ispressure</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;True if the units are pressure units, false otherwise.</span>
-
-<span class="sd">.. seealso:: `isdimensionless`, `islongitude`, `islatitude`,</span>
-<span class="sd">             `isreftime`, `istime`</span>
-
-<span class="sd">**Examples:**</span>
-
-<span class="sd">&gt;&gt;&gt; Units(&#39;bar&#39;).ispressure</span>
-<span class="sd">True</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;hPa&#39;).ispressure</span>
-<span class="sd">True</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;meter^-1-kilogram-second^-2&#39;).ispressure</span>
-<span class="sd">True</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;hours since 2100-1-1&#39;, calendar=&#39;noleap&#39;).ispressure</span>
-<span class="sd">False</span>
+<span class="sd">  </span>
+<span class="sd">    .. seealso:: `isdimensionless`, `islongitude`, `islatitude`,</span>
+<span class="sd">                 `isreftime`, `istime`</span>
+<span class="sd">    </span>
+<span class="sd">    **Examples:**</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;bar&#39;).ispressure</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;hPa&#39;).ispressure</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;meter^-1-kilogram-second^-2&#39;).ispressure</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;hours since 2100-1-1&#39;, calendar=&#39;noleap&#39;).ispressure</span>
+<span class="sd">    False</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">ut_unit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ut_unit</span>
@@ -1466,104 +1502,99 @@
             <span class="k">return</span> <span class="bp">False</span>
         
         <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">_ut_are_convertible</span><span class="p">(</span><span class="n">ut_unit</span><span class="p">,</span> <span class="n">_pressure_ut_unit</span><span class="p">))</span>
-    <span class="c1">#--- End: def</span>
 
-    <span class="c1"># ----------------------------------------------------------------</span>
-    <span class="c1"># Attribute (read only)</span>
-    <span class="c1"># ----------------------------------------------------------------</span>
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">islatitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;True if and only if the units are latitude units.</span>
 
-<span class="sd">This is the case if and only if the `units` attribute is one of</span>
-<span class="sd">``&#39;degrees_north&#39;``, ``&#39;degree_north&#39;``, ``&#39;degree_N&#39;``,</span>
-<span class="sd">``&#39;degrees_N&#39;``, ``&#39;degreeN&#39;``, and ``&#39;degreesN&#39;``.</span>
-
-<span class="sd">Note that units of ``&#39;degrees&#39;`` are not latitude units.</span>
-
-<span class="sd">.. seealso:: `isdimensionless`, `islongitude`, `ispressure`,</span>
-<span class="sd">             `isreftime`, `istime`</span>
-
-<span class="sd">**Examples:**</span>
-
-<span class="sd">&gt;&gt;&gt; Units(&#39;degrees_north&#39;).islatitude</span>
-<span class="sd">True</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;degrees&#39;).islatitude</span>
-<span class="sd">False</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;degrees_east&#39;).islatitude</span>
-<span class="sd">False</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;kg&#39;).islatitude</span>
-<span class="sd">False</span>
-<span class="sd">&gt;&gt;&gt; Units().islatitude</span>
-<span class="sd">False</span>
+<span class="sd">    This is the case if and only if the `units` attribute is one of</span>
+<span class="sd">    ``&#39;degrees_north&#39;``, ``&#39;degree_north&#39;``, ``&#39;degree_N&#39;``,</span>
+<span class="sd">    ``&#39;degrees_N&#39;``, ``&#39;degreeN&#39;``, and ``&#39;degreesN&#39;``.</span>
+<span class="sd">    </span>
+<span class="sd">    Note that units of ``&#39;degrees&#39;`` are not latitude units.</span>
+<span class="sd">    </span>
+<span class="sd">    .. seealso:: `isdimensionless`, `islongitude`, `ispressure`,</span>
+<span class="sd">                 `isreftime`, `istime`</span>
+<span class="sd">    </span>
+<span class="sd">    **Examples:**</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;degrees_north&#39;).islatitude</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;degrees&#39;).islatitude</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;degrees_east&#39;).islatitude</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;kg&#39;).islatitude</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; Units().islatitude</span>
+<span class="sd">    False</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_units</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;degrees_north&#39;</span><span class="p">,</span> <span class="s1">&#39;degree_north&#39;</span><span class="p">,</span> <span class="s1">&#39;degree_N&#39;</span><span class="p">,</span>
                                <span class="s1">&#39;degrees_N&#39;</span><span class="p">,</span> <span class="s1">&#39;degreeN&#39;</span><span class="p">,</span> <span class="s1">&#39;degreesN&#39;</span><span class="p">)</span>
-    <span class="c1">#--- End: def</span>
 
-    <span class="c1"># ----------------------------------------------------------------</span>
-    <span class="c1"># Attribute (read only)</span>
-    <span class="c1"># ----------------------------------------------------------------</span>
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">islongitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;True if and only if the units are longitude units.</span>
 
-<span class="sd">This is the case if and only if the `units` attribute is one of</span>
-<span class="sd">``&#39;degrees_east&#39;``, ``&#39;degree_east&#39;``, ``&#39;degree_E&#39;``,</span>
-<span class="sd">``&#39;degrees_E&#39;``, ``&#39;degreeE&#39;``, and ``&#39;degreesE&#39;``.</span>
-
-<span class="sd">Note that units of ``&#39;degrees&#39;`` are not longitude units.</span>
-
-<span class="sd">.. seealso:: `isdimensionless`, `islatitude`, `ispressure`,</span>
-<span class="sd">             `isreftime`, `istime`</span>
-
-<span class="sd">**Examples:**</span>
-
-<span class="sd">&gt;&gt;&gt; Units(&#39;degrees_east&#39;).islongitude</span>
-<span class="sd">True</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;degrees&#39;).islongitude</span>
-<span class="sd">False</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;degrees_north&#39;).islongitude</span>
-<span class="sd">False</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;kg&#39;).islongitude</span>
-<span class="sd">False</span>
-<span class="sd">&gt;&gt;&gt; Units().islongitude</span>
-<span class="sd">False</span>
+<span class="sd">    This is the case if and only if the `units` attribute is one of</span>
+<span class="sd">    ``&#39;degrees_east&#39;``, ``&#39;degree_east&#39;``, ``&#39;degree_E&#39;``,</span>
+<span class="sd">    ``&#39;degrees_E&#39;``, ``&#39;degreeE&#39;``, and ``&#39;degreesE&#39;``.</span>
+<span class="sd">    </span>
+<span class="sd">    Note that units of ``&#39;degrees&#39;`` are not longitude units.</span>
+<span class="sd">    </span>
+<span class="sd">    .. seealso:: `isdimensionless`, `islatitude`, `ispressure`,</span>
+<span class="sd">                 `isreftime`, `istime`</span>
+<span class="sd">    </span>
+<span class="sd">    **Examples:**</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;degrees_east&#39;).islongitude</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;degrees&#39;).islongitude</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;degrees_north&#39;).islongitude</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;kg&#39;).islongitude</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; Units().islongitude</span>
+<span class="sd">    False</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_units</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;degrees_east&#39;</span><span class="p">,</span> <span class="s1">&#39;degree_east&#39;</span><span class="p">,</span> <span class="s1">&#39;degree_E&#39;</span><span class="p">,</span>
                                <span class="s1">&#39;degrees_E&#39;</span><span class="p">,</span> <span class="s1">&#39;degreeE&#39;</span><span class="p">,</span> <span class="s1">&#39;degreesE&#39;</span><span class="p">)</span>
-    <span class="c1">#--- End: def</span>
+
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">istime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;True if the units are time units, False otherwise.</span>
 
-<span class="sd">Note that reference time units (such as ``&#39;days since 2000-12-1&#39;``)</span>
-<span class="sd">are not time units, nor are calendar years and calendar months.</span>
-
-<span class="sd">.. seealso:: `iscalendartime`, `isdimensionless`, `islongitude`,</span>
-<span class="sd">             `islatitude`, `ispressure`, `isreftime`</span>
-
-<span class="sd">**Examples:**</span>
-
-<span class="sd">&gt;&gt;&gt; Units(&#39;days&#39;).istime</span>
-<span class="sd">True</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;seconds&#39;).istime</span>
-<span class="sd">True</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;kg&#39;).istime</span>
-<span class="sd">False</span>
-<span class="sd">&gt;&gt;&gt; Units().istime</span>
-<span class="sd">False</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;hours since 2100-1-1&#39;, calendar=&#39;noleap&#39;).istime</span>
-<span class="sd">False</span>
-<span class="sd">&gt;&gt;&gt; Units(calendar=&#39;360_day&#39;).istime</span>
-<span class="sd">False</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;calendar_years&#39;).istime</span>
-<span class="sd">False</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;calendar_months&#39;).istime</span>
-<span class="sd">False</span>
+<span class="sd">    Note that reference time units (such as ``&#39;days since</span>
+<span class="sd">    2000-12-1&#39;``) are not time units, nor are calendar years and</span>
+<span class="sd">    calendar months.</span>
+<span class="sd">    </span>
+<span class="sd">    .. seealso:: `iscalendartime`, `isdimensionless`, `islongitude`,</span>
+<span class="sd">                 `islatitude`, `ispressure`, `isreftime`</span>
+<span class="sd">    </span>
+<span class="sd">    **Examples:**</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;days&#39;).istime</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;seconds&#39;).istime</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;kg&#39;).istime</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; Units().istime</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;hours since 2100-1-1&#39;, calendar=&#39;noleap&#39;).istime</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; Units(calendar=&#39;360_day&#39;).istime</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;calendar_years&#39;).istime</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;calendar_months&#39;).istime</span>
+<span class="sd">    False</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_isreftime</span><span class="p">:</span>
@@ -1574,74 +1605,119 @@
             <span class="k">return</span> <span class="bp">False</span>
 
         <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">_ut_are_convertible</span><span class="p">(</span><span class="n">ut_unit</span><span class="p">,</span> <span class="n">_day_ut_unit</span><span class="p">))</span>
-    <span class="c1">#--- End: def</span>
-        <span class="n">ut_unit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ut_unit</span>
-        <span class="k">if</span> <span class="n">ut_unit</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">False</span>
+
  
-        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">_ut_are_convertible</span><span class="p">(</span><span class="n">ut_unit</span><span class="p">,</span> <span class="n">_day_ut_unit</span><span class="p">))</span>
-    <span class="c1">#--- End: def</span>
- 
-    <span class="c1"># ----------------------------------------------------------------</span>
-    <span class="c1"># Attribute (read only)</span>
-    <span class="c1"># ----------------------------------------------------------------</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">isvalid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;</span>
+        <span class="sd">&#39;&#39;&#39;Whether the units are valid.</span>
+
+<span class="sd">    .. seealso:: `reason_notvalid`</span>
+
+<span class="sd">    **Examples:**</span>
+
+<span class="sd">    &gt;&gt;&gt; u = Units(&#39;km&#39;)</span>
+<span class="sd">    &gt;&gt;&gt;  u.isvalid                                                               </span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; u.reason_notvalid                                                       </span>
+<span class="sd">    &#39;&#39;</span>
+
+<span class="sd">    &gt;&gt;&gt; u = Units(&#39;Bad Units&#39;)                                                 </span>
+<span class="sd">    &gt;&gt;&gt; u.isvalid                                                               </span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; u.reason_notvalid                                                       </span>
+<span class="sd">    &quot;Invalid units: &#39;Bad Units&#39;; Not recognised by UDUNITS&quot;</span>
+
+<span class="sd">    &gt;&gt;&gt; u = Units(days since 2000-1-1&#39;, calendar=&#39;Bad Calendar&#39;)</span>
+<span class="sd">    &gt;&gt;&gt;  u.isvalid                                                               </span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; u.reason_notvalid                                                       </span>
+<span class="sd">    &quot;Invalid calendar=&#39;Bad Calendar&#39;; calendar must be one of [&#39;standard&#39;, &#39;gregorian&#39;, &#39;proleptic_gregorian&#39;, &#39;noleap&#39;, &#39;julian&#39;, &#39;all_leap&#39;, &#39;365_day&#39;, &#39;366_day&#39;, &#39;360_day&#39;], got &#39;bad calendar&#39;&quot;</span>
+<span class="sd">        </span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_isvalid&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
-    <span class="c1">#--- End: def</span>
+
     
-    <span class="c1"># ----------------------------------------------------------------</span>
-    <span class="c1"># Attribute (read only)</span>
-    <span class="c1"># ----------------------------------------------------------------</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">reason_notvalid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;The reason for invalid units.</span>
+
+<span class="sd">    If the units are valid then the reason is an empty string.</span>
+
+<span class="sd">    .. seealso:: `isvalid`</span>
+<span class="sd">        </span>
+<span class="sd">    **Examples:**</span>
+
+<span class="sd">    &gt;&gt;&gt; u = Units(&#39;km&#39;)</span>
+<span class="sd">    &gt;&gt;&gt;  u.isvalid                                                               </span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; u.reason_notvalid                                                       </span>
+<span class="sd">    &#39;&#39;</span>
+
+<span class="sd">    &gt;&gt;&gt; u = Units(&#39;Bad Units&#39;)                                                 </span>
+<span class="sd">    &gt;&gt;&gt; u.isvalid                                                               </span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; u.reason_notvalid                                                       </span>
+<span class="sd">    &quot;Invalid units: &#39;Bad Units&#39;; Not recognised by UDUNITS&quot;</span>
+
+<span class="sd">    &gt;&gt;&gt; u = Units(days since 2000-1-1&#39;, calendar=&#39;Bad Calendar&#39;)</span>
+<span class="sd">    &gt;&gt;&gt;  u.isvalid                                                               </span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; u.reason_notvalid                                                       </span>
+<span class="sd">    &quot;Invalid calendar=&#39;Bad Calendar&#39;; calendar must be one of [&#39;standard&#39;, &#39;gregorian&#39;, &#39;proleptic_gregorian&#39;, &#39;noleap&#39;, &#39;julian&#39;, &#39;all_leap&#39;, &#39;365_day&#39;, &#39;366_day&#39;, &#39;360_day&#39;], got &#39;bad calendar&#39;&quot;</span>
+<span class="sd">        </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_reason_notvalid&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+    
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">reftime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The reference date-time of reference time units.</span>
 
-<span class="sd">.. seealso:: `calendar`, `isreftime`, `units`</span>
-
-<span class="sd">**Examples:**</span>
-
-<span class="sd">&gt;&gt;&gt; Units(&#39;days since 1900-1-1&#39;).reftime</span>
-<span class="sd">&lt;Datetime: 1900-01-01 00:00:00&gt;</span>
-<span class="sd">&gt;&gt;&gt; str(Units(&#39;days since 1900-1-1 03:00&#39;).reftime)</span>
-<span class="sd">&#39;1900-01-01 03:00:00&#39;</span>
-
-<span class="sd">TODO</span>
-<span class="sd">        &#39;&#39;&#39;</span>    
-        <span class="n">utime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_utime</span>
-        <span class="k">if</span> <span class="n">utime</span><span class="p">:</span>
-            <span class="n">origin</span> <span class="o">=</span> <span class="n">utime</span><span class="o">.</span><span class="n">origin</span>
-            <span class="k">if</span> <span class="n">origin</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">origin</span>
+<span class="sd">    .. seealso:: `calendar`, `isreftime`, `units`</span>
+<span class="sd">    </span>
+<span class="sd">    **Examples:**</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;days since 1900-1-1&#39;).reftime</span>
+<span class="sd">    &lt;Datetime: 1900-01-01 00:00:00&gt;</span>
+<span class="sd">    &gt;&gt;&gt; str(Units(&#39;days since 1900-1-1 03:00&#39;).reftime)</span>
+<span class="sd">    &#39;1900-01-01 03:00:00&#39;</span>
+<span class="sd">    </span>
+<span class="sd">    TODO</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isreftime</span><span class="p">:</span>
+            <span class="n">utime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_utime</span>
+            <span class="k">if</span> <span class="n">utime</span><span class="p">:</span>
+                <span class="n">origin</span> <span class="o">=</span> <span class="n">utime</span><span class="o">.</span><span class="n">origin</span>
+                <span class="k">if</span> <span class="n">origin</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">origin</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Some refrence date-times do not have a utime, such</span>
+                <span class="c1"># as those defined by monts or years</span>
+                <span class="k">return</span> <span class="n">cftime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="o">*</span><span class="n">cftime</span><span class="o">.</span><span class="n">_parse_date</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; since &#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
         <span class="c1">#--- End: if</span>
 
-        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
-            <span class="s2">&quot;{0!r} has no attribute &#39;reftime&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
-    <span class="c1">#--- End: def</span>
+        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;{0!r} has no attribute &#39;reftime&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
 
-    <span class="c1"># ----------------------------------------------------------------</span>
-    <span class="c1"># Attribute (read only)</span>
-    <span class="c1"># ----------------------------------------------------------------</span>
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">calendar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The calendar for reference time units.</span>
 
-<span class="sd">May be any string allowed by the calendar CF property.</span>
-
-<span class="sd">If it is unset then the default CF calendar is assumed when required.</span>
-
-<span class="sd">.. seealso:: `units`</span>
-
-<span class="sd">**Examples:**</span>
-
-<span class="sd">&gt;&gt;&gt; Units(calendar=&#39;365_day&#39;).calendar</span>
-<span class="sd">&#39;365_day&#39;</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;days since 2001-1-1&#39;, calendar=&#39;noleap&#39;).calendar</span>
-<span class="sd">&#39;noleap&#39;</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;days since 2001-1-1&#39;).calendar</span>
-<span class="sd">AttributeError: Units has no attribute &#39;calendar&#39;</span>
+<span class="sd">    May be any string allowed by the calendar CF property.</span>
+<span class="sd">    </span>
+<span class="sd">    If it is unset then the default CF calendar is assumed when</span>
+<span class="sd">    required.</span>
+<span class="sd">    </span>
+<span class="sd">    .. seealso:: `units`</span>
+<span class="sd">    </span>
+<span class="sd">    **Examples:**</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; Units(calendar=&#39;365_day&#39;).calendar</span>
+<span class="sd">    &#39;365_day&#39;</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;days since 2001-1-1&#39;, calendar=&#39;noleap&#39;).calendar</span>
+<span class="sd">    &#39;noleap&#39;</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;days since 2001-1-1&#39;).calendar</span>
+<span class="sd">    AttributeError: Units has no attribute &#39;calendar&#39;</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calendar</span>
@@ -1650,24 +1726,24 @@
 
         <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> has no attribute &#39;calendar&#39;&quot;</span> <span class="o">%</span>
                              <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>    
-    <span class="c1">#--- End: def</span>
+
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">units</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The units.</span>
 
-<span class="sd">May be any string allowed by the units CF property.</span>
-
-<span class="sd">.. seealso:: `calendar`</span>
-
-<span class="sd">**Examples:**</span>
-
-<span class="sd">&gt;&gt;&gt; Units(&#39;kg&#39;).units</span>
-<span class="sd">&#39;kg&#39;</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;seconds&#39;).units</span>
-<span class="sd">&#39;seconds&#39;</span>
-<span class="sd">&gt;&gt;&gt; Units(&#39;days since 2000-1-1&#39;, calendar=&#39;366_day&#39;).units</span>
-<span class="sd">&#39;days since 2000-1-1&#39;</span>
+<span class="sd">    May be any string allowed by the units CF property.</span>
+<span class="sd">    </span>
+<span class="sd">    .. seealso:: `calendar`</span>
+<span class="sd">    </span>
+<span class="sd">    **Examples:**</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;kg&#39;).units</span>
+<span class="sd">    &#39;kg&#39;</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;seconds&#39;).units</span>
+<span class="sd">    &#39;seconds&#39;</span>
+<span class="sd">    &gt;&gt;&gt; Units(&#39;days since 2000-1-1&#39;, calendar=&#39;366_day&#39;).units</span>
+<span class="sd">    &#39;days since 2000-1-1&#39;</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_units</span>
@@ -1676,141 +1752,204 @@
 
         <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">%s</span><span class="s2">&#39; object has no attribute &#39;units&#39;&quot;</span> <span class="o">%</span>
                              <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
-    <span class="c1">#--- End: def</span>
 
-<div class="viewcode-block" id="Units.equivalent"><a class="viewcode-back" href="../../generated/cfunits.Units.equivalent.html#cfunits.Units.equivalent">[docs]</a>    <span class="k">def</span> <span class="nf">equivalent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Returns True if numeric values in one unit are convertible to numeric</span>
-<span class="sd">values in the other unit.</span>
 
-<span class="sd">.. seealso:: `equals`</span>
+    <span class="c1"># ----------------------------------------------------------------</span>
+    <span class="c1"># Methods</span>
+    <span class="c1"># ----------------------------------------------------------------</span>
+<div class="viewcode-block" id="Units.equivalent"><a class="viewcode-back" href="../../generated/cfunits.Units.equivalent.html#cfunits.Units.equivalent">[docs]</a>    <span class="k">def</span> <span class="nf">equivalent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Returns True if numeric values in one unit are convertible to</span>
+<span class="sd">    numeric values in the other unit.</span>
+<span class="sd">    </span>
+<span class="sd">    .. seealso:: `equals`</span>
+<span class="sd">    </span>
+<span class="sd">    :Parameters:</span>
+<span class="sd">    </span>
+<span class="sd">        other: `Units`</span>
+<span class="sd">            The other units.</span>
+<span class="sd">    </span>
+<span class="sd">    :Returns:</span>
+<span class="sd">    </span>
+<span class="sd">        `bool`</span>
+<span class="sd">            True if the units are equivalent, False otherwise.</span>
+<span class="sd">    </span>
+<span class="sd">    **Examples:**</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; u = Units(&#39;m&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; v = Units(&#39;km&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; w = Units(&#39;s&#39;)</span>
 
-<span class="sd">:Parameters:</span>
-
-<span class="sd">    other: `Units`</span>
-<span class="sd">        The other units.</span>
-
-<span class="sd">:Returns:</span>
-
-<span class="sd">    `bool`</span>
-<span class="sd">        True if the units are equivalent, False otherwise.</span>
-
-<span class="sd">**Examples:**</span>
-
-<span class="sd">&gt;&gt;&gt; u = Units(&#39;m&#39;)</span>
-<span class="sd">&gt;&gt;&gt; v = Units(&#39;km&#39;)</span>
-<span class="sd">&gt;&gt;&gt; w = Units(&#39;s&#39;)</span>
-
-<span class="sd">&gt;&gt;&gt; u.equivalent(v)</span>
-<span class="sd">True</span>
-<span class="sd">&gt;&gt;&gt; u.equivalent(w)</span>
-<span class="sd">False</span>
-
-<span class="sd">&gt;&gt;&gt; u = Units(&#39;days since 2000-1-1&#39;)</span>
-<span class="sd">&gt;&gt;&gt; v = Units(&#39;days since 2000-1-1&#39;, calendar=&#39;366_day&#39;)</span>
-<span class="sd">&gt;&gt;&gt; w = Units(&#39;seconds since 1978-3-12&#39;, calendar=&#39;gregorian)</span>
-
-<span class="sd">&gt;&gt;&gt; u.equivalent(v)</span>
-<span class="sd">False</span>
-<span class="sd">&gt;&gt;&gt; u.equivalent(w)</span>
-<span class="sd">True</span>
+<span class="sd">    &gt;&gt;&gt; u.equivalent(v)</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; u.equivalent(w)</span>
+<span class="sd">    False</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; u = Units(&#39;days since 2000-1-1&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; v = Units(&#39;days since 2000-1-1&#39;, calendar=&#39;366_day&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; w = Units(&#39;seconds since 1978-3-12&#39;, calendar=&#39;gregorian)</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; u.equivalent(v)</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; u.equivalent(w)</span>
+<span class="sd">    True</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
+<span class="c1">#        if not self.isvalid or not other.isvalid:</span>
+<span class="c1">#            return False</span>
+        
         <span class="n">isreftime1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_isreftime</span>
         <span class="n">isreftime2</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">_isreftime</span>
 
+<span class="c1">#        if isreftime1 and isreftime2:</span>
+<span class="c1">#            # Both units are reference-time units</span>
+<span class="c1">#            if self._canonical_calendar != other._canonical_calendar:</span>
+<span class="c1">#                if verbose:</span>
+<span class="c1">#                    print(&quot;{}: Incompatible calendars: {!r}, {!r}&quot;.format(</span>
+<span class="c1">#                        self.__class__.__name__,</span>
+<span class="c1">#                        self._calendar, other._calendar)) # pragma: no cover</span>
+<span class="c1">#                return False</span>
+<span class="c1">#</span>
+<span class="c1">#            reftime0 = getattr(self, &#39;reftime&#39;, None)</span>
+<span class="c1">#            reftime1 = getattr(other, &#39;reftime&#39;, None)</span>
+<span class="c1">#            if reftime0 != reftime1:</span>
+<span class="c1">#                if verbose:</span>
+<span class="c1">#                    print(&quot;{}: Different reference date-times: {!r}, {!r}&quot;.format(</span>
+<span class="c1">#                        self.__class__.__name__,</span>
+<span class="c1">#                        reftime0, reftime1)) # pragma: no cover</span>
+<span class="c1">#                return False</span>
+<span class="c1">#</span>
+<span class="c1">#        elif isreftime1 or isreftime2:</span>
+<span class="c1">#            if verbose:</span>
+<span class="c1">#                print(&quot;{}: Only one is reference time&quot;.format(</span>
+<span class="c1">#                    self.__class__.__name__)) # pragma: no cover</span>
+<span class="c1">#            return False</span>
+
+        
         <span class="k">if</span> <span class="n">isreftime1</span> <span class="ow">and</span> <span class="n">isreftime2</span><span class="p">:</span>
             <span class="c1"># Both units are reference-time units</span>
             <span class="n">units0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_units</span>
             <span class="n">units1</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">_units</span>
             <span class="k">if</span> <span class="n">units0</span> <span class="ow">and</span> <span class="n">units1</span> <span class="ow">or</span> <span class="p">(</span><span class="ow">not</span> <span class="n">units0</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">units1</span><span class="p">):</span>
-                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_utime</span><span class="o">.</span><span class="n">calendar</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">_utime</span><span class="o">.</span><span class="n">calendar</span>
+                <span class="n">out</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_canonical_calendar</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">_canonical_calendar</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">verbose</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">out</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;{}: Incompatible calendars: {!r}, {!r}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_calendar</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">_calendar</span><span class="p">))</span> <span class="c1"># pragma: no cover</span>
+                
+                <span class="k">return</span> <span class="n">out</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">return</span> <span class="bp">False</span>
-        <span class="c1">#--- End: if</span>
+
+        <span class="k">elif</span> <span class="n">isreftime1</span> <span class="ow">or</span> <span class="n">isreftime2</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;{}: Only one is reference time&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span> <span class="c1"># pragma: no cover</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        
+<span class="c1">#        if not self.isvalid:</span>
+<span class="c1">#            if verbose:</span>
+<span class="c1">#                print(&quot;{}: {!r} is not valid&quot;.format(self.__class__.__name__, self)) # pragma: no cover</span>
+<span class="c1">#            return False</span>
+<span class="c1">#        </span>
+<span class="c1">#        if not other.isvalid:</span>
+<span class="c1">#            if verbose:</span>
+<span class="c1">#                print(&quot;{}: {!r} is not valid&quot;.format(self.__class__.__name__, other)) # pragma: no cover</span>
+<span class="c1">#            return False</span>
+        
+<span class="c1">#         if isreftime1 and isreftime2:</span>
+<span class="c1">#            # Both units are reference-time units</span>
+<span class="c1">#            units0 = self._units</span>
+<span class="c1">#            units1 = other._units</span>
+<span class="c1">#            if units0 and units1 or (not units0 and not units1):</span>
+<span class="c1">#                return self._calendar == other._calendar</span>
+<span class="c1">#            else:</span>
+<span class="c1">#                return False</span>
+<span class="c1">#        #--- End: if</span>
 
         <span class="c1"># Still here? </span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">other</span><span class="p">:</span>
             <span class="c1"># Both units are null and therefore equivalent</span>
             <span class="k">return</span> <span class="bp">True</span>
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">isreftime1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">isreftime2</span><span class="p">:</span>
+<span class="c1">#        if not isreftime1 and not isreftime2:</span>
             <span class="c1"># Both units are not reference-time units</span>
-            <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">_ut_are_convertible</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ut_unit</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">_ut_unit</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">_ut_are_convertible</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ut_unit</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">_ut_unit</span><span class="p">))</span></div>
          
         <span class="c1"># Still here? Then units are not equivalent.</span>
-        <span class="k">return</span> <span class="bp">False</span></div>
-    <span class="c1">#--- End: def</span>
+<span class="c1">#        return False</span>
+
 
 <div class="viewcode-block" id="Units.formatted"><a class="viewcode-back" href="../../generated/cfunits.Units.formatted.html#cfunits.Units.formatted">[docs]</a>    <span class="k">def</span> <span class="nf">formatted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">definition</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Formats the string stored in the `units` attribute in a standardized</span>
-<span class="sd">manner. The `units` attribute is modified in place and its new value</span>
-<span class="sd">is returned.</span>
-
-<span class="sd">:Parameters:</span>
-
-<span class="sd">    names: `bool`, optional</span>
-<span class="sd">        Use unit names instead of symbols.</span>
-
-<span class="sd">    definition: `bool`, optional</span>
-<span class="sd">        The formatted string is given in terms of basic units instead</span>
-<span class="sd">        of stopping any expansion at the highest level possible.</span>
-
-<span class="sd">:Returns:</span>
-
-<span class="sd">    `str` or `None`</span>
-<span class="sd">        The formatted string. If the units have not yet been set, then</span>
-<span class="sd">        `None` is returned.</span>
-
-<span class="sd">**Examples:**</span>
-
-<span class="sd">&gt;&gt;&gt; u = Units(&#39;W&#39;)</span>
-<span class="sd">&gt;&gt;&gt; u.units</span>
-<span class="sd">&#39;W&#39;</span>
-<span class="sd">&gt;&gt;&gt; u.units = u.format(names=True)</span>
-<span class="sd">&gt;&gt;&gt; u.units</span>
-<span class="sd">&#39;watt&#39;</span>
-<span class="sd">&gt;&gt;&gt; u.units = u.format(definition=True)</span>
-<span class="sd">&gt;&gt;&gt; u.units</span>
-<span class="sd">&#39;m2.kg.s-3&#39;</span>
-<span class="sd">&gt;&gt;&gt; u.units = u.format(names=True, definition=True)</span>
-<span class="sd">&#39;meter^2-kilogram-second^-3&#39;</span>
-<span class="sd">&gt;&gt;&gt; u.units = u.format()</span>
-<span class="sd">&gt;&gt;&gt; u.units</span>
-<span class="sd">&#39;W&#39;</span>
-
-<span class="sd">&gt;&gt;&gt; u.units = &#39;dram&#39;</span>
-<span class="sd">&gt;&gt;&gt; u.format(names=True)</span>
-<span class="sd">&#39;1.848345703125e-06 meter^3&#39;</span>
-
-<span class="sd">Formatting is also available during object initialization:</span>
-
-<span class="sd">&gt;&gt;&gt; u = Units(&#39;m/s&#39;, format=True)</span>
-<span class="sd">&gt;&gt;&gt; u.units</span>
-<span class="sd">&#39;m.s-1&#39;</span>
-
-<span class="sd">&gt;&gt;&gt; u = Units(&#39;dram&#39;, names=True)</span>
-<span class="sd">&gt;&gt;&gt; u.units</span>
-<span class="sd">&#39;1.848345703125e-06 m3&#39;</span>
-
-<span class="sd">&gt;&gt;&gt; u = Units(&#39;Watt&#39;)</span>
-<span class="sd">&gt;&gt;&gt; u.units</span>
-<span class="sd">&#39;Watt&#39;</span>
-
-<span class="sd">&gt;&gt;&gt; u = Units(&#39;Watt&#39;, formatted=True)</span>
-<span class="sd">&gt;&gt;&gt; u.units</span>
-<span class="sd">&#39;W&#39;</span>
-
-<span class="sd">&gt;&gt;&gt; u = Units(&#39;Watt&#39;, names=True)</span>
-<span class="sd">&gt;&gt;&gt; u.units</span>
-<span class="sd">&#39;watt&#39;</span>
-
-<span class="sd">&gt;&gt;&gt; u = Units(&#39;Watt&#39;, definition=True)</span>
-<span class="sd">&gt;&gt;&gt; u.units</span>
-<span class="sd">&#39;m2.kg.s-3&#39;</span>
-
-<span class="sd">&gt;&gt;&gt; u = Units(&#39;Watt&#39;, names=True, definition=True)</span>
-<span class="sd">&gt;&gt;&gt; u.units</span>
-<span class="sd">&#39;meter^2-kilogram-second^-3&#39;</span>
+        <span class="sd">&#39;&#39;&#39;Formats the string stored in the `units` attribute in a</span>
+<span class="sd">    standardized manner. The `units` attribute is modified in place</span>
+<span class="sd">    and its new value is returned.</span>
+<span class="sd">    </span>
+<span class="sd">    :Parameters:</span>
+<span class="sd">    </span>
+<span class="sd">        names: `bool`, optional</span>
+<span class="sd">            Use unit names instead of symbols.</span>
+<span class="sd">    </span>
+<span class="sd">        definition: `bool`, optional</span>
+<span class="sd">            The formatted string is given in terms of basic units</span>
+<span class="sd">            instead of stopping any expansion at the highest level</span>
+<span class="sd">            possible.</span>
+<span class="sd">    </span>
+<span class="sd">    :Returns:</span>
+<span class="sd">    </span>
+<span class="sd">        `str` or `None`</span>
+<span class="sd">            The formatted string. If the units have not yet been set,</span>
+<span class="sd">            then `None` is returned.</span>
+<span class="sd">    </span>
+<span class="sd">    **Examples:**</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; u = Units(&#39;W&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; u.units</span>
+<span class="sd">    &#39;W&#39;</span>
+<span class="sd">    &gt;&gt;&gt; u.units = u.format(names=True)</span>
+<span class="sd">    &gt;&gt;&gt; u.units</span>
+<span class="sd">    &#39;watt&#39;</span>
+<span class="sd">    &gt;&gt;&gt; u.units = u.format(definition=True)</span>
+<span class="sd">    &gt;&gt;&gt; u.units</span>
+<span class="sd">    &#39;m2.kg.s-3&#39;</span>
+<span class="sd">    &gt;&gt;&gt; u.units = u.format(names=True, definition=True)</span>
+<span class="sd">    &#39;meter^2-kilogram-second^-3&#39;</span>
+<span class="sd">    &gt;&gt;&gt; u.units = u.format()</span>
+<span class="sd">    &gt;&gt;&gt; u.units</span>
+<span class="sd">    &#39;W&#39;</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; u.units = &#39;dram&#39;</span>
+<span class="sd">    &gt;&gt;&gt; u.format(names=True)</span>
+<span class="sd">    &#39;1.848345703125e-06 meter^3&#39;</span>
+<span class="sd">    </span>
+<span class="sd">    Formatting is also available during object initialization:</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; u = Units(&#39;m/s&#39;, format=True)</span>
+<span class="sd">    &gt;&gt;&gt; u.units</span>
+<span class="sd">    &#39;m.s-1&#39;</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; u = Units(&#39;dram&#39;, names=True)</span>
+<span class="sd">    &gt;&gt;&gt; u.units</span>
+<span class="sd">    &#39;1.848345703125e-06 m3&#39;</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; u = Units(&#39;Watt&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; u.units</span>
+<span class="sd">    &#39;Watt&#39;</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; u = Units(&#39;Watt&#39;, formatted=True)</span>
+<span class="sd">    &gt;&gt;&gt; u.units</span>
+<span class="sd">    &#39;W&#39;</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; u = Units(&#39;Watt&#39;, names=True)</span>
+<span class="sd">    &gt;&gt;&gt; u.units</span>
+<span class="sd">    &#39;watt&#39;</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; u = Units(&#39;Watt&#39;, definition=True)</span>
+<span class="sd">    &gt;&gt;&gt; u.units</span>
+<span class="sd">    &#39;m2.kg.s-3&#39;</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; u = Units(&#39;Watt&#39;, names=True, definition=True)</span>
+<span class="sd">    &gt;&gt;&gt; u.units</span>
+<span class="sd">    &#39;meter^2-kilogram-second^-3&#39;</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">ut_unit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ut_unit</span>
@@ -1835,66 +1974,64 @@
             <span class="k">return</span> <span class="n">out</span>
 
         <span class="k">return</span> <span class="n">out</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span></div>
-    <span class="c1">#--- End: def</span>
-
-<div class="viewcode-block" id="Units.conform"><a class="viewcode-back" href="../../generated/cfunits.Units.conform.html#cfunits.Units.conform">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">conform</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">from_units</span><span class="p">,</span> <span class="n">to_units</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Conform values in one unit to equivalent values in another, compatible</span>
-<span class="sd">unit. Returns the conformed values.</span>
-
-<span class="sd">The values may either be a numpy array or a python numeric type. The</span>
-<span class="sd">returned value is of the same type, except that input integers are</span>
-<span class="sd">converted to floats (see the *inplace* keyword).</span>
-
-<span class="sd">:Parameters:</span>
-
-<span class="sd">    x: `numpy.ndarray` or python numeric</span>
-
-<span class="sd">    from_units: `Units`</span>
-<span class="sd">        The original units of `x`</span>
-
-<span class="sd">    to_units: `Units`</span>
-<span class="sd">        The units to which `x` should be conformed to.</span>
-
-<span class="sd">    inplace: `bool`, optional</span>
-<span class="sd">        If True and `x` is a numpy array then change it in place,</span>
-<span class="sd">        creating no temporary copies, with one exception: If `x` is of</span>
-<span class="sd">        integer type and the conversion is not null, then it will not</span>
-<span class="sd">        be changed inplace and the returned conformed array will be of</span>
-<span class="sd">        float type.</span>
-
-<span class="sd">:Returns:</span>
-
-<span class="sd">    `numpy.ndarray` or python numeric</span>
-<span class="sd">        The modified numeric values.</span>
-
-<span class="sd">**Examples:**</span>
-
-<span class="sd">&gt;&gt;&gt; Units.conform(2, Units(&#39;km&#39;), Units(&#39;m&#39;))</span>
-<span class="sd">2000.0</span>
-
-<span class="sd">&gt;&gt;&gt; import numpy</span>
-<span class="sd">&gt;&gt;&gt; a = numpy.arange(5.0)</span>
-<span class="sd">&gt;&gt;&gt; Units.conform(a, Units(&#39;minute&#39;), Units(&#39;second&#39;))</span>
-<span class="sd">array([   0.,   60.,  120.,  180.,  240.])</span>
-<span class="sd">&gt;&gt;&gt; a</span>
-<span class="sd">array([ 0.,  1.,  2.,  3.,  4.])</span>
-
-<span class="sd">&gt;&gt;&gt; Units.conform(a,</span>
-<span class="sd">                  Units(&#39;days since 2000-12-1&#39;),</span>
-<span class="sd">                  Units(&#39;days since 2001-1-1&#39;), inplace=True)</span>
-<span class="sd">array([-31., -30., -29., -28., -27.])</span>
-<span class="sd">&gt;&gt;&gt; a</span>
-<span class="sd">array([-31., -30., -29., -28., -27.])</span>
 
 
-<span class="sd">.. warning::</span>
+<div class="viewcode-block" id="Units.conform"><a class="viewcode-back" href="../../generated/cfunits.Units.conform.html#cfunits.Units.conform">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">conform</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">from_units</span><span class="p">,</span> <span class="n">to_units</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Conform values in one unit to equivalent values in another,</span>
+<span class="sd">    compatible unit.</span>
 
-<span class="sd">   Do not change the calendar of reference time units in the current</span>
-<span class="sd">   version. Whilst this is possible, it will almost certainly result</span>
-<span class="sd">   in an incorrect interpretation of the data or an error. Allowing</span>
-<span class="sd">   the calendar to be changed is under development and will be</span>
-<span class="sd">   available soon.</span>
+<span class="sd">    Returns the conformed values.</span>
+<span class="sd">    </span>
+<span class="sd">    The values may either be a numpy array or a python numeric</span>
+<span class="sd">    type. The returned value is of the same type, except that input</span>
+<span class="sd">    integers are converted to floats (see the *inplace* keyword).</span>
+<span class="sd">    </span>
+<span class="sd">    .. warning:: Do not change the calendar of reference time units in</span>
+<span class="sd">                 the current version. Whilst this is possible, it will</span>
+<span class="sd">                 almost certainly result in an incorrect</span>
+<span class="sd">                 interpretation of the data or an error.</span>
+
+<span class="sd">    :Parameters:</span>
+<span class="sd">    </span>
+<span class="sd">        x: `numpy.ndarray` or python numeric object</span>
+<span class="sd">    </span>
+<span class="sd">        from_units: `Units`</span>
+<span class="sd">            The original units of *x*</span>
+<span class="sd">    </span>
+<span class="sd">        to_units: `Units`</span>
+<span class="sd">            The units to which *x* should be conformed to.</span>
+<span class="sd">    </span>
+<span class="sd">        inplace: `bool`, optional</span>
+<span class="sd">            If `True` and *x* is a numpy array then change it in</span>
+<span class="sd">            place, creating no temporary copies, with one exception:</span>
+<span class="sd">            If *x* is of integer type and the conversion is not null,</span>
+<span class="sd">            then it will not be changed inplace and the returned</span>
+<span class="sd">            conformed array will be of float type.</span>
+<span class="sd">    </span>
+<span class="sd">    :Returns:</span>
+<span class="sd">    </span>
+<span class="sd">        `numpy.ndarray` or python numeric</span>
+<span class="sd">            The modified numeric values.</span>
+<span class="sd">    </span>
+<span class="sd">    **Examples:**</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; Units.conform(2, Units(&#39;km&#39;), Units(&#39;m&#39;))</span>
+<span class="sd">    2000.0</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; import numpy</span>
+<span class="sd">    &gt;&gt;&gt; a = numpy.arange(5.0)</span>
+<span class="sd">    &gt;&gt;&gt; Units.conform(a, Units(&#39;minute&#39;), Units(&#39;second&#39;))</span>
+<span class="sd">    array([   0.,   60.,  120.,  180.,  240.])</span>
+<span class="sd">    &gt;&gt;&gt; print(a)</span>
+<span class="sd">    [ 0.  1.  2.  3.  4.]</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; Units.conform(a,</span>
+<span class="sd">                      Units(&#39;days since 2000-12-1&#39;),</span>
+<span class="sd">                      Units(&#39;days since 2001-1-1&#39;), inplace=True)</span>
+<span class="sd">    array([-31., -30., -29., -28., -27.])</span>
+<span class="sd">    &gt;&gt;&gt; print(a)</span>
+<span class="sd">    [-31. -30. -29. -28. -27.]</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="n">from_units</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">to_units</span><span class="p">):</span>
@@ -1905,15 +2042,15 @@
         <span class="c1">#--- End: if</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">from_units</span><span class="o">.</span><span class="n">equivalent</span><span class="p">(</span><span class="n">to_units</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Units are not convertible: </span><span class="si">%r</span><span class="s2">, </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span>
-                             <span class="p">(</span><span class="n">from_units</span><span class="p">,</span> <span class="n">to_units</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Units are not convertible: {!r}, {1r}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">from_units</span><span class="p">,</span> <span class="n">to_units</span><span class="p">))</span>
 
         <span class="n">ut_unit1</span> <span class="o">=</span> <span class="n">from_units</span><span class="o">.</span><span class="n">_ut_unit</span>
         <span class="n">ut_unit2</span> <span class="o">=</span> <span class="n">to_units</span><span class="o">.</span><span class="n">_ut_unit</span>
 
         <span class="k">if</span> <span class="n">ut_unit1</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">ut_unit2</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Units are not convertible: </span><span class="si">%r</span><span class="s2">, </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span>
-                             <span class="p">(</span><span class="n">from_units</span><span class="p">,</span> <span class="n">to_units</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Units are not convertible: {!r}, {1r}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">from_units</span><span class="p">,</span> <span class="n">to_units</span><span class="p">))</span>
 
         <span class="n">convert</span> <span class="o">=</span> <span class="n">_ut_compare</span><span class="p">(</span><span class="n">ut_unit1</span><span class="p">,</span> <span class="n">ut_unit2</span><span class="p">)</span>
 
@@ -1922,14 +2059,43 @@
             <span class="c1"># Both units are time-reference units, so calculate the</span>
             <span class="c1"># non-zero offset in units of days.</span>
             <span class="c1"># --------------------------------------------------------</span>
+            <span class="n">units0</span><span class="p">,</span> <span class="n">reftime0</span> <span class="o">=</span> <span class="n">from_units</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; since &#39;</span><span class="p">)</span>
+            <span class="n">units1</span><span class="p">,</span> <span class="n">reftime1</span> <span class="o">=</span> <span class="n">to_units</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; since &#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">units0</span> <span class="ow">in</span> <span class="n">_months_or_years</span><span class="p">:</span>
+                <span class="n">from_units</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="s1">&#39;days since &#39;</span><span class="o">+</span><span class="n">reftime0</span><span class="p">,</span>
+                                 <span class="n">calendar</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">from_units</span><span class="p">,</span> <span class="s1">&#39;calendar&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">))</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">numpy_asanyarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">inplace</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">units0</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;months&#39;</span><span class="p">):</span>                    
+                        <span class="n">x</span> <span class="o">*=</span> <span class="n">_month_length</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">x</span> <span class="o">*=</span> <span class="n">_year_length</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">units0</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;months&#39;</span><span class="p">):</span>
+                        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">_month_length</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">_year_length</span>
+                        
+                    <span class="n">inplace</span> <span class="o">=</span> <span class="bp">True</span>
+
+                <span class="n">ut_unit1</span> <span class="o">=</span> <span class="n">from_units</span><span class="o">.</span><span class="n">_ut_unit</span>
+                <span class="n">ut_unit2</span> <span class="o">=</span> <span class="n">to_units</span><span class="o">.</span><span class="n">_ut_unit</span>
+
+                <span class="n">convert</span> <span class="o">=</span> <span class="n">_ut_compare</span><span class="p">(</span><span class="n">ut_unit1</span><span class="p">,</span> <span class="n">ut_unit2</span><span class="p">)</span>
+            <span class="c1">#--- End: if</span>
+            
+            <span class="k">if</span> <span class="n">units1</span> <span class="ow">in</span> <span class="n">_months_or_years</span><span class="p">:</span>
+                <span class="n">to_units</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="s1">&#39;days since &#39;</span><span class="o">+</span><span class="n">reftime1</span><span class="p">,</span>
+                               <span class="n">calendar</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">to_units</span><span class="p">,</span> <span class="s1">&#39;calendar&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">))</span>
+                
             <span class="n">offset</span> <span class="o">=</span> <span class="n">to_units</span><span class="o">.</span><span class="n">_utime</span><span class="o">.</span><span class="n">_jd0</span> <span class="o">-</span> <span class="n">from_units</span><span class="o">.</span><span class="n">_utime</span><span class="o">.</span><span class="n">_jd0</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
 
-        <span class="c1"># ----------------------------------------------------------------</span>
+        <span class="c1"># ------------------------------------------------------------</span>
         <span class="c1"># If the two units are identical then no need to alter the</span>
         <span class="c1"># value, so return it unchanged.</span>
-        <span class="c1"># ----------------------------------------------------------------</span>
+        <span class="c1"># ------------------------------------------------------------</span>
 <span class="c1">#        if not convert and not offset:</span>
 <span class="c1">#            return x</span>
 
@@ -1937,13 +2103,13 @@
             <span class="n">cv_converter</span> <span class="o">=</span> <span class="n">_ut_get_converter</span><span class="p">(</span><span class="n">ut_unit1</span><span class="p">,</span> <span class="n">ut_unit2</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">cv_converter</span><span class="p">:</span>
                 <span class="n">_cv_free</span><span class="p">(</span><span class="n">cv_converter</span><span class="p">)</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Units are not convertible: </span><span class="si">%r</span><span class="s2">, </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span>
-                                 <span class="p">(</span><span class="n">from_units</span><span class="p">,</span> <span class="n">to_units</span><span class="p">))</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Units are not convertible: {!r}, {1r}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">from_units</span><span class="p">,</span> <span class="n">to_units</span><span class="p">))</span>
         <span class="c1">#-- End: if</span>
 
-        <span class="c1"># ----------------------------------------------------------------</span>
+        <span class="c1"># ------------------------------------------------------------</span>
         <span class="c1"># Find out if x is an numpy array or a python number</span>
-        <span class="c1"># ----------------------------------------------------------------</span>
+        <span class="c1"># ------------------------------------------------------------</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">numpy_generic</span><span class="p">):</span>
             <span class="c1"># Convert a generic numpy scalar to a 0-d array</span>
             <span class="n">x</span> <span class="o">=</span> <span class="n">numpy_array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -1957,9 +2123,9 @@
                 <span class="n">x</span> <span class="o">=</span> <span class="n">numpy_array</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
 <span class="c1">#ARRRGGHH dch</span>
 
-            <span class="c1"># ----------------------------------------------------------------</span>
+            <span class="c1"># --------------------------------------------------------</span>
             <span class="c1"># Convert an integer numpy array to a float numpy array</span>
-            <span class="c1"># ----------------------------------------------------------------</span>
+            <span class="c1"># --------------------------------------------------------</span>
             <span class="k">if</span> <span class="n">inplace</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">kind</span> <span class="ow">is</span> <span class="s1">&#39;i&#39;</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">char</span> <span class="ow">is</span> <span class="s1">&#39;i&#39;</span><span class="p">:</span>
@@ -2009,7 +2175,6 @@
                                     <span class="n">pointer</span><span class="p">)</span>
                 <span class="c1"># Reset the number</span>
                 <span class="n">x</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">value</span>
-            <span class="c1">#--- End: if</span>
 
             <span class="n">_cv_free</span><span class="p">(</span><span class="n">cv_converter</span><span class="p">)</span>
         <span class="c1">#--- End: if</span>
@@ -2032,136 +2197,205 @@
                 <span class="n">_cv_free</span><span class="p">(</span><span class="n">cv_converter</span><span class="p">)</span>
 
                 <span class="n">offset</span> <span class="o">*=</span> <span class="n">scale</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
-            <span class="c1">#--- End: if</span>
 
             <span class="n">x</span> <span class="o">-=</span> <span class="n">offset</span>
-        <span class="c1">#--- End: if</span>
 
         <span class="k">return</span> <span class="n">x</span></div>
-    <span class="c1">#--- End: def</span>
+
 
 <div class="viewcode-block" id="Units.copy"><a class="viewcode-back" href="../../generated/cfunits.Units.copy.html#cfunits.Units.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Return a deep copy.</span>
 
-<span class="sd">Equivalent to ``copy.deepcopy(u)``.</span>
-
-<span class="sd">:Returns:</span>
-
-<span class="sd">        The deep copy.</span>
-
-<span class="sd">**Examples:**</span>
-
-<span class="sd">&gt;&gt;&gt; v = u.copy()</span>
-
+<span class="sd">    Equivalent to ``copy.deepcopy(u)``.</span>
+<span class="sd">    </span>
+<span class="sd">    :Returns:</span>
+<span class="sd">    </span>
+<span class="sd">            The deep copy.</span>
+<span class="sd">    </span>
+<span class="sd">    **Examples:**</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; v = u.copy()</span>
+<span class="sd">    </span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span></div>
-    <span class="c1">#--- End: def</span>
 
-<div class="viewcode-block" id="Units.equals"><a class="viewcode-back" href="../../generated/cfunits.Units.equals.html#cfunits.Units.equals">[docs]</a>    <span class="k">def</span> <span class="nf">equals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Return True if and only if numeric values in one unit are convertible</span>
-<span class="sd">to numeric values in the other unit and their conversion is a scale</span>
-<span class="sd">factor of 1.</span>
 
-<span class="sd">.. seealso:: `equivalent`</span>
-
-<span class="sd">:Parameters:</span>
-
-<span class="sd">    other: `Units`</span>
-<span class="sd">        The other units.</span>
-
-<span class="sd">:Returns:</span>
-
-<span class="sd">    `bool`</span>
-<span class="sd">        True if the units are equal, False otherwise.</span>
-
-<span class="sd">**Examples:**</span>
-
-<span class="sd">&gt;&gt;&gt; u = Units(&#39;km&#39;)</span>
-<span class="sd">&gt;&gt;&gt; v = Units(&#39;1000m&#39;)</span>
-<span class="sd">&gt;&gt;&gt; w = Units(&#39;100000m&#39;)</span>
-<span class="sd">&gt;&gt;&gt; u.equals(v)</span>
-<span class="sd">True</span>
-<span class="sd">&gt;&gt;&gt; u.equals(w)</span>
-<span class="sd">False</span>
-
-<span class="sd">&gt;&gt;&gt; u = Units(&#39;m s-1&#39;)</span>
-<span class="sd">&gt;&gt;&gt; m = Units(&#39;m&#39;)</span>
-<span class="sd">&gt;&gt;&gt; s = Units(&#39;s&#39;)</span>
-<span class="sd">&gt;&gt;&gt; u.equals(m)</span>
-<span class="sd">False</span>
-<span class="sd">&gt;&gt;&gt; u.equals(m/s)</span>
-<span class="sd">True</span>
-<span class="sd">&gt;&gt;&gt; (m/s).equals(u)</span>
-<span class="sd">True</span>
-
-<span class="sd">Undefined units are considered equal:</span>
-
-<span class="sd">&gt;&gt;&gt; u = Units()</span>
-<span class="sd">&gt;&gt;&gt; v = Units()</span>
-<span class="sd">&gt;&gt;&gt; u.equals(v)</span>
-<span class="sd">True</span>
+<div class="viewcode-block" id="Units.equals"><a class="viewcode-back" href="../../generated/cfunits.Units.equals.html#cfunits.Units.equals">[docs]</a>    <span class="k">def</span> <span class="nf">equals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Return True if and only if numeric values in one unit are</span>
+<span class="sd">    convertible to numeric values in the other unit and their</span>
+<span class="sd">    conversion is a scale factor of 1.</span>
+<span class="sd">    </span>
+<span class="sd">    .. seealso:: `equivalent`</span>
+<span class="sd">    </span>
+<span class="sd">    :Parameters:</span>
+<span class="sd">    </span>
+<span class="sd">        other: `Units`</span>
+<span class="sd">            The other units.</span>
+<span class="sd">    </span>
+<span class="sd">    :Returns:</span>
+<span class="sd">    </span>
+<span class="sd">        `bool`</span>
+<span class="sd">            True if the units are equal, False otherwise.</span>
+<span class="sd">    </span>
+<span class="sd">    **Examples:**</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; u = Units(&#39;km&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; v = Units(&#39;1000m&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; w = Units(&#39;100000m&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; u.equals(v)</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; u.equals(w)</span>
+<span class="sd">    False</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; u = Units(&#39;m s-1&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; m = Units(&#39;m&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; s = Units(&#39;s&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; u.equals(m)</span>
+<span class="sd">    False</span>
+<span class="sd">    &gt;&gt;&gt; u.equals(m/s)</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; (m/s).equals(u)</span>
+<span class="sd">    True</span>
+<span class="sd">    </span>
+<span class="sd">    Undefined units are considered equal:</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; u = Units()</span>
+<span class="sd">    &gt;&gt;&gt; v = Units()</span>
+<span class="sd">    &gt;&gt;&gt; u.equals(v)</span>
+<span class="sd">    True</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">_ut_compare</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ut_unit</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">_ut_unit</span><span class="p">):</span>
-                <span class="k">return</span> <span class="bp">False</span>
-        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">False</span>
-
         <span class="n">isreftime1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_isreftime</span>
         <span class="n">isreftime2</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">_isreftime</span>
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">isreftime1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">isreftime2</span><span class="p">:</span>
-            <span class="c1"># Neither units is reference-time so they&#39;re equal</span>
-            <span class="k">return</span> <span class="bp">True</span>
-
         <span class="k">if</span> <span class="n">isreftime1</span> <span class="ow">and</span> <span class="n">isreftime2</span><span class="p">:</span>
-            <span class="c1"># Both units are reference-time</span>
-            <span class="n">utime0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_utime</span>
-            <span class="n">utime1</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">_utime</span>
-            <span class="k">if</span> <span class="n">utime0</span><span class="o">.</span><span class="n">calendar</span> <span class="o">!=</span> <span class="n">utime1</span><span class="o">.</span><span class="n">calendar</span><span class="p">:</span>
+            <span class="c1"># Both units are reference-time units</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_canonical_calendar</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">_canonical_calendar</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;{}: Incompatible calendars: {!r}, {!r}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_calendar</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">_calendar</span><span class="p">))</span> <span class="c1"># pragma: no cover</span>
                 <span class="k">return</span> <span class="bp">False</span>
-            
-            <span class="k">return</span> <span class="n">utime0</span><span class="o">.</span><span class="n">origin_equals</span><span class="p">(</span><span class="n">utime1</span><span class="p">)</span>
+
+            <span class="n">reftime0</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;reftime&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+            <span class="n">reftime1</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="s1">&#39;reftime&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">reftime0</span> <span class="o">!=</span> <span class="n">reftime1</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;{}: Different reference date-times: {!r}, {!r}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                        <span class="n">reftime0</span><span class="p">,</span> <span class="n">reftime1</span><span class="p">))</span> <span class="c1"># pragma: no cover</span>
+                <span class="k">return</span> <span class="bp">False</span>
+
+        <span class="k">elif</span> <span class="n">isreftime1</span> <span class="ow">or</span> <span class="n">isreftime2</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;{}: Only one is reference time&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span> <span class="c1"># pragma: no cover</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+        
+<span class="c1">#            utime0 = self._utime</span>
+<span class="c1">#            utime1 = other._utime</span>
+<span class="c1">#            if utime0 is not None and utime1 is not None:</span>
+<span class="c1">#                return utime0.origin_equals(utime1)</span>
+<span class="c1">#            elif utime0 is None and utime1 is None:</span>
+<span class="c1">#                return self.reftime</span>
+<span class="c1">#</span>
+<span class="c1">#        </span>
+<span class="c1">#        </span>
+<span class="c1">#            units0 = self._units</span>
+<span class="c1">#            units1 = other._units</span>
+<span class="c1">#            if units0 and units1 or (not units0 and not units1):</span>
+<span class="c1">#                out = (self._canonical_calendar == other._canonical_calendar)</span>
+<span class="c1">#                if verbose and not out:</span>
+<span class="c1">#                    print(&quot;{}: Incompatible calendars: {!r}, {!r}&quot;.format(</span>
+<span class="c1">#                        self.__class__.__name__,</span>
+<span class="c1">#                        self._calendar, other._calendar)) # pragma: no cover</span>
+<span class="c1">#                </span>
+<span class="c1">#                return out</span>
+<span class="c1">#            else:</span>
+<span class="c1">#                return False</span>
         <span class="c1">#--- End: if</span>
+<span class="c1">#        if not self.isvalid:</span>
+<span class="c1">#            if verbose:</span>
+<span class="c1">#                print(&quot;{}: {!r} is not valid&quot;.format(self.__class__.__name__, self)) # pragma: no cover</span>
+<span class="c1">#            return False</span>
+<span class="c1">#        </span>
+<span class="c1">#        if not other.isvalid:</span>
+<span class="c1">#            if verbose:</span>
+<span class="c1">#                print(&quot;{}: {!r} is not valid&quot;.format(self.__class__.__name__, other)) # pragma: no cover</span>
+<span class="c1">#            return False</span>
+<span class="c1">#        </span>
+        
+<span class="c1">#        if not self.isvalid or not other.isvalid:</span>
+<span class="c1">#            print (&#39;ppp&#39;)</span>
+<span class="c1">#            return False</span>
+
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">_ut_compare</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ut_unit</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">_ut_unit</span><span class="p">):</span>                
+                <span class="k">return</span> <span class="bp">True</span>
+            <span class="k">elif</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;{}: Different units: {!r}, {!r}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">units</span><span class="p">))</span> <span class="c1"># pragma: no cover</span>
+                <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span></div>
+
+
+<span class="c1">#isreftime1 = self._isreftime</span>
+<span class="c1">#        isreftime2 = other._isreftime</span>
+<span class="c1">#</span>
+<span class="c1">#        if not isreftime1 and not isreftime2:</span>
+<span class="c1">#            # Neither units is reference-time so they&#39;re equal</span>
+<span class="c1">#            return True</span>
+<span class="c1">#</span>
+<span class="c1">#        if isreftime1 and isreftime2:</span>
+<span class="c1">#            # Both units are reference-time</span>
+<span class="c1">#            utime0 = self._utime</span>
+<span class="c1">#            utime1 = other._utime</span>
+<span class="c1">#            if utime0.calendar != utime1.calendar:</span>
+<span class="c1">#                return False</span>
+<span class="c1">#            </span>
+<span class="c1">#            return utime0.origin_equals(utime1)</span>
 
         <span class="c1"># One unit is a reference-time and the other is not so they&#39;re</span>
         <span class="c1"># not equal</span>
-        <span class="k">return</span> <span class="bp">False</span></div>
-    <span class="c1">#--- End: def</span>
+<span class="c1">#        return False</span>
+
 
 <div class="viewcode-block" id="Units.log"><a class="viewcode-back" href="../../generated/cfunits.Units.log.html#cfunits.Units.log">[docs]</a>    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Return the logarithmic unit corresponding to the given logarithmic</span>
-<span class="sd">base.</span>
+<span class="sd">    base.</span>
 
-<span class="sd">:Parameters:</span>
-
-<span class="sd">    base: `int` or `float`</span>
-<span class="sd">        The logarithmic base.</span>
-
-<span class="sd">:Returns:</span>
-
-<span class="sd">    `Units`</span>
-<span class="sd">        The logarithmic unit corresponding to the given logarithmic</span>
-<span class="sd">        base.</span>
-
-<span class="sd">**Examples:**</span>
-
-<span class="sd">&gt;&gt;&gt; u = Units(&#39;W&#39;, names=True)</span>
-<span class="sd">&gt;&gt;&gt; u</span>
-<span class="sd">&lt;Units: watt&gt;</span>
-
-<span class="sd">&gt;&gt;&gt; u.log(10)</span>
-<span class="sd">&lt;Units: lg(re 1 W)&gt;</span>
-<span class="sd">&gt;&gt;&gt; u.log(2)</span>
-<span class="sd">&lt;Units: lb(re 1 W)&gt;</span>
-
-<span class="sd">&gt;&gt;&gt; import math</span>
-<span class="sd">&gt;&gt;&gt; u.log(math.e)</span>
-<span class="sd">&lt;Units: ln(re 1 W)&gt;</span>
-
-<span class="sd">&gt;&gt;&gt; u.log(3.5)</span>
-<span class="sd">&lt;Units: 0.798235600147928 ln(re 1 W)&gt;</span>
+<span class="sd">    :Parameters:</span>
+<span class="sd">    </span>
+<span class="sd">        base: `int` or `float`</span>
+<span class="sd">            The logarithmic base.</span>
+<span class="sd">    </span>
+<span class="sd">    :Returns:</span>
+<span class="sd">    </span>
+<span class="sd">        `Units`</span>
+<span class="sd">            The logarithmic unit corresponding to the given</span>
+<span class="sd">            logarithmic base.</span>
+<span class="sd">    </span>
+<span class="sd">    **Examples:**</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; u = Units(&#39;W&#39;, names=True)</span>
+<span class="sd">    &gt;&gt;&gt; u</span>
+<span class="sd">    &lt;Units: watt&gt;</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; u.log(10)</span>
+<span class="sd">    &lt;Units: lg(re 1 W)&gt;</span>
+<span class="sd">    &gt;&gt;&gt; u.log(2)</span>
+<span class="sd">    &lt;Units: lb(re 1 W)&gt;</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; import math</span>
+<span class="sd">    &gt;&gt;&gt; u.log(math.e)</span>
+<span class="sd">    &lt;Units: ln(re 1 W)&gt;</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; u.log(3.5)</span>
+<span class="sd">    &lt;Units: 0.798235600147928 ln(re 1 W)&gt;</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">try</span><span class="p">:</span>
@@ -2175,7 +2409,7 @@
 
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
             <span class="s2">&quot;Can&#39;t take the logarithm to the base </span><span class="si">%r</span><span class="s2"> of </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="bp">self</span><span class="p">))</span></div></div>
-    <span class="c1">#--- End def</span>
+
 
 <span class="c1">#--- End: class</span>
 
@@ -2186,9 +2420,7 @@
 <span class="c1">#</span>
 <span class="c1"># ====================================================================</span>
 <span class="k">class</span> <span class="nc">Utime</span><span class="p">(</span><span class="n">cftime</span><span class="o">.</span><span class="n">utime</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-
-<span class="sd">Performs conversions of netCDF time coordinate data to/from datetime</span>
+    <span class="sd">&#39;&#39;&#39;Performs conversions of netCDF time coordinate data to/from datetime</span>
 <span class="sd">objects.</span>
 
 <span class="sd">This object is (currently) functionally equivalent to a</span>
@@ -2207,25 +2439,32 @@
 <span class="sd">`!units`        </span>
 <span class="sd">==============  ======================================================</span>
 
-<span class="sd">&#39;&#39;&#39;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calendar</span><span class="p">,</span> <span class="n">unit_string</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calendar</span><span class="p">,</span> <span class="n">unit_string</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">only_use_cftime_datetimes</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;**Initialization**</span>
 
-<span class="sd">:Parameters:</span>
+<span class="sd">    :Parameters:</span>
+<span class="sd">    </span>
+<span class="sd">        calendar: `str`</span>
+<span class="sd">            The calendar used in the time calculations. Must be one</span>
+<span class="sd">            of: ``&#39;gregorian&#39;``, ``&#39;360_day&#39;``, ``&#39;365_day&#39;``,</span>
+<span class="sd">            ``&#39;366_day&#39;``, ``&#39;julian&#39;``, ``&#39;proleptic_gregorian&#39;``,</span>
+<span class="sd">            although this is not checked.</span>
+<span class="sd">    </span>
+<span class="sd">        unit_string: `str`, optional</span>
+<span class="sd">            A string of the form &quot;time-units since &lt;time-origin&gt;&quot;</span>
+<span class="sd">            defining the reference-time units.</span>
 
-<span class="sd">    calendar: `str`</span>
-<span class="sd">        The calendar used in the time calculations. Must be one of:</span>
-<span class="sd">        ``&#39;gregorian&#39;``, ``&#39;360_day&#39;``, ``&#39;365_day&#39;``, ``&#39;366_day&#39;``,</span>
-<span class="sd">        ``&#39;julian&#39;``, ``&#39;proleptic_gregorian&#39;``, although this is not</span>
-<span class="sd">        checked.</span>
-
-<span class="sd">    unit_string: `str`, optional</span>
-<span class="sd">        A string of the form &quot;time-units since &lt;time-origin&gt;&quot;</span>
-<span class="sd">        defining the reference-time units.</span>
+<span class="sd">        only_use_cftime_datetimes: `bool`, optional</span>
+<span class="sd">            If `False`, datetime.datetime objects are returned from</span>
+<span class="sd">            `num2date` where possible; By default. dates which</span>
+<span class="sd">            subclass `cftime.datetime` are returned for all calendars.</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="n">unit_string</span><span class="p">:</span>
-            <span class="n">_netCDF4_netcdftime_utime</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unit_string</span><span class="p">,</span> <span class="n">calendar</span><span class="p">)</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">unit_string</span><span class="p">,</span> <span class="n">calendar</span><span class="p">,</span>
+                             <span class="n">only_use_cftime_datetimes</span><span class="o">=</span><span class="n">only_use_cftime_datetimes</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">calendar</span>    <span class="o">=</span> <span class="n">calendar</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_jd0</span>        <span class="o">=</span> <span class="bp">None</span>
@@ -2233,7 +2472,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">tzoffset</span>    <span class="o">=</span> <span class="bp">None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">unit_string</span> <span class="o">=</span> <span class="bp">None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">units</span>       <span class="o">=</span> <span class="bp">None</span>
-    <span class="c1">#--- End: def</span>
+
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;x.__repr__() &lt;==&gt; repr(x)</span>
@@ -2247,20 +2486,20 @@
 
         <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calendar</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="s2">&quot;&lt;Utime: </span><span class="si">%s</span><span class="s2">&gt;&quot;</span> <span class="o">%</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="c1">#--- End: def </span>
+        <span class="k">return</span> <span class="s2">&quot;&lt;Utime: {}&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
 
     <span class="k">def</span> <span class="nf">num2date</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_value</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Return a datetime-like object given a time value.</span>
 
-<span class="sd">The units of the time value are described by the `!unit_string` and</span>
-<span class="sd">`!calendar` attributes.</span>
-
-<span class="sd">See `netCDF4.netcdftime.utime.num2date` for details.</span>
-
-<span class="sd">In addition to `netCDF4.netcdftime.utime.num2date`, this method</span>
-<span class="sd">handles units of months and years as defined by Udunits, ie. 1 year =</span>
-<span class="sd">365.242198781 days, 1 month = 365.242198781/12 days.</span>
+<span class="sd">    The units of the time value are described by the `!unit_string`</span>
+<span class="sd">    and `!calendar` attributes.</span>
+<span class="sd">    </span>
+<span class="sd">    See `netCDF4.netcdftime.utime.num2date` for details.</span>
+<span class="sd">    </span>
+<span class="sd">    In addition to `netCDF4.netcdftime.utime.num2date`, this method</span>
+<span class="sd">    handles units of months and years as defined by Udunits, ie. 1</span>
+<span class="sd">    year = 365.242198781 days, 1 month = 365.242198781/12 days.</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">units</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span>
@@ -2269,28 +2508,28 @@
         <span class="k">if</span> <span class="n">units</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;months&#39;</span><span class="p">):</span>
             <span class="c1"># Convert months to days</span>
             <span class="n">unit_string</span> <span class="o">=</span> <span class="n">unit_string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">units</span><span class="p">,</span> <span class="s1">&#39;days&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">time_value</span> <span class="o">=</span> <span class="n">numpy_array</span><span class="p">(</span><span class="n">time_value</span><span class="p">)</span><span class="o">*</span><span class="mf">365.242198781</span><span class="o">/</span><span class="mi">12</span>
+            <span class="n">time_value</span> <span class="o">=</span> <span class="n">numpy_array</span><span class="p">(</span><span class="n">time_value</span><span class="p">)</span><span class="o">*</span><span class="n">_month_length</span> <span class="c1">#365.242198781/12</span>
         <span class="k">elif</span> <span class="n">units</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;years&#39;</span><span class="p">,</span> <span class="s1">&#39;yr&#39;</span><span class="p">):</span>
             <span class="c1"># Convert years to days</span>
             <span class="n">unit_string</span> <span class="o">=</span> <span class="n">unit_string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">units</span><span class="p">,</span> <span class="s1">&#39;days&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">time_value</span> <span class="o">=</span> <span class="n">numpy_array</span><span class="p">(</span><span class="n">time_value</span><span class="p">)</span><span class="o">*</span><span class="mf">365.242198781</span>
+            <span class="n">time_value</span> <span class="o">=</span> <span class="n">numpy_array</span><span class="p">(</span><span class="n">time_value</span><span class="p">)</span><span class="o">*</span><span class="n">_year_length</span> <span class="c1">#365.242198781</span>
 
-        <span class="n">u</span> <span class="o">=</span> <span class="n">_netCDF4_netcdftime_utime</span><span class="p">(</span><span class="n">unit_string</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calendar</span><span class="p">)</span>        
+        <span class="n">u</span> <span class="o">=</span> <span class="n">cftime</span><span class="o">.</span><span class="n">utime</span><span class="p">(</span><span class="n">unit_string</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calendar</span><span class="p">)</span>        
 
         <span class="k">return</span> <span class="n">u</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">time_value</span><span class="p">)</span>
-    <span class="c1">#--- End: def</span>
 
-    <span class="k">def</span> <span class="nf">origin_equals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;</span>
+    
+<span class="c1">#    def origin_equals(self, other):</span>
+<span class="c1">#        &#39;&#39;&#39;</span>
+<span class="c1">#        </span>
+<span class="c1">#        &#39;&#39;&#39;</span>
+<span class="c1">#        if self is other:</span>
+<span class="c1">#            return True</span>
+<span class="c1">#        else:</span>
+<span class="c1">#            return (self._jd0     == other._jd0     and</span>
+<span class="c1">#                    self.calendar == other.calendar and</span>
+<span class="c1">#                    self.tzoffset == other.tzoffset)</span>
 
-<span class="sd">&#39;&#39;&#39;</span>
-        <span class="k">if</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">other</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">True</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jd0</span>     <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">_jd0</span>     <span class="ow">and</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">calendar</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">calendar</span> <span class="ow">and</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">tzoffset</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">tzoffset</span><span class="p">)</span>
-    <span class="c1">#--- End: def</span>
 
 <span class="c1">#--- End: class</span>
 </pre></div>
@@ -2298,41 +2537,19 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2015, David Hassell.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
     </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 3.0.0</li>
-  
-        <li class="nav-item nav-item-0"><a href="../../index.html">Documentation</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2015, David Hassell.
-      Last updated on Jun 06, 2019.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.4.
-    </div>
+    
+
+    
   </body>
 </html>

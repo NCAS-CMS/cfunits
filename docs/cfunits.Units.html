@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>cfunits.Units &#8212; Documentation</title>
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -17,28 +17,86 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="cfunits.Units.calendar" href="generated/cfunits.Units.calendar.html" />
-    <link rel="prev" title="Installation" href="installation.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="generated/cfunits.Units.calendar.html" title="cfunits.Units.calendar"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="installation.html" title="Installation"
-             accesskey="P">previous</a> |</li>
-  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 3.0.0</li>
+    <link rel="prev" title="Installation" href="installation.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
-        <li class="nav-item nav-item-0"><a href="index.html">Documentation</a> &#187;</li>
- 
-      </ul>
-    </div>  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-    <div class="document">
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><b><a href="index.html">cfunits 3.2.2</a></b></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html"><strong>Installation</strong></a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">cfunits.Units</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#units-attributes">Units attributes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.calendar.html">cfunits.Units.calendar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.isdimensionless.html">cfunits.Units.isdimensionless</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.islatitude.html">cfunits.Units.islatitude</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.islongitude.html">cfunits.Units.islongitude</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.ispressure.html">cfunits.Units.ispressure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.isreftime.html">cfunits.Units.isreftime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.istime.html">cfunits.Units.istime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.reftime.html">cfunits.Units.reftime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.units.html">cfunits.Units.units</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#units-methods">Units methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.conform.html">cfunits.Units.conform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.copy.html">cfunits.Units.copy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.dump.html">cfunits.Units.dump</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.equals.html">cfunits.Units.equals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.equivalent.html">cfunits.Units.equivalent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.formatted.html">cfunits.Units.formatted</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.log.html">cfunits.Units.log</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#units-static-methods">Units static methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.conform.html">cfunits.Units.conform</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="installation.html" title="previous chapter"><strong>Installation</strong></a></li>
+      <li>Next: <a href="generated/cfunits.Units.calendar.html" title="next chapter">cfunits.Units.calendar</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/cfunits.Units.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body" role="main">
@@ -47,7 +105,7 @@
 <h1>cfunits.Units<a class="headerlink" href="#cfunits-units" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="cfunits.Units">
-<em class="property">class </em><code class="descclassname">cfunits.</code><code class="descname">Units</code><span class="sig-paren">(</span><em>units=None</em>, <em>calendar=None</em>, <em>formatted=False</em>, <em>names=False</em>, <em>definition=False</em>, <em>_ut_unit=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cfunits/units.html#Units"><span class="viewcode-link">[source]</span></a><a class="reference external" href="https://bitbucket.org/cfpython/cfunits-python/src/v3.0.0/cfunits/units.py#/home/david/cfunits/cfunits/units.py-430"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">cfunits.</code><code class="descname">Units</code><span class="sig-paren">(</span><em>units=None</em>, <em>calendar=None</em>, <em>formatted=False</em>, <em>names=False</em>, <em>definition=False</em>, <em>_ut_unit=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cfunits/units.html#Units"><span class="viewcode-link">[source]</span></a><a class="reference external" href="https://github.com/NCAS-CMS/cfunits/blob/v3.2.2/cf/units.py#/home/david/cfunits/cfunits/units.py-434"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Store, combine and compare physical units and convert numeric values
 to different units.</p>
@@ -292,8 +350,9 @@ units. See the <a class="reference external" href="https://docs.python.org/2.7/l
 </dd>
 <dt>_ut_unit: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#int" title="(in Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, optional</dt>
 <dd><p class="first last">Set the new units from this Udunits binary unit
-representation. This should be an integer returned by a call
-to <code class="xref py py-obj docutils literal notranslate"><span class="pre">ut_parse</span></code> function of Udunits. Ignored if <a class="reference internal" href="generated/cfunits.Units.units.html#cfunits.Units.units" title="cfunits.Units.units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">units</span></code></a> is set.</p>
+representation. This should be an integer returned by a
+call to <code class="xref py py-obj docutils literal notranslate"><span class="pre">ut_parse</span></code> function of Udunits. Ignored if <a class="reference internal" href="generated/cfunits.Units.units.html#cfunits.Units.units" title="cfunits.Units.units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">units</span></code></a>
+is set.</p>
 </dd>
 </dl>
 </td>
@@ -392,69 +451,22 @@ to <code class="xref py py-obj docutils literal notranslate"><span class="pre">u
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">cfunits.Units</a><ul>
-<li><a class="reference internal" href="#units-attributes">Units attributes</a></li>
-<li><a class="reference internal" href="#units-methods">Units methods</a></li>
-<li><a class="reference internal" href="#units-static-methods">Units static methods</a></li>
-</ul>
-</li>
-</ul>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2015, David Hassell.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/cfunits.Units.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="installation.html"
-                        title="previous chapter"><strong>Installation</strong></a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="generated/cfunits.Units.calendar.html"
-                        title="next chapter">cfunits.Units.calendar</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/cfunits.Units.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="generated/cfunits.Units.calendar.html" title="cfunits.Units.calendar"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="installation.html" title="Installation"
-             >previous</a> |</li>
-  <li><a target="_blank" href="https://bitbucket.org/cfpython/cfunits-python/">cfunits</a> 3.0.0</li>
-  
-        <li class="nav-item nav-item-0"><a href="index.html">Documentation</a> &#187;</li>
- 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2015, David Hassell.
-      Last updated on Jun 06, 2019.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.4.
-    </div>
+    
+
+    
   </body>
 </html>
