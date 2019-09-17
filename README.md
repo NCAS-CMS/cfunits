@@ -35,66 +35,33 @@ To install from [**PyPI**](https://pypi.python.org/pypi/cfunits):
 
 Alternatively, to install from source:
 
-To install from [**PyPI**](https://pypi.python.org/pypi/cfunits):
+1. Download the cfunits package from https://pypi.org/project/cfunits
 
-    pip install cfunits
+2. Unpack the library (replacing ``<version>`` with the version that
+   you want to install, e.g. ``3.2.2``):
 
-Alternatively, to install from source:
+      tar zxvf cfunits-<version>.tar.gz
+      cd cfunits-<version>
 
-1.  Download the cfunits package from https://github.com/NCAS-CMS/cfunits
-   
-2.  Unpack the library:
-   
-        tar zxvf cfunits-1.1.tar.gz
-        cd cfunits-1.1
-	  
-3.   Install the package:
-   
-    *  To install to a central location:
-     
-            python setup.py install
-       
-    * To install locally to the user in a default location:
-       
-            python setup.py install --user
-       
-    *  To install to the <directory> of your choice:
-       
-            python setup.py install --home=<directory>
+3. Install the package:
+  
+  * To install the cf-python package to a central location:
 
-----------------------------------------------------------------------
+       python setup.py install
 
-Tests
-=====
+  * To install the cf-python package locally to the user in the default
+    location:
+
+       python setup.py install --user
+
+  * To install the cf-python package in the <directory> of your choice:
+
+       python setup.py install --home=<directory>
+
+# Tests
 
 The test script is in the ``test`` directory:
 
     python test/run_tests.py
 
 
-----------------------------------------------------------------------
-
-Code license
-============
-
-[**MIT License**](http://opensource.org/licenses/mit-license.php)
-
-  * Permission is hereby granted, free of charge, to any person
-    obtaining a copy of this software and associated documentation
-    files (the "Software"), to deal in the Software without
-    restriction, including without limitation the rights to use, copy,
-    modify, merge, publish, distribute, sublicense, and/or sell copies
-    of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
-
-  * The above copyright notice and this permission notice shall be
-    included in all copies or substantial portions of the Software.
-
-  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-    HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-    WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-    DEALINGS IN THE SOFTWARE.
