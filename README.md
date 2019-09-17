@@ -1,25 +1,9 @@
-Home page
-=========
+# Documentation
 
-* [**cfunits-python**](https://bitbucket.org/cfpython/cfunits-python
-  "cfunits-python home page")
-
-----------------------------------------------------------------------
-
-Documentation
-=============
-
-* [**Online documentation for the latest stable
-  release**](http://pythonhosted.org/cfunits "cfunits documentation")
-
-* Offline HTML documention for the installed version may be found by
-  pointing a browser to ``docs/build/index.html``.
+http://ncas-cms.github.io/cfunits
 
 
-----------------------------------------------------------------------
-
-Dependencies
-============
+# Dependencies
 
 * The package runs on [**Linux**](http://en.wikipedia.org/wiki/Linux)
   and [**Mac OS**](http://en.wikipedia.org/wiki/Mac_OS) operating
@@ -43,10 +27,7 @@ Dependencies
   OS) is in a non-standard location then its path should be added to
   the ``LD_LIBRARY_PATH`` environment variable.
 
-----------------------------------------------------------------------
-
-Installation
-============
+# Installation
 
 To install from [**PyPI**](https://pypi.python.org/pypi/cfunits):
 
@@ -60,8 +41,7 @@ To install from [**PyPI**](https://pypi.python.org/pypi/cfunits):
 
 Alternatively, to install from source:
 
-1.  Download the cfunits package from [**cfunits-python
-    downloads**](https://bitbucket.org/cfpython/cfunits-python/downloads).
+1.  Download the cfunits package from https://github.com/NCAS-CMS/cfunits
    
 2.  Unpack the library:
    
