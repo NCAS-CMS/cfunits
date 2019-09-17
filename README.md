@@ -47,16 +47,16 @@ Alternatively, to install from source:
   
   * To install the cf-python package to a central location:
 
-       python setup.py install
+    python setup.py install
 
   * To install the cf-python package locally to the user in the default
     location:
 
-       python setup.py install --user
+    python setup.py install --user
 
   * To install the cf-python package in the <directory> of your choice:
 
-       python setup.py install --home=<directory>
+    python setup.py install --home=<directory>
 
 # Tests
 
