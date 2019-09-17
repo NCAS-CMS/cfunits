@@ -40,8 +40,8 @@ Alternatively, to install from source:
 2. Unpack the library (replacing ``<version>`` with the version that
    you want to install, e.g. ``3.2.2``):
 
-      tar zxvf cfunits-<version>.tar.gz
-      cd cfunits-<version>
+    tar zxvf cfunits-<version>.tar.gz
+    cd cfunits-<version>
 
 3. Install the package:
   
