@@ -160,27 +160,28 @@ highlight_language = 'python'
 
 # The theme to use for HTML and HTML Help pages.  See the
 # documentation for a list of builtin themes.
-html_theme = 'default'
+#html_theme = 'default'
+html_theme = 'alabaster' #'default' #'haiku' #'default'
 
 #/home/opt-user/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/Sphinx-1.2.2-py2.7.egg/sphinx/themes
 
 # Theme options are theme-specific and customize the look and feel of
 # a theme further.  For a list of options available for each theme,
 # see the documentation.
-html_theme_options = {"stickysidebar"   : "true",
-                      "externalrefs"    : "false",
-                      'sidebarbgcolor'  : '#F2F2F2',
-                      'sidebartextcolor': '#777777',
-                      'sidebarbgcolor'  : '#F2F2F2',
-                      'sidebartextcolor': '#777777',
-                      'sidebarlinkcolor': '#003469',
-                      'relbarbgcolor'   : '#5682AD',
-                      'relbartextcolor' : '#ffffff',
-                      'relbarlinkcolor' : '#ffffff',
-                      'headbgcolor'     : '#FFFFFF',
-                      'headtextcolor'   : '#000000',
-                      'codebgcolor'     : '#F2F2F2', #'#F5F5F5',
-                      }
+html_theme_options = {
+    "show_related"    : 'true',
+    "sidebar_collapse": 'false',
+    'fixed_sidebar': 'true',
+    'page_width': '85%',
+    'seealso_bg'     : 'transparent',
+    'seealso_border' : 'transparent',
+    'shadow'      : 'false',
+    'show_powered_by' : 'true',
+    'font_size'       : '13pt',
+    'code_font_size'  : '10pt',
+    "font_family"     : 'Arial',
+    'head_font_family': 'Arial',
+}
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
@@ -215,19 +216,24 @@ html_use_smartypants = True
 
 # Custom sidebar templates, maps document names to template names.
 #html_sidebars = {'**': ['my_con.html', 'globaltoc.html', 'sourcelink.html']}
+html_sidebars = { '**': ['globaltoc.html',
+                         'relations.html',
+                         'sourcelink.html',
+                         'searchbox.html']
+}
 
 # Additional templates that should be rendered to pages, maps page
 # names to template names.
 #html_additional_pages = {}
 
 # If false, no module index is generated.
-#html_domain_indices = True
+html_domain_indices = True
 
 # If false, no index is generated.
-#html_use_index = True
+html_use_index = True
 
 # If true, the index is split into individual pages for each letter.
-html_split_index = True #False
+html_split_index = False
 
 # If true, links to the reST sources are added to the pages.
 #html_show_sourcelink = True
@@ -264,7 +270,7 @@ htmlhelp_basename = 'cfunitsdoc'
 # start file, target name, title, author, documentclass
 # [howto/manual]).
 latex_documents = [
-    ('index', 'cfunits-python.tex', 'cfunits-python Documentation',
+    ('index', 'cfunits.tex', 'cfunits Documentation',
      'David Hassell', 'manual'),
     ]
 
@@ -300,7 +306,7 @@ latex_elements = {'papersize': 'a4paper'}
 # One entry per manual page. List of tuples (source start file, name,
 # description, authors, manual section).
 man_pages = [
-    ('index', 'cfunits-python', 'cfunits-python Documentation',
+    ('index', 'cfunits', 'cfunits Documentation',
      'David Hassell', 1)
     ]
 
@@ -372,8 +378,11 @@ def linkcode_resolve(domain, info):
 #        commit = '11dddff56c31c24d86c3b83995e503989f90911b'
 #        commit = 'master'
         commit = 'v'+release
-        return "https://bitbucket.org/cfpython/cfunits-python/src/%s/cfunits/%s%s" % \
-            (commit, fn, linespec)
+        print("https://github.com/NCAS-CMS/cfunits/blob/{0}/cf/{1}{2}".format(
+            commit, fn, linespec))
+
+        return "https://github.com/NCAS-CMS/cfunits/blob/{0}/cf/{1}{2}".format(
+            commit, fn, linespec)
     else:
         # Point to local source code relative to this directory
         return "../../../cfunits/%s%s" % (fn, linespec)
