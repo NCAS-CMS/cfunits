@@ -9,7 +9,7 @@ https://ncas-cms.github.io/cfunits/installation.html
 
 # Tests
 
-The test script is in the ``test`` directory:
+The test script is in the ``cfunits/test`` directory:
 
     python test/run_tests.py
 
