@@ -898,13 +898,11 @@ x.__hash__() <==> hash(x)
                      self._rtime_tzoffset))
     #--- End: def
 
-    # 0
     def __repr__(self):
         '''x.__repr__() <==> repr(x)
 
         '''
         return '<{0}: {1}>'.format(self.__class__.__name__, self)
-    #--- End: def
 
 
     def __str__(self):
@@ -913,8 +911,12 @@ x.__hash__() <==> hash(x)
         '''
         string = []
         if self._units is not None:
-            string.append(self._units)
-
+            if self._units == '':
+                string.append("\'\'")
+            else:
+                string.append(self._units)
+        #--- End: if
+                              
         if self._calendar is not None:
             string.append('{0}'.format(self._calendar))
 
