@@ -1936,11 +1936,11 @@ x.__pos__() <==> +x
             The units to which *x* should be conformed to.
     
         inplace: `bool`, optional
-            If `True` and *x* is a numpy array then change it in
-            place, creating no temporary copies, with one exception:
-            If *x* is of integer type and the conversion is not null,
-            then it will not be changed inplace and the returned
-            conformed array will be of float type.
+            If True and *x* is a numpy array then change it in place,
+            creating no temporary copies, with one exception: If *x*
+            is of integer type and the conversion is not null, then it
+            will not be changed inplace and the returned conformed
+            array will be of float type.
     
     :Returns:
     
@@ -2168,7 +2168,7 @@ x.__pos__() <==> +x
     :Returns:
     
         `bool`
-            True if the units are equal, False otherwise.
+            `True` if the units are equal, `False` otherwise.
     
     **Examples:**
     
@@ -2390,7 +2390,7 @@ Attribute       Description
             defining the reference-time units.
 
         only_use_cftime_datetimes: `bool`, optional
-            If `False`, datetime.datetime objects are returned from
+            If False, datetime.datetime objects are returned from
             `num2date` where possible; By default. dates which
             subclass `cftime.datetime` are returned for all calendars.
 
