@@ -1,4 +1,7 @@
-A python interface to UNIDATA's UDUNITS-2 package with CF extensions
+cfunits
+=======
+
+A python interface to UNIDATA's UDUNITS-2 package with CF extensions.
 
 Store, combine and compare physical units and convert numeric values
 to different units.
