@@ -679,15 +679,6 @@ array([-31., -30., -29., -28., -27.])
                 _calendar = calendar
         #--- End: if
 
-#        if units is not None:
-#            try:
-#                units = units.strip()
-#            except AttributeError as error:
-#                print(units)
-#                self._isvalid = False
-#                self._reason_notvalid = self._reason_notvalid + '; '+str(error)
-#        #--- End: if
-        
         if units is not None:
             try:
                 units = units.strip()
