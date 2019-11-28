@@ -1,3 +1,12 @@
+version 3.2.3
+-------------
+----
+
+**2019-11-28**
+
+* Fixed a bug that rased an exception for units specified by
+  non-strings (https://github.com/NCAS-CMS/cfunits/issues/1).
+
 version 3.2.2
 -------------
 ----
