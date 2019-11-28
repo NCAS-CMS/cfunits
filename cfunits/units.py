@@ -37,7 +37,6 @@ if sys.platform == 'darwin':
 else:
     # Linux
     _udunits = ctypes.CDLL('libudunits2.so.0')
-#--- End: if
 
 # Suppress "overrides prefixed-unit" messages. This also suppresses
 # all other error messages - so watch out!
@@ -315,30 +314,30 @@ _months_or_years = ('month', 'months', 'year', 'years', 'yr')
 # Function to control Udunits error messages
 # --------------------------------------------------------------------
 def udunits_error_messages(flag):
-    '''Control the printing of error messages from Udunits, which are turned
-off by default.
-
-:Parameters:
-
-    flag: `bool`
-        Set to True to print Udunits error messages and False to not
-        print Udunits error messages.
-
-:Returns:
-
-    `None`
-
-**Examples:**
-
->>> udunits_error_messages(True)
->>> udunits_error_messages(False)
+    '''Control the printing of error messages from Udunits, which are
+    turned off by default.
+    
+    :Parameters:
+    
+        flag: `bool`
+            Set to True to print Udunits error messages and False to
+            not print Udunits error messages.
+    
+    :Returns:
+    
+        `None`
+    
+    **Examples:**
+    
+    >>> udunits_error_messages(True)
+    >>> udunits_error_messages(False)
 
     '''
     if flag:
         _ut_set_error_message_handler(_udunits.ut_write_to_stderr)
     else:
         _ut_set_error_message_handler(_udunits.ut_ignore)
-#--- End: def
+
 
 #def _month_length(year, month, calendar, _days_in_month=_days_in_month):
 #    '''
@@ -378,7 +377,7 @@ off by default.
 #    days_in_month.resize(shape)
 #
 #    return days_in_month
-##--- End: def
+#
 #
 #def _proper_date(year, month, day, calendar, fix=False,
 #                 _days_in_month=_days_in_month):
@@ -422,7 +421,7 @@ off by default.
 #        raise ValueError("Illegal date(s) in %s calendar" % calendar)
 #
 #    return year, month, day
-##--- End: def
+
 
 # --------------------------------------------------------------------
 # Constants, as defined by UDUNITS
@@ -765,13 +764,11 @@ array([-31., -30., -29., -28., -27.])
 #                        raise ValueError(
 #                            "Can't set unsupported unit: %r" % units)
 #                    _cached_ut_unit[units] = ut_unit
-#                #--- End: if
 
                 self._isreftime = False
                 self._calendar  = None
                 self._canonial_calendar  = None
                 self._utime     = None
-            #--- End: if
 
             self._ut_unit = ut_unit
             self._units   = units
@@ -854,37 +851,33 @@ array([-31., -30., -29., -28., -27.])
 
 
     def __setstate__(self, odict):
+        '''Called when unpickling.
+
+    :Parameters:
+    
+        odict: `dict`
+            The output from the instance's `__getstate__` method.
+    
+    :Returns:
+    
+        `None`
+
         '''
-
-Called when unpickling.
-
-:Parameters:
-
-    odict: `dict`
-        The output from the instance's `__getstate__` method.
-
-:Returns:
-
-    `None`
-
-'''
         units = None
         if '_units' in odict:
             units = odict['_units']
-        #--- End: if
+
         calendar = None
         if '_calendar' in odict:
             calendar = odict['_calendar']
-        #--- End: if
+    
         self.__init__(units=units, calendar=calendar)
             
-     #--- End: def
 
     def __hash__(self):
-        '''
-x.__hash__() <==> hash(x)
+        '''x.__hash__() <==> hash(x)
 
-'''
+        '''
 #        if not self:
 #            return hash(self.__class__)
 
@@ -896,8 +889,8 @@ x.__hash__() <==> hash(x)
         return hash(('Units', 
                      self._ut_unit, self._rtime_jd0, self._rtime_calendar,
                      self._rtime_tzoffset))
-    #--- End: def
 
+    
     def __repr__(self):
         '''x.__repr__() <==> repr(x)
 
@@ -1077,12 +1070,12 @@ x.__hash__() <==> hash(x)
         #--- End: if
 
         return type(self)(_ut_unit=ut_unit)
-    #--- End: def
+
 
     def __pow__(self, other, modulo=None):
         '''The binary arithmetic operations ``**`` and ``pow``
 
-x.__pow__(y) <==> x**y
+    x.__pow__(y) <==> x**y
 
         '''
         # ------------------------------------------------------------
@@ -1128,82 +1121,81 @@ x.__pow__(y) <==> x**y
                             return type(self)(_ut_unit=ut_unit)
                 except:
                     pass
-            #--- End: if
         #--- End: if
 
         raise ValueError("Can't do %r ** %r" % (self, other))
-    #--- End: def
+
 
     def __isub__(self, other):
         '''x.__isub__(y) <==> x-=y
 
         '''
         return self - other
-    #--- End def
+
 
     def __iadd__(self, other):
         '''x.__iadd__(y) <==> x+=y
 
         '''
         return self + other
-    #--- End def
+
 
     def __imul__(self, other):
         '''The augmented arithmetic assignment ``*=``
 
-x.__imul__(y) <==> x*=y
+    x.__imul__(y) <==> x*=y
 
         '''
         return self * other
-    #--- End def
+
 
     def __idiv__(self, other):
         '''The augmented arithmetic assignment ``/=``
 
-x.__idiv__(y) <==> x/=y
+    x.__idiv__(y) <==> x/=y
 
         '''
         return self / other
-    #--- End def
+
 
     def __ipow__(self, other):
         '''The augmented arithmetic assignment ``**=``
 
-x.__ipow__(y) <==> x**=y
+    x.__ipow__(y) <==> x**=y
 
         '''
         return self ** other
-    #--- End def
+
 
     def __rsub__(self, other):
         '''The binary arithmetic operation ``-`` with reflected operands
 
-x.__rsub__(y) <==> y-x
+    x.__rsub__(y) <==> y-x
 
         '''
         try:
             return -self + other
         except:
             raise ValueError("Can't do {0!r} - {1!r}".format(other, self))
-    #--- End def
+
 
     def __radd__(self, other):
         '''The binary arithmetic operation ``+`` with reflected operands
 
-x.__radd__(y) <==> y+x
+    x.__radd__(y) <==> y+x
 
         '''
         return self + other
-    #--- End def
+
 
     def __rmul__(self, other):
         '''The binary arithmetic operation ``*`` with reflected operands
 
-x.__rmul__(y) <==> y*x
+    x.__rmul__(y) <==> y*x
 
         '''
         return self * other
-    #--- End def
+
 
     def __rdiv__(self, other):
         '''x.__rdiv__(y) <==> y/x
@@ -1213,21 +1205,21 @@ x.__rmul__(y) <==> y*x
             return (self ** -1) * other
         except:
             raise ValueError("Can't do %r / %r" % (other, self))
-    #--- End def
+
 
     def __floordiv__(self, other):
         '''x.__floordiv__(y) <==> x//y <==> x/y
 
         '''
         return self / other
-    #--- End def
+
 
     def __ifloordiv__(self, other):
         '''x.__ifloordiv__(y) <==> x//=y <==> x/=y
 
         '''
         return self / other
-    #--- End def
+
  
     def __rfloordiv__(self, other):
         '''x.__rfloordiv__(y) <==> y//x <==> y/x
@@ -1237,7 +1229,7 @@ x.__rmul__(y) <==> y*x
             return (self ** -1) * other
         except:
             raise ValueError("Can't do %r // %r" % (other, self))
-    #--- End def
+
 
  
     def __truediv__(self, other):
@@ -1245,14 +1237,14 @@ x.__rmul__(y) <==> y*x
 
         '''
         return self.__div__(other)
-    #--- End def
+
 
     def __itruediv__(self, other):
         '''x.__itruediv__(y) <==> x/=y
 
         '''
         return self.__idiv__(other)
-    #--- End def
+
  
     def __rtruediv__(self, other):
         '''x.__rtruediv__(y) <==> y/x
@@ -1263,32 +1255,33 @@ x.__rmul__(y) <==> y*x
 #            return (self ** -1) * other
 #        except:
 #            raise ValueError("Can't do %r / %r" % (other, self))
-    #--- End def
+
 
     def __mod__(self, other):
-        '''
-    '''   
+        '''TODO
+
+        '''   
         raise ValueError("Can't do %r %% %r" % (self, other))
-    #--- End def
+
 
 
     def __neg__(self):
         '''The unary arithmetic operation ``-``
 
-x.__neg__() <==> -x
+    x.__neg__() <==> -x
 
         '''
         return self * -1
-    #--- End def
+
 
     def __pos__(self):
         '''The unary arithmetic operation ``+``
 
-x.__pos__() <==> +x
+    x.__pos__() <==> +x
 
         '''
         return self
-    #--- End def
+
 
     # ----------------------------------------------------------------
     # Private methods
@@ -2017,7 +2010,6 @@ x.__pos__() <==> +x
                 ut_unit2 = to_units._ut_unit
 
                 convert = _ut_compare(ut_unit1, ut_unit2)
-            #--- End: if
             
             if units1 in _months_or_years:
                 to_units = cls('days since '+reftime1,
@@ -2112,7 +2104,6 @@ x.__pos__() <==> +x
                 x = y.value
 
             _cv_free(cv_converter)
-        #--- End: if
 
         # ------------------------------------------------------------
         # Apply an offset for reference-time units
@@ -2249,7 +2240,7 @@ x.__pos__() <==> +x
 #                return out
 #            else:
 #                return False
-        #--- End: if
+#        #--- End: if
 #        if not self.isvalid:
 #            if verbose:
 #                print("{}: {!r} is not valid".format(self.__class__.__name__, self)) # pragma: no cover

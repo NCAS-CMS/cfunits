@@ -40,7 +40,7 @@ package_data = etc_files + test_files
 #with open('README.md') as ldfile:
 #    long_description = ldfile.read()
 
-long_description = """*A python interface to UNIDATA's Udunits-2 library with CF
+long_description = """*A python interface to UNIDATA's UDUNITS-2 library with CF
 extensions*
 
 **Note: Versions 3.0.0 and later are only compatible with version Python 3. Use version 1.9 for Python 2 compatibility.**
@@ -48,23 +48,25 @@ extensions*
 Store, combine and compare physical units and convert numeric values
 to different units.
 
-Units are as defined in `UNIDATA's Udunits-2 library
+Units are as defined in `UNIDATA's UDUNITS-2 library
 <http://www.unidata.ucar.edu/software/udunits/>`_, except for
 reference time units (such as ``'days since 2000-12-1'`` in the
 ``'proleptic_gregorian'`` calendar), which are handled by the `cftime
 python package <https://pypi.python.org/pypi/cftime>`_.
 
 In addition, some units are either new to, modified from, or removed
-from the standard Udunits-2 database in order to be more consistent
+from the standard UDUNITS-2 database in order to be more consistent
 with the `CF conventions <http://cfconventions.org/>`_.
 
-`Home page <https://bitbucket.org/cfpython/cfunits-python>`_
+Documentation
+=============
 
-`Dependencies
-<https://bitbucket.org/cfpython/cfunits-python/src/master/README.md>`_
+https://ncas-cms.github.io/cfunits
 
-`Changelog
-<https://bitbucket.org/cfpython/cfunits-python/src/master/Changelog.md>`_
+Installation
+============
+
+https://ncas-cms.github.io/cfunits/installation.html
 
 """
 
@@ -73,7 +75,7 @@ with the `CF conventions <http://cfconventions.org/>`_.
 setup(name = "cfunits",
       long_description = long_description,
       version      = version,
-      description  = "A python interface to UNIDATA's Udunits-2 package with CF extensions ",
+      description  = "A python interface to UNIDATA's UDUNITS-2 package with CF extensions ",
       maintainer   = "David Hassell",
       author       = "David Hassell",
       maintainer_email = "david.hassell@ncas.ac.uk",
