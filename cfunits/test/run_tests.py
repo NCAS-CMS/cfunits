@@ -9,7 +9,7 @@ import numpy
 import datetime
 import cfunits
 
-from platform    import system, platform, python_version
+from platform import system, platform, python_version
 
 # Build the test suite from the tests found in the test files.
 testsuite = unittest.TestSuite()
@@ -20,10 +20,11 @@ def run_test_suite(verbosity=2):
     runner = unittest.TextTestRunner(verbosity=verbosity)
     runner.run(testsuite)
 
+    
 if __name__ == '__main__':
-    print('-------------------------')
-    print('CFUNITS-PYTHON TEST SUITE')
-    print('-------------------------')
+    print('------------------')
+    print('CFUNITS TEST SUITE')
+    print('------------------')
     print('Run date:'              , datetime.datetime.now())
     print('Platform:'              , str(platform()))
     print('python:'                , str(python_version() + ' ' + str(sys.executable)))

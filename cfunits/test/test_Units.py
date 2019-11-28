@@ -5,6 +5,7 @@ import unittest
 import cfunits
 from cfunits import Units
 
+
 class UnitsTest(unittest.TestCase):
     def test_Units___eq__(self):
         self.assertTrue(Units('')==Units(''))
@@ -26,7 +27,7 @@ class UnitsTest(unittest.TestCase):
         
         self.assertTrue(Units('days since 2000-1-1', calendar='all_leap')==Units('d since 2000-1-1 0:0', calendar='366_day'))
         self.assertTrue(Units('days since 2000-1-1', calendar='all_leap')!=Units('h since 2000-1-1 0:0', calendar='366_day'))    
-    #--- End: def
+
         
     def test_Units_equivalent(self):
         self.assertTrue(Units('').equivalent(Units('')))
@@ -55,7 +56,7 @@ class UnitsTest(unittest.TestCase):
 
         self.assertTrue(Units('days since 2000-1-1', calendar='all_leap').equivalent(Units('d since 2000-1-1 0:0', calendar='366_day')))
         self.assertTrue(Units('days since 2000-1-1', calendar='all_leap').equivalent(Units('h since 1234-1-1 0:0', calendar='366_day')))    
-    #--- End: def 
+
 
     def test_Units_BINARY_AND_UNARY_OPERATORS(self):
         self.assertTrue((Units('m')*2)    ==Units('2m'))
@@ -128,7 +129,7 @@ class UnitsTest(unittest.TestCase):
         self.assertTrue(Units('m').log(2)     == Units('lb(re 1 m)'))
         self.assertTrue(Units('m').log(math.e)== Units('ln(re 1 m)'))
         self.assertTrue(Units('m').log(1.5)   == Units('2.46630346237643 ln(re 1 m)'))    
-    #--- End: def
+
 
 #--- End: class
 
