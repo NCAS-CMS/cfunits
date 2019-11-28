@@ -9,10 +9,12 @@
     <title>cfunits.units &#8212; Documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="../../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <script type="text/javascript" src="../../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -27,7 +29,7 @@
     
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h3><b><a href="../../index.html">cfunits 3.2.2</a></b></h3>
+<h3><b><a href="../../index.html">cfunits 3.2.3</a></b></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
 </ul>
@@ -62,6 +64,8 @@
       </div>
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <h1>Source code for cfunits.units</h1><div class="highlight"><pre>
@@ -104,7 +108,6 @@
 <span class="k">else</span><span class="p">:</span>
     <span class="c1"># Linux</span>
     <span class="n">_udunits</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">CDLL</span><span class="p">(</span><span class="s1">&#39;libudunits2.so.0&#39;</span><span class="p">)</span>
-<span class="c1">#--- End: if</span>
 
 <span class="c1"># Suppress &quot;overrides prefixed-unit&quot; messages. This also suppresses</span>
 <span class="c1"># all other error messages - so watch out!</span>
@@ -382,30 +385,30 @@
 <span class="c1"># Function to control Udunits error messages</span>
 <span class="c1"># --------------------------------------------------------------------</span>
 <span class="k">def</span> <span class="nf">udunits_error_messages</span><span class="p">(</span><span class="n">flag</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Control the printing of error messages from Udunits, which are turned</span>
-<span class="sd">off by default.</span>
-
-<span class="sd">:Parameters:</span>
-
-<span class="sd">    flag: `bool`</span>
-<span class="sd">        Set to True to print Udunits error messages and False to not</span>
-<span class="sd">        print Udunits error messages.</span>
-
-<span class="sd">:Returns:</span>
-
-<span class="sd">    `None`</span>
-
-<span class="sd">**Examples:**</span>
-
-<span class="sd">&gt;&gt;&gt; udunits_error_messages(True)</span>
-<span class="sd">&gt;&gt;&gt; udunits_error_messages(False)</span>
+    <span class="sd">&#39;&#39;&#39;Control the printing of error messages from Udunits, which are</span>
+<span class="sd">    turned off by default.</span>
+<span class="sd">    </span>
+<span class="sd">    :Parameters:</span>
+<span class="sd">    </span>
+<span class="sd">        flag: `bool`</span>
+<span class="sd">            Set to True to print Udunits error messages and False to</span>
+<span class="sd">            not print Udunits error messages.</span>
+<span class="sd">    </span>
+<span class="sd">    :Returns:</span>
+<span class="sd">    </span>
+<span class="sd">        `None`</span>
+<span class="sd">    </span>
+<span class="sd">    **Examples:**</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; udunits_error_messages(True)</span>
+<span class="sd">    &gt;&gt;&gt; udunits_error_messages(False)</span>
 
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">if</span> <span class="n">flag</span><span class="p">:</span>
         <span class="n">_ut_set_error_message_handler</span><span class="p">(</span><span class="n">_udunits</span><span class="o">.</span><span class="n">ut_write_to_stderr</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">_ut_set_error_message_handler</span><span class="p">(</span><span class="n">_udunits</span><span class="o">.</span><span class="n">ut_ignore</span><span class="p">)</span>
-<span class="c1">#--- End: def</span>
+
 
 <span class="c1">#def _month_length(year, month, calendar, _days_in_month=_days_in_month):</span>
 <span class="c1">#    &#39;&#39;&#39;</span>
@@ -445,7 +448,7 @@
 <span class="c1">#    days_in_month.resize(shape)</span>
 <span class="c1">#</span>
 <span class="c1">#    return days_in_month</span>
-<span class="c1">##--- End: def</span>
+<span class="c1">#</span>
 <span class="c1">#</span>
 <span class="c1">#def _proper_date(year, month, day, calendar, fix=False,</span>
 <span class="c1">#                 _days_in_month=_days_in_month):</span>
@@ -489,7 +492,7 @@
 <span class="c1">#        raise ValueError(&quot;Illegal date(s) in %s calendar&quot; % calendar)</span>
 <span class="c1">#</span>
 <span class="c1">#    return year, month, day</span>
-<span class="c1">##--- End: def</span>
+
 
 <span class="c1"># --------------------------------------------------------------------</span>
 <span class="c1"># Constants, as defined by UDUNITS</span>
@@ -722,33 +725,52 @@
 <span class="sd">            is set.</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_isvalid</span> <span class="o">=</span> <span class="bp">True</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
         
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">units</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">=</span> <span class="n">units</span><span class="o">.</span><span class="vm">__dict__</span>
             <span class="k">return</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_isvalid</span>             <span class="o">=</span> <span class="bp">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span>     <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_units</span>               <span class="o">=</span> <span class="n">units</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ut_unit</span>             <span class="o">=</span> <span class="bp">None</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">_isreftime</span>           <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_calendar</span>            <span class="o">=</span> <span class="n">calendar</span>       
+        <span class="bp">self</span><span class="o">.</span><span class="n">_canonical_calendar</span>  <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_utime</span>               <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_units_since_reftime</span> <span class="o">=</span> <span class="bp">None</span>
 
         <span class="c1"># Set the calendar</span>
         <span class="n">_calendar</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="k">if</span> <span class="n">calendar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">_calendar</span> <span class="o">=</span> <span class="n">_canonical_calendar</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">calendar</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
             <span class="k">if</span> <span class="n">_calendar</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span> <span class="o">+</span> <span class="s1">&#39;Invalid calendar={!r}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="n">calendar</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_new_reason_notvalid</span><span class="p">(</span><span class="s1">&#39;Invalid calendar={!r}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">calendar</span><span class="p">))</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_isvalid</span> <span class="o">=</span> <span class="bp">False</span>
                 <span class="n">_calendar</span> <span class="o">=</span> <span class="n">calendar</span>
         <span class="c1">#--- End: if</span>
 
+<span class="c1">#        if units is not None:</span>
+<span class="c1">#            try:</span>
+<span class="c1">#                units = units.strip()</span>
+<span class="c1">#            except AttributeError as error:</span>
+<span class="c1">#                print(units)</span>
+<span class="c1">#                self._isvalid = False</span>
+<span class="c1">#                self._reason_notvalid = self._reason_notvalid + &#39;; &#39;+str(error)</span>
+<span class="c1">#        #--- End: if</span>
+        
         <span class="k">if</span> <span class="n">units</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">units</span> <span class="o">=</span> <span class="n">units</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
             <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t set unsupported unit: {!r}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">units</span><span class="p">))</span>
-
+                <span class="bp">self</span><span class="o">.</span><span class="n">_isvalid</span> <span class="o">=</span> <span class="bp">False</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_new_reason_notvalid</span><span class="p">(</span><span class="s2">&quot;Bad units type: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">units</span><span class="p">)))</span>
+                <span class="k">return</span>
+<span class="c1">#                raise ValueError(&quot;Can&#39;t set unsupported unit: {!r}&quot;.format(units))</span>
+           
             <span class="n">unit</span> <span class="o">=</span> <span class="bp">None</span>
             
-            <span class="k">if</span> <span class="s1">&#39; since &#39;</span> <span class="ow">in</span> <span class="n">units</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">units</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="s1">&#39; since &#39;</span> <span class="ow">in</span> <span class="n">units</span><span class="p">:</span>
                 <span class="c1"># --------------------------------------------------------</span>
                 <span class="c1"># Set a reference time unit</span>
                 <span class="c1"># --------------------------------------------------------</span>
@@ -796,10 +818,10 @@
                                 <span class="k">try</span><span class="p">:</span>
                                     <span class="n">_</span> <span class="o">=</span> <span class="n">Utime</span><span class="p">(</span><span class="n">_calendar</span><span class="p">,</span> <span class="n">temp_unit_string</span><span class="p">)</span>
                                 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-                                    <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span> <span class="o">+</span> <span class="s1">&#39;; &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">_new_reason_notvalid</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">))</span>
                                     <span class="bp">self</span><span class="o">.</span><span class="n">_isvalid</span> <span class="o">=</span> <span class="bp">False</span>
                             <span class="k">else</span><span class="p">:</span>
-                                <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span> <span class="o">+</span> <span class="s1">&#39;; &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">_new_reason_notvalid</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">))</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">_isvalid</span> <span class="o">=</span> <span class="bp">False</span>
                         <span class="c1">#--- End: try</span>
                         
@@ -821,7 +843,7 @@
                     <span class="k">if</span> <span class="ow">not</span> <span class="n">ut_unit</span><span class="p">:</span>
                         <span class="n">ut_unit</span> <span class="o">=</span> <span class="bp">None</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">_isvalid</span> <span class="o">=</span> <span class="bp">False</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span> <span class="o">=</span> <span class="s2">&quot;Invalid units: {!r}; Not recognised by UDUNITS&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">units</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_new_reason_notvalid</span><span class="p">(</span><span class="s2">&quot;Invalid units: {!r}; Not recognised by UDUNITS&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">units</span><span class="p">))</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">_cached_ut_unit</span><span class="p">[</span><span class="n">units</span><span class="p">]</span> <span class="o">=</span> <span class="n">ut_unit</span>
                 <span class="c1">#--- End: if</span>
@@ -832,13 +854,11 @@
 <span class="c1">#                        raise ValueError(</span>
 <span class="c1">#                            &quot;Can&#39;t set unsupported unit: %r&quot; % units)</span>
 <span class="c1">#                    _cached_ut_unit[units] = ut_unit</span>
-<span class="c1">#                #--- End: if</span>
 
                 <span class="bp">self</span><span class="o">.</span><span class="n">_isreftime</span> <span class="o">=</span> <span class="bp">False</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_calendar</span>  <span class="o">=</span> <span class="bp">None</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_canonial_calendar</span>  <span class="o">=</span> <span class="bp">None</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_utime</span>     <span class="o">=</span> <span class="bp">None</span>
-            <span class="c1">#--- End: if</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">_ut_unit</span> <span class="o">=</span> <span class="n">ut_unit</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_units</span>   <span class="o">=</span> <span class="n">units</span>
@@ -862,8 +882,7 @@
             <span class="k">try</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_utime</span> <span class="o">=</span> <span class="n">Utime</span><span class="p">(</span><span class="n">_canonical_calendar</span><span class="p">[</span><span class="n">calendar</span><span class="o">.</span><span class="n">lower</span><span class="p">()])</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span> <span class="o">+</span> <span class="s1">&#39;Invalid calendar={!r}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="n">calendar</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_new_reason_notvalid</span><span class="p">(</span><span class="s1">&#39;Invalid calendar={!r}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">calendar</span><span class="p">))</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_isvalid</span> <span class="o">=</span> <span class="bp">True</span>
                 
             <span class="k">return</span>
@@ -921,37 +940,33 @@
 
 
     <span class="k">def</span> <span class="nf">__setstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">odict</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;</span>
+        <span class="sd">&#39;&#39;&#39;Called when unpickling.</span>
 
-<span class="sd">Called when unpickling.</span>
+<span class="sd">    :Parameters:</span>
+<span class="sd">    </span>
+<span class="sd">        odict: `dict`</span>
+<span class="sd">            The output from the instance&#39;s `__getstate__` method.</span>
+<span class="sd">    </span>
+<span class="sd">    :Returns:</span>
+<span class="sd">    </span>
+<span class="sd">        `None`</span>
 
-<span class="sd">:Parameters:</span>
-
-<span class="sd">    odict: `dict`</span>
-<span class="sd">        The output from the instance&#39;s `__getstate__` method.</span>
-
-<span class="sd">:Returns:</span>
-
-<span class="sd">    `None`</span>
-
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">units</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="k">if</span> <span class="s1">&#39;_units&#39;</span> <span class="ow">in</span> <span class="n">odict</span><span class="p">:</span>
             <span class="n">units</span> <span class="o">=</span> <span class="n">odict</span><span class="p">[</span><span class="s1">&#39;_units&#39;</span><span class="p">]</span>
-        <span class="c1">#--- End: if</span>
+
         <span class="n">calendar</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="k">if</span> <span class="s1">&#39;_calendar&#39;</span> <span class="ow">in</span> <span class="n">odict</span><span class="p">:</span>
             <span class="n">calendar</span> <span class="o">=</span> <span class="n">odict</span><span class="p">[</span><span class="s1">&#39;_calendar&#39;</span><span class="p">]</span>
-        <span class="c1">#--- End: if</span>
+    
         <span class="bp">self</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="n">units</span><span class="p">,</span> <span class="n">calendar</span><span class="o">=</span><span class="n">calendar</span><span class="p">)</span>
             
-     <span class="c1">#--- End: def</span>
 
     <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">x.__hash__() &lt;==&gt; hash(x)</span>
+        <span class="sd">&#39;&#39;&#39;x.__hash__() &lt;==&gt; hash(x)</span>
 
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        &#39;&#39;&#39;</span>
 <span class="c1">#        if not self:</span>
 <span class="c1">#            return hash(self.__class__)</span>
 
@@ -963,15 +978,13 @@
         <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="s1">&#39;Units&#39;</span><span class="p">,</span> 
                      <span class="bp">self</span><span class="o">.</span><span class="n">_ut_unit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rtime_jd0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rtime_calendar</span><span class="p">,</span>
                      <span class="bp">self</span><span class="o">.</span><span class="n">_rtime_tzoffset</span><span class="p">))</span>
-    <span class="c1">#--- End: def</span>
 
-    <span class="c1"># 0</span>
+    
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;x.__repr__() &lt;==&gt; repr(x)</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="s1">&#39;&lt;{0}: {1}&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-    <span class="c1">#--- End: def</span>
 
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -980,8 +993,12 @@
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">string</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_units</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">string</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_units</span><span class="p">)</span>
-
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_units</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+                <span class="n">string</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\&#39;\&#39;</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">string</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_units</span><span class="p">))</span>
+        <span class="c1">#--- End: if</span>
+                              
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calendar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">string</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;{0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_calendar</span><span class="p">))</span>
 
@@ -1142,12 +1159,12 @@
         <span class="c1">#--- End: if</span>
 
         <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span><span class="n">_ut_unit</span><span class="o">=</span><span class="n">ut_unit</span><span class="p">)</span>
-    <span class="c1">#--- End: def</span>
+
 
     <span class="k">def</span> <span class="fm">__pow__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">modulo</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The binary arithmetic operations ``**`` and ``pow``</span>
 
-<span class="sd">x.__pow__(y) &lt;==&gt; x**y</span>
+<span class="sd">    x.__pow__(y) &lt;==&gt; x**y</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="c1"># ------------------------------------------------------------</span>
@@ -1193,82 +1210,81 @@
                             <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span><span class="n">_ut_unit</span><span class="o">=</span><span class="n">ut_unit</span><span class="p">)</span>
                 <span class="k">except</span><span class="p">:</span>
                     <span class="k">pass</span>
-            <span class="c1">#--- End: if</span>
         <span class="c1">#--- End: if</span>
 
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t do </span><span class="si">%r</span><span class="s2"> ** </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">))</span>
-    <span class="c1">#--- End: def</span>
+
 
     <span class="k">def</span> <span class="fm">__isub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;x.__isub__(y) &lt;==&gt; x-=y</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span> <span class="o">-</span> <span class="n">other</span>
-    <span class="c1">#--- End def</span>
+
 
     <span class="k">def</span> <span class="fm">__iadd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;x.__iadd__(y) &lt;==&gt; x+=y</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span> <span class="o">+</span> <span class="n">other</span>
-    <span class="c1">#--- End def</span>
+
 
     <span class="k">def</span> <span class="fm">__imul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The augmented arithmetic assignment ``*=``</span>
 
-<span class="sd">x.__imul__(y) &lt;==&gt; x*=y</span>
+<span class="sd">    x.__imul__(y) &lt;==&gt; x*=y</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span> <span class="o">*</span> <span class="n">other</span>
-    <span class="c1">#--- End def</span>
+
 
     <span class="k">def</span> <span class="fm">__idiv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The augmented arithmetic assignment ``/=``</span>
 
-<span class="sd">x.__idiv__(y) &lt;==&gt; x/=y</span>
+<span class="sd">    x.__idiv__(y) &lt;==&gt; x/=y</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span> <span class="o">/</span> <span class="n">other</span>
-    <span class="c1">#--- End def</span>
+
 
     <span class="k">def</span> <span class="fm">__ipow__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The augmented arithmetic assignment ``**=``</span>
 
-<span class="sd">x.__ipow__(y) &lt;==&gt; x**=y</span>
+<span class="sd">    x.__ipow__(y) &lt;==&gt; x**=y</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span> <span class="o">**</span> <span class="n">other</span>
-    <span class="c1">#--- End def</span>
+
 
     <span class="k">def</span> <span class="fm">__rsub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The binary arithmetic operation ``-`` with reflected operands</span>
 
-<span class="sd">x.__rsub__(y) &lt;==&gt; y-x</span>
+<span class="sd">    x.__rsub__(y) &lt;==&gt; y-x</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="o">-</span><span class="bp">self</span> <span class="o">+</span> <span class="n">other</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t do {0!r} - {1!r}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="p">))</span>
-    <span class="c1">#--- End def</span>
+
 
     <span class="k">def</span> <span class="fm">__radd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The binary arithmetic operation ``+`` with reflected operands</span>
 
-<span class="sd">x.__radd__(y) &lt;==&gt; y+x</span>
+<span class="sd">    x.__radd__(y) &lt;==&gt; y+x</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span> <span class="o">+</span> <span class="n">other</span>
-    <span class="c1">#--- End def</span>
+
 
     <span class="k">def</span> <span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The binary arithmetic operation ``*`` with reflected operands</span>
 
-<span class="sd">x.__rmul__(y) &lt;==&gt; y*x</span>
+<span class="sd">    x.__rmul__(y) &lt;==&gt; y*x</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span> <span class="o">*</span> <span class="n">other</span>
-    <span class="c1">#--- End def</span>
+
 
     <span class="k">def</span> <span class="fm">__rdiv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;x.__rdiv__(y) &lt;==&gt; y/x</span>
@@ -1278,21 +1294,21 @@
             <span class="k">return</span> <span class="p">(</span><span class="bp">self</span> <span class="o">**</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">other</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t do </span><span class="si">%r</span><span class="s2"> / </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="p">))</span>
-    <span class="c1">#--- End def</span>
+
 
     <span class="k">def</span> <span class="fm">__floordiv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;x.__floordiv__(y) &lt;==&gt; x//y &lt;==&gt; x/y</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span> <span class="o">/</span> <span class="n">other</span>
-    <span class="c1">#--- End def</span>
+
 
     <span class="k">def</span> <span class="fm">__ifloordiv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;x.__ifloordiv__(y) &lt;==&gt; x//=y &lt;==&gt; x/=y</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span> <span class="o">/</span> <span class="n">other</span>
-    <span class="c1">#--- End def</span>
+
  
     <span class="k">def</span> <span class="fm">__rfloordiv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;x.__rfloordiv__(y) &lt;==&gt; y//x &lt;==&gt; y/x</span>
@@ -1302,7 +1318,7 @@
             <span class="k">return</span> <span class="p">(</span><span class="bp">self</span> <span class="o">**</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">other</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t do </span><span class="si">%r</span><span class="s2"> // </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="p">))</span>
-    <span class="c1">#--- End def</span>
+
 
  
     <span class="k">def</span> <span class="fm">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
@@ -1310,14 +1326,14 @@
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__div__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
-    <span class="c1">#--- End def</span>
+
 
     <span class="k">def</span> <span class="fm">__itruediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;x.__itruediv__(y) &lt;==&gt; x/=y</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__idiv__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
-    <span class="c1">#--- End def</span>
+
  
     <span class="k">def</span> <span class="fm">__rtruediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;x.__rtruediv__(y) &lt;==&gt; y/x</span>
@@ -1328,32 +1344,33 @@
 <span class="c1">#            return (self ** -1) * other</span>
 <span class="c1">#        except:</span>
 <span class="c1">#            raise ValueError(&quot;Can&#39;t do %r / %r&quot; % (other, self))</span>
-    <span class="c1">#--- End def</span>
+
 
     <span class="k">def</span> <span class="fm">__mod__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    &#39;&#39;&#39;</span>   
+        <span class="sd">&#39;&#39;&#39;TODO</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>   
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t do </span><span class="si">%r</span><span class="s2"> </span><span class="si">%%</span><span class="s2"> </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">))</span>
-    <span class="c1">#--- End def</span>
+
 
 
     <span class="k">def</span> <span class="fm">__neg__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The unary arithmetic operation ``-``</span>
 
-<span class="sd">x.__neg__() &lt;==&gt; -x</span>
+<span class="sd">    x.__neg__() &lt;==&gt; -x</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>
-    <span class="c1">#--- End def</span>
+
 
     <span class="k">def</span> <span class="fm">__pos__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;The unary arithmetic operation ``+``</span>
 
-<span class="sd">x.__pos__() &lt;==&gt; +x</span>
+<span class="sd">    x.__pos__() &lt;==&gt; +x</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span>
-    <span class="c1">#--- End def</span>
+
 
     <span class="c1"># ----------------------------------------------------------------</span>
     <span class="c1"># Private methods</span>
@@ -1383,6 +1400,17 @@
         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">method</span><span class="p">)(</span><span class="n">y</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
 
+    <span class="k">def</span> <span class="nf">_new_reason_notvalid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reason</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;TODO</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">_reason_notvalid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span>
+        <span class="k">if</span> <span class="n">_reason_notvalid</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span> <span class="o">=</span> <span class="n">_reason_notvalid</span><span class="o">+</span><span class="s1">&#39;; &#39;</span><span class="o">+</span><span class="n">reason</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_reason_notvalid</span> <span class="o">=</span> <span class="n">reason</span>
+
+            
     <span class="c1"># ----------------------------------------------------------------</span>
     <span class="c1"># Attributes</span>
     <span class="c1"># ----------------------------------------------------------------</span>
@@ -2003,11 +2031,11 @@
 <span class="sd">            The units to which *x* should be conformed to.</span>
 <span class="sd">    </span>
 <span class="sd">        inplace: `bool`, optional</span>
-<span class="sd">            If `True` and *x* is a numpy array then change it in</span>
-<span class="sd">            place, creating no temporary copies, with one exception:</span>
-<span class="sd">            If *x* is of integer type and the conversion is not null,</span>
-<span class="sd">            then it will not be changed inplace and the returned</span>
-<span class="sd">            conformed array will be of float type.</span>
+<span class="sd">            If True and *x* is a numpy array then change it in place,</span>
+<span class="sd">            creating no temporary copies, with one exception: If *x*</span>
+<span class="sd">            is of integer type and the conversion is not null, then it</span>
+<span class="sd">            will not be changed inplace and the returned conformed</span>
+<span class="sd">            array will be of float type.</span>
 <span class="sd">    </span>
 <span class="sd">    :Returns:</span>
 <span class="sd">    </span>
@@ -2082,7 +2110,6 @@
                 <span class="n">ut_unit2</span> <span class="o">=</span> <span class="n">to_units</span><span class="o">.</span><span class="n">_ut_unit</span>
 
                 <span class="n">convert</span> <span class="o">=</span> <span class="n">_ut_compare</span><span class="p">(</span><span class="n">ut_unit1</span><span class="p">,</span> <span class="n">ut_unit2</span><span class="p">)</span>
-            <span class="c1">#--- End: if</span>
             
             <span class="k">if</span> <span class="n">units1</span> <span class="ow">in</span> <span class="n">_months_or_years</span><span class="p">:</span>
                 <span class="n">to_units</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="s1">&#39;days since &#39;</span><span class="o">+</span><span class="n">reftime1</span><span class="p">,</span>
@@ -2177,7 +2204,6 @@
                 <span class="n">x</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">value</span>
 
             <span class="n">_cv_free</span><span class="p">(</span><span class="n">cv_converter</span><span class="p">)</span>
-        <span class="c1">#--- End: if</span>
 
         <span class="c1"># ------------------------------------------------------------</span>
         <span class="c1"># Apply an offset for reference-time units</span>
@@ -2235,7 +2261,7 @@
 <span class="sd">    :Returns:</span>
 <span class="sd">    </span>
 <span class="sd">        `bool`</span>
-<span class="sd">            True if the units are equal, False otherwise.</span>
+<span class="sd">            `True` if the units are equal, `False` otherwise.</span>
 <span class="sd">    </span>
 <span class="sd">    **Examples:**</span>
 <span class="sd">    </span>
@@ -2314,7 +2340,7 @@
 <span class="c1">#                return out</span>
 <span class="c1">#            else:</span>
 <span class="c1">#                return False</span>
-        <span class="c1">#--- End: if</span>
+<span class="c1">#        #--- End: if</span>
 <span class="c1">#        if not self.isvalid:</span>
 <span class="c1">#            if verbose:</span>
 <span class="c1">#                print(&quot;{}: {!r} is not valid&quot;.format(self.__class__.__name__, self)) # pragma: no cover</span>
@@ -2457,7 +2483,7 @@
 <span class="sd">            defining the reference-time units.</span>
 
 <span class="sd">        only_use_cftime_datetimes: `bool`, optional</span>
-<span class="sd">            If `False`, datetime.datetime objects are returned from</span>
+<span class="sd">            If False, datetime.datetime objects are returned from</span>
 <span class="sd">            `num2date` where possible; By default. dates which</span>
 <span class="sd">            subclass `cftime.datetime` are returned for all calendars.</span>
 
@@ -2535,6 +2561,7 @@
 </pre></div>
 
           </div>
+          
         </div>
       </div>
     <div class="clearer"></div>
@@ -2543,8 +2570,8 @@
       &copy;2015, David Hassell.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>
 

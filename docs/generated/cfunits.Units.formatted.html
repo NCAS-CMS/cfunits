@@ -9,10 +9,12 @@
     <title>cfunits.Units.formatted &#8212; Documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
     <script type="text/javascript" src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -29,7 +31,7 @@
     
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h3><b><a href="../index.html">cfunits 3.2.2</a></b></h3>
+<h3><b><a href="../index.html">cfunits 3.2.3</a></b></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 </ul>
@@ -87,13 +89,15 @@
       </div>
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="cfunits-units-formatted">
 <h1>cfunits.Units.formatted<a class="headerlink" href="#cfunits-units-formatted" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="cfunits.Units.formatted">
-<code class="descclassname">Units.</code><code class="descname">formatted</code><span class="sig-paren">(</span><em>names=None</em>, <em>definition=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cfunits/units.html#Units.formatted"><span class="viewcode-link">[source]</span></a><a class="reference external" href="https://github.com/NCAS-CMS/cfunits/blob/v3.2.2/cf/units.py#/home/david/cfunits/cfunits/units.py-1815"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units.formatted" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">Units.</code><code class="descname">formatted</code><span class="sig-paren">(</span><em>names=None</em>, <em>definition=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cfunits/units.html#Units.formatted"><span class="viewcode-link">[source]</span></a><a class="reference external" href="https://github.com/NCAS-CMS/cfunits/blob/v3.2.3/cf/units.py#/home/david/cfunits/cfunits/units.py-1839"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units.formatted" title="Permalink to this definition">¶</a></dt>
 <dd><p>Formats the string stored in the <a class="reference internal" href="cfunits.Units.units.html#cfunits.Units.units" title="cfunits.Units.units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">units</span></code></a> attribute in a
 standardized manner. The <a class="reference internal" href="cfunits.Units.units.html#cfunits.Units.units" title="cfunits.Units.units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">units</span></code></a> attribute is modified in place
 and its new value is returned.</p>
@@ -124,59 +128,59 @@ then <a class="reference external" href="https://docs.python.org/2.7/library/con
 </tbody>
 </table>
 <p><strong>Examples:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;W&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;W&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span>
 <span class="go">&#39;W&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span>
 <span class="go">&#39;watt&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">definition</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">definition</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span>
 <span class="go">&#39;m2.kg.s-3&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">definition</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">definition</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="go">&#39;meter^2-kilogram-second^-3&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">format</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span>
 <span class="go">&#39;W&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;dram&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;dram&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="go">&#39;1.848345703125e-06 meter^3&#39;</span>
 </pre></div>
 </div>
 <p>Formatting is also available during object initialization:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;m/s&#39;</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;m/s&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span>
 <span class="go">&#39;m.s-1&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;dram&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;dram&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span>
 <span class="go">&#39;1.848345703125e-06 m3&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;Watt&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;Watt&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span>
 <span class="go">&#39;Watt&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;Watt&#39;</span><span class="p">,</span> <span class="n">formatted</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;Watt&#39;</span><span class="p">,</span> <span class="n">formatted</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span>
 <span class="go">&#39;W&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;Watt&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;Watt&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span>
 <span class="go">&#39;watt&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;Watt&#39;</span><span class="p">,</span> <span class="n">definition</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;Watt&#39;</span><span class="p">,</span> <span class="n">definition</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span>
 <span class="go">&#39;m2.kg.s-3&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;Watt&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">definition</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;Watt&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">definition</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">units</span>
 <span class="go">&#39;meter^2-kilogram-second^-3&#39;</span>
 </pre></div>
@@ -187,6 +191,7 @@ then <a class="reference external" href="https://docs.python.org/2.7/library/con
 
 
           </div>
+          
         </div>
       </div>
     <div class="clearer"></div>
@@ -195,8 +200,8 @@ then <a class="reference external" href="https://docs.python.org/2.7/library/con
       &copy;2015, David Hassell.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="../_sources/generated/cfunits.Units.formatted.rst.txt"

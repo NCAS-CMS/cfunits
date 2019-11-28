@@ -9,10 +9,12 @@
     <title>cfunits.Units.equivalent &#8212; Documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
     <script type="text/javascript" src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -29,7 +31,7 @@
     
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h3><b><a href="../index.html">cfunits 3.2.2</a></b></h3>
+<h3><b><a href="../index.html">cfunits 3.2.3</a></b></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 </ul>
@@ -87,13 +89,15 @@
       </div>
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="cfunits-units-equivalent">
 <h1>cfunits.Units.equivalent<a class="headerlink" href="#cfunits-units-equivalent" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="cfunits.Units.equivalent">
-<code class="descclassname">Units.</code><code class="descname">equivalent</code><span class="sig-paren">(</span><em>other</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cfunits/units.html#Units.equivalent"><span class="viewcode-link">[source]</span></a><a class="reference external" href="https://github.com/NCAS-CMS/cfunits/blob/v3.2.2/cf/units.py#/home/david/cfunits/cfunits/units.py-1693"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units.equivalent" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">Units.</code><code class="descname">equivalent</code><span class="sig-paren">(</span><em>other</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cfunits/units.html#Units.equivalent"><span class="viewcode-link">[source]</span></a><a class="reference external" href="https://github.com/NCAS-CMS/cfunits/blob/v3.2.3/cf/units.py#/home/david/cfunits/cfunits/units.py-1717"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units.equivalent" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns True if numeric values in one unit are convertible to
 numeric values in the other unit.</p>
 <div class="admonition seealso">
@@ -121,23 +125,23 @@ numeric values in the other unit.</p>
 </tbody>
 </table>
 <p><strong>Examples:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;km&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">w</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">equivalent</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">equivalent</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 <span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">equivalent</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
 <span class="go">False</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;days since 2000-1-1&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;days since 2000-1-1&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;days since 2000-1-1&#39;</span><span class="p">,</span> <span class="n">calendar</span><span class="o">=</span><span class="s1">&#39;366_day&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">w</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;seconds since 1978-3-12&#39;</span><span class="p">,</span> <span class="n">calendar</span><span class="o">=</span><span class="s1">&#39;gregorian)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">equivalent</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">equivalent</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 <span class="go">False</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">equivalent</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
 <span class="go">True</span>
@@ -149,6 +153,7 @@ numeric values in the other unit.</p>
 
 
           </div>
+          
         </div>
       </div>
     <div class="clearer"></div>
@@ -157,8 +162,8 @@ numeric values in the other unit.</p>
       &copy;2015, David Hassell.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="../_sources/generated/cfunits.Units.equivalent.rst.txt"

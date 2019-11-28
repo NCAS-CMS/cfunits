@@ -9,10 +9,12 @@
     <title>cfunits.Units.conform &#8212; Documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
     <script type="text/javascript" src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -29,7 +31,7 @@
     
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h3><b><a href="../index.html">cfunits 3.2.2</a></b></h3>
+<h3><b><a href="../index.html">cfunits 3.2.3</a></b></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 </ul>
@@ -90,13 +92,15 @@
       </div>
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="cfunits-units-conform">
 <h1>cfunits.Units.conform<a class="headerlink" href="#cfunits-units-conform" title="Permalink to this headline">¶</a></h1>
 <dl class="classmethod">
 <dt id="cfunits.Units.conform">
-<em class="property">classmethod </em><code class="descclassname">Units.</code><code class="descname">conform</code><span class="sig-paren">(</span><em>x</em>, <em>from_units</em>, <em>to_units</em>, <em>inplace=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cfunits/units.html#Units.conform"><span class="viewcode-link">[source]</span></a><a class="reference external" href="https://github.com/NCAS-CMS/cfunits/blob/v3.2.2/cf/units.py#/home/david/cfunits/cfunits/units.py-1912"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units.conform" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="descclassname">Units.</code><code class="descname">conform</code><span class="sig-paren">(</span><em>x</em>, <em>from_units</em>, <em>to_units</em>, <em>inplace=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cfunits/units.html#Units.conform"><span class="viewcode-link">[source]</span></a><a class="reference external" href="https://github.com/NCAS-CMS/cfunits/blob/v3.2.3/cf/units.py#/home/david/cfunits/cfunits/units.py-1936"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units.conform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Conform values in one unit to equivalent values in another,
 compatible unit.</p>
 <p>Returns the conformed values.</p>
@@ -123,11 +127,11 @@ interpretation of the data or an error.</p>
 <dd><p class="first last">The units to which <em>x</em> should be conformed to.</p>
 </dd>
 <dt>inplace: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#bool" title="(in Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt>
-<dd><p class="first last">If <a class="reference external" href="https://docs.python.org/2.7/library/constants.html#True" title="(in Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a> and <em>x</em> is a numpy array then change it in
-place, creating no temporary copies, with one exception:
-If <em>x</em> is of integer type and the conversion is not null,
-then it will not be changed inplace and the returned
-conformed array will be of float type.</p>
+<dd><p class="first last">If True and <em>x</em> is a numpy array then change it in place,
+creating no temporary copies, with one exception: If <em>x</em>
+is of integer type and the conversion is not null, then it
+will not be changed inplace and the returned conformed
+array will be of float type.</p>
 </dd>
 </dl>
 </td>
@@ -142,23 +146,23 @@ conformed array will be of float type.</p>
 </tbody>
 </table>
 <p><strong>Examples:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="o">.</span><span class="n">conform</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;km&#39;</span><span class="p">),</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="o">.</span><span class="n">conform</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;km&#39;</span><span class="p">),</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">))</span>
 <span class="go">2000.0</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="o">.</span><span class="n">conform</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;minute&#39;</span><span class="p">),</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;second&#39;</span><span class="p">))</span>
 <span class="go">array([   0.,   60.,  120.,  180.,  240.])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="go">[ 0.  1.  2.  3.  4.]</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="o">.</span><span class="n">conform</span><span class="p">(</span><span class="n">a</span><span class="p">,</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="o">.</span><span class="n">conform</span><span class="p">(</span><span class="n">a</span><span class="p">,</span>
 <span class="go">                  Units(&#39;days since 2000-12-1&#39;),</span>
 <span class="go">                  Units(&#39;days since 2001-1-1&#39;), inplace=True)</span>
 <span class="go">array([-31., -30., -29., -28., -27.])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="go">[-31. -30. -29. -28. -27.]</span>
 </pre></div>
 </div>
@@ -168,6 +172,7 @@ conformed array will be of float type.</p>
 
 
           </div>
+          
         </div>
       </div>
     <div class="clearer"></div>
@@ -176,8 +181,8 @@ conformed array will be of float type.</p>
       &copy;2015, David Hassell.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="../_sources/generated/cfunits.Units.conform.rst.txt"
