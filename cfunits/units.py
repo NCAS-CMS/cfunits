@@ -654,33 +654,52 @@ array([-31., -30., -29., -28., -27.])
             is set.
 
         '''
-        self._isvalid = True
-        self._reason_notvalid = ''
         
         if isinstance(units, self.__class__):
             self.__dict__ = units.__dict__
             return
+
+        self._isvalid             = True
+        self._reason_notvalid     = ''
+        self._units               = units
+        self._ut_unit             = None 
+        self._isreftime           = False
+        self._calendar            = calendar       
+        self._canonical_calendar  = None
+        self._utime               = None
+        self._units_since_reftime = None
 
         # Set the calendar
         _calendar = None
         if calendar is not None:
             _calendar = _canonical_calendar.get(calendar.lower())
             if _calendar is None:
-                self._reason_notvalid = self._reason_notvalid + 'Invalid calendar={!r}'.format(
-                    calendar)
+                self._new_reason_notvalid('Invalid calendar={!r}'.format(calendar))
                 self._isvalid = False
                 _calendar = calendar
         #--- End: if
 
+#        if units is not None:
+#            try:
+#                units = units.strip()
+#            except AttributeError as error:
+#                print(units)
+#                self._isvalid = False
+#                self._reason_notvalid = self._reason_notvalid + '; '+str(error)
+#        #--- End: if
+        
         if units is not None:
             try:
                 units = units.strip()
             except AttributeError:
-                raise ValueError("Can't set unsupported unit: {!r}".format(units))
-
+                self._isvalid = False
+                self._new_reason_notvalid("Bad units type: {}".format(type(units)))
+                return
+#                raise ValueError("Can't set unsupported unit: {!r}".format(units))
+           
             unit = None
             
-            if ' since ' in units:
+            if isinstance(units, str) and ' since ' in units:
                 # --------------------------------------------------------
                 # Set a reference time unit
                 # --------------------------------------------------------
@@ -728,10 +747,10 @@ array([-31., -30., -29., -28., -27.])
                                 try:
                                     _ = Utime(_calendar, temp_unit_string)
                                 except Exception as error:
-                                    self._reason_notvalid = self._reason_notvalid + '; '+str(error)
+                                    self._new_reason_notvalid(str(error))
                                     self._isvalid = False
                             else:
-                                self._reason_notvalid = self._reason_notvalid + '; '+str(error)
+                                self._new_reason_notvalid(str(error))
                                 self._isvalid = False
                         #--- End: try
                         
@@ -753,7 +772,7 @@ array([-31., -30., -29., -28., -27.])
                     if not ut_unit:
                         ut_unit = None
                         self._isvalid = False
-                        self._reason_notvalid = "Invalid units: {!r}; Not recognised by UDUNITS".format(units)
+                        self._new_reason_notvalid("Invalid units: {!r}; Not recognised by UDUNITS".format(units))
                     else:
                         _cached_ut_unit[units] = ut_unit
                 #--- End: if
@@ -792,8 +811,7 @@ array([-31., -30., -29., -28., -27.])
             try:
                 self._utime = Utime(_canonical_calendar[calendar.lower()])
             except Exception as error:
-                self._reason_notvalid = self._reason_notvalid + 'Invalid calendar={!r}'.format(
-                    calendar)
+                self._new_reason_notvalid('Invalid calendar={!r}'.format(calendar))
                 self._isvalid = True
                 
             return
@@ -907,7 +925,7 @@ array([-31., -30., -29., -28., -27.])
             if self._units == '':
                 string.append("\'\'")
             else:
-                string.append(self._units)
+                string.append(str(self._units))
         #--- End: if
                               
         if self._calendar is not None:
@@ -1311,6 +1329,17 @@ array([-31., -30., -29., -28., -27.])
         return getattr(operator, method)(y.value, 1)
 
 
+    def _new_reason_notvalid(self, reason):
+        '''TODO
+
+        '''
+        _reason_notvalid = self._reason_notvalid
+        if _reason_notvalid:
+            self._reason_notvalid = _reason_notvalid+'; '+reason
+        else:
+            self._reason_notvalid = reason
+
+            
     # ----------------------------------------------------------------
     # Attributes
     # ----------------------------------------------------------------

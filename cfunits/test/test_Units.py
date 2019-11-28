@@ -131,8 +131,22 @@ class UnitsTest(unittest.TestCase):
         self.assertTrue(Units('m').log(1.5)   == Units('2.46630346237643 ln(re 1 m)'))    
 
 
+    def test_Units_isvalid(self):
+        self.assertTrue(Units('m').isvalid)
+        self.assertTrue(Units('days since 2019-01-01').isvalid)
+        self.assertTrue(Units('days since 2019-01-01', calendar='360_day').isvalid)
+
+        self.assertFalse(Units('qwerty').isvalid)
+        self.assertFalse(Units(1.0).isvalid)
+        self.assertFalse(Units([1.0, 'qwerty']).isvalid)
+        self.assertFalse(Units('since 2019-01-01').isvalid)
+        self.assertFalse(Units('days since 2019-01-01', calendar='qwerty').isvalid)
+        self.assertFalse(Units('since 2019-01-01', calendar='qwerty').isvalid)
+
+        
 #--- End: class
 
+        
 if __name__ == '__main__':
     print('cfunits-python version:', cfunits.__version__)
     print('cfunits-python path:'   , os.path.abspath(cfunits.__file__))

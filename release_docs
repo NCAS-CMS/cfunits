@@ -1,0 +1,43 @@
+#!/bin/bash
+
+set -x
+
+if [[ ! $1 ]] ; then 
+  echo "No version \$1 (e.g. 3.2.3)"
+  exit 1
+fi
+
+version=$1
+
+dir=$PWD/docs/$version
+if [[ $2 ]] ; then
+  if [[ $2 = "latest" ]] ; then 
+    dir=$PWD/docs
+  else
+    echo "\$2 must be latest or not set"
+    exit 2
+  fi
+fi
+
+# --------------------------------------------------------------------
+# Make the latest docs    
+# --------------------------------------------------------------------
+cd docs
+rm -fr $dir/.doctrees
+
+make html $dir
+
+# --------------------------------------------------------------------
+# Add and commit the latest
+# --------------------------------------------------------------------
+cd $dir
+git add \
+    *.html \
+    *.inv \
+    *.js \
+    _sources \
+    _static
+
+git commit -a -m "v$version documentation"
+
+set +x
