@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>cfunits 3.2.3 documentation &#8212; Documentation</title>
+    <title>cfunits python package &#8212; Documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -32,19 +32,18 @@
         <div class="sphinxsidebarwrapper">
 <h3><b><a href="#">cfunits 3.2.3</a></b></h3>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-</ul>
-<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html"><strong>Installation</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Changelog.html"><strong>Change log</strong></a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="cfunits.Units.html">cfunits.Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cfunits.Units.html"><strong>cfunits.Units</strong></a></li>
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="#">Documentation overview</a><ul>
-      <li>Next: <a href="introduction.html" title="next chapter">Introduction</a></li>
+      <li>Next: <a href="introduction.html" title="next chapter"><strong>Introduction</strong></a></li>
   </ul></li>
 </ul>
 </div>
@@ -75,31 +74,36 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="cfunits-release-documentation">
-<h1>cfunits 3.2.3 documentation<a class="headerlink" href="#cfunits-release-documentation" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-</ul>
+  <div class="section" id="cfunits-python-package">
+<h1><strong>cfunits python package</strong><a class="headerlink" href="#cfunits-python-package" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<div class="section" id="introduction">
+<h2><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p>Version 3.2.3</p>
+<p>A python interface to <a class="reference external" href="http://www.unidata.ucar.edu/software/udunits">UNIDATA’s UDUNITS-2 library</a> with CF extensions</p>
+<p>Store, combine and compare physical units and convert numeric values to different units.</p>
+<p>Units are as defined in UNIDATA’s UDUNITS-2 library, except for
+reference time units (such as <code class="docutils literal notranslate"><span class="pre">'days</span> <span class="pre">since</span> <span class="pre">2000-12-1'</span></code> in the
+<code class="docutils literal notranslate"><span class="pre">'proleptic_gregorian'</span></code> calendar), which are handled by the <a class="reference external" href="https://unidata.github.io/cftime">cftime
+python package</a>.</p>
+<p>In addition, some units are either new to, modified from, or removed
+from the standard UDUNITS-2 database in order to be more consistent
+with the <a class="reference external" href="http://cfconventions.org/">CF conventions</a>.</p>
 </div>
+<div class="section" id="contents">
+<h2><strong>Contents</strong><a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <hr class="docutils" />
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="installation.html"><strong>Installation</strong></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#python-versions"><strong>Python versions</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#pip"><strong>pip</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#source"><strong>Source</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#tests"><strong>Tests</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#dependencies"><strong>Dependencies</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#code-repository"><strong>Code repository</strong></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html"><strong>Installation</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Changelog.html"><strong>Change log</strong></a></li>
 </ul>
 </div>
-<hr class="docutils" />
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="cfunits.Units.html">cfunits.Units</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="cfunits.Units.html"><strong>cfunits.Units</strong></a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cfunits.Units.html#units-attributes">Units attributes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.calendar.html">cfunits.Units.calendar</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.isdimensionless.html">cfunits.Units.isdimensionless</a></li>
@@ -108,6 +112,7 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.ispressure.html">cfunits.Units.ispressure</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.isreftime.html">cfunits.Units.isreftime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.istime.html">cfunits.Units.istime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.isvalid.html">cfunits.Units.isvalid</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.reftime.html">cfunits.Units.reftime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.units.html">cfunits.Units.units</a></li>
 </ul>
@@ -120,6 +125,7 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.equivalent.html">cfunits.Units.equivalent</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.formatted.html">cfunits.Units.formatted</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.log.html">cfunits.Units.log</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.reason_notvalid.html">cfunits.Units.reason_notvalid</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="cfunits.Units.html#units-static-methods">Units static methods</a><ul>
@@ -131,12 +137,14 @@
 </ul>
 </div>
 </div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="index-and-search">
+<h2><strong>Index and search</strong><a class="headerlink" href="#index-and-search" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <ul class="simple">
 <li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search</span></a></li>
 </ul>
+</div>
 </div>
 
 
@@ -147,7 +155,7 @@
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2015, David Hassell.
+      &copy;2019, David Hassell.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>

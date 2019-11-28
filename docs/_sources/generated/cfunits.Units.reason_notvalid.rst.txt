@@ -1,0 +1,7 @@
+cfunits.Units.reason_notvalid
+=============================
+
+.. currentmodule:: cf
+.. default-role:: obj
+
+.. automethod:: cfunits.Units.reason_notvalid

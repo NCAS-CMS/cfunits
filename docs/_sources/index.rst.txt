@@ -6,31 +6,35 @@
 .. currentmodule:: cfunits
 .. default-role:: obj
 
-cfunits |release| documentation
-===============================
+##########################
+**cfunits python package**
+##########################
+
+----
+
+.. include:: introduction.rst
+
+**Contents**
+============
+
+----
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
    
    introduction
-
-----
-
-.. toctree::
-   :maxdepth: 3
-
    installation
-
-----
+   Changelog
 
 .. toctree::
    :maxdepth: 3
 
    cfunits.Units
 
-Indices and tables
-==================
+**Index and search**
+====================
+
+----
 
 * :ref:`genindex`
-* :ref:`search`
-
+* :ref:`Search <search>`
