@@ -121,18 +121,24 @@ The cfunits package requires:
 * `cftime <https://pypi.org/project/cftime/>`_, version 1.0.0
   or newer, and
 
-* The `UNIDATA UDUNITS library
-  <http://www.unidata.ucar.edu/software/udunits>`_, version 2 or
-  newer. This is a C library which provides support for units of
-  physical quantities.
+* `UNIDATA UDUNITS-2 library
+  <http://www.unidata.ucar.edu/software/udunits>`_, version 2.2.20 or
+  newer.
 
-  If the UDUNITS2 shared library file (`libudunits2.so.0` on GNU/Linux
-  or `libudunits2.0.dylibfile` on Mac OS) is in a non-standard
-  location then its path should be added to the `LD_LIBRARY_PATH`
-  environment variable. It may also be necessary to specify the
-  location of the `udunits2.xml` file in the `UDUNITS2_XML_PATH`
-  environment variable (although the default location is usually
-  correct).
+  UDUNITS-2 is a C library that provides support for units of physical
+  quantities. If the UDUNITS-2 shared library file
+  (``libudunits2.so.0`` on GNU/Linux or ``libudunits2.0.dylibfile`` on
+  MacOS) is in a non-standard location then its directory path should
+  be added to the ``LD_LIBRARY_PATH`` environment variable. It may
+  also be necessary to specify the location (directory path *and* file
+  name) of the ``udunits2.xml`` file in the ``UDUNITS2_XML_PATH``
+  environment variable, although the default location is usually
+  correct. For example, ``export
+  UDUNITS2_XML_PATH=/home/user/anaconda3/share/udunits/udunits2.xml``.
+  If you get an error that looks like ``assert(0 ==
+  _ut_unmap_symbol_to_unit(_ut_system, _c_char_p(b'Sv'), _UT_ASCII))``
+  then setting the ``UDUNITS2_XML_PATH`` environment variable is the
+  likely solution.
 
   UDUNITS is available via Anaconda with:
 

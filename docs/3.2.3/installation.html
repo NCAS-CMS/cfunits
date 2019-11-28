@@ -18,7 +18,7 @@
     <script type="text/javascript" src="_static/copybutton.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="cfunits.Units" href="cfunits.Units.html" />
+    <link rel="next" title="Change log" href="Changelog.html" />
     <link rel="prev" title="Introduction" href="introduction.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -32,29 +32,20 @@
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <h3><b><a href="index.html">cfunits 3.2.3</a></b></h3>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-</ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Installation</strong></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#python-versions"><strong>Python versions</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pip"><strong>pip</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#source"><strong>Source</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#tests"><strong>Tests</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dependencies"><strong>Dependencies</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#code-repository"><strong>Code repository</strong></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Installation</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Changelog.html"><strong>Change log</strong></a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="cfunits.Units.html">cfunits.Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cfunits.Units.html"><strong>cfunits.Units</strong></a></li>
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="introduction.html" title="previous chapter">Introduction</a></li>
-      <li>Next: <a href="cfunits.Units.html" title="next chapter">cfunits.Units</a></li>
+      <li>Previous: <a href="introduction.html" title="previous chapter"><strong>Introduction</strong></a></li>
+      <li>Next: <a href="Changelog.html" title="next chapter"><strong>Change log</strong></a></li>
   </ul></li>
 </ul>
 </div>
@@ -180,16 +171,22 @@ location:</p>
 <li><p class="first"><a class="reference external" href="https://pypi.org/project/cftime/">cftime</a>, version 1.0.0
 or newer, and</p>
 </li>
-<li><p class="first">The <a class="reference external" href="http://www.unidata.ucar.edu/software/udunits">UNIDATA UDUNITS library</a>, version 2 or
-newer. This is a C library which provides support for units of
-physical quantities.</p>
-<p>If the UDUNITS2 shared library file (<code class="xref py py-obj docutils literal notranslate"><span class="pre">libudunits2.so.0</span></code> on GNU/Linux
-or <code class="xref py py-obj docutils literal notranslate"><span class="pre">libudunits2.0.dylibfile</span></code> on Mac OS) is in a non-standard
-location then its path should be added to the <code class="xref py py-obj docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code>
-environment variable. It may also be necessary to specify the
-location of the <code class="xref py py-obj docutils literal notranslate"><span class="pre">udunits2.xml</span></code> file in the <code class="xref py py-obj docutils literal notranslate"><span class="pre">UDUNITS2_XML_PATH</span></code>
-environment variable (although the default location is usually
-correct).</p>
+<li><p class="first"><a class="reference external" href="http://www.unidata.ucar.edu/software/udunits">UNIDATA UDUNITS-2 library</a>, version 2.2.20 or
+newer.</p>
+<p>UDUNITS-2 is a C library that provides support for units of physical
+quantities. If the UDUNITS-2 shared library file
+(<code class="docutils literal notranslate"><span class="pre">libudunits2.so.0</span></code> on GNU/Linux or <code class="docutils literal notranslate"><span class="pre">libudunits2.0.dylibfile</span></code> on
+MacOS) is in a non-standard location then its directory path should
+be added to the <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> environment variable. It may
+also be necessary to specify the location (directory path <em>and</em> file
+name) of the <code class="docutils literal notranslate"><span class="pre">udunits2.xml</span></code> file in the <code class="docutils literal notranslate"><span class="pre">UDUNITS2_XML_PATH</span></code>
+environment variable, although the default location is usually
+correct. For example, <code class="docutils literal notranslate"><span class="pre">export</span>
+<span class="pre">UDUNITS2_XML_PATH=/home/user/anaconda3/share/udunits/udunits2.xml</span></code>.
+If you get an error that looks like <code class="docutils literal notranslate"><span class="pre">assert(0</span> <span class="pre">==</span>
+<span class="pre">_ut_unmap_symbol_to_unit(_ut_system,</span> <span class="pre">_c_char_p(b'Sv'),</span> <span class="pre">_UT_ASCII))</span></code>
+then setting the <code class="docutils literal notranslate"><span class="pre">UDUNITS2_XML_PATH</span></code> environment variable is the
+likely solution.</p>
 <p>UDUNITS is available via Anaconda with:</p>
 <div class="code bash highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">udunits2</span><span class="o">=</span><span class="mf">2.2</span><span class="o">.</span><span class="mi">20</span>
 </pre></div>
@@ -212,7 +209,7 @@ correct).</p>
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2015, David Hassell.
+      &copy;2019, David Hassell.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>

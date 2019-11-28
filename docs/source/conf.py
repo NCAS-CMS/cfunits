@@ -15,6 +15,8 @@
 import re
 import sys
 import os
+import datetime
+import cfunits
 
 def _read(fname):
     """Returns content of a file.
@@ -33,6 +35,12 @@ def _get_version():
                      _read("../../cfunits/__init__.py"),
                      re.MULTILINE).group(1)
 
+def _get_year():
+    '''
+    '''
+    return str(datetime.datetime.now().year)
+
+
 # If extensions (or modules to document with autodoc) are in another
 # directory, add these directories to sys.path here. If the directory
 # is relative to the documentation root, use os.path.abspath to make
@@ -49,7 +57,7 @@ needs_sphinx = '1.0'
 # ones.
 extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.autosummary',
-              'sphinx.ext.viewcode',
+#              'sphinx.ext.viewcode',
               'sphinx.ext.linkcode',
 #              'sphinx.ext.pngmath',
 #              'sphinx.ext.mathjax',
@@ -86,6 +94,7 @@ intersphinx_mapping = {
     'sphinx':     ('http://sphinx.pocoo.org',  None),
     'python':     ('http://docs.python.org/2.7', None),
     'numpy':      ('http://docs.scipy.org/doc/numpy', None),
+    'cftime':     ('http://unidata.github.io/cftime', None),
     }
 
 # The name of the default domain. Can also be None to disable a
@@ -106,7 +115,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Python cfunits package'
-copyright = u'2015, David Hassell'
+copyright = _get_year()+', David Hassell'
 
 # The version info for the project you're documenting, acts as
 # replacement for |version| and |release|, also used in various other
@@ -317,8 +326,10 @@ def setup(app):
 # This is a function which should return the URL to source code
 # corresponding to the object in given domain with given information.
 
-import inspect , cfunits
+import inspect
 from os.path import relpath, dirname
+
+link_release = re.search('(\d+\.\d+\.\d+)', release).groups()[0]
 
 def linkcode_resolve(domain, info):
     
@@ -330,7 +341,6 @@ def linkcode_resolve(domain, info):
     #=================================================================
 
     online_source_code = True
-#    online_source_code = False
 
     if domain != 'py':
         return None
@@ -360,16 +370,17 @@ def linkcode_resolve(domain, info):
     
     try:
         source, lineno = inspect.findsource(obj)
+        nlines = len(inspect.getsourcelines(obj)[0])
     except:
         lineno = None
     
+    fn = relpath(fn, start=dirname(cfunits.__file__))
+    
     if lineno:
-#        linespec = "#cl-%d" % (lineno + 1)
-        linespec = "#{0}-{1}".format(fn, lineno+1)
+        linespec = "#L{0}".format(lineno+1)
+        # Can add range when jump-to feature is enable in bitbucket
     else:
         linespec = ""
-    
-    fn = relpath(fn, start=dirname(cfunits.__file__))
     
     # ----------------------------------------------------------------
     # NOTE: You need to touch the .rst files to get the change in
@@ -377,12 +388,17 @@ def linkcode_resolve(domain, info):
     if online_source_code:
 #        commit = '11dddff56c31c24d86c3b83995e503989f90911b'
 #        commit = 'master'
-        commit = 'v'+release
-        print("https://github.com/NCAS-CMS/cfunits/blob/{0}/cf/{1}{2}".format(
-            commit, fn, linespec))
+#        commit = 'v'+release
+#        print("https://github.com/NCAS-CMS/cfunits/blob/{0}/cf/{1}{2}".format(
+#            commit, fn, linespec))
+#
+#        return "https://github.com/NCAS-CMS/cfunits/blob/{0}/cf/{1}{2}".format(
+#            commit, fn, linespec)
 
-        return "https://github.com/NCAS-CMS/cfunits/blob/{0}/cf/{1}{2}".format(
-            commit, fn, linespec)
+         url = "https://github.com/NCAS-CMS/cfunits/blob/v{0}/cfunits/{1}{2}".format(
+             link_release, fn, linespec)
+         print(url)
+         return url
     else:
         # Point to local source code relative to this directory
         return "../../../cfunits/%s%s" % (fn, linespec)

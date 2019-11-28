@@ -47,7 +47,7 @@ version 3.0.0
 
 **2019-05-28**
 
-* Python 2 deprecated.
+* Python 2 support deprecated.
 
 version 1.9
 -----------

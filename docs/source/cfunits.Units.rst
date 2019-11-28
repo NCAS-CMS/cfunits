@@ -1,8 +1,8 @@
 .. currentmodule:: cfunits
 .. default-role:: obj
 
-cfunits.Units
-=============
+**cfunits.Units**
+=================
 
 .. autoclass:: cfunits.Units
    :no-members:
@@ -22,6 +22,7 @@ Units attributes
    ~cfunits.Units.ispressure
    ~cfunits.Units.isreftime
    ~cfunits.Units.istime
+   ~cfunits.Units.isvalid
    ~cfunits.Units.reftime
    ~cfunits.Units.units
 
@@ -40,6 +41,8 @@ Units methods
    ~cfunits.Units.equivalent
    ~cfunits.Units.formatted
    ~cfunits.Units.log
+   ~cfunits.Units.reason_notvalid
+   
 
 Units static methods
 --------------------
