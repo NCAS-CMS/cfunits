@@ -1,3 +1,12 @@
+version 3.2.4
+-------------
+----
+
+**2020-01-07**
+
+* Use ctypes.util.find_library to get name of udunits2 library (with
+  thanks to Lance Helsten)
+
 version 3.2.3
 -------------
 ----

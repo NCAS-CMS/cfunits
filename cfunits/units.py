@@ -1,4 +1,5 @@
 import ctypes
+import ctypes.util
 import operator
 import sys
 
@@ -31,12 +32,14 @@ _ctypes_POINTER = {4: _POINTER(_c_float),
 # --------------------------------------------------------------------
 # Load the Udunits-2 library and read the database
 # --------------------------------------------------------------------
-if sys.platform == 'darwin':
-    # This has been tested on Mac OSX 10.5.8 and 10.6.8
-    _udunits = ctypes.CDLL('libudunits2.0.dylib')
-else:
-    # Linux
-    _udunits = ctypes.CDLL('libudunits2.so.0')
+#if sys.platform == 'darwin':
+#    # This has been tested on Mac OSX 10.5.8 and 10.6.8
+#    _udunits = ctypes.CDLL('libudunits2.0.dylib')
+#else:
+#    # Linux
+#    _udunits = ctypes.CDLL('libudunits2.so.0')
+_libpath = ctypes.util.find_library('udunits2')
+_udunits = ctypes.CDLL(_libpath)
 
 # Suppress "overrides prefixed-unit" messages. This also suppresses
 # all other error messages - so watch out!

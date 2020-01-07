@@ -17,8 +17,8 @@ with the CF conventions.
 
 __Conventions__  = 'CF-1.7'
 __author__       = 'David Hassell'
-__date__         = '2019-11-28'
-__version__      = '3.2.3'
+__date__         = '2020-01-07'
+__version__      = '3.2.4'
 
 from distutils.version import LooseVersion
 import platform
