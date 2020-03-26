@@ -17,18 +17,32 @@ with the CF conventions.
 
 __Conventions__  = 'CF-1.7'
 __author__       = 'David Hassell'
-__date__         = '2020-01-07'
-__version__      = '3.2.4'
+__author__     = 'David Hassell'
+__date__       = '2020-03-26'
+__version__    = '3.2.5'
+__cf_version__ = '1.8'
 
 from distutils.version import LooseVersion
 import platform
 
+try:
+    import cftime
+except ImportError as error1:
+    raise ImportError(error1)
+
 # Check the version of python
 _minimum_vn = '3.5'
 if LooseVersion(platform.python_version()) < LooseVersion(_minimum_vn):
-    raise ValueError(
+    raise RuntimeError(
         "Bad python version: cfunits requires python version {} or later. Got {}".format(
             _minimum_vn, platform.python_version()))
+
+# Check the version of cftime
+_minimum_vn = '1.1.1'
+if LooseVersion(cftime.__version__) < LooseVersion(_minimum_vn):
+    raise ValueError(
+        "Bad cftime version: cfdm requires cftime version {} or later. Got {} at {}".format(
+            _minimum_vn, cftime.__version__, cftime.__file__))
 
 from .units import Units
 

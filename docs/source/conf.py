@@ -40,6 +40,11 @@ def _get_year():
     '''
     return str(datetime.datetime.now().year)
 
+def _get_date():
+    '''Get the current calendar year.
+
+    '''
+    return str(datetime.date.today())
 
 # If extensions (or modules to document with autodoc) are in another
 # directory, add these directories to sys.path here. If the directory
@@ -115,7 +120,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Python cfunits package'
-copyright = _get_year()+', David Hassell'
+copyright = _get_year()+', NCAS | Page built on '+_get_date()
+author = 'David Hassell'
 
 # The version info for the project you're documenting, acts as
 # replacement for |version| and |release|, also used in various other
@@ -280,7 +286,7 @@ htmlhelp_basename = 'cfunitsdoc'
 # [howto/manual]).
 latex_documents = [
     ('index', 'cfunits.tex', 'cfunits Documentation',
-     'David Hassell', 'manual'),
+     'NCAS', 'manual'),
     ]
 
 # The name of an image file (relative to this directory) to place at
@@ -316,7 +322,7 @@ latex_elements = {'papersize': 'a4paper'}
 # description, authors, manual section).
 man_pages = [
     ('index', 'cfunits', 'cfunits Documentation',
-     'David Hassell', 1)
+     'NCAS', 1)
     ]
 
 # Set up copybutton

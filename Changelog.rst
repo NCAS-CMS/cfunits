@@ -1,3 +1,13 @@
+version 3.2.5
+-------------
+----
+
+**2020-03-26**
+
+* Check that the udunits2 library exists (with thanks to Gareth
+  Jones).
+* Changed minimum cftime dependency to version 1.1.1.
+
 version 3.2.4
 -------------
 ----

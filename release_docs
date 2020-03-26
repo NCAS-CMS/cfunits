@@ -3,41 +3,50 @@
 set -x
 
 if [[ ! $1 ]] ; then 
-  echo "No version \$1 (e.g. 3.2.3)"
+  echo "No version \$1 (e.g. 3.2.5)"
   exit 1
 fi
 
 version=$1
 
-dir=$PWD/docs/$version
-if [[ $2 ]] ; then
-  if [[ $2 = "latest" ]] ; then 
-    dir=$PWD/docs
-  else
-    echo "\$2 must be latest or not set"
-    exit 2
-  fi
+if [[ $2 = "latest" ]] ; then 
+  dir=$PWD/docs
+elif [[ $2 = "dev" ]] ; then
+  # For testing: creates separate dir and does not (git) commit
+  mkdir -p $PWD/docs/dev/_downloads
+  dir=$PWD/docs/dev
+elif [[ $2 = "archive" ]] ; then
+  # For testing: creates separate dir and does not (git) commit
+  dir=$PWD/docs/$version
+else
+  echo "\$2 must be 'latest', 'dev' or 'archive'"
+  exit 2
 fi
 
 # --------------------------------------------------------------------
 # Make the latest docs    
 # --------------------------------------------------------------------
 cd docs
-rm -fr $dir/.doctrees
+if [[ $2 = "latest" ]] || [[ $2 = "archive" ]] ; then
+  rm -fr $dir/.doctrees
+fi
 
 make html $dir
 
 # --------------------------------------------------------------------
 # Add and commit the latest
 # --------------------------------------------------------------------
-cd $dir
-git add \
-    *.html \
-    *.inv \
-    *.js \
-    _sources \
-    _static
-
-git commit -a -m "v$version documentation"
+if [[ $2 = "latest" ]] || [[ $2 = "archive" ]] ; then
+  echo "d2=$2"
+  cd $dir
+  git add \
+      *.html \
+      *.inv \
+      *.js \
+      _sources \
+      _static
+  
+  git commit -a -m "v$version $2 documentation"
+fi
 
 set +x

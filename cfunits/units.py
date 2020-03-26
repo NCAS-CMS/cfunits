@@ -39,6 +39,10 @@ _ctypes_POINTER = {4: _POINTER(_c_float),
 #    # Linux
 #    _udunits = ctypes.CDLL('libudunits2.so.0')
 _libpath = ctypes.util.find_library('udunits2')
+if _libpath is None:
+    raise FileNotFoundError(
+        "cfunits requires UNIDATA UDUNITS-2. Can't find the 'udunits2' library.")
+
 _udunits = ctypes.CDLL(_libpath)
 
 # Suppress "overrides prefixed-unit" messages. This also suppresses
