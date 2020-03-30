@@ -44,7 +44,8 @@ if [[ $2 = "latest" ]] || [[ $2 = "archive" ]] ; then
       *.inv \
       *.js \
       _sources \
-      _static
+      _static \
+      _templates
   
   git commit -a -m "v$version $2 documentation"
 fi
