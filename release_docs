@@ -13,7 +13,7 @@ if [[ $2 = "latest" ]] ; then
   dir=$PWD/docs
 elif [[ $2 = "dev" ]] ; then
   # For testing: creates separate dir and does not (git) commit
-  mkdir -p $PWD/docs/dev/_downloads
+#  mkdir -p $PWD/docs/dev/_downloads
   dir=$PWD/docs/dev
 elif [[ $2 = "archive" ]] ; then
   # For testing: creates separate dir and does not (git) commit
