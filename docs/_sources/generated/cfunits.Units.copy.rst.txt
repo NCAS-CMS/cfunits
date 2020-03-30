@@ -1,7 +1,7 @@
 cfunits.Units.copy
 ==================
 
-.. currentmodule:: cf
+.. currentmodule:: cfdm
 .. default-role:: obj
 
 .. automethod:: cfunits.Units.copy

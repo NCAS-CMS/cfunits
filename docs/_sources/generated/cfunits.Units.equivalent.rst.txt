@@ -1,7 +1,7 @@
 cfunits.Units.equivalent
 ========================
 
-.. currentmodule:: cf
+.. currentmodule:: cfdm
 .. default-role:: obj
 
 .. automethod:: cfunits.Units.equivalent

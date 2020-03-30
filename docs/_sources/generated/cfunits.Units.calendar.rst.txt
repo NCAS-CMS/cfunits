@@ -1,7 +1,7 @@
 cfunits.Units.calendar
 ======================
 
-.. currentmodule:: cf
+.. currentmodule:: cfdm
 .. default-role:: obj
 
 .. autoattribute:: cfunits.Units.calendar

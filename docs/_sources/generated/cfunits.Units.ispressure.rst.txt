@@ -1,7 +1,7 @@
 cfunits.Units.ispressure
 ========================
 
-.. currentmodule:: cf
+.. currentmodule:: cfdm
 .. default-role:: obj
 
 .. autoattribute:: cfunits.Units.ispressure

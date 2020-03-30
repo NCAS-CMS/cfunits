@@ -1,7 +1,7 @@
 cfunits.Units.isvalid
 =====================
 
-.. currentmodule:: cf
+.. currentmodule:: cfdm
 .. default-role:: obj
 
 .. autoattribute:: cfunits.Units.isvalid

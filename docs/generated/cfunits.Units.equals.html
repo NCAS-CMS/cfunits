@@ -8,16 +8,20 @@
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/clipboard.min.js"></script>
     <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <script type="text/javascript">var copybuttonSkipText = '>>> ';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="cfunits.Units.equivalent" href="cfunits.Units.equivalent.html" />
-    <link rel="prev" title="cfunits.Units.dump" href="cfunits.Units.dump.html" />
+    <link rel="prev" title="cfunits.Units.copy" href="cfunits.Units.copy.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -29,26 +33,48 @@
     
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h3><b><a href="../index.html">cfunits 3.2.5</a></b></h3>
+
+
+
+<h1 class="logo"><a href="../index.html">cfdm 3.2.5</a></h1>
+
+
+
+<p class="blurb">A Python interface to the UDUNITS-2 library with CF extensions</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=NCAS-CMS&repo=cfunits&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html"><strong>Introduction</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html"><strong>Installation</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html"><strong>Older releases</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Changelog.html"><strong>Change log</strong></a></li>
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../cfunits.Units.html"><strong>cfunits.Units</strong></a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../cfunits.Units.html#units-attributes">Units attributes</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../cfunits.Units.html#units-methods">Units methods</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="cfunits.Units.conform.html">cfunits.Units.conform</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cfunits.Units.copy.html">cfunits.Units.copy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cfunits.Units.dump.html">cfunits.Units.dump</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">cfunits.Units.equals</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cfunits.Units.equivalent.html">cfunits.Units.equivalent</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cfunits.Units.formatted.html">cfunits.Units.formatted</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cfunits.Units.log.html">cfunits.Units.log</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cfunits.Units.reason_notvalid.html">cfunits.Units.reason_notvalid</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../cfunits.Units.html#units-methods">Units methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cfunits.Units.html#units-static-methods">Units static methods</a></li>
 </ul>
 </li>
@@ -58,7 +84,7 @@
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="../cfunits.Units.html"><strong>cfunits.Units</strong></a><ul>
-      <li>Previous: <a href="cfunits.Units.dump.html" title="previous chapter">cfunits.Units.dump</a></li>
+      <li>Previous: <a href="cfunits.Units.copy.html" title="previous chapter">cfunits.Units.copy</a></li>
       <li>Next: <a href="cfunits.Units.equivalent.html" title="next chapter">cfunits.Units.equivalent</a></li>
   </ul></li>
   </ul></li>
@@ -71,16 +97,6 @@
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -110,7 +126,7 @@ conversion is a scale factor of 1.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><a class="reference external" href="https://docs.python.org/2.7/library/functions.html#bool" title="(in Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a></dt><dd><p><a class="reference external" href="https://docs.python.org/2.7/library/constants.html#True" title="(in Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a> if the units are equal, <a class="reference external" href="https://docs.python.org/2.7/library/constants.html#False" title="(in Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a> otherwise.</p>
+<dt><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a></dt><dd><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a> if the units are equal, <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a> otherwise.</p>
 </dd>
 </dl>
 </dd>
@@ -155,7 +171,7 @@ conversion is a scale factor of 1.</p>
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2020, NCAS | Page built on 2020-03-26.
+      &copy;2020, NCAS | Page built on 2020-03-30.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>

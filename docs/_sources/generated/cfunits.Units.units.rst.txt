@@ -1,7 +1,7 @@
 cfunits.Units.units
 ===================
 
-.. currentmodule:: cf
+.. currentmodule:: cfdm
 .. default-role:: obj
 
 .. autoattribute:: cfunits.Units.units
