@@ -1,7 +1,7 @@
 cfunits.Units.islatitude
 ========================
 
-.. currentmodule:: cf
+.. currentmodule:: cfdm
 .. default-role:: obj
 
 .. autoattribute:: cfunits.Units.islatitude

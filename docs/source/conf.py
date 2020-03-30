@@ -55,7 +55,7 @@ sys.path.insert(0, os.path.abspath('../..'))
 # -- General configuration ----------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
-needs_sphinx = '1.0'
+needs_sphinx = '2.3.1'
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
@@ -67,9 +67,11 @@ extensions = ['sphinx.ext.autodoc',
 #              'sphinx.ext.pngmath',
 #              'sphinx.ext.mathjax',
               'sphinx.ext.graphviz',
-              'sphinx.ext.inheritance_diagram',
+#              'sphinx.ext.inheritance_diagram',
               'sphinx.ext.intersphinx',
               'sphinx.ext.doctest',
+              'sphinx.ext.githubpages',
+              'sphinx_copybutton',
               ]
 
 # Boolean indicating whether to scan all found documents for
@@ -81,9 +83,9 @@ autosummary_generate = True
 # and inserted.
 autoclass_content = 'both'
 
-inheritance_graph_attrs = {'rankdir': "TB",
-                           'clusterrank': 'local'}
-inheritance_node_attrs  = {'style': 'filled'}
+#inheritance_graph_attrs = {'rankdir': "TB",
+#                           'clusterrank': 'local'}
+#inheritance_node_attrs  = {'style': 'filled'}
 
 # This value selects how automatically documented members are sorted
 # (http://sphinx-doc.org/latest/ext/autodoc.html)
@@ -92,12 +94,15 @@ autodoc_member_order = 'groupwise'
 # This value is a list of autodoc directive flags that should be
 # automatically applied to all autodoc
 # directives. (http://sphinx-doc.org/latest/ext/autodoc.html)
-autodoc_default_flags = ['members', 'inherited-members', 'show-inheritance']
+autodoc_default_options = {'members': True,
+                           'inherited-members': True,
+                           'show-inheritance': True,
+}
 
-intersphinx_cache_limit = 10     # days to keep the cached inventories
+intersphinx_cache_limit = 5     # days to keep the cached inventories
 intersphinx_mapping = {
     'sphinx':     ('http://sphinx.pocoo.org',  None),
-    'python':     ('http://docs.python.org/2.7', None),
+    'python':     ('http://docs.python.org/3', None),
     'numpy':      ('http://docs.scipy.org/doc/numpy', None),
     'cftime':     ('http://unidata.github.io/cftime', None),
     }
@@ -107,7 +112,8 @@ intersphinx_mapping = {
 #primary_domain = 'cfunits'
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates', '../_templates', '../../_templates']
+#templates_path = ['_templates', '../_templates', '../../_templates']
+templates_path = ['../_templates']
 
 # The suffix of source filenames.
 source_suffix = '.rst'
@@ -159,7 +165,7 @@ add_module_names = True
 
 # If true, sectionauthor and moduleauthor directives will be shown in
 # the output. They are ignored by default.
-#show_authors = False
+show_authors = True # False
 
 # The name of the Pygments (syntax highlighting) style to use.
 #pygments_style = 'sphinx'
@@ -178,24 +184,30 @@ highlight_language = 'python'
 #html_theme = 'default'
 html_theme = 'alabaster' #'default' #'haiku' #'default'
 
-#/home/opt-user/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/Sphinx-1.2.2-py2.7.egg/sphinx/themes
-
 # Theme options are theme-specific and customize the look and feel of
 # a theme further.  For a list of options available for each theme,
 # see the documentation.
 html_theme_options = {
     "show_related"    : 'true',
-    "sidebar_collapse": 'false',
-    'fixed_sidebar': 'true',
-    'page_width': '85%',
-    'seealso_bg'     : 'transparent',
-    'seealso_border' : 'transparent',
-    'shadow'      : 'false',
-    'show_powered_by' : 'true',
+    "sidebar_collapse": 'true',
+    'fixed_sidebar'   : 'true',
+    'page_width'      : '85%',
+    'seealso_bg'      : 'transparent',
+    'seealso_border'  : 'transparent',
+    'shadow'          : 'false',
+     'show_powered_by': 'true',
     'font_size'       : '13pt',
     'code_font_size'  : '10pt',
-    "font_family"     : 'Arial',
+    'font_family'     : 'Arial',
     'head_font_family': 'Arial',
+    'link_hover'      : '#6b0000',
+    'github_button'   : 'true',
+    'github_type'     : 'star',
+    'github_repo'     : 'cfunits',
+    'github_user'     : 'NCAS-CMS',
+    'pre_bg'          : '#ecf2f9',
+    'code_bg'         : '#ecf2f9',
+    'description'     : 'A Python interface to the UDUNITS-2 library with CF extensions',
 }
 
 # The name for this set of Sphinx documents.  If None, it defaults to
@@ -231,10 +243,12 @@ html_use_smartypants = True
 
 # Custom sidebar templates, maps document names to template names.
 #html_sidebars = {'**': ['my_con.html', 'globaltoc.html', 'sourcelink.html']}
-html_sidebars = { '**': ['globaltoc.html',
+html_sidebars = { '**': ['about.html',
+                         'searchbox.html',
+                         'globaltoc.html',
                          'relations.html',
                          'sourcelink.html',
-                         'searchbox.html']
+                         ]
 }
 
 # Additional templates that should be rendered to pages, maps page
@@ -392,15 +406,6 @@ def linkcode_resolve(domain, info):
     # NOTE: You need to touch the .rst files to get the change in
     # ----------------------------------------------------------------
     if online_source_code:
-#        commit = '11dddff56c31c24d86c3b83995e503989f90911b'
-#        commit = 'master'
-#        commit = 'v'+release
-#        print("https://github.com/NCAS-CMS/cfunits/blob/{0}/cf/{1}{2}".format(
-#            commit, fn, linespec))
-#
-#        return "https://github.com/NCAS-CMS/cfunits/blob/{0}/cf/{1}{2}".format(
-#            commit, fn, linespec)
-
          url = "https://github.com/NCAS-CMS/cfunits/blob/v{0}/cfunits/{1}{2}".format(
              link_release, fn, linespec)
          print(url)

@@ -1,7 +1,7 @@
 cfunits.Units.islongitude
 =========================
 
-.. currentmodule:: cf
+.. currentmodule:: cfdm
 .. default-role:: obj
 
 .. autoattribute:: cfunits.Units.islongitude

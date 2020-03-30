@@ -1,7 +1,7 @@
 cfunits.Units.log
 =================
 
-.. currentmodule:: cf
+.. currentmodule:: cfdm
 .. default-role:: obj
 
 .. automethod:: cfunits.Units.log
