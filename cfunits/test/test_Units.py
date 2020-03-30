@@ -143,13 +143,12 @@ class UnitsTest(unittest.TestCase):
         self.assertFalse(Units('days since 2019-01-01', calendar='qwerty').isvalid)
         self.assertFalse(Units('since 2019-01-01', calendar='qwerty').isvalid)
 
-        
-#--- End: class
+# --- End: class
 
         
 if __name__ == '__main__':
-    print('cfunits-python version:', cfunits.__version__)
-    print('cfunits-python path:'   , os.path.abspath(cfunits.__file__))
+    print('cfunits version:', cfunits.__version__)
+    print('cfunits path:'   , os.path.abspath(cfunits.__file__))
     print('')
     unittest.main(verbosity=2)
 
