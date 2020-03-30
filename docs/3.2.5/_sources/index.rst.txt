@@ -1,14 +1,9 @@
-.. cfunits-python documentation master file, created by
-   sphinx-quickstart on Wed Aug 3 16:28:25 2011.  You can adapt this
-   file completely to your liking, but it should at least contain the
-   root `toctree` directive.
-
 .. currentmodule:: cfunits
 .. default-role:: obj
 
-##########################
-**cfunits python package**
-##########################
+###################
+**cfunits package**
+###################
 
 ----
 
@@ -24,10 +19,11 @@
    
    introduction
    installation
+   releases
    Changelog
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
 
    cfunits.Units
 

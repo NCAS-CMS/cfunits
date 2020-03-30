@@ -1,7 +1,7 @@
 cfunits.Units.isreftime
 =======================
 
-.. currentmodule:: cf
+.. currentmodule:: cfdm
 .. default-role:: obj
 
 .. autoattribute:: cfunits.Units.isreftime

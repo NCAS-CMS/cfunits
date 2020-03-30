@@ -8,12 +8,16 @@
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/clipboard.min.js"></script>
     <script type="text/javascript" src="_static/copybutton.js"></script>
+    <script type="text/javascript" src="_static/copybutton.js"></script>
+    <script type="text/javascript">var copybuttonSkipText = '>>> ';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="cfunits.Units.calendar" href="generated/cfunits.Units.calendar.html" />
@@ -29,42 +33,49 @@
     
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h3><b><a href="index.html">cfunits 3.2.5</a></b></h3>
+
+
+
+<h1 class="logo"><a href="index.html">cfdm 3.2.5</a></h1>
+
+
+
+<p class="blurb">A Python interface to the UDUNITS-2 library with CF extensions</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=NCAS-CMS&repo=cfunits&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html"><strong>Installation</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html"><strong>Older releases</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="Changelog.html"><strong>Change log</strong></a></li>
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>cfunits.Units</strong></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#units-attributes">Units attributes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.calendar.html">cfunits.Units.calendar</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.isdimensionless.html">cfunits.Units.isdimensionless</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.islatitude.html">cfunits.Units.islatitude</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.islongitude.html">cfunits.Units.islongitude</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.ispressure.html">cfunits.Units.ispressure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.isreftime.html">cfunits.Units.isreftime</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.istime.html">cfunits.Units.istime</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.isvalid.html">cfunits.Units.isvalid</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.reftime.html">cfunits.Units.reftime</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.units.html">cfunits.Units.units</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#units-methods">Units methods</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.conform.html">cfunits.Units.conform</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.copy.html">cfunits.Units.copy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.dump.html">cfunits.Units.dump</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.equals.html">cfunits.Units.equals</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.equivalent.html">cfunits.Units.equivalent</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.formatted.html">cfunits.Units.formatted</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.log.html">cfunits.Units.log</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.reason_notvalid.html">cfunits.Units.reason_notvalid</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#units-static-methods">Units static methods</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="generated/cfunits.Units.conform.html">cfunits.Units.conform</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#units-attributes">Units attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#units-methods">Units methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#units-static-methods">Units static methods</a></li>
 </ul>
 </li>
 </ul>
@@ -84,16 +95,6 @@
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="documentwrapper">
@@ -107,7 +108,7 @@
 <dl class="class">
 <dt id="cfunits.Units">
 <em class="property">class </em><code class="sig-prename descclassname">cfunits.</code><code class="sig-name descname">Units</code><span class="sig-paren">(</span><em class="sig-param">units=None</em>, <em class="sig-param">calendar=None</em>, <em class="sig-param">formatted=False</em>, <em class="sig-param">names=False</em>, <em class="sig-param">definition=False</em>, <em class="sig-param">_ut_unit=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/NCAS-CMS/cfunits/blob/v3.2.5/cfunits/units.py#L440"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Store, combine and compare physical units and convert numeric values
 to different units.</p>
 <p>Units are as defined in UNIDATA’s Udunits-2 package, with a few
@@ -333,20 +334,20 @@ place, without any copying overheads:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt>units: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#str" title="(in Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="#cfunits.Units" title="cfunits.Units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Units</span></code></a>, optional</dt><dd><p>Set the new units from this string.</p>
+<dt>units: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="#cfunits.Units" title="cfunits.Units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Units</span></code></a>, optional</dt><dd><p>Set the new units from this string.</p>
 </dd>
-<dt>calendar: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#str" title="(in Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional</dt><dd><p>Set the calendar for reference time units.</p>
+<dt>calendar: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional</dt><dd><p>Set the calendar for reference time units.</p>
 </dd>
-<dt>formatted: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#bool" title="(in Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>Format the string representation of the units in a
+<dt>formatted: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>Format the string representation of the units in a
 standardized manner. See the <a class="reference internal" href="generated/cfunits.Units.formatted.html#cfunits.Units.formatted" title="cfunits.Units.formatted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">formatted</span></code></a> method.</p>
 </dd>
-<dt>names: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#bool" title="(in Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>Format the string representation of the units using names
-instead of symbols. See the <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#format" title="(in Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">format</span></code></a> method.</p>
+<dt>names: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>Format the string representation of the units using names
+instead of symbols. See the <a class="reference external" href="https://docs.python.org/3/library/functions.html#format" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">format</span></code></a> method.</p>
 </dd>
-<dt>definition: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#bool" title="(in Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>Format the string representation of the units using basic
-units. See the <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#format" title="(in Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">format</span></code></a> method.</p>
+<dt>definition: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>Format the string representation of the units using basic
+units. See the <a class="reference external" href="https://docs.python.org/3/library/functions.html#format" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">format</span></code></a> method.</p>
 </dd>
-<dt>_ut_unit: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#int" title="(in Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, optional</dt><dd><p>Set the new units from this Udunits binary unit
+<dt>_ut_unit: <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, optional</dt><dd><p>Set the new units from this Udunits binary unit
 representation. This should be an integer returned by a
 call to <code class="xref py py-obj docutils literal notranslate"><span class="pre">ut_parse</span></code> function of Udunits. Ignored if <a class="reference internal" href="generated/cfunits.Units.units.html#cfunits.Units.units" title="cfunits.Units.units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">units</span></code></a>
 is set.</p>
@@ -388,10 +389,13 @@ is set.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.isvalid.html#cfunits.Units.isvalid" title="cfunits.Units.isvalid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">isvalid</span></code></a></p></td>
 <td><p>Whether the units are valid.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.reftime.html#cfunits.Units.reftime" title="cfunits.Units.reftime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reftime</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.reason_notvalid.html#cfunits.Units.reason_notvalid" title="cfunits.Units.reason_notvalid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reason_notvalid</span></code></a></p></td>
+<td><p>The reason for invalid units.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.reftime.html#cfunits.Units.reftime" title="cfunits.Units.reftime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reftime</span></code></a></p></td>
 <td><p>The reference date-time of reference time units.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.units.html#cfunits.Units.units" title="cfunits.Units.units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">units</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.units.html#cfunits.Units.units" title="cfunits.Units.units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">units</span></code></a></p></td>
 <td><p>The units.</p></td>
 </tr>
 </tbody>
@@ -426,9 +430,6 @@ is set.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.log.html#cfunits.Units.log" title="cfunits.Units.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code></a></p></td>
 <td><p>Return the logarithmic unit corresponding to the given logarithmic base.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.reason_notvalid.html#cfunits.Units.reason_notvalid" title="cfunits.Units.reason_notvalid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reason_notvalid</span></code></a></p></td>
-<td><p>The reason for invalid units.</p></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -456,7 +457,7 @@ is set.</p>
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2020, NCAS | Page built on 2020-03-26.
+      &copy;2020, NCAS | Page built on 2020-03-30.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>

@@ -1,7 +1,7 @@
 cfunits.Units.isdimensionless
 =============================
 
-.. currentmodule:: cf
+.. currentmodule:: cfdm
 .. default-role:: obj
 
 .. autoattribute:: cfunits.Units.isdimensionless

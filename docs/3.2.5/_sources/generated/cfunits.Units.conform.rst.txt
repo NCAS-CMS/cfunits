@@ -1,7 +1,7 @@
 cfunits.Units.conform
 =====================
 
-.. currentmodule:: cf
+.. currentmodule:: cfdm
 .. default-role:: obj
 
 .. automethod:: cfunits.Units.conform
