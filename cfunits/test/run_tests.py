@@ -2,6 +2,7 @@ from __future__ import print_function
 
 import unittest
 import os
+from random import choice, shuffle
 import sys
 
 import cftime
@@ -11,9 +12,25 @@ import cfunits
 
 from platform import system, platform, python_version
 
+
+def randomise_test_order(*_args):
+    '''Return a random choice from 1 or -1.
+
+    When set as the test loader method for standard (merge)sort comparison
+    to order all methods in a test case (see 'sortTestMethodsUsing'), ensures
+    they run in a (semi-)random order, meaning implicit reliance on setup or
+    state, i.e. test dependencies, should become evident over repeated runs.
+    '''
+    return choice([1, -1])
+
+
+test_loader = unittest.TestLoader
+# Randomise the order to run the specific test_Units_* methods
+test_loader.sortTestMethodsUsing = randomise_test_order
+
 # Build the test suite from the tests found in the test files.
 testsuite = unittest.TestSuite()
-testsuite.addTests(unittest.TestLoader().discover('.', pattern='test_*.py'))
+testsuite.addTests(test_loader().discover('.', pattern='test_*.py'))
 
 # Run the test suite.
 def run_test_suite(verbosity=2):
