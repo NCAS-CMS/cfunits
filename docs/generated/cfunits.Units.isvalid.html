@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>cfunits.Units.calendar &#8212; Documentation</title>
+    <title>cfunits.Units.isvalid &#8212; Documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -20,8 +20,8 @@
     <script type="text/javascript" src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="cfunits.Units.isdimensionless" href="cfunits.Units.isdimensionless.html" />
-    <link rel="prev" title="cfunits.Units" href="../cfunits.Units.html" />
+    <link rel="next" title="cfunits.Units.reason_notvalid" href="cfunits.Units.reason_notvalid.html" />
+    <link rel="prev" title="cfunits.Units.istime" href="cfunits.Units.istime.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -84,8 +84,8 @@
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="../cfunits.Units.html"><strong>cfunits.Units</strong></a><ul>
-      <li>Previous: <a href="../cfunits.Units.html" title="previous chapter"><strong>cfunits.Units</strong></a></li>
-      <li>Next: <a href="cfunits.Units.isdimensionless.html" title="next chapter">cfunits.Units.isdimensionless</a></li>
+      <li>Previous: <a href="cfunits.Units.istime.html" title="previous chapter">cfunits.Units.istime</a></li>
+      <li>Next: <a href="cfunits.Units.reason_notvalid.html" title="next chapter">cfunits.Units.reason_notvalid</a></li>
   </ul></li>
   </ul></li>
 </ul>
@@ -93,7 +93,7 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/generated/cfunits.Units.calendar.rst.txt"
+      <li><a href="../_sources/generated/cfunits.Units.isvalid.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -105,26 +105,36 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="cfunits-units-calendar">
-<h1>cfunits.Units.calendar<a class="headerlink" href="#cfunits-units-calendar" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="cfunits-units-isvalid">
+<h1>cfunits.Units.isvalid<a class="headerlink" href="#cfunits-units-isvalid" title="Permalink to this headline">¶</a></h1>
 <dl class="attribute">
-<dt id="cfunits.Units.calendar">
-<code class="sig-prename descclassname">Units.</code><code class="sig-name descname">calendar</code><a class="headerlink" href="#cfunits.Units.calendar" title="Permalink to this definition">¶</a></dt>
-<dd><p>The calendar for reference time units.</p>
-<p>May be any string allowed by the calendar CF property.</p>
-<p>If it is unset then the default CF calendar is assumed when
-required.</p>
+<dt id="cfunits.Units.isvalid">
+<code class="sig-prename descclassname">Units.</code><code class="sig-name descname">isvalid</code><a class="headerlink" href="#cfunits.Units.isvalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the units are valid.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="cfunits.Units.units.html#cfunits.Units.units" title="cfunits.Units.units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">units</span></code></a></p>
+<p><a class="reference internal" href="cfunits.Units.reason_notvalid.html#cfunits.Units.reason_notvalid" title="cfunits.Units.reason_notvalid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reason_notvalid</span></code></a></p>
 </div>
 <p><strong>Examples:</strong></p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="p">(</span><span class="n">calendar</span><span class="o">=</span><span class="s1">&#39;365_day&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">calendar</span>
-<span class="go">&#39;365_day&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="p">(</span><span class="s1">&#39;days since 2001-1-1&#39;</span><span class="p">,</span> <span class="n">calendar</span><span class="o">=</span><span class="s1">&#39;noleap&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">calendar</span>
-<span class="go">&#39;noleap&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="p">(</span><span class="s1">&#39;days since 2001-1-1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">calendar</span>
-<span class="go">AttributeError: Units has no attribute &#39;calendar&#39;</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;km&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span> <span class="n">u</span><span class="o">.</span><span class="n">isvalid</span>                                                               
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">reason_notvalid</span>                                                       
+<span class="go">&#39;&#39;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;Bad Units&#39;</span><span class="p">)</span>                                                 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">isvalid</span>                                                               
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">reason_notvalid</span>                                                       
+<span class="go">&quot;Invalid units: &#39;Bad Units&#39;; Not recognised by UDUNITS&quot;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="n">days</span> <span class="n">since</span> <span class="mi">2000</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="s1">&#39;, calendar=&#39;</span><span class="n">Bad</span> <span class="n">Calendar</span><span class="s1">&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span> <span class="n">u</span><span class="o">.</span><span class="n">isvalid</span>                                                               
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">reason_notvalid</span>                                                       
+<span class="go">&quot;Invalid calendar=&#39;Bad Calendar&#39;; calendar must be one of [&#39;standard&#39;, &#39;gregorian&#39;, &#39;proleptic_gregorian&#39;, &#39;noleap&#39;, &#39;julian&#39;, &#39;all_leap&#39;, &#39;365_day&#39;, &#39;366_day&#39;, &#39;360_day&#39;], got &#39;bad calendar&#39;&quot;</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -146,7 +156,7 @@ required.</p>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="../_sources/generated/cfunits.Units.calendar.rst.txt"
+      <a href="../_sources/generated/cfunits.Units.isvalid.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
