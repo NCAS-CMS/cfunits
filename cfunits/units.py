@@ -1943,14 +1943,14 @@ class Units():
         # --- End: if
 
         if not from_units.equivalent(to_units):
-            raise ValueError("Units are not convertible: {!r}, {1r}".format(
+            raise ValueError("Units are not convertible: {!r}, {!r}".format(
                 from_units, to_units))
 
         ut_unit1 = from_units._ut_unit
         ut_unit2 = to_units._ut_unit
 
         if ut_unit1 is None or ut_unit2 is None:
-            raise ValueError("Units are not convertible: {!r}, {1r}".format(
+            raise ValueError("Units are not convertible: {!r}, {!r}".format(
                 from_units, to_units))
 
         convert = _ut_compare(ut_unit1, ut_unit2)

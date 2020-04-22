@@ -57,6 +57,12 @@ class UnitsTest(unittest.TestCase):
         self.assertTrue(Units('days since 2000-1-1', calendar='all_leap').equivalent(Units('d since 2000-1-1 0:0', calendar='366_day')))
         self.assertTrue(Units('days since 2000-1-1', calendar='all_leap').equivalent(Units('h since 1234-1-1 0:0', calendar='366_day')))    
 
+    def test_Units_conform(self):
+        self.assertTrue(Units.conform(0.5, Units('km'), Units('m')) == 500)
+        self.assertTrue(
+            Units.conform(360, Units('second'), Units('minute')) == 6)
+        with self.assertRaises(ValueError):
+            Units.conform(1, Units('m'), Units('second'))
 
     def test_Units_BINARY_AND_UNARY_OPERATORS(self):
         self.assertTrue((Units('m')*2)    ==Units('2m'))
