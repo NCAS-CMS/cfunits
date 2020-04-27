@@ -682,7 +682,8 @@ class Units():
         if calendar is not None:
             _calendar = _canonical_calendar.get(calendar.lower())
             if _calendar is None:
-                self._new_reason_notvalid('Invalid calendar={!r}'.format(calendar))
+                self._new_reason_notvalid(
+                    "Invalid calendar={!r}".format(calendar))
                 self._isvalid = False
                 _calendar = calendar
         # --- End: if
@@ -692,9 +693,9 @@ class Units():
                 units = units.strip()
             except AttributeError:
                 self._isvalid = False
-                self._new_reason_notvalid("Bad units type: {}".format(type(units)))
+                self._new_reason_notvalid(
+                    "Bad units type: {}".format(type(units)))
                 return
-#                raise ValueError("Can't set unsupported unit: {!r}".format(units))
            
             unit = None
             
@@ -771,7 +772,9 @@ class Units():
                     if not ut_unit:
                         ut_unit = None
                         self._isvalid = False
-                        self._new_reason_notvalid("Invalid units: {!r}; Not recognised by UDUNITS".format(units))
+                        self._new_reason_notvalid(
+                            "Invalid units: {!r}; "
+                            "Not recognised by UDUNITS".format(units))
                     else:
                         _cached_ut_unit[units] = ut_unit
                 # --- End: if
@@ -892,14 +895,9 @@ class Units():
         '''x.__hash__() <==> hash(x)
 
         '''
-#        if not self:
-#            return hash(self.__class__)
-
         if not self._isreftime:
             return hash(('Units', self._ut_unit))
 
-#        return hash((self._ut_unit, self._rtime._jd0, self._rtime.calendar,
-#                     self._rtime.tzoffset))
         return hash(('Units', 
                      self._ut_unit, self._rtime_jd0, self._rtime_calendar,
                      self._rtime_tzoffset))
@@ -995,15 +993,15 @@ class Units():
     x.__sub__(y) <==> x-y
 
         '''
-        if (self._isreftime or
-            (isinstance(other, self.__class__) and other._isreftime)):
-            raise ValueError("Can't do %r - %r" % (self, other))
+        if (self._isreftime
+            or (isinstance(other, self.__class__) and other._isreftime)):
+            raise ValueError("Can't do {!r} - {!r}".format(self, other))
 
         try:
             _ut_unit = _ut_offset(self._ut_unit, _c_double(other))
             return type(self)(_ut_unit=_ut_unit)
         except:
-            raise ValueError("Can't do %r - %r" % (self, other))
+            raise ValueError("Can't do {!r} - {!r}".format(self, other))
 
     def __add__(self, other):
         '''The binary arithmetic operation ``+``
@@ -1013,13 +1011,13 @@ class Units():
         '''
         if (self._isreftime or
             (isinstance(other, self.__class__) and other._isreftime)):
-            raise ValueError("Can't do %r + %r" % (self, other))
+            raise ValueError("Can't do {!r} + {!r}".format(self, other))
 
         try:
             _ut_unit = _ut_offset(self._ut_unit, _c_double(-other))
             return type(self)(_ut_unit=_ut_unit)
         except:
-            raise ValueError("Can't do %r + %r" % (self, other))
+            raise ValueError("Can't do {!r} + {!r}".format(self, other))
 
     def __mul__(self, other):
         '''The binary arithmetic operation ``*``
@@ -1029,20 +1027,20 @@ class Units():
         '''
         if isinstance(other, self.__class__):
             if self._isreftime or other._isreftime:
-                raise ValueError("Can't do %r * %r" % (self, other))
+                raise ValueError("Can't do {!r} * {!r}".format(self, other))
 
             try:
                 ut_unit=_ut_multiply(self._ut_unit, other._ut_unit)
             except:
-                raise ValueError("Can't do %r * %r" % (self, other))
+                raise ValueError("Can't do {!r} * {!r}".format(self, other))
         else:   
             if self._isreftime:
-                raise ValueError("Can't do %r * %r" % (self, other))
+                raise ValueError("Can't do {!r} * {!r}".format(self, other))
 
             try:
                 ut_unit=_ut_scale(_c_double(other), self._ut_unit)    
             except:
-                raise ValueError("Can't do %r * %r" % (self, other))
+                raise ValueError("Can't do {!r} * {!r}".format(self, other))
         # --- End: if
 
         return type(self)(_ut_unit=ut_unit)
@@ -1053,20 +1051,20 @@ class Units():
         ''' 
         if isinstance(other, self.__class__):
             if self._isreftime or other._isreftime:
-                raise ValueError("Can't do %r / %r" % (self, other))
+                raise ValueError("Can't do {!r} / {!r}".format(self, other))
 
             try:
                 ut_unit=_ut_divide(self._ut_unit, other._ut_unit)
             except:
-                raise ValueError("Can't do %r / %r" % (self, other))
+                raise ValueError("Can't do {!r} / {!r}".format(self, other))
         else:
             if self._isreftime:
-                raise ValueError("Can't do %r / %r" % (self, other))
+                raise ValueError("Can't do {!r} / {!r}".format(self, other))
 
             try:
                 ut_unit=_ut_scale(_c_double(1.0/other), self._ut_unit)
             except:
-                raise ValueError("Can't do %r / %r" % (self, other))
+                raise ValueError("Can't do {!r} / {!r}".format(self, other))
         # --- End: if
 
         return type(self)(_ut_unit=ut_unit)
@@ -1084,8 +1082,8 @@ class Units():
 
         if modulo is not None:
             raise NotImplementedError(
-                "3-argument power not supported for %r" %
-                self.__class__.__name__)
+                "3-argument power not supported for {!r}".format(
+                    self.__class__.__name__))
         
         if self and not self._isreftime:
             ut_unit = self._ut_unit
@@ -1108,7 +1106,7 @@ class Units():
                 except:
                     pass
             else:
-                # If other is a float equal to its integer tehn raise
+                # If other is a float equal to its integer then raise
                 # to the integer part. E.g. if other is 3.0 then we
                 # raise to the power of 3; if other is -2.0 then we
                 # raise to the power of -2
@@ -1122,7 +1120,7 @@ class Units():
                     pass
         # --- End: if
 
-        raise ValueError("Can't do %r ** %r" % (self, other))
+        raise ValueError("Can't do {!r} ** {!r}".format(self, other))
 
     def __isub__(self, other):
         '''x.__isub__(y) <==> x-=y
@@ -1169,7 +1167,7 @@ class Units():
         try:
             return -self + other
         except:
-            raise ValueError("Can't do {0!r} - {1!r}".format(other, self))
+            raise ValueError("Can't do {!r} - {!r}".format(other, self))
 
     def __radd__(self, other):
         '''The binary arithmetic operation ``+`` with reflected operands
@@ -1194,7 +1192,7 @@ class Units():
         try:
             return (self ** -1) * other
         except:
-            raise ValueError("Can't do %r / %r" % (other, self))
+            raise ValueError("Can't do {!r} / {!r}".format(other, self))
 
     def __floordiv__(self, other):
         '''x.__floordiv__(y) <==> x//y <==> x/y
@@ -1215,7 +1213,7 @@ class Units():
         try:
             return (self ** -1) * other
         except:
-            raise ValueError("Can't do %r // %r" % (other, self))
+            raise ValueError("Can't do {!r} // {!r}".format(other, self))
 
     def __truediv__(self, other):
         '''x.__truediv__(y) <==> x/y
@@ -1234,16 +1232,12 @@ class Units():
 
         '''
         return self.__rdiv__(other)
-#        try:
-#            return (self ** -1) * other
-#        except:
-#            raise ValueError("Can't do %r / %r" % (other, self))
 
     def __mod__(self, other):
         '''TODO
 
         '''   
-        raise ValueError("Can't do %r %% %r" % (self, other))
+        raise ValueError("Can't do {!r} % {!r}".format(other, self))
 
     def __neg__(self):
         '''The unary arithmetic operation ``-``
@@ -1271,12 +1265,12 @@ class Units():
             cv_converter = _ut_get_converter(self._ut_unit, other._ut_unit)
         except:
             raise ValueError(
-                "Units are not compatible: {0!r}, {1!r}".format(self, other))
+                "Units are not compatible: {!r}, {!r}".format(self, other))
 
         if not cv_converter:
             _cv_free(cv_converter)
             raise ValueError(
-                "Units are not compatible: {0!r}, {1!r}".format(self, other))
+                "Units are not compatible: {!r}, {!r}".format(self, other))
 
         y  = _c_double(1.0)
         pointer = ctypes.pointer(y)
@@ -2003,8 +1997,9 @@ class Units():
             cv_converter = _ut_get_converter(ut_unit1, ut_unit2)
             if not cv_converter:
                 _cv_free(cv_converter)
-                raise ValueError("Units are not convertible: {!r}, {1r}".format(
-                    from_units, to_units))
+                raise ValueError(
+                    "Units are not convertible: {!r}, {!r}".format(
+                        from_units, to_units))
         # --- End: if
 
         # ------------------------------------------------------------
@@ -2178,9 +2173,10 @@ class Units():
             reftime1 = getattr(other, 'reftime', None)
             if reftime0 != reftime1:
                 if verbose:
-                    print("{}: Different reference date-times: {!r}, {!r}".format(
-                        self.__class__.__name__,
-                        reftime0, reftime1)) # pragma: no cover
+                    print("{}: Different reference date-times: "
+                          "{!r}, {!r}".format(
+                              self.__class__.__name__,
+                              reftime0, reftime1)) # pragma: no cover
                 return False
 
         elif isreftime1 or isreftime2:
@@ -2227,7 +2223,6 @@ class Units():
 #            print ('ppp')
 #            return False
 
-
         try:
             if not _ut_compare(self._ut_unit, other._ut_unit):                
                 return True
@@ -2238,7 +2233,6 @@ class Units():
                 return False
         except AttributeError:
             return False
-
 
 #isreftime1 = self._isreftime
 #        isreftime2 = other._isreftime
@@ -2304,7 +2298,8 @@ class Units():
         # --- End: try
 
         raise ValueError(
-            "Can't take the logarithm to the base %r of %r" % (base, self))
+            "Can't take the logarithm to the base {!r} of {!r}".format(
+                base, self))
 
 # --- End: class
 
@@ -2353,8 +2348,9 @@ Attribute       Description
 
         '''
         if unit_string:
-            super().__init__(unit_string, calendar,
-                             only_use_cftime_datetimes=only_use_cftime_datetimes)
+            super().__init__(
+                unit_string, calendar,
+                only_use_cftime_datetimes=only_use_cftime_datetimes)
         else:
             self.calendar    = calendar
             self._jd0        = None

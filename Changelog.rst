@@ -1,3 +1,12 @@
+version 3.2.6
+-------------
+----
+
+**2020-04-27**
+
+* Fixed bug that caused a `KeyError: '1r'` exception, due to an
+  incorrect format statement.
+
 version 3.2.5
 -------------
 ----
