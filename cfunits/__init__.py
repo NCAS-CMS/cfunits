@@ -15,11 +15,11 @@ with the CF conventions.
 
 '''
 
-__Conventions__  = 'CF-1.7'
+__Conventions__  = 'CF-1.8'
 __author__       = 'David Hassell'
 __author__     = 'David Hassell'
-__date__       = '2020-03-26'
-__version__    = '3.2.5'
+__date__       = '2020-04-27'
+__version__    = '3.2.6'
 __cf_version__ = '1.8'
 
 from distutils.version import LooseVersion
