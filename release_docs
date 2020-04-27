@@ -18,7 +18,12 @@ elif [[ $2 = "dev" ]] ; then
 elif [[ $2 = "archive" ]] ; then
   # For testing: creates separate dir and does not (git) commit
   dir=$PWD/docs/$version
+elif [[ $2 = "dev-clean" ]] ; then
+  # For testing: creates separate dir and does not (git) commit and
+  # also deletes an existing .doctrees subdirectory
+    dir=$PWD/docs/dev
 else
+  set +x
   echo "\$2 must be 'latest', 'dev' or 'archive'"
   exit 2
 fi
@@ -27,7 +32,7 @@ fi
 # Make the latest docs    
 # --------------------------------------------------------------------
 cd docs
-if [[ $2 = "latest" ]] || [[ $2 = "archive" ]] ; then
+if [[ $2 = "latest" ]] || [[ $2 = "archive" ]] || [[ $2 = "dev-clean" ]] ; then
   rm -fr $dir/.doctrees
 fi
 
@@ -61,3 +66,5 @@ if [[ $2 = "latest" ]] || [[ $2 = "archive" ]] ; then
 fi
 
 set +x
+
+echo PYTTHONPATH=$PYTHONPATH
