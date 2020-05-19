@@ -83,13 +83,13 @@ _ut_format.restype  = _c_int
 
 # char* ut_trim(char* const string, const ut_encoding encoding);
 _ut_trim            = _udunits.ut_trim
-_ut_trim.argtypes   = (_c_char_p, _c_int) # ut_encoding assumed to be int!
+_ut_trim.argtypes   = (_c_char_p, _c_int)  # ut_encoding assumed to be int!
 _ut_trim.restype    = _c_char_p
 
 # ut_unit* ut_parse(const ut_system* const system,
 #                   const char* const string, const ut_encoding encoding);
 _ut_parse           = _udunits.ut_parse
-_ut_parse.argtypes = (_c_void_p, _c_char_p, _c_int) # ut_encoding assumed to be int!
+_ut_parse.argtypes = (_c_void_p, _c_char_p, _c_int)  # ut_encoding assumed to be int!
 _ut_parse.restype = _c_void_p
 
 # int ut_compare(const ut_unit* const unit1, const ut_unit* const
@@ -700,9 +700,9 @@ class Units():
             unit = None
             
             if isinstance(units, str) and ' since ' in units:
-                # --------------------------------------------------------
+                # ----------------------------------------------------
                 # Set a reference time unit
-                # --------------------------------------------------------
+                # ----------------------------------------------------
                 # Set the calendar
                 if calendar is None:
                     _calendar = _default_calendar
@@ -719,8 +719,10 @@ class Units():
                 
                 ut_unit = _cached_ut_unit.get(unit, None)
                 if ut_unit is None:                    
-                    ut_unit = _ut_parse(_ut_system, _c_char_p(unit.encode('utf-8')), _UT_ASCII)
-                    if not ut_unit or not _ut_are_convertible(ut_unit, _day_ut_unit):
+                    ut_unit = _ut_parse(_ut_system, _c_char_p(
+                        unit.encode('utf-8')), _UT_ASCII)
+                    if not ut_unit or not _ut_are_convertible(
+                            ut_unit, _day_ut_unit):
                         ut_unit = None
                         self._isvalid = False
                     else:
@@ -733,7 +735,8 @@ class Units():
                     utime = _cached_utime[(_calendar, units)]
                 else:
                     # Create a new Utime object
-                    unit_string = '{} since {}'.format(unit, units_split[1].strip())
+                    unit_string = '{} since {}'.format(
+                        unit, units_split[1].strip())
 
                     if (_calendar, unit_string) in _cached_utime:
                         utime = _cached_utime[(_calendar, unit_string)]
@@ -742,8 +745,9 @@ class Units():
                             utime = Utime(_calendar, unit_string)
                         except Exception as error:
                             utime = None
-                            if unit in _months_or_years: #('month', 'months', 'year', 'years', 'yr'):
-                                temp_unit_string = 'days since {}'.format(units_split[1].strip())
+                            if unit in _months_or_years:
+                                temp_unit_string = 'days since {}'.format(
+                                    units_split[1].strip())
                                 try:
                                     _ = Utime(_calendar, temp_unit_string)
                                 except Exception as error:
@@ -768,7 +772,9 @@ class Units():
                 # ----------------------------------------------------
                 ut_unit = _cached_ut_unit.get(units, None)
                 if ut_unit is None:
-                    ut_unit = _ut_parse(_ut_system, _c_char_p(units.encode('utf-8')), _UT_ASCII)
+                    ut_unit = _ut_parse(_ut_system,
+                                        _c_char_p(units.encode('utf-8')),
+                                        _UT_ASCII)
                     if not ut_unit:
                         ut_unit = None
                         self._isvalid = False
@@ -813,7 +819,8 @@ class Units():
             try:
                 self._utime = Utime(_canonical_calendar[calendar.lower()])
             except Exception as error:
-                self._new_reason_notvalid('Invalid calendar={!r}'.format(calendar))
+                self._new_reason_notvalid(
+                    'Invalid calendar={!r}'.format(calendar))
                 self._isvalid = True
                 
             return
@@ -833,7 +840,6 @@ class Units():
 
             self._calendar  = None
             self._utime     = None
-
 
             return
 
@@ -1548,23 +1554,23 @@ class Units():
     **Examples:**
 
     >>> u = Units('km')
-    >>>  u.isvalid                                                               
+    >>> u.isvalid
     True
-    >>> u.reason_notvalid                                                       
+    >>> u.reason_notvalid
     ''
 
     >>> u = Units('Bad Units')                                                 
-    >>> u.isvalid                                                               
+    >>> u.isvalid
     False
-    >>> u.reason_notvalid                                                       
+    >>> u.reason_notvalid
     "Invalid units: 'Bad Units'; Not recognised by UDUNITS"
 
     >>> u = Units(days since 2000-1-1', calendar='Bad Calendar')
-    >>>  u.isvalid                                                               
+    >>>  u.isvalid
     False
-    >>> u.reason_notvalid                                                       
+    >>> u.reason_notvalid
     "Invalid calendar='Bad Calendar'; calendar must be one of ['standard', 'gregorian', 'proleptic_gregorian', 'noleap', 'julian', 'all_leap', '365_day', '366_day', '360_day'], got 'bad calendar'"
-        
+
         '''
         return getattr(self, '_reason_notvalid', '')
     
@@ -1592,11 +1598,15 @@ class Units():
             else:
                 # Some refrence date-times do not have a utime, such
                 # as those defined by monts or years
-                return cftime.datetime(*cftime._parse_date(self.units.split(' since ')[1]))
+                calendar = self._canonical_calendar
+                return cftime.datetime(
+                    *cftime._parse_date(self.units.split(' since ')[1]),
+                    calendar=calendar
+                )
         # --- End: if
 
-        raise AttributeError("{0!r} has no attribute 'reftime'".format(
-            self))
+        raise AttributeError(
+            "{!r} has no attribute 'reftime'".format(self))
 
     @property
     def calendar(self):
@@ -1703,7 +1713,7 @@ class Units():
 #                if verbose:
 #                    print("{}: Incompatible calendars: {!r}, {!r}".format(
 #                        self.__class__.__name__,
-#                        self._calendar, other._calendar)) # pragma: no cover
+#                        self._calendar, other._calendar))  # pragma: no cover
 #                return False
 #
 #            reftime0 = getattr(self, 'reftime', None)
@@ -1712,13 +1722,13 @@ class Units():
 #                if verbose:
 #                    print("{}: Different reference date-times: {!r}, {!r}".format(
 #                        self.__class__.__name__,
-#                        reftime0, reftime1)) # pragma: no cover
+#                        reftime0, reftime1))  # pragma: no cover
 #                return False
 #
 #        elif isreftime1 or isreftime2:
 #            if verbose:
 #                print("{}: Only one is reference time".format(
-#                    self.__class__.__name__)) # pragma: no cover
+#                    self.__class__.__name__))  # pragma: no cover
 #            return False
 
         
@@ -1731,7 +1741,7 @@ class Units():
                 if verbose and not out:
                     print("{}: Incompatible calendars: {!r}, {!r}".format(
                         self.__class__.__name__,
-                        self._calendar, other._calendar)) # pragma: no cover
+                        self._calendar, other._calendar))  # pragma: no cover
                 
                 return out
             else:
@@ -1740,17 +1750,17 @@ class Units():
         elif isreftime1 or isreftime2:
             if verbose:
                 print("{}: Only one is reference time".format(
-                    self.__class__.__name__)) # pragma: no cover
+                    self.__class__.__name__))  # pragma: no cover
             return False
         
 #        if not self.isvalid:
 #            if verbose:
-#                print("{}: {!r} is not valid".format(self.__class__.__name__, self)) # pragma: no cover
+#                print("{}: {!r} is not valid".format(self.__class__.__name__, self))  # pragma: no cover
 #            return False
 #        
 #        if not other.isvalid:
 #            if verbose:
-#                print("{}: {!r} is not valid".format(self.__class__.__name__, other)) # pragma: no cover
+#                print("{}: {!r} is not valid".format(self.__class__.__name__, other))  # pragma: no cover
 #            return False
         
 #         if isreftime1 and isreftime2:
@@ -1957,8 +1967,9 @@ class Units():
             units0, reftime0 = from_units.units.split(' since ')
             units1, reftime1 = to_units.units.split(' since ')
             if units0 in _months_or_years:
-                from_units = cls('days since '+reftime0,
-                                 calendar=getattr(from_units, 'calendar', None))
+                from_units = cls(
+                    'days since '+reftime0,
+                    calendar=getattr(from_units, 'calendar', None))
                 x = numpy_asanyarray(x)
                 if inplace:
                     if units0 in ('month', 'months'):                    
@@ -2048,8 +2059,8 @@ class Units():
         if convert:
 
             if x_is_numpy:
-                # Create a pointer to the array cast to the appropriate
-                # ctypes object
+                # Create a pointer to the array cast to the
+                # appropriate ctypes object
                 itemsize = x.dtype.itemsize
                 pointer  = x.ctypes.data_as(_ctypes_POINTER[itemsize])
 
@@ -2059,8 +2070,8 @@ class Units():
                                             _c_size_t(x.size),
                                             pointer)
             else:
-                # Create a pointer to the number cast to a ctypes double
-                # object.
+                # Create a pointer to the number cast to a ctypes
+                # double object.
                 y  = _c_double(x)
                 pointer = ctypes.pointer(y)
                 # Convert the pointer
@@ -2166,7 +2177,8 @@ class Units():
                 if verbose:
                     print("{}: Incompatible calendars: {!r}, {!r}".format(
                         self.__class__.__name__,
-                        self._calendar, other._calendar)) # pragma: no cover
+                        self._calendar, other._calendar))  # pragma: no cover
+                    
                 return False
 
             reftime0 = getattr(self, 'reftime', None)
@@ -2176,13 +2188,15 @@ class Units():
                     print("{}: Different reference date-times: "
                           "{!r}, {!r}".format(
                               self.__class__.__name__,
-                              reftime0, reftime1)) # pragma: no cover
+                              reftime0, reftime1))  # pragma: no cover
+                    
                 return False
 
         elif isreftime1 or isreftime2:
             if verbose:
                 print("{}: Only one is reference time".format(
-                    self.__class__.__name__)) # pragma: no cover
+                    self.__class__.__name__))  # pragma: no cover
+                
             return False
 
         
@@ -2202,7 +2216,7 @@ class Units():
 #                if verbose and not out:
 #                    print("{}: Incompatible calendars: {!r}, {!r}".format(
 #                        self.__class__.__name__,
-#                        self._calendar, other._calendar)) # pragma: no cover
+#                        self._calendar, other._calendar))  # pragma: no cover
 #                
 #                return out
 #            else:
@@ -2210,12 +2224,12 @@ class Units():
 #        # --- End: if
 #        if not self.isvalid:
 #            if verbose:
-#                print("{}: {!r} is not valid".format(self.__class__.__name__, self)) # pragma: no cover
+#                print("{}: {!r} is not valid".format(self.__class__.__name__, self))  # pragma: no cover
 #            return False
 #        
 #        if not other.isvalid:
 #            if verbose:
-#                print("{}: {!r} is not valid".format(self.__class__.__name__, other)) # pragma: no cover
+#                print("{}: {!r} is not valid".format(self.__class__.__name__, other))  # pragma: no cover
 #            return False
 #        
         
@@ -2226,11 +2240,13 @@ class Units():
         try:
             if not _ut_compare(self._ut_unit, other._ut_unit):                
                 return True
-            elif verbose:
+
+            if verbose:
                 print("{}: Different units: {!r}, {!r}".format(
                     self.__class__.__name__,
-                    self.units, other.units)) # pragma: no cover
-                return False
+                    self.units, other.units))  # pragma: no cover
+                
+            return False
         except AttributeError:
             return False
 
@@ -2305,24 +2321,24 @@ class Units():
 
 
 class Utime(cftime.utime):
-    '''Performs conversions of netCDF time coordinate data to/from datetime
-objects.
-
-This object is (currently) functionally equivalent to a
-`netCDF4.netcdftime.utime` object.
-
-**Attributes**
-
-==============  ======================================================
-Attribute       Description
-==============  ======================================================
-`!_jd0`         
-`!calendar`     The calendar used in the time calculation.
-`!origin`       A date/time object for the reference time.
-`!tzoffset`     Time zone offset in minutes.
-`!unit_string`  
-`!units`        
-==============  ======================================================
+    '''Performs conversions of netCDF time coordinate data to/from
+    datetime objects.
+    
+    This object is (currently) functionally equivalent to a
+    `netCDF4.netcdftime.utime` object.
+    
+    **Attributes**
+    
+    ==============  ==================================================
+    Attribute       Description
+    ==============  ==================================================
+    `!_jd0`         
+    `!calendar`     The calendar used in the time calculation.
+    `!origin`       A date/time object for the reference time.
+    `!tzoffset`     Time zone offset in minutes.
+    `!unit_string`  
+    `!units`        
+    ==============  ==================================================
 
     '''
     def __init__(self, calendar, unit_string=None,
@@ -2392,11 +2408,11 @@ Attribute       Description
         if units in ('month', 'months'):
             # Convert months to days
             unit_string = unit_string.replace(units, 'days', 1)
-            time_value = numpy_array(time_value)*_month_length #365.242198781/12
+            time_value = numpy_array(time_value)*_month_length
         elif units in ('year', 'years', 'yr'):
             # Convert years to days
             unit_string = unit_string.replace(units, 'days', 1)
-            time_value = numpy_array(time_value)*_year_length #365.242198781
+            time_value = numpy_array(time_value)*_year_length
 
         u = cftime.utime(unit_string, self.calendar)        
 
