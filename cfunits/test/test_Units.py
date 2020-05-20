@@ -15,8 +15,10 @@ class UnitsTest(unittest.TestCase):
         self.assertTrue(Units('m')==Units('metres'))
         self.assertTrue(Units('m')==Units('meTRES'))
 
-        self.assertTrue(Units('days since 2000-1-1')==Units('d since 2000-1-1 0:0'))
-        self.assertTrue(Units('days since 2000-1-1')!=Units('h since 1234-1-1 0:0'))
+        self.assertTrue(
+            Units('days since 2000-1-1')==Units('d since 2000-1-1 0:0'))
+        self.assertTrue(
+            Units('days since 2000-1-1')!=Units('h since 1234-1-1 0:0'))
         
         self.assertTrue(Units('days since 2000-1-1')==Units('d since 2000-1-1 0:0', calendar='gregorian'))
         self.assertTrue(Units('days since 2000-1-1')==Units('d since 2000-1-1 0:0', calendar='standard'))
@@ -56,6 +58,14 @@ class UnitsTest(unittest.TestCase):
 
         self.assertTrue(Units('days since 2000-1-1', calendar='all_leap').equivalent(Units('d since 2000-1-1 0:0', calendar='366_day')))
         self.assertTrue(Units('days since 2000-1-1', calendar='all_leap').equivalent(Units('h since 1234-1-1 0:0', calendar='366_day')))    
+
+        u = Units('days since 2000-02-02', calendar='standard')
+        v = Units('months since 2000-02-02', calendar='standard')
+        self.assertFalse(u == v)
+
+        u = Units('days since 2000-02-02', calendar='standard')
+        v = Units('months since 2000-02-02', calendar='gregorian')
+        self.assertFalse(u == v)
 
     def test_Units_conform(self):
         self.assertTrue(Units.conform(0.5, Units('km'), Units('m')) == 500)
@@ -134,20 +144,24 @@ class UnitsTest(unittest.TestCase):
         self.assertTrue(Units('m').log(10)    == Units('lg(re 1 m)'))
         self.assertTrue(Units('m').log(2)     == Units('lb(re 1 m)'))
         self.assertTrue(Units('m').log(math.e)== Units('ln(re 1 m)'))
-        self.assertTrue(Units('m').log(1.5)   == Units('2.46630346237643 ln(re 1 m)'))    
+        self.assertTrue(
+            Units('m').log(1.5)   == Units('2.46630346237643 ln(re 1 m)'))    
 
 
     def test_Units_isvalid(self):
         self.assertTrue(Units('m').isvalid)
         self.assertTrue(Units('days since 2019-01-01').isvalid)
-        self.assertTrue(Units('days since 2019-01-01', calendar='360_day').isvalid)
+        self.assertTrue(
+            Units('days since 2019-01-01', calendar='360_day').isvalid)
 
         self.assertFalse(Units('qwerty').isvalid)
         self.assertFalse(Units(1.0).isvalid)
         self.assertFalse(Units([1.0, 'qwerty']).isvalid)
         self.assertFalse(Units('since 2019-01-01').isvalid)
-        self.assertFalse(Units('days since 2019-01-01', calendar='qwerty').isvalid)
-        self.assertFalse(Units('since 2019-01-01', calendar='qwerty').isvalid)
+        self.assertFalse(
+            Units('days since 2019-01-01', calendar='qwerty').isvalid)
+        self.assertFalse(
+            Units('since 2019-01-01', calendar='qwerty').isvalid)
 
 # --- End: class
 

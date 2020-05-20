@@ -18,8 +18,8 @@ with the CF conventions.
 __Conventions__  = 'CF-1.8'
 __author__       = 'David Hassell'
 __author__     = 'David Hassell'
-__date__       = '2020-04-27'
-__version__    = '3.2.6'
+__date__       = '2020-05-??'
+__version__    = '3.2.7'
 __cf_version__ = '1.8'
 
 from distutils.version import LooseVersion
@@ -34,14 +34,15 @@ except ImportError as error1:
 _minimum_vn = '3.5'
 if LooseVersion(platform.python_version()) < LooseVersion(_minimum_vn):
     raise RuntimeError(
-        "Bad python version: cfunits requires python version {} or later. Got {}".format(
+        "Bad python version: cfunits requires python version {} or later. "
+        "Got {}".format(
             _minimum_vn, platform.python_version()))
 
 # Check the version of cftime
-_minimum_vn = '1.1.1'
+_minimum_vn = '1.1.3'
 if LooseVersion(cftime.__version__) < LooseVersion(_minimum_vn):
     raise ValueError(
-        "Bad cftime version: cfdm requires cftime version {} or later. Got {} at {}".format(
+        "Bad cftime version: cfunits requires cftime>={}. Got {} at {}".format(
             _minimum_vn, cftime.__version__, cftime.__file__))
 
 from .units import Units

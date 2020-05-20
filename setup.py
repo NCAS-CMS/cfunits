@@ -96,7 +96,7 @@ setup(name = "cfunits",
       packages     = ['cfunits'],
       package_data = {'cfunits': package_data},
       install_requires = [
-          'cftime>=1.1.1',
+          'cftime>=1.1.3',
           'numpy>=1.15',
       ],
   )
