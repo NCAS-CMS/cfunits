@@ -72,6 +72,10 @@ https://ncas-cms.github.io/cfunits/installation.html
 
 # classifiers list at: https://pypi.python.org/pypi?%3Aaction=list_classifiers
 
+# Get dependencies
+requirements = open('requirements.txt', 'r')
+install_requires = requirements.read().splitlines() 
+
 setup(name = "cfunits",
       long_description = long_description,
       version      = version,
@@ -95,8 +99,5 @@ setup(name = "cfunits",
                       "Programming Language :: Python :: 3",],
       packages     = ['cfunits'],
       package_data = {'cfunits': package_data},
-      install_requires = [
-          'cftime>=1.1.3',
-          'numpy>=1.15',
-      ],
+      install_requires = install_requires,
   )

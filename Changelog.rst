@@ -1,3 +1,15 @@
+version 3.2.8
+-------------
+----
+
+**2020-07-02**
+
+* Fixed bug that caused failure when an `int` or `float` was input to
+  `cfunits.Units.conform`
+  (https://github.com/NCAS-CMS/cfunits/issues/9).
+* Allowed `list` and `tuple` to be input to `cfunits.Units.conform`
+  (https://github.com/NCAS-CMS/cfunits/issues/9).
+
 version 3.2.7
 -------------
 ----
