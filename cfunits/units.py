@@ -3,12 +3,15 @@ import ctypes.util
 import operator
 import sys
 
-from numpy import array      as numpy_array
-from numpy import asanyarray as numpy_asanyarray
-from numpy import dtype      as numpy_dtype
-from numpy import generic    as numpy_generic
-from numpy import ndarray    as numpy_ndarray
+from copy import deepcopy
 
+from numpy import array as numpy_array
+from numpy import asanyarray as numpy_asanyarray
+from numpy import dtype as numpy_dtype
+from numpy import generic as numpy_generic
+from numpy import ndarray as numpy_ndarray
+from numpy import shape as numpy_shape
+from numpy import size as numpy_size
 
 
 # --------------------------------------------------------------------
@@ -1888,9 +1891,11 @@ class Units():
 
     Returns the conformed values.
     
-    The values may either be a numpy array or a python numeric
-    type. The returned value is of the same type, except that input
-    integers are converted to floats (see the *inplace* keyword).
+    The values may either be a `numpy` array, a python numeric type,
+    or a `list` or `tuple`. The returned value is of the same type,
+    except that input integers are converted to floats and python
+    sequences are converted to `numpy` arrays (see the *inplace*
+    keyword).
     
     .. warning:: Do not change the calendar of reference time units in
                  the current version. Whilst this is possible, it will
@@ -1908,11 +1913,14 @@ class Units():
             The units to which *x* should be conformed to.
     
         inplace: `bool`, optional
-            If True and *x* is a numpy array then change it in place,
+            If True and *x* is a `numpy` array then change it in place,
             creating no temporary copies, with one exception: If *x*
             is of integer type and the conversion is not null, then it
             will not be changed inplace and the returned conformed
             array will be of float type.
+
+            If *x* is a `list` or `tuple` then the *inplace* parameter
+            is ignored and a `numpy` array is returned.
     
     :Returns:
     
@@ -1943,9 +1951,12 @@ class Units():
             if inplace:
                 return x
             else:
-                return x.copy()
+                try:
+                    return x.copy()
+                except AttributeError:
+                    return deepcopy(x)
         # --- End: if
-
+        
         if not from_units.equivalent(to_units):
             raise ValueError("Units are not convertible: {!r}, {!r}".format(
                 from_units, to_units))
@@ -2014,17 +2025,26 @@ class Units():
         # --- End: if
 
         # ------------------------------------------------------------
-        # Find out if x is an numpy array or a python number
+        # Find out if x is (or should be) a numpy array or a python
+        # number
         # ------------------------------------------------------------
         if isinstance(x, numpy_generic):
-            # Convert a generic numpy scalar to a 0-d array
+            # Convert a generic numpy scalar to a 0-d numpy array
             x = numpy_array(x)
-
-        if not isinstance(x, numpy_ndarray):
-            x_is_numpy = False
+            x_is_numpy = True                
+        elif not isinstance(x, numpy_ndarray):
+            if numpy_size(x) > 1 or len(numpy_shape(x)):
+                # Convert a non-numpy (possibly nested) sequence to a
+                # numpy array. E.g. [1], ((1.5, 2.5))
+                x = numpy_asanyarray(x)
+                x_is_numpy = True
+                inplace = True
+            else:
+                x_is_numpy = False                            
         else:
             x_is_numpy = True
 
+        if x_is_numpy:            
             if not x.flags.contiguous:
                 x = numpy_array(x, order='C')
 #ARRRGGHH dch
@@ -2052,7 +2072,7 @@ class Units():
                 else:
                     x = x.copy()
         # --- End: if
-
+        
         # ------------------------------------------------------------
         # Convert the array to the new units
         # ------------------------------------------------------------
