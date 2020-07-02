@@ -19,6 +19,7 @@
    
    introduction
    installation
+   support
    releases
    Changelog
 
