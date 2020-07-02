@@ -52,8 +52,10 @@ fi
 # Add and commit the latest
 # --------------------------------------------------------------------
 if [[ $2 = "latest" ]] || [[ $2 = "archive" ]] ; then
-  echo "d2=$2"
-  cd $dir
+  if [[ $2 = "archive" ]] ; then
+      cd $version
+  fi
+  
   git add \
       *.html \
       *.inv \
