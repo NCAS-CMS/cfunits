@@ -36,6 +36,11 @@ example:
    pip install cfunits
 
 .. code-block:: shell
+   :caption: *Upgrade as root, with any missing dependencies.*
+	     
+   pip install cfunits --upgrade
+
+.. code-block:: shell
    :caption: *Install as a user, with any missing dependencies.*
 	     
    pip install cfunits --user

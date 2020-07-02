@@ -4,7 +4,7 @@ version 3.2.8
 
 **2020-07-02**
 
-* Allowed list and tuple to be input to `cfunits.Units.conform`
+* Allowed `list` and `tuple` to be input to `cfunits.Units.conform`
   (https://github.com/NCAS-CMS/cfunits/issues/9).
 
 version 3.2.7

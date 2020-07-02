@@ -1948,13 +1948,16 @@ class Units():
 
         '''
         if from_units.equals(to_units):
+            if not isinstance(x, (int, float)):
+                x = numpy_asanyarray(x)
+                
             if inplace:
                 return x
             else:
                 try:
                     return x.copy()
                 except AttributeError:
-                    return deepcopy(x)
+                    x
         # --- End: if
         
         if not from_units.equivalent(to_units):
