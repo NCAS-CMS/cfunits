@@ -30,28 +30,28 @@ To install cfunits and *most* of its :ref:`dependencies
 <Dependencies>` (i.e. all except the UDUNITS library) run, for
 example:
 
-.. code-block:: shell
+.. code-block:: console
    :caption: *Install as root, with any missing dependencies.*
 	     
-   pip install cfunits
+   $ pip install cfunits
 
-.. code-block:: shell
+.. code-block:: console
    :caption: *Upgrade as root, with any missing dependencies.*
 	     
-   pip install cfunits --upgrade
+   $ pip install cfunits --upgrade
 
-.. code-block:: shell
+.. code-block:: console
    :caption: *Install as a user, with any missing dependencies.*
 	     
-   pip install cfunits --user
+   $ pip install cfunits --user
 
 To install cfunits without any of its dependencies then run, for example:
 
-.. code-block:: shell
+.. code-block:: console
    :caption: *Install as root without installing any of the
              dependencies.*
 	     
-   pip install cfunits --no-deps
+   $ pip install cfunits --no-deps
 
 See the `documentation for pip install
 <https://pip.pypa.io/en/stable/reference/pip_install/>`_ for further
@@ -71,31 +71,31 @@ To install from source:
 2. Unpack the library (replacing ``<version>`` with the version that
    you want to install, e.g. ``3.0.0``):
 
-   .. code:: bash
+   .. code:: console
 	 
-      tar zxvf cfunits-<version>.tar.gz
-      cd cfunits-<version>
+      $ tar zxvf cfunits-<version>.tar.gz
+      $ cd cfunits-<version>
 
 3. Install the package:
   
   * To install the cfunits package to a central location:
 
-    .. code:: bash
+    .. code:: console
 	 
-       python setup.py install
+       $ python setup.py install
 
   * To install the cfunits package locally to the user in the default
     location:
 
-    .. code:: bash
+    .. code:: console
 
-       python setup.py install --user
+       $ python setup.py install --user
 
   * To install the cfunits package in the <directory> of your choice:
 
-    .. code:: bash
+    .. code:: console
 
-       python setup.py install --home=<directory>
+       $ python setup.py install --home=<directory>
 
 .. _Tests:
 
@@ -106,9 +106,9 @@ To install from source:
 
 Tests are run from within the ``cfunits/test`` directory:
 
-.. code:: bash
+.. code:: console
  
-   python run_tests.py
+   $ python run_tests.py
        
 .. _Dependencies:
 
@@ -147,9 +147,9 @@ The cfunits package requires:
 
   UDUNITS is available via Anaconda with:
 
-  .. code:: bash
+  .. code:: console
 
-     conda install -c conda-forge udunits2=2.2.20
+     $ conda install -c conda-forge udunits2=2.2.20
 
 .. _Code-repository:
 

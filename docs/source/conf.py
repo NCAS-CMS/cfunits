@@ -72,6 +72,7 @@ extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.doctest',
               'sphinx.ext.githubpages',
               'sphinx_copybutton',
+              'sphinx_toggleprompt',
               ]
 
 # Boolean indicating whether to scan all found documents for
@@ -344,9 +345,15 @@ man_pages = [
      'NCAS', 1)
     ]
 
-# Set up copybutton
-def setup(app):
-    app.add_javascript('copybutton.js')
+# Configure copybutton
+# Note the below, skipping of text via copybutton, is no longer required for
+# Python prompts as those can be included or excluded in copied code via the
+# toggle button (sphinx-toggleprompt). So we skip console prompts which we
+# also have in the docs as the second most-common case.
+copybutton_prompt_text = "$ "   # prompt to skip automatically on copying
+
+# Configure toggleprompt
+toggleprompt_offset_right = 25  # stops toggle and copy buttons overlapping
 
 # This is a function which should return the URL to source code
 # corresponding to the object in given domain with given information.
