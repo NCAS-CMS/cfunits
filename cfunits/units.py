@@ -1332,7 +1332,7 @@ class Units():
 
     >>> Units('Watt').has_offset
     False
-    >>> Units('m2.kg.s-3')
+    >>> Units('m2.kg.s-3').has_offset
     False
 
     >>> Units('km').has_offset

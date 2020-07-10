@@ -222,6 +222,23 @@ class UnitsTest(unittest.TestCase):
         self.assertFalse(
             Units('since 2019-01-01', calendar='qwerty').isvalid)
 
+    def test_Units_has_offset(self):
+        self.assertFalse(Units('K').has_offset)
+        self.assertFalse(Units('K @ 0').has_offset)
+        self.assertFalse(Units('Watt').has_offset)
+        self.assertFalse(Units('m2.kg.s-3').has_offset)
+        self.assertFalse(Units('km').has_offset)
+        self.assertFalse(Units('1000 m').has_offset)
+        self.assertFalse(Units('(K @ 273.15) m s-1').has_offset)
+        self.assertFalse(Units('degC m s-1').has_offset)
+
+        self.assertTrue(Units('K @ 273.15').has_offset)
+        self.assertTrue(Units('degC').has_offset)
+        self.assertTrue(Units('degF').has_offset)
+        self.assertTrue(Units('m2.kg.s-3 @ 3.14').has_offset)
+        
+        self.assertEqual(Units('degC m s-1'), Units('K m s-1'))
+
 # --- End: class
 
         
