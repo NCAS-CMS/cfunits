@@ -119,6 +119,11 @@ _ut_divide          = _udunits.ut_divide
 _ut_divide.argtypes = (_c_void_p, _c_void_p)
 _ut_divide.restype  = _c_void_p
 
+# ut_unit* ut_get_name(const ut_unit* unit, ut_encoding encoding)
+_ut_get_name          = _udunits.ut_get_name
+_ut_get_name.argtypes = (_c_void_p, _c_int)  # ut_encoding assumed to be int!
+_ut_get_name.restype  = _c_char_p
+
 # ut_unit* ut_offset(const ut_unit* const unit, const double offset);
 _ut_offset          = _udunits.ut_offset
 _ut_offset.argtypes = (_c_void_p, _c_double)
@@ -1305,6 +1310,49 @@ class Units():
     # Attributes
     # ----------------------------------------------------------------
     @property
+    def has_offset(self):
+        '''True if the units contain an offset.
+        
+    Note that if a multiplicative component of the units had an offset
+    during instantiation, then the offset is ignored in the resulting
+    `Units` object. See below for examples.
+
+    **Examples**
+
+    >>> Units('K').has_offset
+    False
+    >>> Units('K @ 0').has_offset
+    False
+    >>> Units('K @ 273.15').has_offset
+    True
+    >>> Units('degC').has_offset
+    True
+    >>> Units('degF').has_offset
+    True
+
+    >>> Units('Watt').has_offset
+    False
+    >>> Units('m2.kg.s-3')
+    False
+
+    >>> Units('km').has_offset
+    False
+    >>> Units('1000 m').has_offset
+    False
+        
+    >>> Units('m2.kg.s-3 @ 3.14').has_offset
+    True
+    >>> Units('(K @ 273.15) m s-1').has_offset
+    False
+    >>> Units('degC m s-1').has_offset
+    False
+    >>> Units('degC m s-1') == Units('K m s-1')
+    True
+
+        '''
+        return '@' in self.formatted()
+
+    @property
     def isreftime(self):
         '''True if the units are reference time units, False otherwise.
 
@@ -1904,7 +1952,7 @@ class Units():
 
     :Parameters:
     
-        x: `numpy.ndarray` or python numeric object
+        x: `numpy.ndarray` or python numeric type or `list` or `tuple`
     
         from_units: `Units`
             The original units of *x*

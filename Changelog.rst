@@ -1,3 +1,11 @@
+version 3.2.9
+-------------
+----
+
+**2020-07-??**
+
+* New method: `cfunits.Units.has_offset`
+
 version 3.2.8
 -------------
 ----
