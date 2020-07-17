@@ -1878,8 +1878,8 @@ class Units():
             raise ValueError("Can't format unit {!r}".format(self))
 
         if self.isreftime:
-            out = str(out)
-            out += ' since ' + self.reftime.strftime()
+            out = str(out, 'utf-8')  # needs converting from byte-string
+            out += ' since ' + self.reftime.strftime("%Y-%-m-%-d %H:%M:%S")
             return out
 
         return out.decode('utf-8')

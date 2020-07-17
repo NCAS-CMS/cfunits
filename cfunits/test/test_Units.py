@@ -222,6 +222,48 @@ class UnitsTest(unittest.TestCase):
         self.assertFalse(
             Units('since 2019-01-01', calendar='qwerty').isvalid)
 
+    def test_Units_formatted(self):
+        u = Units('W')
+        self.assertEqual(u.units, 'W')
+        self.assertEqual(u.formatted(names=True), 'watt')
+        self.assertEqual(u.formatted(definition=True), 'm2.kg.s-3')
+        self.assertEqual(
+            u.formatted(names=True, definition=True),
+            'meter^2-kilogram-second^-3'
+        )
+        self.assertEqual(u.formatted(), 'W')
+
+        u = Units('tsp')
+        self.assertEqual(u.formatted(names=True), '4.928921875e-06 meter^3')
+        u = Units('tsp', names=True)
+        self.assertEqual(u.units, '4.928921875e-06 meter^3')
+
+        u = Units('m/s', formatted=True)
+        self.assertEqual(u.units, 'm.s-1')
+
+        u = Units('Watt', formatted=True)
+        self.assertEqual(u.units, 'W')
+        u = Units('Watt', names=True)
+        self.assertEqual(u.units, 'watt')
+        u = Units('Watt', definition=True)
+        self.assertEqual(u.units, 'm2.kg.s-3')
+        u = Units('Watt', names=True, definition=True)
+        self.assertEqual(u.units, 'meter^2-kilogram-second^-3')
+
+        u = Units('days since 1900-1-1 03:05', names=True)
+        self.assertEqual(u.units, 'day since 1900-1-1 03:05:00')
+        u = Units('days since 1900-1-1 03:05', formatted=True)
+        self.assertEqual(u.units, 'd since 1900-1-1 03:05:00')
+        u = Units('days since 1900-1-1 03:05')
+        self.assertEqual(u.formatted(), 'd since 1900-1-1 03:05:00')
+
+        u = Units('hours since 2100-1-1', calendar='noleap', names=True)
+        self.assertEqual(u.units, 'hour since 2100-1-1 00:00:00')
+        u = Units('hours since 2100-1-1', calendar='noleap', formatted=True)
+        self.assertEqual(u.units, 'h since 2100-1-1 00:00:00')
+        u = Units('hours since 2100-1-1', calendar='noleap')
+        self.assertEqual(u.formatted(), 'h since 2100-1-1 00:00:00')
+
 # --- End: class
 
         
