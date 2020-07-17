@@ -1814,31 +1814,34 @@ class Units():
     >>> u = Units('W')
     >>> u.units
     'W'
-    >>> u.units = u.format(names=True)
-    >>> u.units
+    >>> u.formatted(names=True)
     'watt'
-    >>> u.units = u.format(definition=True)
-    >>> u.units
+    >>> u.formatted(definition=True)
     'm2.kg.s-3'
-    >>> u.units = u.format(names=True, definition=True)
+    >>> u.formatted(names=True, definition=True)
     'meter^2-kilogram-second^-3'
-    >>> u.units = u.format()
-    >>> u.units
+    >>> u.formatted()
     'W'
     
-    >>> u.units = 'dram'
-    >>> u.format(names=True)
-    '1.848345703125e-06 meter^3'
+    >>> u = Units('dram')
+    >>> u.formatted(names=True)
+    '0.001771845 kilogram'
     
+    >>> u = Units('hours since 2100-1-1', calendar='noleap')
+    >>> u.formatted(names=True)
+    'hour since 2100-1-1 00:00:00'
+    >>> u.formatted()
+    'h since 2100-1-1 00:00:00'
+
     Formatting is also available during object initialization:
     
-    >>> u = Units('m/s', format=True)
+    >>> u = Units('m/s', formatted=True)
     >>> u.units
     'm.s-1'
     
     >>> u = Units('dram', names=True)
     >>> u.units
-    '1.848345703125e-06 m3'
+    '0.001771845 kilogram'
     
     >>> u = Units('Watt')
     >>> u.units
