@@ -99,5 +99,6 @@ setup(name = "cfunits",
                       "Programming Language :: Python :: 3",],
       packages     = ['cfunits'],
       package_data = {'cfunits': package_data},
+      python_requires = '>=3',
       install_requires = install_requires,
   )
