@@ -239,6 +239,15 @@ class UnitsTest(unittest.TestCase):
         
         self.assertEqual(Units('degC m s-1'), Units('K m s-1'))
 
+    def test_Units__hash__(self):
+        self.assertIsInstance(hash(Units('K')), int)
+        self.assertIsInstance(hash(Units('')), int)
+        self.assertIsInstance(hash(Units()), int)
+        self.assertIsInstance(hash(Units('days since 2000-01-01')), int)
+        self.assertIsInstance(hash(Units('days since 2000-01-01',
+                                         calendar='360_day')),
+                              int)
+        
 # --- End: class
 
         

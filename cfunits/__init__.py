@@ -12,7 +12,6 @@ In addition, some units are either new to, modified from, or removed
 from the standard UDUNITS-2 database in order to be more consistent
 with the CF conventions.
 
-
 '''
 
 __Conventions__  = 'CF-1.8'
@@ -39,7 +38,7 @@ if LooseVersion(platform.python_version()) < LooseVersion(_minimum_vn):
             _minimum_vn, platform.python_version()))
 
 # Check the version of cftime
-_minimum_vn = '1.1.3'
+_minimum_vn = '1.2.1'
 if LooseVersion(cftime.__version__) < LooseVersion(_minimum_vn):
     raise ValueError(
         "Bad cftime version: cfunits requires cftime>={}. Got {} at {}".format(

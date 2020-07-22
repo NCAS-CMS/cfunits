@@ -123,7 +123,7 @@ The cfunits package requires:
 
 * `numpy <http://www.numpy.org/>`_, version 1.15 or newer,
 
-* `cftime <https://pypi.org/project/cftime/>`_, version 1.1.3
+* `cftime <https://pypi.org/project/cftime/>`_, version 1.2.1
   or newer, and
 
 * `UNIDATA UDUNITS-2 library

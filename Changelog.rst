@@ -5,6 +5,8 @@ version 3.2.9
 **2020-07-??**
 
 * New attribute: `cfunits.Units.has_offset`
+* Fixed bug that caused failure when hashing referencet time units.
+* Changed dependency: ``cftime>=1.2.1``
 
 version 3.2.8
 -------------

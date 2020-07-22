@@ -912,9 +912,10 @@ class Units():
         if not self._isreftime:
             return hash(('Units', self._ut_unit))
 
-        return hash(('Units', 
-                     self._ut_unit, self._rtime_jd0, self._rtime_calendar,
-                     self._rtime_tzoffset))
+        return hash(
+            ('Units', self._ut_unit, self._utime.origin,
+             self._utime.calendar)
+        )
 
     def __repr__(self):
         '''x.__repr__() <==> repr(x)
@@ -2054,8 +2055,16 @@ class Units():
             if units1 in _months_or_years:
                 to_units = cls('days since '+reftime1,
                                calendar=getattr(to_units, 'calendar', None))
-                
-            offset = to_units._utime._jd0 - from_units._utime._jd0
+
+            to_jd0 = cftime.JulianDayFromDate(
+                to_units._utime.origin,
+                calendar=to_units._utime.calendar)
+            from_jd0 = cftime.JulianDayFromDate(
+                from_units._utime.origin,
+                calendar=from_units._utime.calendar)
+            
+            offset = to_jd0 - from_jd0
+#            offset = to_units._utime._jd0 - from_units._utime._jd0
         else:
             offset = 0
 
@@ -2387,7 +2396,6 @@ class Units():
         raise ValueError(
             "Can't take the logarithm to the base {!r} of {!r}".format(
                 base, self))
-
 # --- End: class
 
 
@@ -2403,7 +2411,6 @@ class Utime(cftime.utime):
     ==============  ==================================================
     Attribute       Description
     ==============  ==================================================
-    `!_jd0`         
     `!calendar`     The calendar used in the time calculation.
     `!origin`       A date/time object for the reference time.
     `!tzoffset`     Time zone offset in minutes.
@@ -2439,12 +2446,11 @@ class Utime(cftime.utime):
                 unit_string, calendar,
                 only_use_cftime_datetimes=only_use_cftime_datetimes)
         else:
-            self.calendar    = calendar
-            self._jd0        = None
-            self.origin      = None
-            self.tzoffset    = None
+            self.calendar = calendar
+            self.origin = None
+            self.tzoffset = None
             self.unit_string = None
-            self.units       = None
+            self.units = None
 
     def __repr__(self):
         '''x.__repr__() <==> repr(x)
@@ -2488,16 +2494,5 @@ class Utime(cftime.utime):
         u = cftime.utime(unit_string, self.calendar)        
 
         return u.num2date(time_value)
-    
-#    def origin_equals(self, other):
-#        '''
-#        
-#        '''
-#        if self is other:
-#            return True
-#        else:
-#            return (self._jd0     == other._jd0     and
-#                    self.calendar == other.calendar and
-#                    self.tzoffset == other.tzoffset)
 
 # --- End: class
