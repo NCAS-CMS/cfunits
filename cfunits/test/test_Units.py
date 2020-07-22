@@ -222,6 +222,32 @@ class UnitsTest(unittest.TestCase):
         self.assertFalse(
             Units('since 2019-01-01', calendar='qwerty').isvalid)
 
+    def test_Units_has_offset(self):
+        self.assertFalse(Units('K').has_offset)
+        self.assertFalse(Units('K @ 0').has_offset)
+        self.assertFalse(Units('Watt').has_offset)
+        self.assertFalse(Units('m2.kg.s-3').has_offset)
+        self.assertFalse(Units('km').has_offset)
+        self.assertFalse(Units('1000 m').has_offset)
+        self.assertFalse(Units('(K @ 273.15) m s-1').has_offset)
+        self.assertFalse(Units('degC m s-1').has_offset)
+
+        self.assertTrue(Units('K @ 273.15').has_offset)
+        self.assertTrue(Units('degC').has_offset)
+        self.assertTrue(Units('degF').has_offset)
+        self.assertTrue(Units('m2.kg.s-3 @ 3.14').has_offset)
+        
+        self.assertEqual(Units('degC m s-1'), Units('K m s-1'))
+
+    def test_Units__hash__(self):
+        self.assertIsInstance(hash(Units('K')), int)
+        self.assertIsInstance(hash(Units('')), int)
+        self.assertIsInstance(hash(Units()), int)
+        self.assertIsInstance(hash(Units('days since 2000-01-01')), int)
+        self.assertIsInstance(hash(Units('days since 2000-01-01',
+                                         calendar='360_day')),
+                              int)
+        
     def test_Units_formatted(self):
         u = Units('W')
         self.assertEqual(u.units, 'W')
@@ -263,7 +289,6 @@ class UnitsTest(unittest.TestCase):
         self.assertEqual(u.units, 'h since 2100-1-1 00:00:00')
         u = Units('hours since 2100-1-1', calendar='noleap')
         self.assertEqual(u.formatted(), 'h since 2100-1-1 00:00:00')
-
 # --- End: class
 
         

@@ -12,14 +12,13 @@ In addition, some units are either new to, modified from, or removed
 from the standard UDUNITS-2 database in order to be more consistent
 with the CF conventions.
 
-
 '''
 
 __Conventions__  = 'CF-1.8'
 __author__       = 'David Hassell'
 __author__     = 'David Hassell'
-__date__       = '2020-07-02'
-__version__    = '3.2.8'
+__date__       = '2020-07-??'
+__version__    = '3.2.9'
 __cf_version__ = '1.8'
 
 from distutils.version import LooseVersion
@@ -39,7 +38,7 @@ if LooseVersion(platform.python_version()) < LooseVersion(_minimum_vn):
             _minimum_vn, platform.python_version()))
 
 # Check the version of cftime
-_minimum_vn = '1.1.3'
+_minimum_vn = '1.2.1'
 if LooseVersion(cftime.__version__) < LooseVersion(_minimum_vn):
     raise ValueError(
         "Bad cftime version: cfunits requires cftime>={}. Got {} at {}".format(

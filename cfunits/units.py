@@ -119,6 +119,11 @@ _ut_divide          = _udunits.ut_divide
 _ut_divide.argtypes = (_c_void_p, _c_void_p)
 _ut_divide.restype  = _c_void_p
 
+# ut_unit* ut_get_name(const ut_unit* unit, ut_encoding encoding)
+_ut_get_name          = _udunits.ut_get_name
+_ut_get_name.argtypes = (_c_void_p, _c_int)  # ut_encoding assumed to be int!
+_ut_get_name.restype  = _c_char_p
+
 # ut_unit* ut_offset(const ut_unit* const unit, const double offset);
 _ut_offset          = _udunits.ut_offset
 _ut_offset.argtypes = (_c_void_p, _c_double)
@@ -907,9 +912,10 @@ class Units():
         if not self._isreftime:
             return hash(('Units', self._ut_unit))
 
-        return hash(('Units', 
-                     self._ut_unit, self._rtime_jd0, self._rtime_calendar,
-                     self._rtime_tzoffset))
+        return hash(
+            ('Units', self._ut_unit, self._utime.origin,
+             self._utime.calendar)
+        )
 
     def __repr__(self):
         '''x.__repr__() <==> repr(x)
@@ -1304,6 +1310,49 @@ class Units():
     # ----------------------------------------------------------------
     # Attributes
     # ----------------------------------------------------------------
+    @property
+    def has_offset(self):
+        '''True if the units contain an offset.
+        
+    Note that if a multiplicative component of the units had an offset
+    during instantiation, then the offset is ignored in the resulting
+    `Units` object. See below for examples.
+
+    **Examples**
+
+    >>> Units('K').has_offset
+    False
+    >>> Units('K @ 0').has_offset
+    False
+    >>> Units('K @ 273.15').has_offset
+    True
+    >>> Units('degC').has_offset
+    True
+    >>> Units('degF').has_offset
+    True
+
+    >>> Units('Watt').has_offset
+    False
+    >>> Units('m2.kg.s-3').has_offset
+    False
+
+    >>> Units('km').has_offset
+    False
+    >>> Units('1000 m').has_offset
+    False
+        
+    >>> Units('m2.kg.s-3 @ 3.14').has_offset
+    True
+    >>> Units('(K @ 273.15) m s-1').has_offset
+    False
+    >>> Units('degC m s-1').has_offset
+    False
+    >>> Units('degC m s-1') == Units('K m s-1')
+    True
+
+        '''
+        return '@' in self.formatted()
+
     @property
     def isreftime(self):
         '''True if the units are reference time units, False otherwise.
@@ -1907,7 +1956,7 @@ class Units():
 
     :Parameters:
     
-        x: `numpy.ndarray` or python numeric object
+        x: `numpy.ndarray` or python numeric type or `list` or `tuple`
     
         from_units: `Units`
             The original units of *x*
@@ -2009,8 +2058,16 @@ class Units():
             if units1 in _months_or_years:
                 to_units = cls('days since '+reftime1,
                                calendar=getattr(to_units, 'calendar', None))
-                
-            offset = to_units._utime._jd0 - from_units._utime._jd0
+
+            to_jd0 = cftime.JulianDayFromDate(
+                to_units._utime.origin,
+                calendar=to_units._utime.calendar)
+            from_jd0 = cftime.JulianDayFromDate(
+                from_units._utime.origin,
+                calendar=from_units._utime.calendar)
+            
+            offset = to_jd0 - from_jd0
+#            offset = to_units._utime._jd0 - from_units._utime._jd0
         else:
             offset = 0
 
@@ -2342,7 +2399,6 @@ class Units():
         raise ValueError(
             "Can't take the logarithm to the base {!r} of {!r}".format(
                 base, self))
-
 # --- End: class
 
 
@@ -2358,7 +2414,6 @@ class Utime(cftime.utime):
     ==============  ==================================================
     Attribute       Description
     ==============  ==================================================
-    `!_jd0`         
     `!calendar`     The calendar used in the time calculation.
     `!origin`       A date/time object for the reference time.
     `!tzoffset`     Time zone offset in minutes.
@@ -2394,12 +2449,11 @@ class Utime(cftime.utime):
                 unit_string, calendar,
                 only_use_cftime_datetimes=only_use_cftime_datetimes)
         else:
-            self.calendar    = calendar
-            self._jd0        = None
-            self.origin      = None
-            self.tzoffset    = None
+            self.calendar = calendar
+            self.origin = None
+            self.tzoffset = None
             self.unit_string = None
-            self.units       = None
+            self.units = None
 
     def __repr__(self):
         '''x.__repr__() <==> repr(x)
@@ -2443,16 +2497,5 @@ class Utime(cftime.utime):
         u = cftime.utime(unit_string, self.calendar)        
 
         return u.num2date(time_value)
-    
-#    def origin_equals(self, other):
-#        '''
-#        
-#        '''
-#        if self is other:
-#            return True
-#        else:
-#            return (self._jd0     == other._jd0     and
-#                    self.calendar == other.calendar and
-#                    self.tzoffset == other.tzoffset)
 
 # --- End: class
