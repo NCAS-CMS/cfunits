@@ -16,6 +16,7 @@ Units attributes
    :template: attribute.rst
 
    ~cfunits.Units.calendar
+   ~cfunits.Units.has_offset
    ~cfunits.Units.isdimensionless
    ~cfunits.Units.islatitude
    ~cfunits.Units.islongitude
