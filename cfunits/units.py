@@ -1,5 +1,6 @@
 import ctypes
 import ctypes.util
+import datetime
 import operator
 import sys
 
@@ -267,7 +268,7 @@ add_unit_alias("10 dB", None, "bel", "bels")
 # --------------------------------------------------------------------
 import cftime    
 #_netCDF4_netcdftime_utime = cftime.utime
-_datetime                 = cftime.datetime
+#_datetime                 = cftime.datetime
     
 # --------------------------------------------------------------------
 # Aliases for netCDF4.netcdftime functions
@@ -657,11 +658,11 @@ class Units():
     
         names: `bool`, optional
             Format the string representation of the units using names
-            instead of symbols. See the `format` method.
+            instead of symbols. See the `formatted` method.
     
         definition: `bool`, optional
             Format the string representation of the units using basic
-            units. See the `format` method.
+            units. See the `formatted` method.
     
         _ut_unit: `int`, optional
             Set the new units from this Udunits binary unit
@@ -1632,30 +1633,35 @@ class Units():
 
     .. seealso:: `calendar`, `isreftime`, `units`
     
+    :Returns:
+
+        `cftime.datetime`
+
     **Examples:**
     
-    >>> Units('days since 1900-1-1').reftime
-    <Datetime: 1900-01-01 00:00:00>
-    >>> str(Units('days since 1900-1-1 03:00').reftime)
-    '1900-01-01 03:00:00'
-    
-    TODO
+    >>> u = Units('days since 2001-01-01', calendar='360_day')
+    >>> u.reftime
+    cftime.datetime(2001, 1, 1, 0, 0, 0, 0)
+
         '''
         if self.isreftime:
-            utime = self._utime
-            if utime:
-                origin = utime.origin
-                if origin:
-                    return origin
-            else:
+            #utime = self._utime
+            #if utime:
+            #    origin = utime.origin
+            #    if origin:
+            #        if isinstance(origin, datetime.datetime):
+            #            return cftime.datetime(*origin.timetuple()[:7])
+            #        else:
+            #            origin
+            #else:            
                 # Some refrence date-times do not have a utime, such
-                # as those defined by monts or years
-                calendar = self._canonical_calendar
-                return cftime.datetime(
-                    *cftime._parse_date(self.units.split(' since ')[1]),
-                    calendar=calendar
-                )
-        # --- End: if
+                # as those defined by months or years
+            
+            calendar = self._canonical_calendar
+            return cftime.datetime(
+                *cftime._parse_date(self.units.split(' since ')[1])[:7],
+                calendar=calendar
+            )
 
         raise AttributeError(
             "{!r} has no attribute 'reftime'".format(self))
@@ -1931,7 +1937,7 @@ class Units():
 
         if self.isreftime:
             out = str(out, 'utf-8')  # needs converting from byte-string
-            out += ' since ' + self.reftime.strftime("%Y-%-m-%-d %H:%M:%S")
+            out += ' since ' + self.reftime.strftime()
             return out
 
         return out.decode('utf-8')
