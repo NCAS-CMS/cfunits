@@ -2,9 +2,11 @@ version 3.2.9
 -------------
 ----
 
-**2020-07-??**
+**2020-07-24**
 
 * New attribute: `cfunits.Units.has_offset`
+* `cftime.Units.reftime` now always returns a `cftime.datetime`
+  object.
 * Fixed bug that caused failure when hashing reference time units.
 * Changed dependency: ``cftime>=1.2.1``
 

@@ -277,18 +277,18 @@ class UnitsTest(unittest.TestCase):
         self.assertEqual(u.units, 'meter^2-kilogram-second^-3')
 
         u = Units('days since 1900-1-1 03:05', names=True)
-        self.assertEqual(u.units, 'day since 1900-1-1 03:05:00')
+        self.assertEqual(u.units, 'day since 1900-01-01 03:05:00')
         u = Units('days since 1900-1-1 03:05', formatted=True)
-        self.assertEqual(u.units, 'd since 1900-1-1 03:05:00')
+        self.assertEqual(u.units, 'd since 1900-01-01 03:05:00')
         u = Units('days since 1900-1-1 03:05')
-        self.assertEqual(u.formatted(), 'd since 1900-1-1 03:05:00')
+        self.assertEqual(u.formatted(), 'd since 1900-01-01 03:05:00')
 
         u = Units('hours since 2100-1-1', calendar='noleap', names=True)
-        self.assertEqual(u.units, 'hour since 2100-1-1 00:00:00')
+        self.assertEqual(u.units, 'hour since 2100-01-01 00:00:00')
         u = Units('hours since 2100-1-1', calendar='noleap', formatted=True)
-        self.assertEqual(u.units, 'h since 2100-1-1 00:00:00')
+        self.assertEqual(u.units, 'h since 2100-01-01 00:00:00')
         u = Units('hours since 2100-1-1', calendar='noleap')
-        self.assertEqual(u.formatted(), 'h since 2100-1-1 00:00:00')
+        self.assertEqual(u.formatted(), 'h since 2100-01-01 00:00:00')
 # --- End: class
 
         
