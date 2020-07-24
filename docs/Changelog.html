@@ -17,7 +17,7 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <script type="text/javascript" src="_static/clipboard.min.js"></script>
     <script type="text/javascript" src="_static/copybutton.js"></script>
-    <script type="text/javascript" src="_static/copybutton.js"></script>
+    <script type="text/javascript" src="_static/toggleprompt.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="cfunits.Units" href="cfunits.Units.html" />
@@ -36,7 +36,7 @@
 
 
 
-<h1 class="logo"><a href="index.html">cfunits 3.2.8</a></h1>
+<h1 class="logo"><a href="index.html">cfunits 3.2.9</a></h1>
 
 
 
@@ -95,6 +95,18 @@
   <div class="section" id="change-log">
 <h1><strong>Change log</strong><a class="headerlink" href="#change-log" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
+<div class="section" id="version-3-2-9">
+<h2>version 3.2.9<a class="headerlink" href="#version-3-2-9" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p><strong>2020-07-24</strong></p>
+<ul class="simple">
+<li><p>New attribute: <a class="reference internal" href="generated/cfunits.Units.has_offset.html#cfunits.Units.has_offset" title="cfunits.Units.has_offset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cfunits.Units.has_offset</span></code></a></p></li>
+<li><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">cftime.Units.reftime</span></code> now always returns a <a class="reference external" href="https://unidata.github.io/cftime/api.html#cftime.datetime" title="(in cftime)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cftime.datetime</span></code></a>
+object.</p></li>
+<li><p>Fixed bug that caused failure when hashing reference time units.</p></li>
+<li><p>Changed dependency: <code class="docutils literal notranslate"><span class="pre">cftime&gt;=1.2.1</span></code></p></li>
+</ul>
+</div>
 <div class="section" id="version-3-2-8">
 <h2>version 3.2.8<a class="headerlink" href="#version-3-2-8" title="Permalink to this headline">¶</a></h2>
 <hr class="docutils" />
@@ -277,7 +289,7 @@ calendars.</p></li>
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2020, NCAS | Page built on 2020-07-02.
+      &copy;2020, NCAS | Page built on 2020-07-24.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>

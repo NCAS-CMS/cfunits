@@ -17,7 +17,7 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <script type="text/javascript" src="../_static/clipboard.min.js"></script>
     <script type="text/javascript" src="../_static/copybutton.js"></script>
-    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <script type="text/javascript" src="../_static/toggleprompt.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="cfunits.Units.units" href="cfunits.Units.units.html" />
@@ -36,7 +36,7 @@
 
 
 
-<h1 class="logo"><a href="../index.html">cfunits 3.2.8</a></h1>
+<h1 class="logo"><a href="../index.html">cfunits 3.2.9</a></h1>
 
 
 
@@ -109,14 +109,17 @@
 <p class="admonition-title">See also</p>
 <p><a class="reference internal" href="cfunits.Units.calendar.html#cfunits.Units.calendar" title="cfunits.Units.calendar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calendar</span></code></a>, <a class="reference internal" href="cfunits.Units.isreftime.html#cfunits.Units.isreftime" title="cfunits.Units.isreftime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">isreftime</span></code></a>, <a class="reference internal" href="cfunits.Units.units.html#cfunits.Units.units" title="cfunits.Units.units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">units</span></code></a></p>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://unidata.github.io/cftime/api.html#cftime.datetime" title="(in cftime)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cftime.datetime</span></code></a></p>
+</dd>
+</dl>
 <p><strong>Examples:</strong></p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="p">(</span><span class="s1">&#39;days since 1900-1-1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reftime</span>
-<span class="go">&lt;Datetime: 1900-01-01 00:00:00&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">Units</span><span class="p">(</span><span class="s1">&#39;days since 1900-1-1 03:00&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reftime</span><span class="p">)</span>
-<span class="go">&#39;1900-01-01 03:00:00&#39;</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;days since 2001-01-01&#39;</span><span class="p">,</span> <span class="n">calendar</span><span class="o">=</span><span class="s1">&#39;360_day&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">reftime</span>
+<span class="go">cftime.datetime(2001, 1, 1, 0, 0, 0, 0)</span>
 </pre></div>
 </div>
-<p>TODO</p>
 </dd></dl>
 
 </div>
@@ -129,7 +132,7 @@
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2020, NCAS | Page built on 2020-07-02.
+      &copy;2020, NCAS | Page built on 2020-07-24.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>

@@ -17,7 +17,7 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <script type="text/javascript" src="_static/clipboard.min.js"></script>
     <script type="text/javascript" src="_static/copybutton.js"></script>
-    <script type="text/javascript" src="_static/copybutton.js"></script>
+    <script type="text/javascript" src="_static/toggleprompt.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="cfunits.Units.calendar" href="generated/cfunits.Units.calendar.html" />
@@ -36,7 +36,7 @@
 
 
 
-<h1 class="logo"><a href="index.html">cfunits 3.2.8</a></h1>
+<h1 class="logo"><a href="index.html">cfunits 3.2.9</a></h1>
 
 
 
@@ -101,7 +101,7 @@
 <h1><strong>cfunits.Units</strong><a class="headerlink" href="#cfunits-units" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="cfunits.Units">
-<em class="property">class </em><code class="sig-prename descclassname">cfunits.</code><code class="sig-name descname">Units</code><span class="sig-paren">(</span><em class="sig-param">units=None</em>, <em class="sig-param">calendar=None</em>, <em class="sig-param">formatted=False</em>, <em class="sig-param">names=False</em>, <em class="sig-param">definition=False</em>, <em class="sig-param">_ut_unit=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/NCAS-CMS/cfunits/blob/v3.2.8/cfunits/units.py#L441"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">cfunits.</code><code class="sig-name descname">Units</code><span class="sig-paren">(</span><em class="sig-param">units=None</em>, <em class="sig-param">calendar=None</em>, <em class="sig-param">formatted=False</em>, <em class="sig-param">names=False</em>, <em class="sig-param">definition=False</em>, <em class="sig-param">_ut_unit=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/NCAS-CMS/cfunits/blob/v3.2.9/cfunits/units.py#L447"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Store, combine and compare physical units and convert numeric
 values to different units.</p>
@@ -341,10 +341,10 @@ in place, without any copying overheads:</p>
 standardized manner. See the <a class="reference internal" href="generated/cfunits.Units.formatted.html#cfunits.Units.formatted" title="cfunits.Units.formatted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">formatted</span></code></a> method.</p>
 </dd>
 <dt>names: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>Format the string representation of the units using names
-instead of symbols. See the <a class="reference external" href="https://docs.python.org/3/library/functions.html#format" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">format</span></code></a> method.</p>
+instead of symbols. See the <a class="reference internal" href="generated/cfunits.Units.formatted.html#cfunits.Units.formatted" title="cfunits.Units.formatted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">formatted</span></code></a> method.</p>
 </dd>
 <dt>definition: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>Format the string representation of the units using basic
-units. See the <a class="reference external" href="https://docs.python.org/3/library/functions.html#format" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">format</span></code></a> method.</p>
+units. See the <a class="reference internal" href="generated/cfunits.Units.formatted.html#cfunits.Units.formatted" title="cfunits.Units.formatted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">formatted</span></code></a> method.</p>
 </dd>
 <dt>_ut_unit: <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, optional</dt><dd><p>Set the new units from this Udunits binary unit
 representation. This should be an integer returned by a
@@ -367,34 +367,37 @@ is set.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.calendar.html#cfunits.Units.calendar" title="cfunits.Units.calendar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calendar</span></code></a></p></td>
 <td><p>The calendar for reference time units.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.isdimensionless.html#cfunits.Units.isdimensionless" title="cfunits.Units.isdimensionless"><code class="xref py py-obj docutils literal notranslate"><span class="pre">isdimensionless</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.has_offset.html#cfunits.Units.has_offset" title="cfunits.Units.has_offset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_offset</span></code></a></p></td>
+<td><p>True if the units contain an offset.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.isdimensionless.html#cfunits.Units.isdimensionless" title="cfunits.Units.isdimensionless"><code class="xref py py-obj docutils literal notranslate"><span class="pre">isdimensionless</span></code></a></p></td>
 <td><p>True if the units are dimensionless, false otherwise.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.islatitude.html#cfunits.Units.islatitude" title="cfunits.Units.islatitude"><code class="xref py py-obj docutils literal notranslate"><span class="pre">islatitude</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.islatitude.html#cfunits.Units.islatitude" title="cfunits.Units.islatitude"><code class="xref py py-obj docutils literal notranslate"><span class="pre">islatitude</span></code></a></p></td>
 <td><p>True if and only if the units are latitude units.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.islongitude.html#cfunits.Units.islongitude" title="cfunits.Units.islongitude"><code class="xref py py-obj docutils literal notranslate"><span class="pre">islongitude</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.islongitude.html#cfunits.Units.islongitude" title="cfunits.Units.islongitude"><code class="xref py py-obj docutils literal notranslate"><span class="pre">islongitude</span></code></a></p></td>
 <td><p>True if and only if the units are longitude units.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.ispressure.html#cfunits.Units.ispressure" title="cfunits.Units.ispressure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ispressure</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.ispressure.html#cfunits.Units.ispressure" title="cfunits.Units.ispressure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ispressure</span></code></a></p></td>
 <td><p>True if the units are pressure units, false otherwise.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.isreftime.html#cfunits.Units.isreftime" title="cfunits.Units.isreftime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">isreftime</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.isreftime.html#cfunits.Units.isreftime" title="cfunits.Units.isreftime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">isreftime</span></code></a></p></td>
 <td><p>True if the units are reference time units, False otherwise.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.istime.html#cfunits.Units.istime" title="cfunits.Units.istime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">istime</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.istime.html#cfunits.Units.istime" title="cfunits.Units.istime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">istime</span></code></a></p></td>
 <td><p>True if the units are time units, False otherwise.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.isvalid.html#cfunits.Units.isvalid" title="cfunits.Units.isvalid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">isvalid</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.isvalid.html#cfunits.Units.isvalid" title="cfunits.Units.isvalid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">isvalid</span></code></a></p></td>
 <td><p>Whether the units are valid.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.reason_notvalid.html#cfunits.Units.reason_notvalid" title="cfunits.Units.reason_notvalid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reason_notvalid</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.reason_notvalid.html#cfunits.Units.reason_notvalid" title="cfunits.Units.reason_notvalid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reason_notvalid</span></code></a></p></td>
 <td><p>The reason for invalid units.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.reftime.html#cfunits.Units.reftime" title="cfunits.Units.reftime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reftime</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.reftime.html#cfunits.Units.reftime" title="cfunits.Units.reftime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reftime</span></code></a></p></td>
 <td><p>The reference date-time of reference time units.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.units.html#cfunits.Units.units" title="cfunits.Units.units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">units</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.units.html#cfunits.Units.units" title="cfunits.Units.units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">units</span></code></a></p></td>
 <td><p>The units.</p></td>
 </tr>
 </tbody>
@@ -456,7 +459,7 @@ is set.</p>
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2020, NCAS | Page built on 2020-07-02.
+      &copy;2020, NCAS | Page built on 2020-07-24.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
