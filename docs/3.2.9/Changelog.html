@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Change log &#8212; Documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/customise-alabaster.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/clipboard.min.js"></script>
+    <script type="text/javascript" src="_static/copybutton.js"></script>
+    <script type="text/javascript" src="_static/toggleprompt.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="cfunits.Units" href="cfunits.Units.html" />
+    <link rel="prev" title="Releases" href="releases.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+
+
+<h1 class="logo"><a href="index.html">cfunits 3.2.9</a></h1>
+
+
+
+<p class="blurb">A Python interface to the UDUNITS-2 library with CF extensions</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=NCAS-CMS&repo=cfunits&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html"><strong>Installation</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html"><strong>Support</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html"><strong>Releases</strong></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Change log</strong></a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cfunits.Units.html"><strong>cfunits.Units</strong></a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="releases.html" title="previous chapter"><strong>Releases</strong></a></li>
+      <li>Next: <a href="cfunits.Units.html" title="next chapter"><strong>cfunits.Units</strong></a></li>
+  </ul></li>
+</ul>
+</div>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="change-log">
+<h1><strong>Change log</strong><a class="headerlink" href="#change-log" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<div class="section" id="version-3-2-9">
+<h2>version 3.2.9<a class="headerlink" href="#version-3-2-9" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p><strong>2020-07-24</strong></p>
+<ul class="simple">
+<li><p>New attribute: <a class="reference internal" href="generated/cfunits.Units.has_offset.html#cfunits.Units.has_offset" title="cfunits.Units.has_offset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cfunits.Units.has_offset</span></code></a></p></li>
+<li><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">cftime.Units.reftime</span></code> now always returns a <a class="reference external" href="https://unidata.github.io/cftime/api.html#cftime.datetime" title="(in cftime)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cftime.datetime</span></code></a>
+object.</p></li>
+<li><p>Fixed bug that caused failure when hashing reference time units.</p></li>
+<li><p>Changed dependency: <code class="docutils literal notranslate"><span class="pre">cftime&gt;=1.2.1</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="version-3-2-8">
+<h2>version 3.2.8<a class="headerlink" href="#version-3-2-8" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p><strong>2020-07-02</strong></p>
+<ul class="simple">
+<li><p>Fixed bug that caused failure when an <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> was input to
+<a class="reference internal" href="generated/cfunits.Units.conform.html#cfunits.Units.conform" title="cfunits.Units.conform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cfunits.Units.conform</span></code></a>
+(<a class="reference external" href="https://github.com/NCAS-CMS/cfunits/issues/9">https://github.com/NCAS-CMS/cfunits/issues/9</a>).</p></li>
+<li><p>Allowed <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> and <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a> to be input to <a class="reference internal" href="generated/cfunits.Units.conform.html#cfunits.Units.conform" title="cfunits.Units.conform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cfunits.Units.conform</span></code></a>
+(<a class="reference external" href="https://github.com/NCAS-CMS/cfunits/issues/9">https://github.com/NCAS-CMS/cfunits/issues/9</a>).</p></li>
+</ul>
+</div>
+<div class="section" id="version-3-2-7">
+<h2>version 3.2.7<a class="headerlink" href="#version-3-2-7" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p><strong>2020-05-20</strong></p>
+<ul class="simple">
+<li><p>Minor changes to allow for <code class="docutils literal notranslate"><span class="pre">cftime==1.1.3</span></code></p></li>
+<li><p>Changed dependency: <code class="docutils literal notranslate"><span class="pre">cftime&gt;=1.1.3</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="version-3-2-6">
+<h2>version 3.2.6<a class="headerlink" href="#version-3-2-6" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p><strong>2020-04-27</strong></p>
+<ul class="simple">
+<li><p>Fixed bug that caused a <code class="xref py py-obj docutils literal notranslate"><span class="pre">KeyError:</span> <span class="pre">'1r'</span></code> exception, due to an
+incorrect format statement.</p></li>
+</ul>
+</div>
+<div class="section" id="version-3-2-5">
+<h2>version 3.2.5<a class="headerlink" href="#version-3-2-5" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p><strong>2020-03-26</strong></p>
+<ul class="simple">
+<li><p>Check that the udunits2 library exists (with thanks to Gareth
+Jones).</p></li>
+<li><p>Changed dependency: <code class="docutils literal notranslate"><span class="pre">cftime&gt;=1.1.1</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="version-3-2-4">
+<h2>version 3.2.4<a class="headerlink" href="#version-3-2-4" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p><strong>2020-01-07</strong></p>
+<ul class="simple">
+<li><p>Use ctypes.util.find_library to get name of udunits2 library (with
+thanks to Lance Helsten)</p></li>
+</ul>
+</div>
+<div class="section" id="version-3-2-3">
+<h2>version 3.2.3<a class="headerlink" href="#version-3-2-3" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p><strong>2019-11-28</strong></p>
+<ul class="simple">
+<li><p>Fixed a bug that rased an exception for units specified by
+non-strings (<a class="reference external" href="https://github.com/NCAS-CMS/cfunits/issues/1">https://github.com/NCAS-CMS/cfunits/issues/1</a>).</p></li>
+</ul>
+</div>
+<div class="section" id="version-3-2-2">
+<h2>version 3.2.2<a class="headerlink" href="#version-3-2-2" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p><strong>2019-09-16</strong></p>
+<ul class="simple">
+<li><p>Added <code class="xref py py-obj docutils literal notranslate"><span class="pre">_units_since_reftime</span></code> attribute.</p></li>
+</ul>
+</div>
+<div class="section" id="version-3-2-0">
+<h2>version 3.2.0<a class="headerlink" href="#version-3-2-0" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p><strong>2019-09-12</strong></p>
+<ul class="simple">
+<li><p>Added <code class="xref py py-obj docutils literal notranslate"><span class="pre">_canonical_calendar</span></code> attribute.</p></li>
+<li><p>Improved testing in <code class="xref py py-obj docutils literal notranslate"><span class="pre">Unit.equivalent</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="version-3-1-1">
+<h2>version 3.1.1<a class="headerlink" href="#version-3-1-1" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p><strong>2019-08-02</strong></p>
+<ul class="simple">
+<li><p>Incremented version.</p></li>
+</ul>
+</div>
+<div class="section" id="version-3-1-0">
+<h2>version 3.1.0<a class="headerlink" href="#version-3-1-0" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p><strong>2019-08-02</strong></p>
+<ul class="simple">
+<li><p>Added <code class="xref py py-obj docutils literal notranslate"><span class="pre">reason_notvalid</span></code> attribute, and improved handling of invalid
+calendars.</p></li>
+</ul>
+</div>
+<div class="section" id="version-3-0-0">
+<h2>version 3.0.0<a class="headerlink" href="#version-3-0-0" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p><strong>2019-05-28</strong></p>
+<ul class="simple">
+<li><p>Python 2 support deprecated.</p></li>
+</ul>
+</div>
+<div class="section" id="version-1-9">
+<h2>version 1.9<a class="headerlink" href="#version-1-9" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p><strong>2019-02-14</strong></p>
+<ul class="simple">
+<li><p>Updated documentation to mention the isvalid attribute.</p></li>
+</ul>
+</div>
+<div class="section" id="version-1-8">
+<h2>version 1.8<a class="headerlink" href="#version-1-8" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p><strong>2018-09-13</strong></p>
+<ul class="simple">
+<li><p>Trap “ValueError: negative reference year in time units, must be &gt;=
+1” so that a Units object is returned that has isvalid=False.</p></li>
+<li><p>Added “message” attribute that reports on why bad units are bad. Is
+“None” if units are OK.</p></li>
+</ul>
+</div>
+<div class="section" id="version-1-7">
+<h2>version 1.7<a class="headerlink" href="#version-1-7" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p><strong>2018-08-23</strong></p>
+<ul class="simple">
+<li><p>Python 3 compatibility (with many thanks to Eric Hutton)</p></li>
+</ul>
+</div>
+<div class="section" id="version-1-6">
+<h2>version 1.6<a class="headerlink" href="#version-1-6" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p><strong>2018-08-23</strong></p>
+<ul class="simple">
+<li><p>Bad units now do not raise an exception, but may be checked with the
+“isvalid” atttribute.</p></li>
+</ul>
+</div>
+<div class="section" id="version-1-5">
+<h2>version 1.5<a class="headerlink" href="#version-1-5" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p><strong>2017-02-24</strong></p>
+<ul class="simple">
+<li><p>Removed explicit dependency checks</p></li>
+<li><p>brough in line with cf-python v1.5</p></li>
+</ul>
+</div>
+<div class="section" id="version-1-1-4">
+<h2>Version 1.1.4<a class="headerlink" href="#version-1-1-4" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p><strong>2016-02-17</strong></p>
+<ul class="simple">
+<li><p>Bug fix to setup.py</p></li>
+</ul>
+</div>
+<div class="section" id="version-1-1">
+<h2>Version 1.1<a class="headerlink" href="#version-1-1" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p><strong>2015-10-28</strong></p>
+<ul class="simple">
+<li><p>Bug fix to Units.conform for scalar numpy arrays.</p></li>
+<li><p>Removed support for netCDF4-python versions &lt; 1.1.1</p></li>
+<li><p>Same as cf/units.py in cf-python version 1.1</p></li>
+</ul>
+</div>
+<div class="section" id="version-1-0">
+<h2>version 1.0<a class="headerlink" href="#version-1-0" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p><strong>2015-05-27</strong></p>
+<ul class="simple">
+<li><p>Initial release</p></li>
+<li><p>Same as cf/units.py in cf-python version 1.0</p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2020, NCAS | Page built on 2020-07-24.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
