@@ -30,7 +30,8 @@ test_loader.sortTestMethodsUsing = randomise_test_order
 
 # Build the test suite from the tests found in the test files.
 testsuite = unittest.TestSuite()
-testsuite.addTests(test_loader().discover('.', pattern='test_*.py'))
+testsuite.addTests(test_loader().discover(
+    os.path.dirname(os.path.realpath(__file__)), pattern='test_*.py'))
 
 # Run the test suite.
 def run_test_suite(verbosity=2):
