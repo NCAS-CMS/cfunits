@@ -37,7 +37,12 @@ class UnitsTest(unittest.TestCase):
                             Units('h since 2000-1-1 0:0', calendar='366_day'))
         
     def test_Units_equivalent(self):
+        self.assertTrue(Units(' ').equivalent(Units()))
+        self.assertTrue(Units('').equivalent(Units()))
+        self.assertTrue(Units().equivalent(Units('')))
+        self.assertTrue(Units().equivalent(Units(' ')))
         self.assertTrue(Units('').equivalent(Units('')))
+        self.assertTrue(Units('').equivalent(Units(' ')))
         self.assertTrue(Units('').equivalent(Units('1')))
         self.assertTrue(Units('').equivalent(Units('18')))
         self.assertTrue(Units('18').equivalent(Units('1')))

@@ -54,6 +54,7 @@ if __name__ == '__main__':
     print('cfunits version:', cfunits.__version__)
     print('cfunits path:'   , os.path.abspath(cfunits.__file__))
     print('')
+    print('Running tests from', os.path.abspath(os.curdir))
+    print('')
 
     run_test_suite()
-

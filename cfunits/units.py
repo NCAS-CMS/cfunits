@@ -558,9 +558,10 @@ class Units():
     
     >>> u = Units('days since 2000-1-1')
     >>> u.calendar
-    AttributeError: Can't get 'Units' attribute 'calendar'
-    >>> v = Units('days since 2000-1-1')
-    >>> v.calendar = 'gregorian'
+    AttributeError: Units has no attribute 'calendar'
+    >>> v = Units('days since 2000-1-1', 'gregorian')
+    >>> v.calendar
+    'gregorian'
     >>> v.equals(u)
     True
     
@@ -667,7 +668,7 @@ class Units():
         _ut_unit: `int`, optional
             Set the new units from this Udunits binary unit
             representation. This should be an integer returned by a
-            call to `ut_parse` function of Udunits. Ignored if `units`
+            call to `ut_parse` function of Udunits. Ignored if *units*
             is set.
 
         '''
@@ -802,12 +803,12 @@ class Units():
 #                    _cached_ut_unit[units] = ut_unit
 
                 self._isreftime = False
-                self._calendar  = None
-                self._canonial_calendar  = None
-                self._utime     = None
+                self._calendar = None
+                self._canonial_calendar = None
+                self._utime = None
 
             self._ut_unit = ut_unit
-            self._units   = units
+            self._units = units
             self._units_since_reftime = unit
 
             if formatted or names or definition:
@@ -1835,13 +1836,15 @@ class Units():
         if not self and not other:
             # Both units are null and therefore equivalent
             return True
-
-#        if not isreftime1 and not isreftime2:
-            # Both units are not reference-time units
+        
+        # Units('') and Units() are equivalent. v3.3.0
+        if (
+                (self._ut_unit is None and not other.units) or
+                (other._ut_unit is None and not self.units)
+        ):
+            return True
+        
         return bool(_ut_are_convertible(self._ut_unit, other._ut_unit))
-         
-        # Still here? Then units are not equivalent.
-#        return False
 
     def formatted(self, names=None, definition=None):
         '''Formats the string stored in the `units` attribute in a
