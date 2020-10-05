@@ -587,7 +587,7 @@ class Units():
     'gregorian'
     >>> v.equals(u)
     True
-    
+
 
     **Arithmetic with units**
 
