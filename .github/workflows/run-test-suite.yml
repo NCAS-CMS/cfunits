@@ -66,6 +66,7 @@ jobs:
       shell: bash -l {0}
       run: |
         conda install -c conda-forge udunits2=2.2.20
+        pip install pycodestyle
         # (The other, Python-based, deps are installed during the below command)
         # Important! Must install our development version of cfunits to test:
         pip install -e .
