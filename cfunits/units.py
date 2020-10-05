@@ -581,12 +581,13 @@ class Units():
 
     >>> u = Units('days since 2000-1-1')
     >>> u.calendar
-    AttributeError: Can't get 'Units' attribute 'calendar'
-    >>> v = Units('days since 2000-1-1')
-    >>> v.calendar = 'gregorian'
+    AttributeError: Units has no attribute 'calendar'
+    >>> v = Units('days since 2000-1-1', 'gregorian')
+    >>> v.calendar
+    'gregorian'
     >>> v.equals(u)
     True
-
+    
 
     **Arithmetic with units**
 
