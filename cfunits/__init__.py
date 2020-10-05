@@ -14,11 +14,19 @@ with the CF conventions.
 
 '''
 
+<<<<<<< HEAD
 __Conventions__  = 'CF-1.8'
 __author__       = 'David Hassell'
 __author__     = 'David Hassell'
 __date__       = '2020-10-05'
 __version__    = '3.3.0'
+=======
+__Conventions__ = 'CF-1.8'
+__author__ = 'David Hassell'
+__author__ = 'David Hassell'
+__date__ = '2020-07-24'
+__version__ = '3.2.9'
+>>>>>>> 9e42a93ee4170c12b26dfb7852078fe59e30070c
 __cf_version__ = '1.8'
 
 from distutils.version import LooseVersion
@@ -45,4 +53,3 @@ if LooseVersion(cftime.__version__) < LooseVersion(_minimum_vn):
             _minimum_vn, cftime.__version__, cftime.__file__))
 
 from .units import Units
-

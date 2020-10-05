@@ -30,7 +30,9 @@ test_loader.sortTestMethodsUsing = randomise_test_order
 
 # Build the test suite from the tests found in the test files.
 testsuite = unittest.TestSuite()
-testsuite.addTests(test_loader().discover('.', pattern='test_*.py'))
+testsuite.addTests(test_loader().discover(
+    os.path.dirname(os.path.realpath(__file__)), pattern='test_*.py'))
+
 
 # Run the test suite.
 def run_test_suite(verbosity=2):
@@ -41,18 +43,18 @@ def run_test_suite(verbosity=2):
     if not outcome.wasSuccessful():
         exit(1)  # else is zero for sucess as standard
 
-    
+
 if __name__ == '__main__':
     print('------------------')
     print('CFUNITS TEST SUITE')
     print('------------------')
-    print('Run date:'              , datetime.datetime.now())
-    print('Platform:'              , str(platform()))
-    print('python:'                , str(python_version() + ' ' + str(sys.executable)))
-    print('cftime version:'        , cftime.__version__)
-    print('numpy version:'         , numpy.__version__)
+    print('Run date:', datetime.datetime.now())
+    print('Platform:', str(platform()))
+    print('python:', str(python_version() + ' ' + str(sys.executable)))
+    print('cftime version:', cftime.__version__)
+    print('numpy version:', numpy.__version__)
     print('cfunits version:', cfunits.__version__)
-    print('cfunits path:'   , os.path.abspath(cfunits.__file__))
+    print('cfunits path:', os.path.abspath(cfunits.__file__))
     print('')
     print('Running tests from', os.path.abspath(os.curdir))
     print('')
