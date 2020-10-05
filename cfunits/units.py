@@ -587,7 +587,7 @@ class Units():
     'gregorian'
     >>> v.equals(u)
     True
-    
+
 
     **Arithmetic with units**
 
@@ -1872,14 +1872,14 @@ class Units():
         if not self and not other:
             # Both units are null and therefore equivalent
             return True
-        
+
         # Units('') and Units() are equivalent. v3.3.0
         if (
                 (self._ut_unit is None and not other.units) or
                 (other._ut_unit is None and not self.units)
         ):
             return True
-        
+
         return bool(_ut_are_convertible(self._ut_unit, other._ut_unit))
 
     def formatted(self, names=None, definition=None):

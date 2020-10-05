@@ -1,3 +1,11 @@
+version 3.3.0
+-------------
+----
+
+**2020-10.05**
+
+* Make ``Units('')`` and ``Units()`` equivalent (but still not equal).
+  
 version 3.2.9
 -------------
 ----
