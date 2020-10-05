@@ -12,10 +12,8 @@ coverage:
         target: auto
         threshold: "0%"
         base: auto
-        branches: 
-          - master
         if_no_uploads: success
-        if_not_found: success  
+        if_not_found: success
         if_ci_failed: error
         only_pulls: true
     patch:
@@ -23,8 +21,6 @@ coverage:
         target: "90%"
         threshold: "10%"
         base: auto
-        branches:
-          - master
         if_no_uploads: success
         if_not_found: success
         if_ci_failed: error
