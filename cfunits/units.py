@@ -640,7 +640,7 @@ class Units():
 
     **Modifying data for equivalent units**
 
-    Any numpy array or python numeric type may be modified for
+    Any numpy array or Python numeric type may be modified for
     equivalent units using the `conform` static method.
 
     >>> Units.conform(2, Units('km'), Units('m'))
@@ -1986,9 +1986,9 @@ class Units():
 
     Returns the conformed values.
 
-    The values may either be a `numpy` array, a python numeric type,
+    The values may either be a `numpy` array, a Python numeric type,
     or a `list` or `tuple`. The returned value is of the same type,
-    except that input integers are converted to floats and python
+    except that input integers are converted to floats and Python
     sequences are converted to `numpy` arrays (see the *inplace*
     keyword).
 
@@ -1999,7 +1999,7 @@ class Units():
 
     :Parameters:
 
-        x: `numpy.ndarray` or python numeric type or `list` or `tuple`
+        x: `numpy.ndarray` or Python numeric type or `list` or `tuple`
 
         from_units: `Units`
             The original units of *x*
@@ -2019,7 +2019,7 @@ class Units():
 
     :Returns:
 
-        `numpy.ndarray` or python numeric
+        `numpy.ndarray` or Python numeric
             The modified numeric values.
 
     **Examples:**
@@ -2131,7 +2131,7 @@ class Units():
         # --- End: if
 
         # ------------------------------------------------------------
-        # Find out if x is (or should be) a numpy array or a python
+        # Find out if x is (or should be) a numpy array or a Python
         # number
         # ------------------------------------------------------------
         if isinstance(x, numpy_generic):
