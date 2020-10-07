@@ -30,7 +30,7 @@ except ImportError as error1:
     raise ImportError(error1)
 
 # Check the version of Python
-_minimum_vn = '3.5'
+_minimum_vn = '3.6.0'
 if LooseVersion(platform.python_version()) < LooseVersion(_minimum_vn):
     raise RuntimeError(
         "Bad Python version: cfunits requires Python version {} or later. "

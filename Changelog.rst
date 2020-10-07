@@ -1,3 +1,11 @@
+version 3.2.10
+--------------
+----
+
+**2020-10-??**
+
+* Python 3.5 support deprecated (3.5 was retired on 2020-09-13)
+
 version 3.2.9
 -------------
 ----
