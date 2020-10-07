@@ -37,7 +37,7 @@ jobs:
 
     # Prepare to run the test-suite on different versions of Python 3:
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
 
