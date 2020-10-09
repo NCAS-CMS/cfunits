@@ -42,5 +42,3 @@ Tests
 The test script is in the ``cfunits/test`` directory:
 
     python test/run_tests.py
-
-

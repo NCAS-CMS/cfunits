@@ -1,18 +1,18 @@
-* Change the version and date in cfunits/__init__.py (__version__ and
-  __date__ variables)
+* Change the version and date in `cfunits/__init__.py` (`__version__` and
+  `__date__` variables)
 
-* Make sure that README.md is up to date.
+* Make sure that `README.md` is up to date.
 
-* Make sure that Changelog.rst is up to date.
+* Make sure that `Changelog.rst` is up to date.
 
 * Make sure that the correct path to the cfunits library is in the
-  PYTHONPATH environment variable:
+  `PYTHONPATH` environment variable:
 
   ```bash
   export PYTHONPATH=$PWD:$PYTHONPATH
   ```
-  
-  * Build a development copy of the documentation using to check API
+
+* Build a development copy of the documentation using to check API
   pages for any new methods are present & correct, & that the overall
   formatting has not been adversely affected for comprehension by any
   updates in the latest Sphinx or theme etc. (Do not manually commit
@@ -21,7 +21,7 @@
   ```bash
   ./release_docs <vn> dev-clean # E.g. ./release_docs 3.2.6 dev-clean
   ```
-  
+
 * Create an archived copy of the documentation:
 
   ```bash
@@ -51,13 +51,13 @@
   ```bash
   git push origin master
   ```
-  
+
 * Tag the release:
 
   ```bash
   ./tag <vn> # E.g. ./tag 3.2.6
   ```
-  
+
 * Upload the source tarball to PyPi. Note this requires the `twine`
   library (which can be installed via `pip`) and relevant project
   privileges on PyPi.
@@ -65,4 +65,3 @@
   ```bash
   ./upload_to_pypi <vn> # E.g. ./upload_to_pypi 3.2.6
   ```
-  
