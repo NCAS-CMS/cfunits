@@ -8,7 +8,7 @@
 
 Version |release|
 
-A python interface to `UNIDATA's UDUNITS-2 library
+A Python interface to `UNIDATA's UDUNITS-2 library
 <http://www.unidata.ucar.edu/software/udunits>`_ with CF extensions
 
 Store, combine and compare physical units and convert numeric values to different units.
@@ -16,7 +16,7 @@ Store, combine and compare physical units and convert numeric values to differen
 Units are as defined in UNIDATA's UDUNITS-2 library, except for
 reference time units (such as ``'days since 2000-12-1'`` in the
 ``'proleptic_gregorian'`` calendar), which are handled by the `cftime
-python package <https://unidata.github.io/cftime>`_.
+Python package <https://unidata.github.io/cftime>`_.
 
 In addition, some units are either new to, modified from, or removed
 from the standard UDUNITS-2 database in order to be more consistent

@@ -15,9 +15,11 @@ Version |release|
 **Python versions**
 -------------------
 
-As of version 3.0.0, cfunits works for Python 3 only.
+As of version 3.2.10, cfunits works only with Python 3.6 or newer.
 
-(Version 1.9 of cfunits works for Python 2 and Python 3.)
+As of version 3.0.0, cfunits works for Python 3 only. (Version 1.9 of
+cfunits works for Python 2 and Python 3.)
+
 
 .. _pip:
   
@@ -119,7 +121,7 @@ Tests are run from within the ``cfunits/test`` directory:
 
 The cfunits package requires:
 
-* `Python <https://www.python.org/>`_, version  3 or newer,
+* `Python <https://www.python.org/>`_, version 3.6 or newer,
 
 * `numpy <http://www.numpy.org/>`_, version 1.15 or newer,
 
@@ -159,4 +161,3 @@ The cfunits package requires:
 ----
 
 The complete source code is available at https://github.com/NCAS-CMS/cfunits
-
