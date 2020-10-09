@@ -15,7 +15,7 @@ Version |release|
 **Python versions**
 -------------------
 
-As of version 3.2.10, cfunits works only with Python 3.6 or newer.
+As of version 3.3.0, cfunits works only with Python 3.6 or newer.
 
 As of version 3.0.0, cfunits works for Python 3 only. (Version 1.9 of
 cfunits works for Python 2 and Python 3.)
