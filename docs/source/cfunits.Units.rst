@@ -38,7 +38,6 @@ Units methods
 
    ~cfunits.Units.conform
    ~cfunits.Units.copy
-   ~cfunits.Units.dump
    ~cfunits.Units.equals
    ~cfunits.Units.equivalent
    ~cfunits.Units.formatted
