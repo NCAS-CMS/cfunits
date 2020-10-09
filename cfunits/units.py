@@ -691,7 +691,7 @@ class Units():
         _ut_unit: `int`, optional
             Set the new units from this Udunits binary unit
             representation. This should be an integer returned by a
-            call to `ut_parse` function of Udunits. Ignored if `units`
+            call to `ut_parse` function of Udunits. Ignored if *units*
             is set.
 
         '''
@@ -1873,12 +1873,14 @@ class Units():
             # Both units are null and therefore equivalent
             return True
 
-#        if not isreftime1 and not isreftime2:
-            # Both units are not reference-time units
-        return bool(_ut_are_convertible(self._ut_unit, other._ut_unit))
+        # Units('') and Units() are equivalent. v3.3.0
+        if (
+                (self._ut_unit is None and not other.units) or
+                (other._ut_unit is None and not self.units)
+        ):
+            return True
 
-        # Still here? Then units are not equivalent.
-#        return False
+        return bool(_ut_are_convertible(self._ut_unit, other._ut_unit))
 
     def formatted(self, names=None, definition=None):
         '''Formats the string stored in the `units` attribute in a

@@ -1,10 +1,11 @@
-version 3.2.10
---------------
+version 3.3.0
+-------------
 ----
 
-**2020-10-??**
+**2020-10-09**
 
 * Python 3.5 support deprecated (3.5 was retired on 2020-09-13)
+* Make ``Units('')`` and ``Units()`` equivalent (but still not equal).
 
 version 3.2.9
 -------------
