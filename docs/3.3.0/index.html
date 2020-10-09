@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>cfunits package &#8212; Documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/customise-alabaster.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/toggleprompt.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction" href="introduction.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+
+
+<h1 class="logo"><a href="#">cfunits 3.3.0</a></h1>
+
+
+
+<p class="blurb">A Python interface to the UDUNITS-2 library with CF extensions</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=NCAS-CMS&repo=cfunits&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html"><strong>Installation</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html"><strong>Support</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html"><strong>Releases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Changelog.html"><strong>Change log</strong></a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cfunits.Units.html"><strong>cfunits.Units</strong></a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="introduction.html" title="next chapter"><strong>Introduction</strong></a></li>
+  </ul></li>
+</ul>
+</div>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="cfunits-package">
+<h1><strong>cfunits package</strong><a class="headerlink" href="#cfunits-package" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<div class="section" id="introduction">
+<h2><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p>Version 3.3.0</p>
+<p>A Python interface to <a class="reference external" href="http://www.unidata.ucar.edu/software/udunits">UNIDATA’s UDUNITS-2 library</a> with CF extensions</p>
+<p>Store, combine and compare physical units and convert numeric values to different units.</p>
+<p>Units are as defined in UNIDATA’s UDUNITS-2 library, except for
+reference time units (such as <code class="docutils literal notranslate"><span class="pre">'days</span> <span class="pre">since</span> <span class="pre">2000-12-1'</span></code> in the
+<code class="docutils literal notranslate"><span class="pre">'proleptic_gregorian'</span></code> calendar), which are handled by the <a class="reference external" href="https://unidata.github.io/cftime">cftime
+Python package</a>.</p>
+<p>In addition, some units are either new to, modified from, or removed
+from the standard UDUNITS-2 database in order to be more consistent
+with the <a class="reference external" href="http://cfconventions.org/">CF conventions</a>.</p>
+</div>
+<div class="section" id="contents">
+<h2><strong>Contents</strong><a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html"><strong>Installation</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html"><strong>Support</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html"><strong>Releases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Changelog.html"><strong>Change log</strong></a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cfunits.Units.html"><strong>cfunits.Units</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cfunits.Units.html#units-attributes">Units attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfunits.Units.html#units-methods">Units methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfunits.Units.html#units-static-methods">Units static methods</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="index-and-search">
+<h2><strong>Index and search</strong><a class="headerlink" href="#index-and-search" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search</span></a></p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2020, NCAS | Page built on 2020-10-09.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
