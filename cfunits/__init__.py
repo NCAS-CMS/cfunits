@@ -16,7 +16,6 @@ with the CF conventions.
 
 __Conventions__ = 'CF-1.8'
 __author__ = 'David Hassell'
-__author__ = 'David Hassell'
 __date__ = '2020-10-09'
 __version__ = '3.3.0'
 __cf_version__ = '1.8'
