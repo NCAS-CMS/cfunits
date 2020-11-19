@@ -60,20 +60,22 @@ needs_sphinx = '2.3.1'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autodoc',
-              'sphinx.ext.autosummary',
-#              'sphinx.ext.viewcode',
-              'sphinx.ext.linkcode',
-#              'sphinx.ext.pngmath',
-#              'sphinx.ext.mathjax',
-              'sphinx.ext.graphviz',
-#              'sphinx.ext.inheritance_diagram',
-              'sphinx.ext.intersphinx',
-              'sphinx.ext.doctest',
-              'sphinx.ext.githubpages',
-              'sphinx_copybutton',
-              'sphinx_toggleprompt',
-              ]
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.autosummary',
+#   'sphinx.ext.viewcode',
+    'sphinx.ext.linkcode',
+#   'sphinx.ext.pngmath',
+#   'sphinx.ext.mathjax',
+    'sphinx.ext.graphviz',
+#   'sphinx.ext.inheritance_diagram',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.doctest',
+    'sphinx.ext.githubpages',
+    'sphinx_copybutton',
+    'sphinx_toggleprompt',
+    'sphinxcontrib.spelling',
+]
 
 # Boolean indicating whether to scan all found documents for
 # autosummary directives, and to generate stub pages for each
@@ -354,6 +356,11 @@ copybutton_prompt_text = "$ "   # prompt to skip automatically on copying
 
 # Configure toggleprompt
 toggleprompt_offset_right = 25  # stops toggle and copy buttons overlapping
+
+# Spelling extension configuration: set British English and false positives
+spelling_lang = 'en_GB'
+tokenizer_lang = 'en_GB'
+spelling_word_list_filename = 'spelling_false_positives.txt'
 
 # This is a function which should return the URL to source code
 # corresponding to the object in given domain with given information.
