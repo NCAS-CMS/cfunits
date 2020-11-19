@@ -1,6 +1,4 @@
-atttribute
 bel
-brough
 cf
 cfunits
 ctypes
@@ -18,7 +16,6 @@ netCDF
 notvalid
 psu
 py
-rased
 reftime
 Sv
 sverdrup
