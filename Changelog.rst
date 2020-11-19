@@ -74,7 +74,7 @@ version 3.2.3
 
 **2019-11-28**
 
-* Fixed a bug that rased an exception for units specified by
+* Fixed a bug that raised an exception for units specified by
   non-strings (https://github.com/NCAS-CMS/cfunits/issues/1).
 
 version 3.2.2
@@ -153,7 +153,7 @@ version 1.6
 **2018-08-23**
 
 * Bad units now do not raise an exception, but may be checked with the
-  "isvalid" atttribute.
+  "isvalid" attribute.
 
 version 1.5 
 -----------
@@ -162,7 +162,7 @@ version 1.5
 **2017-02-24**
 
 * Removed explicit dependency checks
-* brough in line with cf-python v1.5
+* brought in line with cf-python v1.5
 	
 Version 1.1.4
 -------------
