@@ -36,7 +36,15 @@ class UnitsTest(unittest.TestCase):
         self.assertNotEqual(Units('days since 2000-1-1', calendar='all_leap'),
                             Units('h since 2000-1-1 0:0', calendar='366_day'))
 
+        self.assertNotEqual(Units(1), Units(1))
+        self.assertNotEqual(Units(1), Units(2))
+        self.assertNotEqual(Units(1), Units())
+        self.assertNotEqual(Units(1), Units(''))
+        self.assertNotEqual(Units(1), Units(' '))
+        self.assertNotEqual(Units(1), Units('metre'))
+
     def test_Units_equivalent(self):
+        self.assertTrue(Units().equivalent(Units()))
         self.assertTrue(Units(' ').equivalent(Units()))
         self.assertTrue(Units('').equivalent(Units()))
         self.assertTrue(Units().equivalent(Units('')))
@@ -97,6 +105,13 @@ class UnitsTest(unittest.TestCase):
         u = Units('days since 2000-02-02', calendar='standard')
         v = Units('months since 2000-02-02', calendar='gregorian')
         self.assertNotEqual(u, v)
+
+        self.assertFalse(Units(1).equivalent(Units(1)))
+        self.assertFalse(Units().equivalent(Units(1)))
+        self.assertFalse(Units(2).equivalent(Units(1)))
+        self.assertFalse(Units('').equivalent(Units(1)))
+        self.assertFalse(Units(' ').equivalent(Units(1)))
+        self.assertFalse(Units('1').equivalent(Units(1)))
 
     def test_Units_conform(self):
         self.assertEqual(Units.conform(0.5, Units('km'), Units('m')), 500)

@@ -1719,8 +1719,11 @@ class Units():
         if value is not None:
             return value
 
-        raise AttributeError("%s has no attribute 'calendar'" %
-                             self.__class__.__name__)
+        raise AttributeError(
+            "{} has no attribute 'calendar'".format(
+                self.__class__.__name__
+            )
+        )
 
     @property
     def units(self):
@@ -1744,8 +1747,11 @@ class Units():
         if value is not None:
             return value
 
-        raise AttributeError("'%s' object has no attribute 'units'" %
-                             self.__class__.__name__)
+        raise AttributeError(
+            "{} object has no attribute 'units'".format(
+                self.__class__.__name__
+            )
+        )
 
     # ----------------------------------------------------------------
     # Methods
@@ -1785,6 +1791,11 @@ class Units():
     False
     >>> u.equivalent(w)
     True
+
+    Invalid units are not equivalent:
+
+    >>> Units('bad units').equivalent(Units('bad units'))
+    False
 
         '''
 #        if not self.isvalid or not other.isvalid:
@@ -1869,15 +1880,14 @@ class Units():
 #        # --- End: if
 
         # Still here?
-        if not self and not other:
-            # Both units are null and therefore equivalent
+        if self._units is None and other._units is None:
+            # Both units are null and therefore equivalent (updated
+            # test criteria at v3.3.1)
             return True
 
-        # Units('') and Units() are equivalent. v3.3.0
-        if (
-                (self._ut_unit is None and not other.units) or
-                (other._ut_unit is None and not self.units)
-        ):
+        # Units('') and Units() are equivalent. v3.3.0 (updated test
+        # criteria at v3.3.1)
+        if self._units in (None, '') and other._units in (None, ''):
             return True
 
         return bool(_ut_are_convertible(self._ut_unit, other._ut_unit))
@@ -2296,6 +2306,11 @@ class Units():
     >>> u.equals(v)
     True
 
+    Invalid units are not equal:
+
+    >>> Units('bad units').equals(Units('bad units'))
+    False
+
         '''
         isreftime1 = self._isreftime
         isreftime2 = other._isreftime
@@ -2371,6 +2386,14 @@ class Units():
 #        if not self.isvalid or not other.isvalid:
 #            print ('ppp')
 #            return False
+
+        if self._units is None and other._units is None:
+            # Both units are null and therefore equal (v3.3.1)
+            return True
+
+        if self._ut_unit is None and other._ut_unit is None:
+            # Both units are invalid (v3.3.1)
+            return False
 
         try:
             if not _ut_compare(self._ut_unit, other._ut_unit):

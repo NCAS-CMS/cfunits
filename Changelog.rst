@@ -1,3 +1,12 @@
+version 3.3.1
+-------------
+----
+
+**2020-11-27**
+
+* Make invalid units non-equivalent and non-equal
+  (https://github.com/NCAS-CMS/cfunits/issues/19)
+
 version 3.3.0
 -------------
 ----
