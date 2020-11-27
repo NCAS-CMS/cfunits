@@ -5,7 +5,8 @@
 
 * Make sure that `Changelog.rst` is up to date.
 
-* Create a link to the new documentation in `docs/source/releases.rst`
+* Create a link to the new documentation in
+  `docs/source/releases.rst`, including the release date.
 
 * Make sure that the correct path to the cfunits library is in the
   `PYTHONPATH` environment variable:
