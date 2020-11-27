@@ -10,14 +10,14 @@
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/customise-alabaster.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/toggleprompt.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/clipboard.min.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <script type="text/javascript" src="../_static/toggleprompt.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="cfunits.Units.equivalent" href="cfunits.Units.equivalent.html" />
@@ -36,7 +36,7 @@
 
 
 
-<h1 class="logo"><a href="../index.html">cfunits 3.3.0</a></h1>
+<h1 class="logo"><a href="../index.html">cfunits 3.3.1</a></h1>
 
 
 
@@ -64,7 +64,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html"><strong>Introduction</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html"><strong>Installation</strong></a></li>
@@ -103,7 +103,7 @@
 <h1>cfunits.Units.equals<a class="headerlink" href="#cfunits-units-equals" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="cfunits.Units.equals">
-<code class="sig-prename descclassname">Units.</code><code class="sig-name descname">equals</code><span class="sig-paren">(</span><em class="sig-param">other</em>, <em class="sig-param">rtol=None</em>, <em class="sig-param">atol=None</em>, <em class="sig-param">verbose=False</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/NCAS-CMS/cfunits/blob/v3.3.0/cfunits/units.py#L2255"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units.equals" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">Units.</code><code class="sig-name descname">equals</code><span class="sig-paren">(</span><em class="sig-param">other</em>, <em class="sig-param">rtol=None</em>, <em class="sig-param">atol=None</em>, <em class="sig-param">verbose=False</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/NCAS-CMS/cfunits/blob/v3.3.1/cfunits/units.py#L2265"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units.equals" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return True if and only if numeric values in one unit are
 convertible to numeric values in the other unit and their
 conversion is a scale factor of 1.</p>
@@ -153,6 +153,11 @@ conversion is a scale factor of 1.</p>
 <span class="go">True</span>
 </pre></div>
 </div>
+<p>Invalid units are not equal:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="p">(</span><span class="s1">&#39;bad units&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">Units</span><span class="p">(</span><span class="s1">&#39;bad units&#39;</span><span class="p">))</span>
+<span class="go">False</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -165,11 +170,11 @@ conversion is a scale factor of 1.</p>
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2020, NCAS | Page built on 2020-10-09.
+      &copy;2020, NCAS | Page built on 2020-11-27.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.0</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
     </div>
 
