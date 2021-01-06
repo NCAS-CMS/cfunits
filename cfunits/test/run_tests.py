@@ -1,6 +1,8 @@
 from __future__ import print_function
 
 import unittest
+import doctest
+import pkgutil
 import os
 from random import choice
 import sys
@@ -35,6 +37,12 @@ testsuite.addTests(
         os.path.dirname(os.path.realpath(__file__)), pattern="test_*.py"
     )
 )
+
+# Add a test suite for doctests
+testsuite_doctests = unittest.TestSuite()
+for importer, name, ispkg in (
+        pkgutil.walk_packages(cfunits.__path__, cfunits.__name__ + '.')):
+    testsuite.addTests(doctest.DocTestSuite(name))
 
 
 # Run the test suite.
