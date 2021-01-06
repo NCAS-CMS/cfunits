@@ -519,7 +519,7 @@ class Units:
 
     >>> u = Units('m s-1')
     >>> u
-    <Cf Units: 'm s-1'>
+    <Units: m s-1>
     >>> u.units = 'days since 2004-3-1'
     >>> u
     <Units: days since 2004-3-1>
@@ -622,6 +622,7 @@ class Units:
     place.
 
     >>> u = Units('m')
+    >>> u
     <Units: m>
 
     >>> v = u * 1000
@@ -663,9 +664,12 @@ class Units:
     If the *inplace* keyword is True, then a numpy array is modified
     in place, without any copying overheads:
 
-    >>> Units.conform(a,
-                      Units('days since 2000-12-1'),
-                      Units('days since 2001-1-1'), inplace=True)
+    >>> Units.conform(
+    ...     a,
+    ...     Units('days since 2000-12-1'),
+    ...     Units('days since 2001-1-1'),
+    ...     inplace=True
+    ... )
     array([-31., -30., -29., -28., -27.])
     >>> a
     array([-31., -30., -29., -28., -27.])
@@ -925,8 +929,8 @@ class Units:
 
         >>> u = Units('days since 3-4-5', calendar='gregorian')
         >>> u.__getstate__()
-        {'calendar': 'gregorian',
-         'units': 'days since 3-4-5'}
+        {'_units': 'days since 3-4-5',
+         '_calendar': 'gregorian'}
 
         """
         return dict(
@@ -1621,7 +1625,7 @@ class Units:
         **Examples:**
 
         >>> u = Units('km')
-        >>>  u.isvalid
+        >>> u.isvalid
         True
         >>> u.reason_notvalid
         ''
@@ -1631,12 +1635,11 @@ class Units:
         False
         >>> u.reason_notvalid
         "Invalid units: 'Bad Units'; Not recognised by UDUNITS"
-        >>> u = Units(days since 2000-1-1', calendar='Bad Calendar')
-        >>>  u.isvalid
+        >>> u = Units('days since 2000-1-1', calendar='Bad Calendar')
+        >>> u.isvalid
         False
         >>> u.reason_notvalid
         "Invalid calendar='Bad Calendar'; calendar must be one of ['standard', 'gregorian', 'proleptic_gregorian', 'noleap', 'julian', 'all_leap', '365_day', '366_day', '360_day'], got 'bad calendar'"
-
         """
         return getattr(self, "_isvalid", False)
 
@@ -1662,11 +1665,11 @@ class Units:
         >>> u.reason_notvalid
         "Invalid units: 'Bad Units'; Not recognised by UDUNITS"
 
-        >>> u = Units(days since 2000-1-1', calendar='Bad Calendar')
-        >>>  u.isvalid
+        >>> u = Units('days since 2000-1-1', calendar='Bad Calendar')
+        >>> u.isvalid
         False
         >>> u.reason_notvalid
-        "Invalid calendar='Bad Calendar'; calendar must be one of ['standard', 'gregorian', 'proleptic_gregorian', 'noleap', 'julian', 'all_leap', '365_day', '366_day', '360_day'], got 'bad calendar'"
+        "Invalid calendar='Bad Calendar'"
 
         """
         return getattr(self, "_reason_notvalid", "")
@@ -1685,7 +1688,7 @@ class Units:
 
         >>> u = Units('days since 2001-01-01', calendar='360_day')
         >>> u.reftime
-        cftime.datetime(2001, 1, 1, 0, 0, 0, 0)
+        cftime.datetime(2001, 1, 1, 0, 0, 0, 0, calendar='360_day')
 
         """
         if self.isreftime:
@@ -1798,7 +1801,7 @@ class Units:
 
         >>> u = Units('days since 2000-1-1')
         >>> v = Units('days since 2000-1-1', calendar='366_day')
-        >>> w = Units('seconds since 1978-3-12', calendar='gregorian)
+        >>> w = Units('seconds since 1978-3-12', calendar='gregorian')
 
         >>> u.equivalent(v)
         False
@@ -1953,9 +1956,9 @@ class Units:
 
         >>> u = Units('hours since 2100-1-1', calendar='noleap')
         >>> u.formatted(names=True)
-        'hour since 2100-1-1 00:00:00'
+        'hour since 2100-01-01 00:00:00'
         >>> u.formatted()
-        'h since 2100-1-1 00:00:00'
+        'h since 2100-01-01 00:00:00'
 
         Formatting is also available during object initialization:
 
@@ -2066,9 +2069,12 @@ class Units:
         >>> print(a)
         [ 0.  1.  2.  3.  4.]
 
-        >>> Units.conform(a,
-                          Units('days since 2000-12-1'),
-                          Units('days since 2001-1-1'), inplace=True)
+        >>> Units.conform(
+        ...     a,
+        ...     Units('days since 2000-12-1'),
+        ...     Units('days since 2001-1-1'),
+        ...     inplace=True
+        ... )
         array([-31., -30., -29., -28., -27.])
         >>> print(a)
         [-31. -30. -29. -28. -27.]
@@ -2278,7 +2284,10 @@ class Units:
 
         **Examples:**
 
+        >>> u = Units('decibel')
         >>> v = u.copy()
+        >>> v
+        <Units: decibel>
 
         """
         return self
