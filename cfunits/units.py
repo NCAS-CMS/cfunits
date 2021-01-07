@@ -659,7 +659,7 @@ class Units:
     >>> Units.conform(a, Units('minute'), Units('second'))
     array([   0.,   60.,  120.,  180.,  240.])
     >>> a
-    array([ 0.,  1.,  2.,  3.,  4.])
+    array([0., 1., 2., 3., 4.])
 
     If the *inplace* keyword is True, then a numpy array is modified
     in place, without any copying overheads:
@@ -2067,7 +2067,7 @@ class Units:
         >>> Units.conform(a, Units('minute'), Units('second'))
         array([   0.,   60.,  120.,  180.,  240.])
         >>> print(a)
-        [ 0.  1.  2.  3.  4.]
+        [0. 1. 2. 3. 4.]
 
         >>> Units.conform(
         ...     a,
