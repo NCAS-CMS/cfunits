@@ -38,11 +38,14 @@ testsuite.addTests(
     )
 )
 
-# Add a test suite for doctests
+# Include doctests
 testsuite_doctests = unittest.TestSuite()
+# Tell doctest comparisons to treat any sequence of whitespace including
+# newlines as equal and to take '...' in output to mean anything can be there
+doctest_flags = doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
 for importer, name, ispkg in (
         pkgutil.walk_packages(cfunits.__path__, cfunits.__name__ + '.')):
-    testsuite.addTests(doctest.DocTestSuite(name))
+    testsuite.addTests(doctest.DocTestSuite(name, optionflags=doctest_flags))
 
 
 # Run the test suite.
