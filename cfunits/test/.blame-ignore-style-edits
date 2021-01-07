@@ -1,0 +1,18 @@
+# This file lists commits which were used purely to amend the code style
+# of the codebase. It is designed for use as an option to git blame so that
+# the change history can be seen without the clutter of code style edits
+# (see https://black.readthedocs.io/en/stable/installation_and_usage.html...
+#      ...#migrating-your-code-style-without-ruining-git-blame for example).
+#
+# So instead of 'git blame ...', to ignore formatting edits use (or alias):
+#   git blame --ignore-revs-file .blame-ignore-style-edits
+
+# Commits to make code style abide by vanilla PEP8...
+23e359a39418419a1816776453a0ca6691ac8ef0
+4ecdac8e2cd61a5271159ce9cbc350cac4f45c81
+2cd988351c11528cde74972cd84e0d5612228a2b
+
+# Then commits to further migrate code style to Black...
+f9f9a5e8fb38eeca1b3805ad59e40595ac8bcebd
+4a25de8384df442cd0f84f759feba1ffee6d075c
+740dd16854fba68726594bbe806435c712ba3d1e
