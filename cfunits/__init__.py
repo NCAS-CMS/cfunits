@@ -45,4 +45,4 @@ if LooseVersion(cftime.__version__) < LooseVersion(_minimum_vn):
         )
     )
 
-from .units import Units
+from .units import Units  # noqa: F401
