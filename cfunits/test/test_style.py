@@ -1,4 +1,3 @@
-import datetime
 import os
 import pycodestyle
 import unittest
