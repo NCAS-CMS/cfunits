@@ -765,7 +765,7 @@ class Units:
                 units_split = units.split(" since ")
                 unit = units_split[0].strip()
 
-                _units_since_reftime = unit
+                self._units_since_reftime = unit
 
                 ut_unit = _cached_ut_unit.get(unit, None)
                 if ut_unit is None:
