@@ -2,7 +2,7 @@ from __future__ import print_function
 
 import unittest
 import os
-from random import choice, shuffle
+from random import choice
 import sys
 
 import cftime
@@ -10,7 +10,7 @@ import numpy
 import datetime
 import cfunits
 
-from platform import system, platform, python_version
+from platform import platform, python_version
 
 
 def randomise_test_order(*_args):

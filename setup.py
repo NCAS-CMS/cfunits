@@ -1,9 +1,6 @@
-from distutils.core import setup, Extension
-from distutils.command.build import build
+from distutils.core import setup
 import os
 import fnmatch
-import sys
-import imp
 import re
 
 

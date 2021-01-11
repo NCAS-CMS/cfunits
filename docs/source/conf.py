@@ -186,7 +186,7 @@ highlight_language = "python"
 # The theme to use for HTML and HTML Help pages.  See the
 # documentation for a list of builtin themes.
 # html_theme = 'default'
-html_theme = "alabaster"  #'default' #'haiku' #'default'
+html_theme = "alabaster"
 
 # Theme options are theme-specific and customize the look and feel of
 # a theme further.  For a list of options available for each theme,
@@ -300,7 +300,7 @@ htmlhelp_basename = "cfunitsdoc"
 
 # -- Options for LaTeX output -------------------------------------------------
 
-## The paper size ('letter' or 'a4').
+# The paper size ('letter' or 'a4').
 # latex_paper_size = 'a4'
 
 # The font size ('10pt', '11pt' or '12pt').
@@ -367,7 +367,7 @@ spelling_word_list_filename = "spelling_false_positives.txt"
 import inspect
 from os.path import relpath, dirname
 
-link_release = re.search("(\d+\.\d+\.\d+)", release).groups()[0]
+link_release = re.search(r"(\d+\.\d+\.\d+)", release).groups()[0]
 
 
 def linkcode_resolve(domain, info):
@@ -409,7 +409,6 @@ def linkcode_resolve(domain, info):
 
     try:
         source, lineno = inspect.findsource(obj)
-        nlines = len(inspect.getsourcelines(obj)[0])
     except:
         lineno = None
 

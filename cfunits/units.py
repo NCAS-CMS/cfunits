@@ -1,10 +1,6 @@
 import ctypes
 import ctypes.util
-import datetime
 import operator
-import sys
-
-from copy import deepcopy
 
 from numpy import array as numpy_array
 from numpy import asanyarray as numpy_asanyarray
@@ -880,7 +876,7 @@ class Units:
             self._units_since_reftime = None
             try:
                 self._utime = Utime(_canonical_calendar[calendar.lower()])
-            except Exception as error:
+            except Exception:
                 self._new_reason_notvalid(
                     "Invalid calendar={!r}".format(calendar)
                 )
