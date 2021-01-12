@@ -1054,16 +1054,18 @@ class Units:
         x.__sub__(y) <==> x-y
 
         """
+        value_error = ValueError("Can't do {!r} - {!r}".format(self, other))
+
         if self._isreftime or (
             isinstance(other, self.__class__) and other._isreftime
         ):
-            raise ValueError("Can't do {!r} - {!r}".format(self, other))
+            raise value_error
 
         try:
             _ut_unit = _ut_offset(self._ut_unit, _c_double(other))
             return type(self)(_ut_unit=_ut_unit)
         except:
-            raise ValueError("Can't do {!r} - {!r}".format(self, other))
+            raise value_error
 
     def __add__(self, other):
         """The binary arithmetic operation ``+``
@@ -1071,16 +1073,18 @@ class Units:
         x.__add__(y) <==> x+y
 
         """
+        value_error = ValueError("Can't do {!r} + {!r}".format(self, other))
+
         if self._isreftime or (
             isinstance(other, self.__class__) and other._isreftime
         ):
-            raise ValueError("Can't do {!r} + {!r}".format(self, other))
+            raise value_error
 
         try:
             _ut_unit = _ut_offset(self._ut_unit, _c_double(-other))
             return type(self)(_ut_unit=_ut_unit)
         except:
-            raise ValueError("Can't do {!r} + {!r}".format(self, other))
+            raise value_error
 
     def __mul__(self, other):
         """The binary arithmetic operation ``*``
@@ -1088,44 +1092,48 @@ class Units:
         x.__mul__(y) <==> x*y
 
         """
+        value_error = ValueError("Can't do {!r} * {!r}".format(self, other))
+
         if isinstance(other, self.__class__):
             if self._isreftime or other._isreftime:
-                raise ValueError("Can't do {!r} * {!r}".format(self, other))
+                raise value_error
 
             try:
                 ut_unit = _ut_multiply(self._ut_unit, other._ut_unit)
             except:
-                raise ValueError("Can't do {!r} * {!r}".format(self, other))
+                raise value_error
         else:
             if self._isreftime:
-                raise ValueError("Can't do {!r} * {!r}".format(self, other))
+                raise value_error
 
             try:
                 ut_unit = _ut_scale(_c_double(other), self._ut_unit)
             except:
-                raise ValueError("Can't do {!r} * {!r}".format(self, other))
+                raise value_error
         # --- End: if
 
         return type(self)(_ut_unit=ut_unit)
 
     def __div__(self, other):
         """x.__div__(y) <==> x/y"""
+        value_error = ValueError("Can't do {!r} / {!r}".format(self, other))
+
         if isinstance(other, self.__class__):
             if self._isreftime or other._isreftime:
-                raise ValueError("Can't do {!r} / {!r}".format(self, other))
+                raise value_error
 
             try:
                 ut_unit = _ut_divide(self._ut_unit, other._ut_unit)
             except:
-                raise ValueError("Can't do {!r} / {!r}".format(self, other))
+                raise value_error
         else:
             if self._isreftime:
-                raise ValueError("Can't do {!r} / {!r}".format(self, other))
+                raise value_error
 
             try:
                 ut_unit = _ut_scale(_c_double(1.0 / other), self._ut_unit)
             except:
-                raise ValueError("Can't do {!r} / {!r}".format(self, other))
+                raise value_error
         # --- End: if
 
         return type(self)(_ut_unit=ut_unit)
@@ -1303,18 +1311,17 @@ class Units:
     # ----------------------------------------------------------------
     def _comparison(self, other, method):
         """Compare two units according to a specified method."""
+        value_error = ValueError(
+            "Units are not compatible: {!r}, {!r}".format(self, other)
+        )
         try:
             cv_converter = _ut_get_converter(self._ut_unit, other._ut_unit)
         except:
-            raise ValueError(
-                "Units are not compatible: {!r}, {!r}".format(self, other)
-            )
+            raise value_error
 
         if not cv_converter:
             _cv_free(cv_converter)
-            raise ValueError(
-                "Units are not compatible: {!r}, {!r}".format(self, other)
-            )
+            raise value_error
 
         y = _c_double(1.0)
         pointer = ctypes.pointer(y)
@@ -2067,6 +2074,12 @@ class Units:
         [-31. -30. -29. -28. -27.]
 
         """
+        value_error = ValueError(
+            "Units are not convertible: {!r}, {!r}".format(
+                from_units, to_units
+            )
+        )
+
         if from_units.equals(to_units):
             if not isinstance(x, (int, float)):
                 x = numpy_asanyarray(x)
@@ -2081,21 +2094,13 @@ class Units:
         # --- End: if
 
         if not from_units.equivalent(to_units):
-            raise ValueError(
-                "Units are not convertible: {!r}, {!r}".format(
-                    from_units, to_units
-                )
-            )
+            raise value_error
 
         ut_unit1 = from_units._ut_unit
         ut_unit2 = to_units._ut_unit
 
         if ut_unit1 is None or ut_unit2 is None:
-            raise ValueError(
-                "Units are not convertible: {!r}, {!r}".format(
-                    from_units, to_units
-                )
-            )
+            raise value_error
 
         convert = _ut_compare(ut_unit1, ut_unit2)
 
@@ -2159,11 +2164,7 @@ class Units:
             cv_converter = _ut_get_converter(ut_unit1, ut_unit2)
             if not cv_converter:
                 _cv_free(cv_converter)
-                raise ValueError(
-                    "Units are not convertible: {!r}, {!r}".format(
-                        from_units, to_units
-                    )
-                )
+                raise value_error
         # --- End: if
 
         # ------------------------------------------------------------
