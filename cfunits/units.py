@@ -1025,15 +1025,15 @@ class Units:
         return self._comparison(other, "__gt__")
 
     def __ge__(self, other):
-        """The rich comparison operator ````
+        """The rich comparison operator ``>=``
 
-        x.__ge__(y) <==> x>y
+        x.__ge__(y) <==> x>=y
 
         """
         return self._comparison(other, "__ge__")
 
     def __lt__(self, other):
-        """The rich comparison operator ````
+        """The rich comparison operator ``<``
 
         x.__lt__(y) <==> x<y
 
@@ -1041,7 +1041,7 @@ class Units:
         return self._comparison(other, "__lt__")
 
     def __le__(self, other):
-        """The rich comparison operator ````
+        """The rich comparison operator ``<=``
 
         x.__le__(y) <==> x<=y
 
@@ -1279,7 +1279,7 @@ class Units:
         return self.__rdiv__(other)
 
     def __mod__(self, other):
-        """TODO"""
+        """x.__mod__(y) <==> y%x"""
         raise ValueError("Can't do {!r} % {!r}".format(other, self))
 
     def __neg__(self):
@@ -1302,7 +1302,7 @@ class Units:
     # Private methods
     # ----------------------------------------------------------------
     def _comparison(self, other, method):
-        """"""
+        """Compare two units according to a specified method."""
         try:
             cv_converter = _ut_get_converter(self._ut_unit, other._ut_unit)
         except:
@@ -1324,7 +1324,7 @@ class Units:
         return getattr(operator, method)(y.value, 1)
 
     def _new_reason_notvalid(self, reason):
-        """TODO"""
+        """Register a reason that a Units object is not valid."""
         _reason_notvalid = self._reason_notvalid
         if _reason_notvalid:
             self._reason_notvalid = _reason_notvalid + "; " + reason
@@ -2189,7 +2189,7 @@ class Units:
         if x_is_numpy:
             if not x.flags.contiguous:
                 x = numpy_array(x, order="C")
-            # ARRRGGHH dch TODO
+            # TODO DCH
 
             # --------------------------------------------------------
             # Convert an integer numpy array to a float numpy array
