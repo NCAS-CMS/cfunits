@@ -520,8 +520,8 @@ class Units:
     >>> u = Units('m s-1')
     >>> u
     <Units: m s-1>
-    >>> u.units = 'days since 2004-3-1'
-    >>> u
+    >>> v = Units('days since 2004-3-1')
+    >>> v
     <Units: days since 2004-3-1>
 
 
@@ -559,10 +559,10 @@ class Units:
     an amount of time since a reference time (*reference time units*):
 
     >>> v = Units()
-    >>> v.units = 's'
-    >>> v.units = 'day'
-    >>> v.units = 'days since 1970-01-01'
-    >>> v.units = 'seconds since 1992-10-8 15:15:42.5 -6:00'
+    >>> v = Units('s')
+    >>> v = Units('day')
+    >>> v = Units('days since 1970-01-01')
+    >>> v = Units('seconds since 1992-10-8 15:15:42.5 -6:00')
 
     .. note:: It is recommended that the units ``year`` and ``month``
               be used with caution, as explained in the following
@@ -588,6 +588,8 @@ class Units:
 
     >>> u = Units('days since 2000-1-1')
     >>> u.calendar
+    Traceback (most recent call last):
+        ...
     AttributeError: Units has no attribute 'calendar'
     >>> v = Units('days since 2000-1-1', 'gregorian')
     >>> v.calendar
@@ -1730,6 +1732,8 @@ class Units:
         >>> Units('days since 2001-1-1', calendar='noleap').calendar
         'noleap'
         >>> Units('days since 2001-1-1').calendar
+        Traceback (most recent call last):
+            ...
         AttributeError: Units has no attribute 'calendar'
 
         """
