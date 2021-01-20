@@ -3,16 +3,21 @@ from __future__ import print_function
 import unittest
 import doctest
 import pkgutil
+from platform import platform, python_version
 import os
 from random import choice
 import sys
 
-import cftime
 import numpy
 import datetime
-import cfunits
 
-from platform import platform, python_version
+import faulthandler
+
+faulthandler.enable()  # to debug seg faults and timeouts
+
+import cftime
+
+import cfunits
 
 
 def randomise_test_order(*_args):
@@ -43,8 +48,9 @@ testsuite_doctests = unittest.TestSuite()
 # Tell doctest comparisons to treat any sequence of whitespace including
 # newlines as equal and to take '...' in output to mean anything can be there
 doctest_flags = doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
-for importer, name, ispkg in (
-        pkgutil.walk_packages(cfunits.__path__, cfunits.__name__ + '.')):
+for importer, name, ispkg in pkgutil.walk_packages(
+    cfunits.__path__, cfunits.__name__ + "."
+):
     testsuite.addTests(doctest.DocTestSuite(name, optionflags=doctest_flags))
 
 
