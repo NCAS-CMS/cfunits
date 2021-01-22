@@ -37,12 +37,12 @@ def _get_version():
 
 
 def _get_year():
-    """TODO."""
+    """Returns the current year from the local datetime."""
     return str(datetime.datetime.now().year)
 
 
 def _get_date():
-    """Get the current calendar year."""
+    """Gets the current calendar year."""
     return str(datetime.date.today())
 
 
@@ -371,7 +371,11 @@ link_release = re.search(r"(\d+\.\d+\.\d+)", release).groups()[0]
 
 
 def linkcode_resolve(domain, info):
-    """TODO."""
+    """Returns the URL to the source code corresponding to each object.
+
+    This is a function required by the sphinx.ext.linkcode extension.
+
+    """
     # =================================================================
     # Must delete all .doctrees directories in build for changes to be
     # picked up. E.g.:

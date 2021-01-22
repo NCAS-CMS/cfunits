@@ -10,15 +10,15 @@ import cfunits
 
 
 class styleTest(unittest.TestCase):
-    """Test all Python files for PEP8 compliance."""
+    """Tests all Python files for PEP8 compliance."""
 
     def setUp(self):
-        """TODO."""
+        """Runs any preparatory steps to set up each test method."""
         self.cfunits_dir = os.path.dirname(os.path.abspath(__file__))
         os.chdir(self.cfunits_dir)
 
     def test_pep8_compliance(self):
-        """TODO."""
+        """Tests the codebase for compliance with the PEP8 standard."""
         pep8_check = pycodestyle.StyleGuide()
 
         # Directories to skip in the recursive walk of the directory:
