@@ -5,6 +5,7 @@ import re
 
 
 def find_package_data_files(directory):
+    """Returns all files under the given directory of the package."""
     for root, dirs, files in os.walk(directory):
         for basename in files:
             if fnmatch.fnmatch(basename, "*"):

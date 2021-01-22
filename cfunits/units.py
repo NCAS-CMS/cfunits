@@ -249,8 +249,8 @@ assert 0 == _ut_map_name_to_unit(
 )
 
 
-# Add various aliases useful for CF
 def add_unit_alias(definition, symbol, singular, plural):
+    """Registers an alias for an existing unit or value."""
     unit = _ut_parse(
         _ut_system, _c_char_p(definition.encode("utf-8")), _UT_ASCII
     )
@@ -268,6 +268,7 @@ def add_unit_alias(definition, symbol, singular, plural):
         )
 
 
+# Add various aliases useful for CF
 add_unit_alias(
     "1.e-3", "psu", "practical_salinity_unit", "practical_salinity_units"
 )
@@ -359,8 +360,9 @@ _months_or_years = ("month", "months", "year", "years", "yr")
 # Function to control Udunits error messages
 # --------------------------------------------------------------------
 def udunits_error_messages(flag):
-    """Control the printing of error messages from Udunits, which are
-    turned off by default.
+    """Control the printing of error messages from Udunits.
+
+    Error messages are turned off by default in Udunits.
 
     :Parameters:
 
@@ -475,7 +477,9 @@ _month_length = _year_length / 12
 
 
 class Units:
-    """Store, combine and compare physical units and convert numeric
+    """Utilities for working with physical units.
+
+    Store, combine and compare physical units and convert numeric
     values to different units.
 
     Units are as defined in UNIDATA's Udunits-2 package, with a few
@@ -605,11 +609,11 @@ class Units:
 
     Comparison operators:
 
-        ``==, !=``
+        ``==, !=, >, >=, <, <=``
 
     Binary arithmetic operations:
 
-        ``+, -, *, /, pow(), **``
+        ``+, -, *, /, //, pow(), **, %``
 
     Unary arithmetic operations:
 
@@ -617,7 +621,7 @@ class Units:
 
     Augmented arithmetic assignments:
 
-        ``+=, -=, *=, /=, **=``
+        ``+=, -=, *=, /=, //=, **=``
 
     The comparison operations return a boolean and all other
     operations return a new units object or modify the units object in
@@ -687,7 +691,7 @@ class Units:
         definition=False,
         _ut_unit=None,
     ):
-        """**Initialization**
+        """Initialises the `Units` instance.
 
         :Parameters:
 
@@ -716,7 +720,6 @@ class Units:
                 is set.
 
         """
-
         if isinstance(units, self.__class__):
             self.__dict__ = units.__dict__
             return
@@ -967,7 +970,11 @@ class Units:
         self.__init__(units=units, calendar=calendar)
 
     def __hash__(self):
-        """x.__hash__() <==> hash(x)"""
+        """Returns an integer representation of the `Units` object.
+
+        x.__hash__() is logically equivalent to hash(x)
+
+        """
         if not self._isreftime:
             return hash(("Units", self._ut_unit))
 
@@ -976,11 +983,19 @@ class Units:
         )
 
     def __repr__(self):
-        """x.__repr__() <==> repr(x)"""
+        """Returns a printable representation of the `Units` object.
+
+        x.__repr__() is logically equivalent to repr(x)
+
+        """
         return "<{0}: {1}>".format(self.__class__.__name__, self)
 
     def __str__(self):
-        """x.__str__() <==> str(x)"""
+        """Returns a string version of the `Units` object.
+
+        x.__str__() is logically equivalent to str(x)
+
+        """
         string = []
         if self._units is not None:
             if self._units == "":
@@ -999,65 +1014,65 @@ class Units:
         return self
 
     def __bool__(self):
-        """Truth value testing and the built-in operation ``bool``
+        """Truth value testing and the built-in operation ``bool``.
 
-        x.__bool__() <==> x!=0
+        x.__bool__() is logically equivalent to x!=0
 
         """
         return self._ut_unit is not None
 
     def __eq__(self, other):
-        """The rich comparison operator ``==``
+        """The rich comparison operator ``==``.
 
-        x.__eq__(y) <==> x==y
+        x.__eq__(y) is logically equivalent to x==y
 
         """
         return self.equals(other)
 
     def __ne__(self, other):
-        """The rich comparison operator ``!=``
+        """The rich comparison operator ``!=``.
 
-        x.__ne__(y) <==> x!=y
+        x.__ne__(y) is logically equivalent to x!=y
 
         """
         return not self.equals(other)
 
     def __gt__(self, other):
-        """The rich comparison operator ``>``
+        """The rich comparison operator ``>``.
 
-        x.__gt__(y) <==> x>y
+        x.__gt__(y) is logically equivalent to x>y
 
         """
         return self._comparison(other, "__gt__")
 
     def __ge__(self, other):
-        """The rich comparison operator ``>=``
+        """The rich comparison operator ``>=``.
 
-        x.__ge__(y) <==> x>=y
+        x.__ge__(y) is logically equivalent to x>=y
 
         """
         return self._comparison(other, "__ge__")
 
     def __lt__(self, other):
-        """The rich comparison operator ``<``
+        """The rich comparison operator ``<``.
 
-        x.__lt__(y) <==> x<y
+        x.__lt__(y) is logically equivalent to x<y
 
         """
         return self._comparison(other, "__lt__")
 
     def __le__(self, other):
-        """The rich comparison operator ``<=``
+        """The rich comparison operator ``<=``.
 
-        x.__le__(y) <==> x<=y
+        x.__le__(y) is logically equivalent to x<=y
 
         """
         return self._comparison(other, "__le__")
 
     def __sub__(self, other):
-        """The binary arithmetic operation ``-``
+        """The binary arithmetic operation ``-``.
 
-        x.__sub__(y) <==> x-y
+        x.__sub__(y) is logically equivalent to x-y
 
         """
         value_error = ValueError("Can't do {!r} - {!r}".format(self, other))
@@ -1074,9 +1089,9 @@ class Units:
             raise value_error
 
     def __add__(self, other):
-        """The binary arithmetic operation ``+``
+        """The binary arithmetic operation ``+``.
 
-        x.__add__(y) <==> x+y
+        x.__add__(y) is logically equivalent to x+y
 
         """
         value_error = ValueError("Can't do {!r} + {!r}".format(self, other))
@@ -1093,9 +1108,9 @@ class Units:
             raise value_error
 
     def __mul__(self, other):
-        """The binary arithmetic operation ``*``
+        """The binary arithmetic operation ``*``.
 
-        x.__mul__(y) <==> x*y
+        x.__mul__(y) is logically equivalent to x*y
 
         """
         value_error = ValueError("Can't do {!r} * {!r}".format(self, other))
@@ -1121,7 +1136,11 @@ class Units:
         return type(self)(_ut_unit=ut_unit)
 
     def __div__(self, other):
-        """x.__div__(y) <==> x/y"""
+        """The binary arithmetic operation ``/``.
+
+        x.__div__(y) is logically equivalent to x/y
+
+        """
         value_error = ValueError("Can't do {!r} / {!r}".format(self, other))
 
         if isinstance(other, self.__class__):
@@ -1145,9 +1164,9 @@ class Units:
         return type(self)(_ut_unit=ut_unit)
 
     def __pow__(self, other, modulo=None):
-        """The binary arithmetic operations ``**`` and ``pow``
+        """The binary arithmetic operations ``**`` and ``pow``.
 
-        x.__pow__(y) <==> x**y
+        x.__pow__(y) is logically equivalent to x**y
 
         """
         # ------------------------------------------------------------
@@ -1200,41 +1219,49 @@ class Units:
         raise ValueError("Can't do {!r} ** {!r}".format(self, other))
 
     def __isub__(self, other):
-        """x.__isub__(y) <==> x-=y"""
+        """The augmented arithmetic assignment ``-=``.
+
+        x.__isub__(y) is logically equivalent to x-=y
+
+        """
         return self - other
 
     def __iadd__(self, other):
-        """x.__iadd__(y) <==> x+=y"""
+        """The augmented arithmetic assignment ``+=``.
+
+        x.__iadd__(y) is logically equivalent to x+=y
+
+        """
         return self + other
 
     def __imul__(self, other):
-        """The augmented arithmetic assignment ``*=``
+        """The augmented arithmetic assignment ``*=``.
 
-        x.__imul__(y) <==> x*=y
+        x.__imul__(y) is logically equivalent to x*=y
 
         """
         return self * other
 
     def __idiv__(self, other):
-        """The augmented arithmetic assignment ``/=``
+        """The augmented arithmetic assignment ``/=``.
 
-        x.__idiv__(y) <==> x/=y
+        x.__idiv__(y) is logically equivalent to x/=y
 
         """
         return self / other
 
     def __ipow__(self, other):
-        """The augmented arithmetic assignment ``**=``
+        """The augmented arithmetic assignment ``**=``.
 
-        x.__ipow__(y) <==> x**=y
+        x.__ipow__(y) is logically equivalent to x**=y
 
         """
         return self ** other
 
     def __rsub__(self, other):
-        """The binary arithmetic operation ``-`` with reflected operands
+        """Binary arithmetic operation ``-`` with reflected operands.
 
-        x.__rsub__(y) <==> y-x
+        x.__rsub__(y) is logically equivalent to y-x
 
         """
         try:
@@ -1243,71 +1270,103 @@ class Units:
             raise ValueError("Can't do {!r} - {!r}".format(other, self))
 
     def __radd__(self, other):
-        """The binary arithmetic operation ``+`` with reflected operands
+        """Binary arithmetic operation ``+`` with reflected operands.
 
-        x.__radd__(y) <==> y+x
+        x.__radd__(y) is logically equivalent to y+x
 
         """
         return self + other
 
     def __rmul__(self, other):
-        """The binary arithmetic operation ``*`` with reflected operands
+        """Binary arithmetic operation ``*`` with reflected operands.
 
-        x.__rmul__(y) <==> y*x
+        x.__rmul__(y) is logically equivalent to y*x
 
         """
         return self * other
 
     def __rdiv__(self, other):
-        """x.__rdiv__(y) <==> y/x"""
+        """Binary arithmetic operation ``/`` with reflected operands.
+
+        x.__rdiv__(y) is logically equivalent to y/x
+
+        """
         try:
             return (self ** -1) * other
         except:
             raise ValueError("Can't do {!r} / {!r}".format(other, self))
 
     def __floordiv__(self, other):
-        """x.__floordiv__(y) <==> x//y <==> x/y"""
+        """The binary arithmetic operation ``//``.
+
+        x.__floordiv__(y) is logically equivalent to x//y and to x/y
+
+        """
         return self / other
 
     def __ifloordiv__(self, other):
-        """x.__ifloordiv__(y) <==> x//=y <==> x/=y"""
+        """The augmented arithmetic assignment ``//=``.
+
+        x.__ifloordiv__(y) is logically equivalent to x//=y and to x/=y
+
+        """
         return self / other
 
     def __rfloordiv__(self, other):
-        """x.__rfloordiv__(y) <==> y//x <==> y/x"""
+        """Binary arithmetic operation ``//`` with reflected operands.
+
+        x.__rfloordiv__(y) is logically equivalent to y//x and to y/x
+
+        """
         try:
             return (self ** -1) * other
         except:
             raise ValueError("Can't do {!r} // {!r}".format(other, self))
 
     def __truediv__(self, other):
-        """x.__truediv__(y) <==> x/y"""
+        """The binary arithmetic operation ``/``.
+
+        x.__truediv__(y) is logically equivalent to x/y
+
+        """
         return self.__div__(other)
 
     def __itruediv__(self, other):
-        """x.__itruediv__(y) <==> x/=y"""
+        """The augmented arithmetic assignment ``/=``.
+
+        x.__itruediv__(y) is logically equivalent to x/=y
+
+        """
         return self.__idiv__(other)
 
     def __rtruediv__(self, other):
-        """x.__rtruediv__(y) <==> y/x"""
+        """Binary arithmetic operation ``/`` with reflected operands.
+
+        x.__rtruediv__(y) is logically equivalent to y/x
+
+        """
         return self.__rdiv__(other)
 
     def __mod__(self, other):
-        """x.__mod__(y) <==> y%x"""
+        """The binary arithmetic operation ``%``.
+
+        x.__mod__(y) is logically equivalent to y%x
+
+        """
         raise ValueError("Can't do {!r} % {!r}".format(other, self))
 
     def __neg__(self):
-        """The unary arithmetic operation ``-``
+        """The unary arithmetic operation ``-``.
 
-        x.__neg__() <==> -x
+        x.__neg__() is logically equivalent to -x
 
         """
         return self * -1
 
     def __pos__(self):
-        """The unary arithmetic operation ``+``
+        """The unary arithmetic operation ``+``.
 
-        x.__pos__() <==> +x
+        x.__pos__() is logically equivalent to +x.
 
         """
         return self
@@ -1316,7 +1375,7 @@ class Units:
     # Private methods
     # ----------------------------------------------------------------
     def _comparison(self, other, method):
-        """Compare two units according to a specified method."""
+        """Compares two units according to a specified method."""
         value_error = ValueError(
             "Units are not compatible: {!r}, {!r}".format(self, other)
         )
@@ -1337,7 +1396,7 @@ class Units:
         return getattr(operator, method)(y.value, 1)
 
     def _new_reason_notvalid(self, reason):
-        """Register a reason that a Units object is not valid."""
+        """Registers a reason that a Units object is not valid."""
         _reason_notvalid = self._reason_notvalid
         if _reason_notvalid:
             self._reason_notvalid = _reason_notvalid + "; " + reason
@@ -1392,7 +1451,7 @@ class Units:
 
     @property
     def isreftime(self):
-        """True if the units are reference time units, False otherwise.
+        """True if the units are reference time units, false otherwise.
 
         Note that time units (such as ``'days'``) are not reference time
         units.
@@ -1420,7 +1479,7 @@ class Units:
 
     @property
     def iscalendartime(self):
-        """True if the units are calendar time units, False otherwise.
+        """True if the units are calendar time units, false otherwise.
 
         Note that regular time units (such as ``'days'``) are not calendar
         time units.
@@ -1580,7 +1639,7 @@ class Units:
 
     @property
     def istime(self):
-        """True if the units are time units, False otherwise.
+        """True if the units are time units, false otherwise.
 
         Note that reference time units (such as ``'days since
         2000-12-1'``) are not time units, nor are calendar years and
@@ -1642,12 +1701,13 @@ class Units:
         False
         >>> u.reason_notvalid
         "Invalid calendar='Bad Calendar'; calendar must be one of ['standard', 'gregorian', 'proleptic_gregorian', 'noleap', 'julian', 'all_leap', '365_day', '366_day', '360_day'], got 'bad calendar'"
+
         """
         return getattr(self, "_isvalid", False)
 
     @property
     def reason_notvalid(self):
-        """The reason for invalid units.
+        """The reason that units are considered invalid.
 
         If the units are valid then the reason is an empty string.
 
@@ -1777,7 +1837,9 @@ class Units:
     # Methods
     # ----------------------------------------------------------------
     def equivalent(self, other, verbose=False):
-        """Returns True if numeric values in one unit are convertible to
+        """Tests whether two units are numerically convertible.
+
+        Returns True if numeric values in one unit are convertible to
         numeric values in the other unit.
 
         .. seealso:: `equals`
@@ -1920,9 +1982,10 @@ class Units:
         return bool(_ut_are_convertible(self._ut_unit, other._ut_unit))
 
     def formatted(self, names=None, definition=None):
-        """Formats the string stored in the `units` attribute in a
-        standardized manner. The `units` attribute is modified in place
-        and its new value is returned.
+        """Formats the `units` attribute string in a standardised way.
+
+        The `units` attribute is modified in place and its new value
+        is returned.
 
         :Parameters:
 
@@ -2020,8 +2083,7 @@ class Units:
 
     @classmethod
     def conform(cls, x, from_units, to_units, inplace=False):
-        """Conform values in one unit to equivalent values in another,
-        compatible unit.
+        """Conforms values to equivalent values in a compatible unit.
 
         Returns the conformed values.
 
@@ -2278,7 +2340,7 @@ class Units:
         return x
 
     def copy(self):
-        """Return a deep copy.
+        """Returns a deep copy.
 
         Equivalent to ``copy.deepcopy(u)``.
 
@@ -2297,7 +2359,9 @@ class Units:
         return self
 
     def equals(self, other, rtol=None, atol=None, verbose=False):
-        """Return True if and only if numeric values in one unit are
+        """Tests if units are numerically convertible to equal value.
+
+        Returns True if and only if numeric values in one unit are
         convertible to numeric values in the other unit and their
         conversion is a scale factor of 1.
 
@@ -2473,8 +2537,7 @@ class Units:
     #        return False
 
     def log(self, base):
-        """Return the logarithmic unit corresponding to the given logarithmic
-        base.
+        """Returns the logarithmic unit corresponding to a log base.
 
         :Parameters:
 
@@ -2526,8 +2589,7 @@ class Units:
 
 
 class Utime(cftime.utime):
-    """Performs conversions of netCDF time coordinate data to/from
-    datetime objects.
+    """Converts netCDF time coordinate data to/from datetime objects.
 
     This object is (currently) functionally equivalent to a
     `netCDF4.netcdftime.utime` object.
@@ -2549,7 +2611,7 @@ class Utime(cftime.utime):
     def __init__(
         self, calendar, unit_string=None, only_use_cftime_datetimes=True
     ):
-        """**Initialization**
+        """Initialises the `Utime` instance.
 
         :Parameters:
 
@@ -2583,7 +2645,11 @@ class Utime(cftime.utime):
             self.units = None
 
     def __repr__(self):
-        """x.__repr__() <==> repr(x)"""
+        """Returns a printable representation of the `Utime` object.
+
+        x.__repr__() is logically equivalent to repr(x).
+
+        """
         unit_string = self.unit_string
         if unit_string:
             x = [unit_string]
@@ -2595,7 +2661,7 @@ class Utime(cftime.utime):
         return "<Utime: {}>".format(" ".join(x))
 
     def num2date(self, time_value):
-        """Return a datetime-like object given a time value.
+        """Returns a datetime-like object given a time value.
 
         The units of the time value are described by the `!unit_string`
         and `!calendar` attributes.
