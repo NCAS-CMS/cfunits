@@ -25,21 +25,24 @@ repos:
         language_version: python3.6
 
   # Also format docstrings in a consistent way, on top of 'black' requirements
-  # (see https://github.com/myint/docformatter for docs, with config as below)
+  # with the aim to auto-correct towards the Google docstring format (see
+  # https://google.github.io/styleguide/pyguide.html#381-docstrings) as much
+  # as possible (see https://github.com/myint/docformatter for docs, with
+  # configuration as below)
   - repo: https://github.com/myint/docformatter
     rev: v1.4
     hooks:
       - id: docformatter
         # These arguments act as the configuration for docformatter. They:
         # * make docformatter auto-format in-place if not compliant;
-        # * for multi-liners ensure summary begins on line after open quotes;
         # * ensure there is a blank line after the final non-empty line;
         # * wraps both summary and description at 72 characters (the latter
         #   by default).
-        args: [--in-place, --pre-summary-newline, --blank, --wrap-summaries=72]
+        args: [--in-place, --blank, --wrap-summaries=72]
 
-  # Check the docstrings for other various issues and bad practice using
-  # 'pydocstyle' (see http://www.pydocstyle.org/en/stable/index.html for
+  # Check the docstrings conforms to Google docstring format as much as can
+  # be detected by the 'pydocstyle' checker
+  # (see http://www.pydocstyle.org/en/stable/index.html for
   # docs and see the cfunits .pydocstyle.ini file for our custom configuration)
   - repo: https://github.com/pycqa/pydocstyle
     rev: 5.1.1
