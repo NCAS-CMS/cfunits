@@ -37,7 +37,7 @@ def _get_version():
 
 
 def _get_year():
-    """"""
+    """TODO."""
     return str(datetime.datetime.now().year)
 
 
@@ -371,7 +371,7 @@ link_release = re.search(r"(\d+\.\d+\.\d+)", release).groups()[0]
 
 
 def linkcode_resolve(domain, info):
-
+    """TODO."""
     # =================================================================
     # Must delete all .doctrees directories in build for changes to be
     # picked up. E.g.:
