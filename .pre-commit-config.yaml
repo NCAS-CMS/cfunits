@@ -38,6 +38,14 @@ repos:
         #   by default).
         args: [--in-place, --pre-summary-newline, --blank, --wrap-summaries=72]
 
+  # Check the docstrings for other various issues and bad practice using
+  # 'pydocstyle' (see http://www.pydocstyle.org/en/stable/index.html for
+  # docs and see the cfunits .pydocstyle.ini file for our custom configuration)
+  - repo: https://github.com/pycqa/pydocstyle
+    rev: 5.1.1
+    hooks:
+      - id: pydocstyle
+
   # Additionally validate againt flake8 for other Python style enforcement
   # (see https://flake8.pycqa.org/en/latest/ for documentation and see
   # the cfunits .flake8 file for our custom flake8 configuration)
