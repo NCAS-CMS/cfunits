@@ -13,7 +13,10 @@ from cfunits import Units
 
 
 class UnitsTest(unittest.TestCase):
+    """TODO."""
+
     def test_Units___eq__(self):
+        """TODO."""
         self.assertEqual(Units(""), Units(""))
         self.assertEqual(Units("18"), Units("18"))
         self.assertEqual(Units("1"), Units("1"))
@@ -58,6 +61,7 @@ class UnitsTest(unittest.TestCase):
         self.assertNotEqual(Units(1), Units("metre"))
 
     def test_Units_equivalent(self):
+        """TODO."""
         self.assertTrue(Units().equivalent(Units()))
         self.assertTrue(Units(" ").equivalent(Units()))
         self.assertTrue(Units("").equivalent(Units()))
@@ -137,6 +141,7 @@ class UnitsTest(unittest.TestCase):
         self.assertFalse(Units("1").equivalent(Units(1)))
 
     def test_Units_conform(self):
+        """TODO."""
         self.assertEqual(Units.conform(0.5, Units("km"), Units("m")), 500)
 
         self.assertEqual(
@@ -202,6 +207,7 @@ class UnitsTest(unittest.TestCase):
             Units.conform(1, Units("m"), Units("second"))
 
     def test_Units_BINARY_AND_UNARY_OPERATORS(self):
+        """TODO."""
         self.assertEqual(Units("m") * 2, Units("2m"))
         self.assertEqual(Units("m") / 2, Units("0.5m"))
         self.assertEqual(Units("m") // 2, Units("0.5m"))
@@ -276,6 +282,7 @@ class UnitsTest(unittest.TestCase):
         )
 
     def test_Units_isvalid(self):
+        """TODO."""
         self.assertTrue(Units("m").isvalid)
         self.assertTrue(Units("days since 2019-01-01").isvalid)
         self.assertTrue(
@@ -292,6 +299,7 @@ class UnitsTest(unittest.TestCase):
         self.assertFalse(Units("since 2019-01-01", calendar="qwerty").isvalid)
 
     def test_Units_has_offset(self):
+        """TODO."""
         self.assertFalse(Units("K").has_offset)
         self.assertFalse(Units("K @ 0").has_offset)
         self.assertFalse(Units("Watt").has_offset)
@@ -309,6 +317,7 @@ class UnitsTest(unittest.TestCase):
         self.assertEqual(Units("degC m s-1"), Units("K m s-1"))
 
     def test_Units__hash__(self):
+        """TODO."""
         self.assertIsInstance(hash(Units("K")), int)
         self.assertIsInstance(hash(Units("")), int)
         self.assertIsInstance(hash(Units()), int)
@@ -318,6 +327,7 @@ class UnitsTest(unittest.TestCase):
         )
 
     def test_Units_formatted(self):
+        """TODO."""
         u = Units("W")
         self.assertEqual(u.units, "W")
         self.assertEqual(u.formatted(names=True), "watt")

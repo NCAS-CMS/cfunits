@@ -58,6 +58,7 @@ for importer, name, ispkg in pkgutil.walk_packages(
 
 # Run the test suite.
 def run_test_suite(verbosity=2):
+    """TODO."""
     runner = unittest.TextTestRunner(verbosity=verbosity)
     outcome = runner.run(testsuite)
     # Note unittest.TextTestRunner().run() does not set an exit code, so (esp.
