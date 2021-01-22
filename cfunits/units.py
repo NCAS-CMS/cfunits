@@ -359,7 +359,8 @@ _months_or_years = ("month", "months", "year", "years", "yr")
 # Function to control Udunits error messages
 # --------------------------------------------------------------------
 def udunits_error_messages(flag):
-    """Control the printing of error messages from Udunits, which are
+    """
+    Control the printing of error messages from Udunits, which are
     turned off by default.
 
     :Parameters:
@@ -475,8 +476,9 @@ _month_length = _year_length / 12
 
 
 class Units:
-    """Store, combine and compare physical units and convert numeric
-    values to different units.
+    """
+    Store, combine and compare physical units and convert numeric values
+    to different units.
 
     Units are as defined in UNIDATA's Udunits-2 package, with a few
     exceptions for greater consistency with the CF conventions namely
@@ -920,7 +922,8 @@ class Units:
         self._units_since_reftime = None
 
     def __getstate__(self):
-        """Called when pickling.
+        """
+        Called when pickling.
 
         :Returns:
 
@@ -944,7 +947,8 @@ class Units:
         )
 
     def __setstate__(self, odict):
-        """Called when unpickling.
+        """
+        Called when unpickling.
 
         :Parameters:
 
@@ -999,7 +1003,8 @@ class Units:
         return self
 
     def __bool__(self):
-        """Truth value testing and the built-in operation ``bool``
+        """
+        Truth value testing and the built-in operation ``bool``
 
         x.__bool__() <==> x!=0
 
@@ -1007,7 +1012,8 @@ class Units:
         return self._ut_unit is not None
 
     def __eq__(self, other):
-        """The rich comparison operator ``==``
+        """
+        The rich comparison operator ``==``
 
         x.__eq__(y) <==> x==y
 
@@ -1015,7 +1021,8 @@ class Units:
         return self.equals(other)
 
     def __ne__(self, other):
-        """The rich comparison operator ``!=``
+        """
+        The rich comparison operator ``!=``
 
         x.__ne__(y) <==> x!=y
 
@@ -1023,7 +1030,8 @@ class Units:
         return not self.equals(other)
 
     def __gt__(self, other):
-        """The rich comparison operator ``>``
+        """
+        The rich comparison operator ``>``
 
         x.__gt__(y) <==> x>y
 
@@ -1031,7 +1039,8 @@ class Units:
         return self._comparison(other, "__gt__")
 
     def __ge__(self, other):
-        """The rich comparison operator ``>=``
+        """
+        The rich comparison operator ``>=``
 
         x.__ge__(y) <==> x>=y
 
@@ -1039,7 +1048,8 @@ class Units:
         return self._comparison(other, "__ge__")
 
     def __lt__(self, other):
-        """The rich comparison operator ``<``
+        """
+        The rich comparison operator ``<``
 
         x.__lt__(y) <==> x<y
 
@@ -1047,7 +1057,8 @@ class Units:
         return self._comparison(other, "__lt__")
 
     def __le__(self, other):
-        """The rich comparison operator ``<=``
+        """
+        The rich comparison operator ``<=``
 
         x.__le__(y) <==> x<=y
 
@@ -1055,7 +1066,8 @@ class Units:
         return self._comparison(other, "__le__")
 
     def __sub__(self, other):
-        """The binary arithmetic operation ``-``
+        """
+        The binary arithmetic operation ``-``
 
         x.__sub__(y) <==> x-y
 
@@ -1074,7 +1086,8 @@ class Units:
             raise value_error
 
     def __add__(self, other):
-        """The binary arithmetic operation ``+``
+        """
+        The binary arithmetic operation ``+``
 
         x.__add__(y) <==> x+y
 
@@ -1093,7 +1106,8 @@ class Units:
             raise value_error
 
     def __mul__(self, other):
-        """The binary arithmetic operation ``*``
+        """
+        The binary arithmetic operation ``*``
 
         x.__mul__(y) <==> x*y
 
@@ -1121,7 +1135,7 @@ class Units:
         return type(self)(_ut_unit=ut_unit)
 
     def __div__(self, other):
-        """x.__div__(y) <==> x/y"""
+        """x.__div__(y) <==> x/y."""
         value_error = ValueError("Can't do {!r} / {!r}".format(self, other))
 
         if isinstance(other, self.__class__):
@@ -1145,7 +1159,8 @@ class Units:
         return type(self)(_ut_unit=ut_unit)
 
     def __pow__(self, other, modulo=None):
-        """The binary arithmetic operations ``**`` and ``pow``
+        """
+        The binary arithmetic operations ``**`` and ``pow``
 
         x.__pow__(y) <==> x**y
 
@@ -1200,15 +1215,16 @@ class Units:
         raise ValueError("Can't do {!r} ** {!r}".format(self, other))
 
     def __isub__(self, other):
-        """x.__isub__(y) <==> x-=y"""
+        """x.__isub__(y) <==> x-=y."""
         return self - other
 
     def __iadd__(self, other):
-        """x.__iadd__(y) <==> x+=y"""
+        """x.__iadd__(y) <==> x+=y."""
         return self + other
 
     def __imul__(self, other):
-        """The augmented arithmetic assignment ``*=``
+        """
+        The augmented arithmetic assignment ``*=``
 
         x.__imul__(y) <==> x*=y
 
@@ -1216,7 +1232,8 @@ class Units:
         return self * other
 
     def __idiv__(self, other):
-        """The augmented arithmetic assignment ``/=``
+        """
+        The augmented arithmetic assignment ``/=``
 
         x.__idiv__(y) <==> x/=y
 
@@ -1224,7 +1241,8 @@ class Units:
         return self / other
 
     def __ipow__(self, other):
-        """The augmented arithmetic assignment ``**=``
+        """
+        The augmented arithmetic assignment ``**=``
 
         x.__ipow__(y) <==> x**=y
 
@@ -1232,7 +1250,8 @@ class Units:
         return self ** other
 
     def __rsub__(self, other):
-        """The binary arithmetic operation ``-`` with reflected operands
+        """
+        The binary arithmetic operation ``-`` with reflected operands.
 
         x.__rsub__(y) <==> y-x
 
@@ -1243,7 +1262,8 @@ class Units:
             raise ValueError("Can't do {!r} - {!r}".format(other, self))
 
     def __radd__(self, other):
-        """The binary arithmetic operation ``+`` with reflected operands
+        """
+        The binary arithmetic operation ``+`` with reflected operands.
 
         x.__radd__(y) <==> y+x
 
@@ -1251,7 +1271,8 @@ class Units:
         return self + other
 
     def __rmul__(self, other):
-        """The binary arithmetic operation ``*`` with reflected operands
+        """
+        The binary arithmetic operation ``*`` with reflected operands.
 
         x.__rmul__(y) <==> y*x
 
@@ -1259,45 +1280,46 @@ class Units:
         return self * other
 
     def __rdiv__(self, other):
-        """x.__rdiv__(y) <==> y/x"""
+        """x.__rdiv__(y) <==> y/x."""
         try:
             return (self ** -1) * other
         except:
             raise ValueError("Can't do {!r} / {!r}".format(other, self))
 
     def __floordiv__(self, other):
-        """x.__floordiv__(y) <==> x//y <==> x/y"""
+        """x.__floordiv__(y) <==> x//y <==> x/y."""
         return self / other
 
     def __ifloordiv__(self, other):
-        """x.__ifloordiv__(y) <==> x//=y <==> x/=y"""
+        """x.__ifloordiv__(y) <==> x//=y <==> x/=y."""
         return self / other
 
     def __rfloordiv__(self, other):
-        """x.__rfloordiv__(y) <==> y//x <==> y/x"""
+        """x.__rfloordiv__(y) <==> y//x <==> y/x."""
         try:
             return (self ** -1) * other
         except:
             raise ValueError("Can't do {!r} // {!r}".format(other, self))
 
     def __truediv__(self, other):
-        """x.__truediv__(y) <==> x/y"""
+        """x.__truediv__(y) <==> x/y."""
         return self.__div__(other)
 
     def __itruediv__(self, other):
-        """x.__itruediv__(y) <==> x/=y"""
+        """x.__itruediv__(y) <==> x/=y."""
         return self.__idiv__(other)
 
     def __rtruediv__(self, other):
-        """x.__rtruediv__(y) <==> y/x"""
+        """x.__rtruediv__(y) <==> y/x."""
         return self.__rdiv__(other)
 
     def __mod__(self, other):
-        """x.__mod__(y) <==> y%x"""
+        """x.__mod__(y) <==> y%x."""
         raise ValueError("Can't do {!r} % {!r}".format(other, self))
 
     def __neg__(self):
-        """The unary arithmetic operation ``-``
+        """
+        The unary arithmetic operation ``-``
 
         x.__neg__() <==> -x
 
@@ -1305,7 +1327,8 @@ class Units:
         return self * -1
 
     def __pos__(self):
-        """The unary arithmetic operation ``+``
+        """
+        The unary arithmetic operation ``+``
 
         x.__pos__() <==> +x
 
@@ -1349,7 +1372,8 @@ class Units:
     # ----------------------------------------------------------------
     @property
     def has_offset(self):
-        """True if the units contain an offset.
+        """
+        True if the units contain an offset.
 
         Note that if a multiplicative component of the units had an offset
         during instantiation, then the offset is ignored in the resulting
@@ -1392,7 +1416,8 @@ class Units:
 
     @property
     def isreftime(self):
-        """True if the units are reference time units, False otherwise.
+        """
+        True if the units are reference time units, False otherwise.
 
         Note that time units (such as ``'days'``) are not reference time
         units.
@@ -1420,7 +1445,8 @@ class Units:
 
     @property
     def iscalendartime(self):
-        """True if the units are calendar time units, False otherwise.
+        """
+        True if the units are calendar time units, False otherwise.
 
         Note that regular time units (such as ``'days'``) are not calendar
         time units.
@@ -1450,7 +1476,8 @@ class Units:
 
     @property
     def isdimensionless(self):
-        """True if the units are dimensionless, false otherwise.
+        """
+        True if the units are dimensionless, false otherwise.
 
         .. seealso:: `islongitude`, `islatitude`, `ispressure`, `isreftime`,
                      `istime`
@@ -1483,7 +1510,8 @@ class Units:
 
     @property
     def ispressure(self):
-        """True if the units are pressure units, false otherwise.
+        """
+        True if the units are pressure units, false otherwise.
 
         .. seealso:: `isdimensionless`, `islongitude`, `islatitude`,
                      `isreftime`, `istime`
@@ -1508,7 +1536,8 @@ class Units:
 
     @property
     def islatitude(self):
-        """True if and only if the units are latitude units.
+        """
+        True if and only if the units are latitude units.
 
         This is the case if and only if the `units` attribute is one of
         ``'degrees_north'``, ``'degree_north'``, ``'degree_N'``,
@@ -1544,7 +1573,8 @@ class Units:
 
     @property
     def islongitude(self):
-        """True if and only if the units are longitude units.
+        """
+        True if and only if the units are longitude units.
 
         This is the case if and only if the `units` attribute is one of
         ``'degrees_east'``, ``'degree_east'``, ``'degree_E'``,
@@ -1580,7 +1610,8 @@ class Units:
 
     @property
     def istime(self):
-        """True if the units are time units, False otherwise.
+        """
+        True if the units are time units, False otherwise.
 
         Note that reference time units (such as ``'days since
         2000-12-1'``) are not time units, nor are calendar years and
@@ -1620,7 +1651,8 @@ class Units:
 
     @property
     def isvalid(self):
-        """Whether the units are valid.
+        """
+        Whether the units are valid.
 
         .. seealso:: `reason_notvalid`
 
@@ -1642,12 +1674,14 @@ class Units:
         False
         >>> u.reason_notvalid
         "Invalid calendar='Bad Calendar'; calendar must be one of ['standard', 'gregorian', 'proleptic_gregorian', 'noleap', 'julian', 'all_leap', '365_day', '366_day', '360_day'], got 'bad calendar'"
+
         """
         return getattr(self, "_isvalid", False)
 
     @property
     def reason_notvalid(self):
-        """The reason for invalid units.
+        """
+        The reason for invalid units.
 
         If the units are valid then the reason is an empty string.
 
@@ -1678,7 +1712,8 @@ class Units:
 
     @property
     def reftime(self):
-        """The reference date-time of reference time units.
+        """
+        The reference date-time of reference time units.
 
         .. seealso:: `calendar`, `isreftime`, `units`
 
@@ -1716,7 +1751,8 @@ class Units:
 
     @property
     def calendar(self):
-        """The calendar for reference time units.
+        """
+        The calendar for reference time units.
 
         May be any string allowed by the calendar CF property.
 
@@ -1747,7 +1783,8 @@ class Units:
 
     @property
     def units(self):
-        """The units.
+        """
+        The units.
 
         May be any string allowed by the units CF property.
 
@@ -1777,7 +1814,8 @@ class Units:
     # Methods
     # ----------------------------------------------------------------
     def equivalent(self, other, verbose=False):
-        """Returns True if numeric values in one unit are convertible to
+        """
+        Returns True if numeric values in one unit are convertible to
         numeric values in the other unit.
 
         .. seealso:: `equals`
@@ -1920,7 +1958,8 @@ class Units:
         return bool(_ut_are_convertible(self._ut_unit, other._ut_unit))
 
     def formatted(self, names=None, definition=None):
-        """Formats the string stored in the `units` attribute in a
+        """
+        Formats the string stored in the `units` attribute in a
         standardized manner. The `units` attribute is modified in place
         and its new value is returned.
 
@@ -2020,7 +2059,8 @@ class Units:
 
     @classmethod
     def conform(cls, x, from_units, to_units, inplace=False):
-        """Conform values in one unit to equivalent values in another,
+        """
+        Conform values in one unit to equivalent values in another,
         compatible unit.
 
         Returns the conformed values.
@@ -2278,7 +2318,8 @@ class Units:
         return x
 
     def copy(self):
-        """Return a deep copy.
+        """
+        Return a deep copy.
 
         Equivalent to ``copy.deepcopy(u)``.
 
@@ -2297,7 +2338,8 @@ class Units:
         return self
 
     def equals(self, other, rtol=None, atol=None, verbose=False):
-        """Return True if and only if numeric values in one unit are
+        """
+        Return True if and only if numeric values in one unit are
         convertible to numeric values in the other unit and their
         conversion is a scale factor of 1.
 
@@ -2473,8 +2515,9 @@ class Units:
     #        return False
 
     def log(self, base):
-        """Return the logarithmic unit corresponding to the given logarithmic
-        base.
+        """
+        Return the logarithmic unit corresponding to the given
+        logarithmic base.
 
         :Parameters:
 
@@ -2526,8 +2569,9 @@ class Units:
 
 
 class Utime(cftime.utime):
-    """Performs conversions of netCDF time coordinate data to/from
-    datetime objects.
+    """
+    Performs conversions of netCDF time coordinate data to/from datetime
+    objects.
 
     This object is (currently) functionally equivalent to a
     `netCDF4.netcdftime.utime` object.
@@ -2595,7 +2639,8 @@ class Utime(cftime.utime):
         return "<Utime: {}>".format(" ".join(x))
 
     def num2date(self, time_value):
-        """Return a datetime-like object given a time value.
+        """
+        Return a datetime-like object given a time value.
 
         The units of the time value are described by the `!unit_string`
         and `!calendar` attributes.

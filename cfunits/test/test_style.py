@@ -10,7 +10,8 @@ import cfunits
 
 
 class styleTest(unittest.TestCase):
-    """Test PEP8 compliance on all '.py' files in the 'cfunits' directory."""
+    """Test PEP8 compliance on all '.py' files in the 'cfunits'
+    directory."""
 
     def setUp(self):
         self.cfunits_dir = os.path.dirname(os.path.abspath(__file__))

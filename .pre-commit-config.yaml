@@ -32,11 +32,11 @@ repos:
       - id: docformatter
         # These arguments act as the configuration for docformatter. They:
         # * make docformatter auto-format in-place if not compliant;
-        # * ensure the summary begins on the line after the opening quotes;
+        # * for multi-liners ensure summary begins on line after open quotes;
         # * ensure there is a blank line after the final non-empty line;
         # * wraps both summary and description at 72 characters (the latter
         #   by default).
-        args: [--in-place --pre-summary-newline --blank --wrap-summaries 72]
+        args: [--in-place, --pre-summary-newline, --blank, --wrap-summaries=72]
 
   # Additionally validate againt flake8 for other Python style enforcement
   # (see https://flake8.pycqa.org/en/latest/ for documentation and see
