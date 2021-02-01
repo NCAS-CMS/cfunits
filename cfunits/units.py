@@ -360,7 +360,7 @@ _months_or_years = ("month", "months", "year", "years", "yr")
 # Function to control Udunits error messages
 # --------------------------------------------------------------------
 def udunits_error_messages(flag):
-    """Control the printing of error messages from Udunits.
+    """Controls the printing of error messages from Udunits.
 
     Error messages are turned off by default in Udunits.
 
