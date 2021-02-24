@@ -1,0 +1,34 @@
+name: Linting
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    # default (from docs) is just on [opened, synchronize, reopened]
+    types: [opened, reopened, ready_for_review, edited]
+    branches:
+      - master
+
+# Note: only running this on Ubuntu (latest) and Python 3.7 as representative,
+# since the linting output should be machine dependent and not vary much if
+# at all by Python minor version.
+
+jobs:
+  # Note: ensure the configuration for each linter used (i.e. each job)
+  # corresponds to that configured by the .pre-commit-config.yaml else
+  # we will be linting on different requirements pre- and post- commit!
+
+  # Lint with black (see https://black.readthedocs.io/en/stable/index.html)
+  # where the black config. in pyproject.toml should be detected and applied on
+  # the black command used to lint the codebase.
+  # *Keep the config. here the same as that in the pyproject.toml*
+  black:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - uses: psf/black@stable
+
+  # TODO: pre-commit hook linting, flake8 linting, docstyle linting (both
+  # pydocstyle and docformatter if possible, if not one or something similar).
