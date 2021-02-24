@@ -30,5 +30,15 @@ jobs:
       - uses: actions/setup-python@v2
       - uses: psf/black@stable
 
-  # TODO: pre-commit hook linting, flake8 linting, docstyle linting (both
-  # pydocstyle and docformatter if possible, if not one or something similar).
+  # Lint against selected pre-commit hooks (see https://pre-commit.com
+  # and https://github.com/pre-commit/action).
+  # *Keep the config. here the same as that in the .pre-commit-config.yaml*
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+    - uses: pre-commit/action@v2.0.0
+
+  # TODO: flake8 linting, docstyle linting (both pydocstyle and docformatter
+  # if possible, if not one or something similar).
