@@ -121,7 +121,8 @@ Tests are run from within the ``cfunits/test`` directory:
 
 The cfunits package requires:
 
-* `Python <https://www.python.org/>`_, version 3.6 or newer,
+* `Python <https://www.python.org/>`_, version 3.6 or newer, including
+  the latest version Python 3.9,
 
 * `numpy <http://www.numpy.org/>`_, version 1.15 or newer,
 
@@ -152,6 +153,16 @@ The cfunits package requires:
   .. code:: console
 
      $ conda install -c conda-forge udunits2=2.2.20
+
+
+.. note::
+   Some dependencies have dropped support for Python 3.6 for their
+   newer versions, so it may be necessary to use at least Python 3.7 in
+   combination with those.
+
+   In particular, this is known to be the case if you are using `numpy` at
+   version 1.20 or above.
+
 
 .. _Code-repository:
 
