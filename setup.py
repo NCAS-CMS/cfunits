@@ -76,6 +76,28 @@ https://ncas-cms.github.io/cfunits/installation.html
 requirements = open("requirements.txt", "r")
 install_requires = requirements.read().splitlines()
 
+extras_require = {
+    "required C libraries": ["udunits2==2.2.20"],
+    "documentation": [
+        "sphinx>=2,<=4",
+        "sphinx-copybutton",
+        "sphinx-toggleprompt",
+        "sphinxcontrib-spelling",
+    ],
+    "pre-commit hooks": [
+        "pre-commit",
+        "black",
+        "docformatter",
+        "flake8",
+        "pydocstyle",
+    ],
+}
+tests_require = [
+    "pytest",
+    "pycodestyle",
+    "coverage",
+]
+
 setup(
     name="cfunits",
     long_description=long_description,
@@ -118,4 +140,6 @@ setup(
     package_data={"cfunits": package_data},
     python_requires=">=3.6",
     install_requires=install_requires,
+    tests_require=tests_require,
+    extras_require=extras_require,
 )
