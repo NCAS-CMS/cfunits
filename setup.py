@@ -40,7 +40,7 @@ package_data = etc_files + test_files
 # with open('README.md') as ldfile:
 #    long_description = ldfile.read()
 
-long_description = """*A python interface to UNIDATA's UDUNITS-2 library with CF
+long_description = """*A Python interface to UNIDATA's UDUNITS-2 library with CF
 extensions*
 
 **Note: Versions 3.0.0 and later are only compatible with version Python 3. Use version 1.9 for Python 2 compatibility.**
