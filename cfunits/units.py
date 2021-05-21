@@ -791,21 +791,6 @@ class Units:
                         except Exception as error:
                             self._new_reason_notvalid(str(error))
                             self._isvalid = False
-
-                        #                            if unit in _months_or_years:
-                        #                                try:
-                        #                                    d = cftime_dateparse(
-                        #                                        f"days since {units_split[1].strip()}"
-                        #                                        calendar=_calendar
-                        #                                    )
-                        #                                    cftime_datetime(*d.timetuple()[:6],
-                        #                                                    _calendar)
-                        #                                except Exception as error:
-                        #                                    self._new_reason_notvalid(str(error))
-                        #                                    self._isvalid = False
-                        #                            else:
-                        #                                self._new_reason_notvalid(str(error))
-                        #                                self._isvalid = False
                         else:
                             utime = cftime_datetime(
                                 *d.timetuple()[:6], calendar=_calendar

@@ -127,13 +127,10 @@ class UnitsTest(unittest.TestCase):
 
         u = Units("days since 2000-02-02", calendar="standard")
         v = Units("months since 2000-02-02", calendar="standard")
-        #        u = Units("days since 2000-02-02", calendar="360_day")
-        #        v = Units("months since 2000-02-02", calendar="360_day")
         self.assertNotEqual(u, v)
 
         u = Units("days since 2000-02-02", calendar="standard")
         v = Units("months since 2000-02-02", calendar="gregorian")
-        #        v = Units("months since 2000-02-02", calendar="360_day")
         self.assertNotEqual(u, v)
 
         self.assertFalse(Units(1).equivalent(Units(1)))
