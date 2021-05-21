@@ -780,7 +780,6 @@ class Units:
                 if (_calendar, units) in _cached_utime:
                     utime = _cached_utime[(_calendar, units)]
                 else:
-                    #                    # Create a new Utime object
                     unit_string = f"{unit} since {units_split[1].strip()}"
                     utime = _cached_utime.get((_calendar, unit_string))
                     if utime is None:
