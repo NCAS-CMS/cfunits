@@ -36,7 +36,7 @@
 
 
 
-<h1 class="logo"><a href="index.html">cfunits 3.3.1</a></h1>
+<h1 class="logo"><a href="index.html">cfunits 3.3.2</a></h1>
 
 
 
@@ -84,6 +84,26 @@
   </ul></li>
 </ul>
 </div>
+
+<br>
+cfunits development has been supported by
+the <a href="https://erc.europa.eu/">ERC</a>
+through <a href="https://cordis.europa.eu/project/id/247220">Seachange</a>
+and
+<a href="https://cordis.europa.eu/project/id/786427">Couplet</a>; by
+the <a href="https://ec.europa.eu/programmes/horizon2020/">EC Horizon
+2020 programme</a> through
+<a href="https://cordis.europa.eu/project/id/824084">IS-ENES3</a>;
+by <a href="https://nerc.ukri.org/">NERC</a> through
+<a href="https://gtr.ukri.org/project/0D95A6DB-0B95-48F7-8A8B-7B9A47DEA117">UKFAFMIP</a>;
+and by <a href="https://ncas.ac.uk/">NCAS</a>.
+<br>
+<br>
+<img src="../_templates/logo_EC.png" height="40">
+<img src="../_templates/logo_ERC.png" height="40">
+<img src="../_templates/logo_NERC.png" height="40">
+<br>
+<img src="../_templates/logo_NCAS.png" height="40">
         </div>
       </div>
       <div class="documentwrapper">
@@ -95,7 +115,7 @@
   <div class="section" id="installation">
 <span id="id1"></span><h1><strong>Installation</strong><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
-<p>Version 3.3.1</p>
+<p>Version 3.3.2</p>
 <div class="section" id="python-versions">
 <span id="id2"></span><h2><strong>Python versions</strong><a class="headerlink" href="#python-versions" title="Permalink to this headline">¶</a></h2>
 <p>As of version 3.3.0, cfunits works only with Python 3.6 or newer.</p>
@@ -109,19 +129,19 @@ cfunits works for Python 2 and Python 3.)</p>
 example:</p>
 <div class="literal-block-wrapper docutils container" id="id8">
 <div class="code-block-caption"><span class="caption-text"><em>Install as root, with any missing dependencies.</em></span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> pip install cfunits
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install cfunits
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id9">
 <div class="code-block-caption"><span class="caption-text"><em>Upgrade as root, with any missing dependencies.</em></span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> pip install cfunits --upgrade
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install cfunits --upgrade
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id10">
 <div class="code-block-caption"><span class="caption-text"><em>Install as a user, with any missing dependencies.</em></span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> pip install cfunits --user
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install cfunits --user
 </pre></div>
 </div>
 </div>
@@ -129,7 +149,7 @@ example:</p>
 <div class="literal-block-wrapper docutils container" id="id11">
 <div class="code-block-caption"><span class="caption-text"><em>Install as root without installing any of the
 dependencies.</em></span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> pip install cfunits --no-deps
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install cfunits --no-deps
 </pre></div>
 </div>
 </div>
@@ -144,8 +164,8 @@ options.</p>
 <li><p>Download the cfunits package from <a class="reference external" href="https://pypi.org/project/cfunits">https://pypi.org/project/cfunits</a></p></li>
 <li><p>Unpack the library (replacing <code class="docutils literal notranslate"><span class="pre">&lt;version&gt;</span></code> with the version that
 you want to install, e.g. <code class="docutils literal notranslate"><span class="pre">3.0.0</span></code>):</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> tar zxvf cfunits-&lt;version&gt;.tar.gz
-<span class="gp">$</span> <span class="nb">cd</span> cfunits-&lt;version&gt;
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>tar zxvf cfunits-&lt;version&gt;.tar.gz
+<span class="gp">$ </span><span class="nb">cd</span> cfunits-&lt;version&gt;
 </pre></div>
 </div>
 </li>
@@ -154,18 +174,18 @@ you want to install, e.g. <code class="docutils literal notranslate"><span class
 <blockquote>
 <div><ul>
 <li><p>To install the cfunits package to a central location:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> python setup.py install
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python setup.py install
 </pre></div>
 </div>
 </li>
 <li><p>To install the cfunits package locally to the user in the default
 location:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> python setup.py install --user
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python setup.py install --user
 </pre></div>
 </div>
 </li>
 <li><p>To install the cfunits package in the &lt;directory&gt; of your choice:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> python setup.py install --home<span class="o">=</span>&lt;directory&gt;
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python setup.py install --home<span class="o">=</span>&lt;directory&gt;
 </pre></div>
 </div>
 </li>
@@ -176,7 +196,7 @@ location:</p>
 <span id="id5"></span><h2><strong>Tests</strong><a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h2>
 <hr class="docutils" />
 <p>Tests are run from within the <code class="docutils literal notranslate"><span class="pre">cfunits/test</span></code> directory:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> python run_tests.py
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python run_tests.py
 </pre></div>
 </div>
 </div>
@@ -185,9 +205,10 @@ location:</p>
 <hr class="docutils" />
 <p>The cfunits package requires:</p>
 <ul>
-<li><p><a class="reference external" href="https://www.python.org/">Python</a>, version 3.6 or newer,</p></li>
+<li><p><a class="reference external" href="https://www.python.org/">Python</a>, version 3.6 or newer, including
+the latest version Python 3.9,</p></li>
 <li><p><a class="reference external" href="http://www.numpy.org/">numpy</a>, version 1.15 or newer,</p></li>
-<li><p><a class="reference external" href="https://pypi.org/project/cftime/">cftime</a>, version 1.2.1
+<li><p><a class="reference external" href="https://pypi.org/project/cftime/">cftime</a>, version 1.5.0
 or newer, and</p></li>
 <li><p><a class="reference external" href="http://www.unidata.ucar.edu/software/udunits">UNIDATA UDUNITS-2 library</a>, version 2.2.20 or
 newer.</p>
@@ -206,11 +227,19 @@ If you get an error that looks like <code class="docutils literal notranslate"><
 then setting the <code class="docutils literal notranslate"><span class="pre">UDUNITS2_XML_PATH</span></code> environment variable is the
 likely solution.</p>
 <p>UDUNITS is available via Anaconda with:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> conda install -c conda-forge <span class="nv">udunits2</span><span class="o">=</span><span class="m">2</span>.2.20
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>conda install -c conda-forge <span class="nv">udunits2</span><span class="o">=</span><span class="m">2</span>.2.20
 </pre></div>
 </div>
 </li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some dependencies have dropped support for Python 3.6 for their
+newer versions, so it may be necessary to use at least Python 3.7 in
+combination with those.</p>
+<p>In particular, this is known to be the case if you are using <a class="reference external" href="https://numpy.org/doc/stable/reference/index.html#module-numpy" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy</span></code></a> at
+version 1.20 or above.</p>
+</div>
 </div>
 <div class="section" id="code-repository">
 <span id="id7"></span><h2><strong>Code repository</strong><a class="headerlink" href="#code-repository" title="Permalink to this headline">¶</a></h2>
@@ -227,11 +256,11 @@ likely solution.</p>
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2020, NCAS | Page built on 2020-11-27.
+      &copy;2021, NCAS | Page built on 2021-05-21.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>
 
