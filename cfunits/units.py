@@ -821,16 +821,6 @@ class Units:
                     else:
                         _cached_ut_unit[units] = ut_unit
 
-                #                if ut_unit is None:
-                #                    ut_unit = _ut_parse(
-                #                        _ut_system, _c_char_p(units.encode('utf-8')),
-                #                        _UT_ASCII
-                #                    )
-                #                    if not ut_unit:
-                #                        raise ValueError(
-                #                            "Can't set unsupported unit: %r" % units)
-                #                    _cached_ut_unit[units] = ut_unit
-
                 self._isreftime = False
                 self._calendar = None
                 self._canonial_calendar = None
