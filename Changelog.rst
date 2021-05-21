@@ -1,3 +1,14 @@
+version 3.3.2
+-------------
+----
+
+**2021-05-21**
+
+* Refactor to remove the dependcy on `cftime.utime`, that was removed
+  at `cftime` version 1.5.0
+  (https://github.com/NCAS-CMS/cfunits/issues/25)
+* Changed dependency: ``cftime>=1.5.0``
+
 version 3.3.1
 -------------
 ----
