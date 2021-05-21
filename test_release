@@ -9,6 +9,9 @@ fi
 
 vn=$1
 
+# Get the major.minor Python version
+py=$(python -V | cut -d " " -f 2 | cut -d "." -f 1,2)
+
 cp dist/cfunits-$vn.tar.gz ~/tmp
 cd ~/tmp
 rm -fr ~/tmp/test ~/tmp/bin ~/tmp/lib ~/tmp/cfunits-$vn
@@ -16,12 +19,15 @@ tar zxvf cfunits-$vn.tar.gz
 cd cfunits-$vn
 python setup.py install --home=~/tmp
 
-#rm -fr ~/tmp/test
-#cp -pr test ~/tmp
+export PYTHONPATH=~/tmp/lib/python:~/tmp/lib/python/cfunits-${vn}-py${py}.egg:$PYTHONPATH
 
-export PYTHONPATH=~/tmp/lib/python:$PYTHONPATH
+#cd ~/tmp/lib/python/cfunits/test
 
-cd ~/tmp/lib/python/cfunits/test
+cd ~/tmp/lib/python/cfunits-${vn}-py${py}.egg/cfunits/test
+
 python run_tests.py
+test_result_status=$?
 
 set -x
+
+exit $test_result_status

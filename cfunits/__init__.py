@@ -15,9 +15,8 @@ with the CF conventions.
 """
 
 __Conventions__ = "CF-1.8"
-__author__ = "David Hassell"
-__date__ = "2020-11-27"
-__version__ = "3.3.1"
+__date__ = "2021-05-21"
+__version__ = "3.3.2"
 __cf_version__ = "1.8"
 
 from distutils.version import LooseVersion
@@ -37,7 +36,7 @@ if LooseVersion(platform.python_version()) < LooseVersion(_minimum_vn):
     )
 
 # Check the version of cftime
-_minimum_vn = "1.2.1"
+_minimum_vn = "1.5.0"
 if LooseVersion(cftime.__version__) < LooseVersion(_minimum_vn):
     raise ValueError(
         "Bad cftime version: cfunits requires cftime>={}. Got {} at {}".format(
