@@ -1,0 +1,499 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>cfunits.Units &#8212; Documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/customise-alabaster.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/clipboard.min.js"></script>
+    <script type="text/javascript" src="_static/copybutton.js"></script>
+    <script type="text/javascript" src="_static/toggleprompt.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="cfunits.Units.calendar" href="generated/cfunits.Units.calendar.html" />
+    <link rel="prev" title="Change log" href="Changelog.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+
+
+<h1 class="logo"><a href="index.html">cfunits 3.3.2</a></h1>
+
+
+
+<p class="blurb">A Python interface to the UDUNITS-2 library with CF extensions</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=NCAS-CMS&repo=cfunits&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html"><strong>Installation</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html"><strong>Support</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html"><strong>Releases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Changelog.html"><strong>Change log</strong></a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>cfunits.Units</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#units-attributes">Units attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#units-methods">Units methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#units-static-methods">Units static methods</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="Changelog.html" title="previous chapter"><strong>Change log</strong></a></li>
+      <li>Next: <a href="generated/cfunits.Units.calendar.html" title="next chapter">cfunits.Units.calendar</a></li>
+  </ul></li>
+</ul>
+</div>
+
+<br>
+cfunits development has been supported by
+the <a href="https://erc.europa.eu/">ERC</a>
+through <a href="https://cordis.europa.eu/project/id/247220">Seachange</a>
+and
+<a href="https://cordis.europa.eu/project/id/786427">Couplet</a>; by
+the <a href="https://ec.europa.eu/programmes/horizon2020/">EC Horizon
+2020 programme</a> through
+<a href="https://cordis.europa.eu/project/id/824084">IS-ENES3</a>;
+by <a href="https://nerc.ukri.org/">NERC</a> through
+<a href="https://gtr.ukri.org/project/0D95A6DB-0B95-48F7-8A8B-7B9A47DEA117">UKFAFMIP</a>;
+and by <a href="https://ncas.ac.uk/">NCAS</a>.
+<br>
+<br>
+<img src="../_templates/logo_EC.png" height="40">
+<img src="../_templates/logo_ERC.png" height="40">
+<img src="../_templates/logo_NERC.png" height="40">
+<br>
+<img src="../_templates/logo_NCAS.png" height="40">
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="cfunits-units">
+<h1><strong>cfunits.Units</strong><a class="headerlink" href="#cfunits-units" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="cfunits.Units">
+<em class="property">class </em><code class="sig-prename descclassname">cfunits.</code><code class="sig-name descname">Units</code><span class="sig-paren">(</span><em class="sig-param">units=None</em>, <em class="sig-param">calendar=None</em>, <em class="sig-param">formatted=False</em>, <em class="sig-param">names=False</em>, <em class="sig-param">definition=False</em>, <em class="sig-param">_ut_unit=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/NCAS-CMS/cfunits/blob/v3.3.2/cfunits/units.py#L469"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Utilities for working with physical units.</p>
+<p>Store, combine and compare physical units and convert numeric
+values to different units.</p>
+<p>Units are as defined in UNIDATA’s Udunits-2 package, with a few
+exceptions for greater consistency with the CF conventions namely
+support for CF calendars and new units definitions.</p>
+<p><strong>Modifications to the standard Udunits database</strong></p>
+<p>Whilst a standard Udunits-2 database may be used, greater
+consistency with CF is achieved by using a modified database. The
+following units are either new to, modified from, or removed from
+the standard Udunits-2 database (version 2.1.24):</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 11%" />
+<col style="width: 22%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Unit name</p></th>
+<th class="head"><p>Symbol</p></th>
+<th class="head"><p>Definition</p></th>
+<th class="head"><p>Status</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>practical_salinity_unit</p></td>
+<td><p>psu</p></td>
+<td><p>1e-3</p></td>
+<td><p>New unit</p></td>
+</tr>
+<tr class="row-odd"><td><p>level</p></td>
+<td></td>
+<td><p>1</p></td>
+<td><p>New unit</p></td>
+</tr>
+<tr class="row-even"><td><p>sigma_level</p></td>
+<td></td>
+<td><p>1</p></td>
+<td><p>New unit</p></td>
+</tr>
+<tr class="row-odd"><td><p>layer</p></td>
+<td></td>
+<td><p>1</p></td>
+<td><p>New unit</p></td>
+</tr>
+<tr class="row-even"><td><p>decibel</p></td>
+<td><p>dB</p></td>
+<td><p>1</p></td>
+<td><p>New unit</p></td>
+</tr>
+<tr class="row-odd"><td><p>bel</p></td>
+<td></td>
+<td><p>10 dB</p></td>
+<td><p>New unit</p></td>
+</tr>
+<tr class="row-even"><td><p>sverdrup</p></td>
+<td><p>Sv</p></td>
+<td><p>1e6 m3 s-1</p></td>
+<td><p>Added symbol</p></td>
+</tr>
+<tr class="row-odd"><td><p>sievert</p></td>
+<td></td>
+<td><p>J kg-1</p></td>
+<td><p>Removed symbol</p></td>
+</tr>
+</tbody>
+</table>
+<p>Plural forms of the new units’ names are allowed, such as
+<code class="docutils literal notranslate"><span class="pre">practical_salinity_units</span></code>.</p>
+<p>The modified database is in the <em>udunits</em> subdirectory of the
+<em>etc</em> directory found in the same location as this module.</p>
+<p><strong>Accessing units</strong></p>
+<p>Units may be set, retrieved and deleted via the <a class="reference internal" href="generated/cfunits.Units.units.html#cfunits.Units.units" title="cfunits.Units.units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">units</span></code></a>
+attribute. Its value is a string that can be recognized by
+UNIDATA’s Udunits-2 package, with the few exceptions given in the
+CF conventions.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;m s-1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span>
+<span class="go">&lt;Units: m s-1&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;days since 2004-3-1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span>
+<span class="go">&lt;Units: days since 2004-3-1&gt;</span>
+</pre></div>
+</div>
+<p><strong>Equality and equivalence of units</strong></p>
+<p>There are methods for assessing whether two units are equivalent
+or equal. Two units are equivalent if numeric values in one unit
+are convertible to numeric values in the other unit (such as
+<code class="docutils literal notranslate"><span class="pre">kilometres</span></code> and <code class="docutils literal notranslate"><span class="pre">metres</span></code>). Two units are equal if they are
+equivalent and their conversion is a scale factor of 1 and an
+offset of 0 (such as <code class="docutils literal notranslate"><span class="pre">kilometres</span></code> and <code class="docutils literal notranslate"><span class="pre">1000</span> <span class="pre">metres</span></code>). Note
+that equivalence and equality are based on internally stored
+binary representations of the units, rather than their string
+representations.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;m/s&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;m s-1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">w</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;km.s-1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;0.001 kilometer.second-1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;gram&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">equivalent</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">u</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">v</span><span class="p">),</span>  <span class="n">u</span> <span class="o">==</span> <span class="n">v</span>
+<span class="go">(True, True, True)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">equivalent</span><span class="p">(</span><span class="n">w</span><span class="p">),</span> <span class="n">u</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+<span class="go">(True, False)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">equivalent</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">u</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">(True, True)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">equivalent</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">u</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">(False, False)</span>
+</pre></div>
+</div>
+<p><strong>Time and reference time units</strong></p>
+<p>Time units may be given as durations of time (<em>time units</em>) or as
+an amount of time since a reference time (<em>reference time units</em>):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">Units</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;day&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;days since 1970-01-01&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;seconds since 1992-10-8 15:15:42.5 -6:00&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is recommended that the units <code class="docutils literal notranslate"><span class="pre">year</span></code> and <code class="docutils literal notranslate"><span class="pre">month</span></code>
+be used with caution, as explained in the following
+excerpt from the CF conventions: “The Udunits package
+defines a year to be exactly 365.242198781 days (the
+interval between 2 successive passages of the sun
+through vernal equinox). It is not a calendar
+year. Udunits includes the following definitions for
+years: a common_year is 365 days, a leap_year is 366
+days, a Julian_year is 365.25 days, and a Gregorian_year
+is 365.2425 days. For similar reasons the unit
+<code class="docutils literal notranslate"><span class="pre">month</span></code>, which is defined to be exactly year/12,
+should also be used with caution.”</p>
+</div>
+<p><strong>Calendar</strong></p>
+<p>The date given in reference time units is associated with one of
+the calendars recognized by the CF conventions and may be set with
+the <a class="reference internal" href="generated/cfunits.Units.calendar.html#cfunits.Units.calendar" title="cfunits.Units.calendar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calendar</span></code></a> attribute. However, as in the CF conventions, if
+the calendar is not set then, for the purposes of calculation and
+comparison, it defaults to the mixed Gregorian/Julian calendar as
+defined by Udunits:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;days since 2000-1-1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">calendar</span>
+<span class="gt">Traceback (most recent call last):</span>
+    <span class="o">...</span>
+<span class="gr">AttributeError</span>: <span class="n">Units has no attribute &#39;calendar&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;days since 2000-1-1&#39;</span><span class="p">,</span> <span class="s1">&#39;gregorian&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">.</span><span class="n">calendar</span>
+<span class="go">&#39;gregorian&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p><strong>Arithmetic with units</strong></p>
+<p>The following operators, operations and assignments are
+overloaded:</p>
+<p>Comparison operators:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">==,</span> <span class="pre">!=,</span> <span class="pre">&gt;,</span> <span class="pre">&gt;=,</span> <span class="pre">&lt;,</span> <span class="pre">&lt;=</span></code></p>
+</div></blockquote>
+<p>Binary arithmetic operations:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">+,</span> <span class="pre">-,</span> <span class="pre">*,</span> <span class="pre">/,</span> <span class="pre">//,</span> <span class="pre">pow(),</span> <span class="pre">**,</span> <span class="pre">%</span></code></p>
+</div></blockquote>
+<p>Unary arithmetic operations:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">-,</span> <span class="pre">+</span></code></p>
+</div></blockquote>
+<p>Augmented arithmetic assignments:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">+=,</span> <span class="pre">-=,</span> <span class="pre">*=,</span> <span class="pre">/=,</span> <span class="pre">//=,</span> <span class="pre">**=</span></code></p>
+</div></blockquote>
+<p>The comparison operations return a boolean and all other
+operations return a new units object or modify the units object in
+place.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span>
+<span class="go">&lt;Units: m&gt;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">u</span> <span class="o">*</span> <span class="mi">1000</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span>
+<span class="go">&lt;Units: 1000 m&gt;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">==</span> <span class="n">v</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">!=</span> <span class="n">v</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">**=</span> <span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span>
+<span class="go">&lt;Units: m2&gt;</span>
+</pre></div>
+</div>
+<p>It is also possible to create the logarithm of a unit
+corresponding to the given logarithmic base:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;seconds&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">&lt;Units: lg(re 1 s)&gt;</span>
+</pre></div>
+</div>
+<p><strong>Modifying data for equivalent units</strong></p>
+<p>Any numpy array or Python numeric type may be modified for
+equivalent units using the <a class="reference internal" href="generated/cfunits.Units.conform.html#cfunits.Units.conform" title="cfunits.Units.conform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">conform</span></code></a> static method.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="o">.</span><span class="n">conform</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;km&#39;</span><span class="p">),</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">))</span>
+<span class="go">2000.0</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="o">.</span><span class="n">conform</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;minute&#39;</span><span class="p">),</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;second&#39;</span><span class="p">))</span>
+<span class="go">array([   0.,   60.,  120.,  180.,  240.])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">array([0., 1., 2., 3., 4.])</span>
+</pre></div>
+</div>
+<p>If the <em>inplace</em> keyword is True, then a numpy array is modified
+in place, without any copying overheads:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="o">.</span><span class="n">conform</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">a</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;days since 2000-12-1&#39;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;days since 2001-1-1&#39;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="go">array([-31., -30., -29., -28., -27.])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">array([-31., -30., -29., -28., -27.])</span>
+</pre></div>
+</div>
+<p>Initialises the <a class="reference internal" href="#cfunits.Units" title="cfunits.Units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Units</span></code></a> instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>units: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="#cfunits.Units" title="cfunits.Units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Units</span></code></a>, optional</dt><dd><p>Set the new units from this string.</p>
+</dd>
+<dt>calendar: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional</dt><dd><p>Set the calendar for reference time units.</p>
+</dd>
+<dt>formatted: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>Format the string representation of the units in a
+standardized manner. See the <a class="reference internal" href="generated/cfunits.Units.formatted.html#cfunits.Units.formatted" title="cfunits.Units.formatted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">formatted</span></code></a> method.</p>
+</dd>
+<dt>names: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>Format the string representation of the units using names
+instead of symbols. See the <a class="reference internal" href="generated/cfunits.Units.formatted.html#cfunits.Units.formatted" title="cfunits.Units.formatted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">formatted</span></code></a> method.</p>
+</dd>
+<dt>definition: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>Format the string representation of the units using basic
+units. See the <a class="reference internal" href="generated/cfunits.Units.formatted.html#cfunits.Units.formatted" title="cfunits.Units.formatted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">formatted</span></code></a> method.</p>
+</dd>
+<dt>_ut_unit: <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, optional</dt><dd><p>Set the new units from this Udunits binary unit
+representation. This should be an integer returned by a
+call to <code class="xref py py-obj docutils literal notranslate"><span class="pre">ut_parse</span></code> function of Udunits. Ignored if <em>units</em>
+is set.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="section" id="units-attributes">
+<h2>Units attributes<a class="headerlink" href="#units-attributes" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.calendar.html#cfunits.Units.calendar" title="cfunits.Units.calendar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calendar</span></code></a></p></td>
+<td><p>The calendar for reference time units.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.has_offset.html#cfunits.Units.has_offset" title="cfunits.Units.has_offset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_offset</span></code></a></p></td>
+<td><p>True if the units contain an offset.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.isdimensionless.html#cfunits.Units.isdimensionless" title="cfunits.Units.isdimensionless"><code class="xref py py-obj docutils literal notranslate"><span class="pre">isdimensionless</span></code></a></p></td>
+<td><p>True if the units are dimensionless, false otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.islatitude.html#cfunits.Units.islatitude" title="cfunits.Units.islatitude"><code class="xref py py-obj docutils literal notranslate"><span class="pre">islatitude</span></code></a></p></td>
+<td><p>True if and only if the units are latitude units.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.islongitude.html#cfunits.Units.islongitude" title="cfunits.Units.islongitude"><code class="xref py py-obj docutils literal notranslate"><span class="pre">islongitude</span></code></a></p></td>
+<td><p>True if and only if the units are longitude units.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.ispressure.html#cfunits.Units.ispressure" title="cfunits.Units.ispressure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ispressure</span></code></a></p></td>
+<td><p>True if the units are pressure units, false otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.isreftime.html#cfunits.Units.isreftime" title="cfunits.Units.isreftime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">isreftime</span></code></a></p></td>
+<td><p>True if the units are reference time units, false otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.istime.html#cfunits.Units.istime" title="cfunits.Units.istime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">istime</span></code></a></p></td>
+<td><p>True if the units are time units, false otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.isvalid.html#cfunits.Units.isvalid" title="cfunits.Units.isvalid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">isvalid</span></code></a></p></td>
+<td><p>Whether the units are valid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.reason_notvalid.html#cfunits.Units.reason_notvalid" title="cfunits.Units.reason_notvalid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reason_notvalid</span></code></a></p></td>
+<td><p>The reason that units are considered invalid.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.reftime.html#cfunits.Units.reftime" title="cfunits.Units.reftime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reftime</span></code></a></p></td>
+<td><p>The reference date-time of reference time units.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.units.html#cfunits.Units.units" title="cfunits.Units.units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">units</span></code></a></p></td>
+<td><p>The units.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="units-methods">
+<h2>Units methods<a class="headerlink" href="#units-methods" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.conform.html#cfunits.Units.conform" title="cfunits.Units.conform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">conform</span></code></a></p></td>
+<td><p>Conforms values to equivalent values in a compatible unit.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.copy.html#cfunits.Units.copy" title="cfunits.Units.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code></a></p></td>
+<td><p>Returns a deep copy.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.equals.html#cfunits.Units.equals" title="cfunits.Units.equals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">equals</span></code></a></p></td>
+<td><p>Tests if units are numerically convertible to equal value.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.equivalent.html#cfunits.Units.equivalent" title="cfunits.Units.equivalent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">equivalent</span></code></a></p></td>
+<td><p>Tests whether two units are numerically convertible.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.formatted.html#cfunits.Units.formatted" title="cfunits.Units.formatted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">formatted</span></code></a></p></td>
+<td><p>Formats the <code class="xref py py-obj docutils literal notranslate"><span class="pre">units</span></code> attribute string in a standardised way.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cfunits.Units.log.html#cfunits.Units.log" title="cfunits.Units.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code></a></p></td>
+<td><p>Returns the logarithmic unit corresponding to a log base.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="units-static-methods">
+<h2>Units static methods<a class="headerlink" href="#units-static-methods" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cfunits.Units.conform.html#cfunits.Units.conform" title="cfunits.Units.conform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">conform</span></code></a></p></td>
+<td><p>Conforms values to equivalent values in a compatible unit.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2021, NCAS | Page built on 2021-05-21.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
