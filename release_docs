@@ -66,12 +66,9 @@ if [[ $2 = "latest" ]] || [[ $2 = "archive" ]] ; then
       *.html \
       *.inv \
       *.js \
-      _static
+      _static \
+      _templates
 
-  if [[ $2 = "latest" ]] ; then
-      git add _templates  
-  fi
-  
   git commit -a -m "v$version $2 documentation"
 fi
 
