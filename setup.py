@@ -43,8 +43,7 @@ package_data = etc_files + test_files
 long_description = """*A Python interface to UNIDATA's UDUNITS-2 library with CF
 extensions*
 
-**Note: Versions 3.0.0 and later are only compatible with version
-  Python 3. Use version 1.9 for Python 2 compatibility.**
+**Note: Versions 3.0.0 and later are only compatible with version Python 3. Use version 1.9 for Python 2 compatibility.**
 
 Store, combine and compare physical units and convert numeric values
 to different units.
