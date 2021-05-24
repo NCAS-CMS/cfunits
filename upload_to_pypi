@@ -6,11 +6,12 @@
 #
 # It is presumed that `python setup.py sdist` has already been run.
 #
-#>> ./upload_to_pypi 2.0.4
-
-
-
-
+# >> ./upload_to_pypi 2.0.4
+#
+# Upload to https://test.pypi.org
+#
+# >> ./upload_to_pypi 2.0.4 test
+#
 # --------------------------------------------------------------------
 
 set -x
@@ -18,6 +19,13 @@ set -x
 if [[ ! $1 ]] ; then
   echo "No version \$1 (e.g. 2.0.1)"
   exit 1
+fi
+
+if [[ $2 == "test" ]] ; then
+  echo "Uploading to testpypi"
+  repository="--repository testpypi"
+else
+    repository=""
 fi
 
 version=$1
@@ -29,6 +37,6 @@ if [[ ! -f $tarball ]] ; then
   exit 2
 fi
 
-twine upload $tarball
+twine upload $repository $tarball
 
 set +x

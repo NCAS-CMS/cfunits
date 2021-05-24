@@ -1,3 +1,11 @@
+version 3.3.3
+-------------
+----
+
+**2021-05-24**
+
+* Fixed error in `setup.py` that prevented installation via `pip`.
+
 version 3.3.2
 -------------
 ----
