@@ -16,7 +16,7 @@ with the CF conventions.
 
 __Conventions__ = "CF-1.8"
 __date__ = "2021-05-21"
-__version__ = "3.3.2"
+__version__ = "3.3.3"
 __cf_version__ = "1.8"
 
 from distutils.version import LooseVersion

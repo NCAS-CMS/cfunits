@@ -110,7 +110,7 @@ setup(
     url="https://bitbucket.org/cfpython/cfunits-python",
     download_url="https://bitbucket.org/cfpython/cfunits-python/downloads",
     platforms=["Linux", "MacOS"],
-    license=["MIT"],
+    license="MIT",
     keywords=[
         "cf",
         "udunits",
