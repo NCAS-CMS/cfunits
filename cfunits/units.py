@@ -840,11 +840,6 @@ class Units:
             self._calendar = calendar
             self._canonical_calendar = _canonical_calendar[calendar.lower()]
             self._units_since_reftime = None
-            try:
-                self._utime = Utime(_canonical_calendar[calendar.lower()])
-            except Exception:
-                self._new_reason_notvalid(f"Invalid calendar={calendar!r}")
-                self._isvalid = True
 
             return
 
