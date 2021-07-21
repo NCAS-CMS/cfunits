@@ -730,9 +730,7 @@ class Units:
         if calendar is not None:
             _calendar = _canonical_calendar.get(calendar.lower())
             if _calendar is None:
-                self._new_reason_notvalid(
-                    "Invalid calendar={!r}".format(calendar)
-                )
+                self._new_reason_notvalid(f"Invalid calendar={calendar!r}")
                 self._isvalid = False
                 _calendar = calendar
 
@@ -741,9 +739,7 @@ class Units:
                 units = units.strip()
             except AttributeError:
                 self._isvalid = False
-                self._new_reason_notvalid(
-                    "Bad units type: {}".format(type(units))
-                )
+                self._new_reason_notvalid(f"Bad units type: {type(units)}")
                 return
 
             unit = None
@@ -815,8 +811,8 @@ class Units:
                         ut_unit = None
                         self._isvalid = False
                         self._new_reason_notvalid(
-                            "Invalid units: {!r}; "
-                            "Not recognised by UDUNITS".format(units)
+                            f"Invalid units: {units!r}; Not recognised by "
+                            "UDUNITS"
                         )
                     else:
                         _cached_ut_unit[units] = ut_unit
@@ -845,13 +841,6 @@ class Units:
             self._calendar = calendar
             self._canonical_calendar = _canonical_calendar[calendar.lower()]
             self._units_since_reftime = None
-            try:
-                self._utime = Utime(_canonical_calendar[calendar.lower()])
-            except Exception:
-                self._new_reason_notvalid(
-                    "Invalid calendar={!r}".format(calendar)
-                )
-                self._isvalid = True
 
             return
 
@@ -953,7 +942,7 @@ class Units:
         x.__repr__() is logically equivalent to repr(x)
 
         """
-        return "<{0}: {1}>".format(self.__class__.__name__, self)
+        return f"<{self.__class__.__name__}: {self}>"
 
     def __str__(self):
         """Returns a string version of the `Units` object.
@@ -969,7 +958,7 @@ class Units:
                 string.append(str(self._units))
 
         if self._calendar is not None:
-            string.append("{0}".format(self._calendar))
+            string.append(f"{self._calendar}")
 
         return " ".join(string)
 
@@ -1039,7 +1028,7 @@ class Units:
         x.__sub__(y) is logically equivalent to x-y
 
         """
-        value_error = ValueError("Can't do {!r} - {!r}".format(self, other))
+        value_error = ValueError(f"Can't do {self!r} - {other!r}")
 
         if self._isreftime or (
             isinstance(other, self.__class__) and other._isreftime
@@ -1058,7 +1047,7 @@ class Units:
         x.__add__(y) is logically equivalent to x+y
 
         """
-        value_error = ValueError("Can't do {!r} + {!r}".format(self, other))
+        value_error = ValueError(f"Can't do {self!r} + {other!r}")
 
         if self._isreftime or (
             isinstance(other, self.__class__) and other._isreftime
@@ -1077,7 +1066,7 @@ class Units:
         x.__mul__(y) is logically equivalent to x*y
 
         """
-        value_error = ValueError("Can't do {!r} * {!r}".format(self, other))
+        value_error = ValueError(f"Can't do {self!r} * {other!r}")
 
         if isinstance(other, self.__class__):
             if self._isreftime or other._isreftime:
@@ -1104,7 +1093,7 @@ class Units:
         x.__div__(y) is logically equivalent to x/y
 
         """
-        value_error = ValueError("Can't do {!r} / {!r}".format(self, other))
+        value_error = ValueError(f"Can't do {self!r} / {other!r}")
 
         if isinstance(other, self.__class__):
             if self._isreftime or other._isreftime:
@@ -1138,9 +1127,8 @@ class Units:
 
         if modulo is not None:
             raise NotImplementedError(
-                "3-argument power not supported for {!r}".format(
-                    self.__class__.__name__
-                )
+                "3-argument power not supported for "
+                f"{self.__class__.__name__!r}"
             )
 
         if self and not self._isreftime:
@@ -1177,7 +1165,7 @@ class Units:
                 except:
                     pass
 
-        raise ValueError("Can't do {!r} ** {!r}".format(self, other))
+        raise ValueError(f"Can't do {self!r} ** {other!r}")
 
     def __isub__(self, other):
         """The augmented arithmetic assignment ``-=``.
@@ -1228,7 +1216,7 @@ class Units:
         try:
             return -self + other
         except:
-            raise ValueError("Can't do {!r} - {!r}".format(other, self))
+            raise ValueError(f"Can't do {other!r} - {self!r}")
 
     def __radd__(self, other):
         """Binary arithmetic operation ``+`` with reflected operands.
@@ -1255,7 +1243,7 @@ class Units:
         try:
             return (self ** -1) * other
         except:
-            raise ValueError("Can't do {!r} / {!r}".format(other, self))
+            raise ValueError(f"Can't do {other!r} / {self!r}")
 
     def __floordiv__(self, other):
         """The binary arithmetic operation ``//``.
@@ -1282,7 +1270,7 @@ class Units:
         try:
             return (self ** -1) * other
         except:
-            raise ValueError("Can't do {!r} // {!r}".format(other, self))
+            raise ValueError(f"Can't do {other!r} // {self!r}")
 
     def __truediv__(self, other):
         """The binary arithmetic operation ``/``.
@@ -1314,7 +1302,7 @@ class Units:
         x.__mod__(y) is logically equivalent to y%x
 
         """
-        raise ValueError("Can't do {!r} % {!r}".format(other, self))
+        raise ValueError(f"Can't do {other!r} % {self!r}")
 
     def __neg__(self):
         """The unary arithmetic operation ``-``.
@@ -1338,7 +1326,7 @@ class Units:
     def _comparison(self, other, method):
         """Compares two units according to a specified method."""
         value_error = ValueError(
-            "Units are not compatible: {!r}, {!r}".format(self, other)
+            f"Units are not compatible: {self!r}, {other!r}"
         )
         try:
             cv_converter = _ut_get_converter(self._ut_unit, other._ut_unit)
@@ -1713,7 +1701,6 @@ class Units:
         >>> u.reftime
         cftime.datetime(2001, 1, 1, 0, 0, 0, 0, calendar='360_day', has_year_zero=False)
 
-
         """
         if self.isreftime:
             # utime = self._utime
@@ -1771,7 +1758,7 @@ class Units:
             return value
 
         raise AttributeError(
-            "{} has no attribute 'calendar'".format(self.__class__.__name__)
+            f"{self.__class__.__name__} has no attribute 'calendar'"
         )
 
     @property
@@ -1797,9 +1784,7 @@ class Units:
             return value
 
         raise AttributeError(
-            "{} object has no attribute 'units'".format(
-                self.__class__.__name__
-            )
+            f"{self.__class__.__name__} object has no attribute 'units'"
         )
 
     # ----------------------------------------------------------------
@@ -1891,11 +1876,8 @@ class Units:
                 out = self._canonical_calendar == other._canonical_calendar
                 if verbose and not out:
                     print(
-                        "{}: Incompatible calendars: {!r}, {!r}".format(
-                            self.__class__.__name__,
-                            self._calendar,
-                            other._calendar,
-                        )
+                        f"{self.__class__.__name__}: Incompatible calendars: "
+                        f"{self._calendar!r}, {other._calendar!r}"
                     )  # pragma: no cover
 
                 return out
@@ -1905,9 +1887,7 @@ class Units:
         elif isreftime1 or isreftime2:
             if verbose:
                 print(
-                    "{}: Only one is reference time".format(
-                        self.__class__.__name__
-                    )
+                    f"{self.__class__.__name__}: Only one is reference time"
                 )  # pragma: no cover
             return False
 
@@ -2040,7 +2020,7 @@ class Units:
         if _ut_format(ut_unit, _string_buffer, _sizeof_buffer, opts) != -1:
             out = _string_buffer.value
         else:
-            raise ValueError("Can't format unit {!r}".format(self))
+            raise ValueError(f"Can't format unit {self!r}")
 
         if self.isreftime:
             out = str(out, "utf-8")  # needs converting from byte-string
@@ -2115,9 +2095,7 @@ class Units:
 
         """
         value_error = ValueError(
-            "Units are not convertible: {!r}, {!r}".format(
-                from_units, to_units
-            )
+            f"Units are not convertible: {from_units!r}, {to_units!r}"
         )
 
         if from_units.equals(to_units):
@@ -2390,11 +2368,8 @@ class Units:
             if self._canonical_calendar != other._canonical_calendar:
                 if verbose:
                     print(
-                        "{}: Incompatible calendars: {!r}, {!r}".format(
-                            self.__class__.__name__,
-                            self._calendar,
-                            other._calendar,
-                        )
+                        f"{self.__class__.__name__}: Incompatible calendars: "
+                        f"{self._calendar!r}, {other._calendar!r}"
                     )  # pragma: no cover
 
                 return False
@@ -2404,10 +2379,8 @@ class Units:
             if reftime0 != reftime1:
                 if verbose:
                     print(
-                        "{}: Different reference date-times: "
-                        "{!r}, {!r}".format(
-                            self.__class__.__name__, reftime0, reftime1
-                        )
+                        f"{self.__class__.__name__}: Different reference "
+                        f"date-times: {reftime0!r}, {reftime1!r}"
                     )  # pragma: no cover
 
                 return False
@@ -2415,9 +2388,7 @@ class Units:
         elif isreftime1 or isreftime2:
             if verbose:
                 print(
-                    "{}: Only one is reference time".format(
-                        self.__class__.__name__
-                    )
+                    f"{self.__class__.__name__}: Only one is reference time"
                 )  # pragma: no cover
 
             return False
@@ -2479,9 +2450,8 @@ class Units:
 
             if verbose:
                 print(
-                    "{}: Different units: {!r}, {!r}".format(
-                        self.__class__.__name__, self.units, other.units
-                    )
+                    f"{self.__class__.__name__}: Different units: "
+                    f"{self.units!r}, {other.units!r}"
                 )  # pragma: no cover
 
             return False
@@ -2530,9 +2500,7 @@ class Units:
                 return type(self)(_ut_unit=_ut_unit)
 
         raise ValueError(
-            "Can't take the logarithm to the base {!r} of {!r}".format(
-                base, self
-            )
+            f"Can't take the logarithm to the base {base!r} of {self!r}"
         )
 
 
