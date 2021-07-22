@@ -2215,9 +2215,9 @@ class Units:
                 if x.dtype.kind == "i":
                     # Here it is only checked for signed integer:
                     # Are unsigned integers not possible?
-                    new_dtype = x.dtype.str.replace('i', 'f')
-                    if new_dtype[-1] == '1':
-                        new_dtype[-1] = '2'
+                    new_dtype = x.dtype.str.replace("i", "f")
+                    if new_dtype[-1] == "1":
+                        new_dtype[-1] = "2"
                     y = x.view(dtype=new_dtype)
                     y[...] = x
                     x.dtype = numpy_dtype(new_dtype)
