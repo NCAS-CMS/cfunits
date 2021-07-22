@@ -2,7 +2,6 @@ import ctypes
 import ctypes.util
 import operator
 
-import numpy
 from numpy import array as numpy_array
 from numpy import asanyarray as numpy_asanyarray
 from numpy import dtype as numpy_dtype
@@ -2216,18 +2215,12 @@ class Units:
                 if x.dtype.kind == "i":
                     # Here it is only checked for signed integer:
                     # Are unsigned integers not possible?
-                    if x.dtype in [numpy.int32]:
-                        y = x.view(dtype="float32")
-                        y[...] = x
-                        x.dtype = numpy_dtype("float32")
-                    elif x.dtype in [numpy.int64]:
-                        y = x.view(dtype="float64")
-                        y[...] = x
-                        x.dtype = numpy_dtype("float64")
-                    elif x.dtype in [numpy.int16]:
-                        y = x.view(dtype="float16")
-                        y[...] = x
-                        x.dtype = numpy_dtype("float16")
+                    new_dtype = x.dtype.str.replace('i', 'f')
+                    if new_dtype[-1] == '1':
+                        new_dtype[-1] = '2'
+                    y = x.view(dtype=new_dtype)
+                    y[...] = x
+                    x.dtype = numpy_dtype(new_dtype)
             else:
                 # At numpy vn1.7 astype has many more keywords ...
                 if x.dtype.kind == "i":
