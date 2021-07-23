@@ -10,7 +10,6 @@ from numpy import ndarray as numpy_ndarray
 from numpy import shape as numpy_shape
 from numpy import size as numpy_size
 
-
 # --------------------------------------------------------------------
 # Aliases for ctypes
 # --------------------------------------------------------------------
@@ -290,7 +289,6 @@ add_unit_alias("10 dB", None, "bel", "bels")
 
 from cftime import _dateparse as cftime_dateparse
 from cftime import datetime as cftime_datetime
-
 
 _cached_ut_unit = {}
 _cached_utime = {}

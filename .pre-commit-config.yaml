@@ -60,3 +60,19 @@ repos:
     rev: 3.9.1
     hooks:
       - id: flake8
+
+  # Apply the 'isort' tool (fully compatible with 'black' after version 5
+  # which we surpass) to sort Python import statements systematically
+  # (see https://pycqa.github.io/isort/ for documentation). No further
+  # configuration is applied, nor required, than the below for a hook.
+  - repo: https://github.com/pycqa/isort
+    rev: 5.8.0
+    hooks:
+      - id: isort
+        name: isort (python)
+      - id: isort
+        name: isort (cython)
+        types: [cython]
+      - id: isort
+        name: isort (pyi)
+        types: [pyi]

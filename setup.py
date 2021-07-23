@@ -1,7 +1,8 @@
-from setuptools import setup
-import os
 import fnmatch
+import os
 import re
+
+from setuptools import setup
 
 
 def find_package_data_files(directory):

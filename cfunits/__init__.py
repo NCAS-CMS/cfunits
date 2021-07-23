@@ -19,8 +19,8 @@ __date__ = "2021-05-21"
 __version__ = "3.3.3"
 __cf_version__ = "1.8"
 
-from distutils.version import LooseVersion
 import platform
+from distutils.version import LooseVersion
 
 try:
     import cftime

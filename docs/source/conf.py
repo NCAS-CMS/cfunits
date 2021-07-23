@@ -12,10 +12,11 @@
 # All configuration values have a default; values that are commented
 # out serve to show the default.
 
+import datetime
+import os
 import re
 import sys
-import os
-import datetime
+
 import cfunits
 
 
@@ -365,7 +366,7 @@ spelling_word_list_filename = "spelling_false_positives.txt"
 # corresponding to the object in given domain with given information.
 
 import inspect
-from os.path import relpath, dirname
+from os.path import dirname, relpath
 
 link_release = re.search(r"(\d+\.\d+\.\d+)", release).groups()[0]
 
