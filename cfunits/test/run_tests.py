@@ -1,17 +1,16 @@
 from __future__ import print_function
 
-import unittest
+import datetime
 import doctest
-import pkgutil
-from platform import platform, python_version
+import faulthandler
 import os
-from random import choice
+import pkgutil
 import sys
+import unittest
+from platform import platform, python_version
+from random import choice
 
 import numpy
-import datetime
-
-import faulthandler
 
 faulthandler.enable()  # to debug seg faults and timeouts
 
