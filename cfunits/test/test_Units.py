@@ -184,6 +184,21 @@ class UnitsTest(unittest.TestCase):
         self.assertTrue(numpy.allclose(x, [6, 12]))
         self.assertTrue(numpy.allclose(x, v))
 
+        for i in range(24):
+            v = numpy.array([], dtype=numpy.sctypeDict[i])
+            if v.dtype.kind == 'i':
+                v = numpy.array([60, 120], dtype=numpy.sctypeDict[i])
+                check_dtype = v.dtype.str
+                x = Units.conform(v, Units("second"), Units("minute"), inplace=True)
+                self.assertIsInstance(x, numpy.ndarray)
+                if check_dtype[-1] in ["1", "2"]:
+                    # no inplace converting possible
+                    self.assertEqual(x.dtype.itemsize, 4)
+                else:
+                    self.assertEqual(x.dtype.str, v.dtype.str)
+                    self.assertTrue(numpy.allclose(x, v))
+                self.assertTrue(numpy.allclose(x, [1, 2]))
+
         x = Units.conform(35, Units("degrees_C"), Units("degrees_F"))
         self.assertIsInstance(x, float)
         self.assertTrue(numpy.allclose(x, 95))
