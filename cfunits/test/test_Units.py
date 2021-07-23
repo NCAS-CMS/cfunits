@@ -186,10 +186,12 @@ class UnitsTest(unittest.TestCase):
 
         for i in range(24):
             v = numpy.array([], dtype=numpy.sctypeDict[i])
-            if v.dtype.kind == 'i':
+            if v.dtype.kind == "i":
                 v = numpy.array([60, 120], dtype=numpy.sctypeDict[i])
                 check_dtype = v.dtype.str
-                x = Units.conform(v, Units("second"), Units("minute"), inplace=True)
+                x = Units.conform(
+                    v, Units("second"), Units("minute"), inplace=True
+                )
                 self.assertIsInstance(x, numpy.ndarray)
                 if check_dtype[-1] in ["1", "2"]:
                     # no inplace converting possible
