@@ -2215,12 +2215,18 @@ class Units:
                 if x.dtype.kind == "i":
                     # Here it is only checked for signed integer:
                     # Are unsigned integers not possible?
-                    new_dtype = x.dtype.str.replace("i", "f")
-                    if new_dtype[-1] == "1":
-                        new_dtype[-1] = "2"
-                    y = x.view(dtype=new_dtype)
-                    y[...] = x
-                    x.dtype = numpy_dtype(new_dtype)
+                    if x.dtype.itemsize in (1, 2):
+                        # Inplace converting is not possible in this case:
+                        # If x uses only 1 byte for each element, there is
+                        # no adequate float available from numpy
+                        # (smallest float uses 2 bytes: float16).
+                        # ctypes does not provide something like a float16.
+                        x = x.astype("float32")
+                    else:
+                        new_dtype = x.dtype.str.replace("i", "f")
+                        y = x.view(dtype=new_dtype)
+                        y[...] = x
+                        x.dtype = numpy_dtype(new_dtype)
             else:
                 # At numpy vn1.7 astype has many more keywords ...
                 if x.dtype.kind == "i":
