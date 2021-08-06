@@ -110,7 +110,7 @@ setup(
     author_email="david.hassell@ncas.ac.uk",
     url="https://bitbucket.org/cfpython/cfunits-python",
     download_url="https://bitbucket.org/cfpython/cfunits-python/downloads",
-    platforms=["Linux", "MacOS"],
+    platforms=["Linux", "MacOS", "Windows"],
     license="MIT",
     keywords=[
         "cf",
@@ -128,8 +128,7 @@ setup(
         "Intended Audience :: Science/Research",
         "License :: OSI Approved :: MIT License",
         "Topic :: Scientific/Engineering",
-        "Operating System :: MacOS",
-        "Operating System :: POSIX :: Linux",
+        "Operating System :: OS Independent",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3 :: Only",
         "Programming Language :: Python :: 3.6",
