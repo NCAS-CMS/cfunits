@@ -10,6 +10,20 @@
 
 Version |release|
 
+.. contents::
+   :local:
+   :backlinks: entry
+
+.. _Operating-systems:
+
+**Operating systems**
+---------------------
+
+The cfunits package works for Linux, Mac and Windows operating
+systems.
+
+----
+
 .. _Python-versions:
 
 **Python versions**
@@ -17,16 +31,14 @@ Version |release|
 
 As of version 3.3.0, cfunits works only with Python 3.6 or newer.
 
-As of version 3.0.0, cfunits works for Python 3 only. (Version 1.9 of
-cfunits works for Python 2 and Python 3.)
+Version 1.9 of cfunits works for Python 2 and Python 3.
 
+----
 
 .. _pip:
   
 **pip**
 -------
-
-----
 
 To install cfunits and *most* of its :ref:`dependencies
 <Dependencies>` (i.e. all except the UDUNITS library) run, for
@@ -59,19 +71,19 @@ See the `documentation for pip install
 <https://pip.pypa.io/en/stable/reference/pip_install/>`_ for further
 options.
 
+----
+
 .. _Source:
 
 **Source**
 ----------
-
-----
 
 To install from source:
 
 1. Download the cfunits package from https://pypi.org/project/cfunits
 
 2. Unpack the library (replacing ``<version>`` with the version that
-   you want to install, e.g. ``3.0.0``):
+   you want to install, e.g. ``3.3.4``):
 
    .. code:: console
 	 
@@ -99,12 +111,12 @@ To install from source:
 
        $ python setup.py install --home=<directory>
 
+----
+
 .. _Tests:
 
 **Tests**
 ---------
-
-----
 
 Tests are run from within the ``cfunits/test`` directory:
 
@@ -112,17 +124,16 @@ Tests are run from within the ``cfunits/test`` directory:
  
    $ python run_tests.py
        
+----
+
 .. _Dependencies:
 
 **Dependencies**
 ----------------
 
-----
-
 The cfunits package requires:
 
-* `Python <https://www.python.org/>`_, version 3.6 or newer, including
-  the latest version Python 3.9,
+* `Python <https://www.python.org/>`_, version 3.6 or newer,
 
 * `numpy <http://www.numpy.org/>`_, version 1.15 or newer,
 
@@ -130,7 +141,7 @@ The cfunits package requires:
   or newer, and
 
 * `UNIDATA UDUNITS-2 library
-  <http://www.unidata.ucar.edu/software/udunits>`_, version 2.2.20 or
+  <http://www.unidata.ucar.edu/software/udunits>`_, version 2.2.25 or
   newer.
 
   UDUNITS-2 is a C library that provides support for units of physical
@@ -152,7 +163,7 @@ The cfunits package requires:
 
   .. code:: console
 
-     $ conda install -c conda-forge udunits2=2.2.20
+     $ conda install -c conda-forge udunits2>=2.2.25
 
 
 .. note::
@@ -163,12 +174,12 @@ The cfunits package requires:
    In particular, this is known to be the case if you are using `numpy` at
    version 1.20 or above.
 
+----
+
 
 .. _Code-repository:
 
 **Code repository**
 -------------------
-
-----
 
 The complete source code is available at https://github.com/NCAS-CMS/cfunits
