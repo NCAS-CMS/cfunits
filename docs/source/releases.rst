@@ -8,6 +8,7 @@
 
 ----
 
+* `Version 3.3.4 <https://ncas-cms.github.io/cfunits/3.3.4>`_ (2021-08-09)
 * `Version 3.3.3 <https://ncas-cms.github.io/cfunits/3.3.3>`_ (2021-05-24)
 * `Version 3.3.2 <https://ncas-cms.github.io/cfunits/3.3.2>`_ (2021-05-21)
 * `Version 3.3.1 <https://ncas-cms.github.io/cfunits/3.3.1>`_ (2020-11-27)
