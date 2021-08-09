@@ -19,8 +19,8 @@ __date__ = "2021-05-21"
 __version__ = "3.3.3"
 __cf_version__ = "1.8"
 
-from distutils.version import LooseVersion
 import platform
+from distutils.version import LooseVersion
 
 try:
     import cftime
@@ -31,17 +31,16 @@ except ImportError as error1:
 _minimum_vn = "3.6.0"
 if LooseVersion(platform.python_version()) < LooseVersion(_minimum_vn):
     raise RuntimeError(
-        "Bad Python version: cfunits requires Python version {} or later. "
-        "Got {}".format(_minimum_vn, platform.python_version())
+        f"Bad Python version: cfunits requires Python version {_minimum_vn} "
+        f"or later. Got {platform.python_version()}"
     )
 
 # Check the version of cftime
 _minimum_vn = "1.5.0"
 if LooseVersion(cftime.__version__) < LooseVersion(_minimum_vn):
     raise ValueError(
-        "Bad cftime version: cfunits requires cftime>={}. Got {} at {}".format(
-            _minimum_vn, cftime.__version__, cftime.__file__
-        )
+        f"Bad cftime version: cfunits requires cftime>={_minimum_vn}. Got "
+        f"{cftime.__version__} at {cftime.__file__}"
     )
 
 from .units import Units  # noqa: F401

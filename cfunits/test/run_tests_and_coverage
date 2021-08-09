@@ -38,20 +38,27 @@ do
     fi
 done
 
-if ! command -v coverage &> /dev/null
+coverage_cmd="coverage"
+if ! command -v $coverage_cmd &> /dev/null
 then
-    echo \
-"Requires the coverage module: install it e.g. via \
+    # the ubuntu package 'python3-coverage' provides
+    # "coverage" as "python3-coverage"
+    coverage_cmd="python3-coverage"
+    if ! command -v $coverage_cmd &> /dev/null
+    then
+	echo \
+	    "Requires the coverage module: install it e.g. via \
 'pip install coverage'"
-    exit 3
+	exit 3
+    fi
 fi
 
-coverage erase
-coverage run --source=.. --omit="*/test/*" run_tests.py
+$coverage_cmd erase
+$coverage_cmd run --source=.. --omit="*/test/*" run_tests.py
 # Capture exit status from unit tests
 rc=$?
 
-coverage report
+$coverage_cmd report
 
 cov_dir=${library}_coverage_reports
 mkdir -p $cov_dir
@@ -59,12 +66,12 @@ echo "coverage docs: https://coverage.readthedocs.io"
 if [[ $generate_html == "true" ]] ; then
     html_dir=$cov_dir/html
     mkdir -p $html_dir
-    coverage html --title "$library test suite coverage report" -d $html_dir
+    $coverage_cmd html --title "$library test suite coverage report" -d $html_dir
 
     echo "coverage HTML report URL: file://$PWD/$html_dir/index.html"
 fi
 if [[ $generate_xml == "true" ]] ; then
-    coverage xml
+    $coverage_cmd xml
     mv "coverage.xml" $cov_dir/"coverage.xml"
 
     echo "coverage XML report URL: file://$PWD/$cov_dir/coverage.xml"

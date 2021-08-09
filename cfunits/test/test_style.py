@@ -1,8 +1,8 @@
+import faulthandler
 import os
-import pycodestyle
 import unittest
 
-import faulthandler
+import pycodestyle
 
 faulthandler.enable()  # to debug seg faults and timeouts
 
@@ -48,7 +48,7 @@ class styleTest(unittest.TestCase):
         self.assertEqual(
             pep8_issues,
             0,
-            "Detected {!s} PEP8 errors or warnings:".format(pep8_issues),
+            f"Detected {pep8_issues!s} PEP8 errors or warnings:",
         )
 
 
