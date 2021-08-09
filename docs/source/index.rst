@@ -19,7 +19,7 @@
    
    introduction
    installation
-   support
+   contributing
    releases
    Changelog
 

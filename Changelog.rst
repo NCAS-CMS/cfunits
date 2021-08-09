@@ -4,7 +4,7 @@ version 3.3.4
 
 **2021-08-09**
 
-* Now suports the Windows operating system
+* Now supports the Windows operating system
   (https://github.com/NCAS-CMS/cfunits/issues/31)
 
 version 3.3.3
