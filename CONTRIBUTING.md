@@ -1,14 +1,27 @@
 Thank you for taking the time to consider making a contribution to the
 cfunits package.
 
-# General Guidelines
+Please consult the [dedicated guidance
+page](https://ncas-cms.github.io/cfunits/contributing.html) in the
+documentation for detailed guidance on contributing to cfunits.
 
-General questions, suggestions for enhancements, and reports of bugs
-may be reported in the GitHub issue tracker:
-https://github.com/NCAS-CMS/cfunits/issues
+Overall, general questions, suggestions for enhancements, and reports
+of bugs are appreciated and should be reported via the [GitHub issue
+tracker](https://github.com/NCAS-CMS/cfunits/issues).
 
-Contributions are welcome and should first be raised as issues in the
-GitHub issue tracker: https://github.com/NCAS-CMS/cfunits/issues,
-prior to submitting a pull request containing the new code made from a
-fork of the cfunits GitHub code repository:
-https://github.com/NCAS-CMS/cfunits.
+Code-change contributions to cfunits are also very welcome, though to
+ensure the work is in line with plans for development of the library,
+please always discuss any intended changes with the core development
+team in the first instance. The standard way to do so is also through
+the issue tracker:
+
+* if there is an existing issue in the tracker than you would like to
+  address, comment on that issue to indicate you would like to work on
+  it;
+
+* conversely, if there is not an issue corresponding to your ideas for
+  contribution, please raise a new issue outlining the idea.
+
+If you are not sure about any aspect related to contributing after
+reading the guidance page, do not hesitate to get in touch by posting
+a question in an issue.
