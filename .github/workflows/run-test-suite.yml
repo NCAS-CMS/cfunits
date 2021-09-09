@@ -175,22 +175,22 @@ jobs:
       - name: create test script for docker
         run: |
           echo "#!/bin/sh -l" > run_test_suite
-          echo "set -e -v" > run_test_suite
+          echo "set -e -v" >> run_test_suite
           echo "echo 'install dependencies (debian packages)'" > run_test_suite
-          echo "DEBIAN_FRONTEND=noninteractive apt install -q -y lsb-release python3-setuptools python3-wheel python3-pip libudunits2-0 python3-pycodestyle python3-coverage python3-numpy" > run_test_suite
-          echo "echo 'check environment'" > run_test_suite
+          echo "DEBIAN_FRONTEND=noninteractive apt install -q -y lsb-release python3-setuptools python3-wheel python3-pip libudunits2-0 python3-pycodestyle python3-coverage python3-numpy" >> run_test_suite
+          echo "echo 'check environment'" >> run_test_suite
           echo "uname -a" > run_test_suite
-          echo "dpkg --print-architecture" > run_test_suite
-          echo "lsb_release -a" > run_test_suite
-          echo "lscpu" > run_test_suite
-          echo "python3 -V" > run_test_suite
+          echo "dpkg --print-architecture" >> run_test_suite
+          echo "lsb_release -a" >> run_test_suite
+          echo "lscpu" >> run_test_suite
+          echo "python3 -V" >> run_test_suite
           # Important! Must install our development version of cfunits to test:
-          echo "pip3 install --user --no-use-pep517 -e ." > run_test_suite
-          echo "mkdir foo" > run_test_suite
-          echo "(cd foo && python3 -c 'import cfunits; print(cfunits.__file__)')" > run_test_suite
+          echo "pip3 install --user --no-use-pep517 -e ." >> run_test_suite
+          echo "mkdir foo" >> run_test_suite
+          echo "(cd foo && python3 -c 'import cfunits; print(cfunits.__file__)')" >> run_test_suite
           echo "echo 'Run test suite and generate a coverage report'" > run_test_suite
-          echo "cd cfunits/test" > run_test_suite
-          echo "./run_tests_and_coverage --nohtml" > run_test_suite
+          echo "cd cfunits/test" >> run_test_suite
+          echo "./run_tests_and_coverage --nohtml" >> run_test_suite
           chmod +x run_test_suite
       - name: run test suite in docker image
         uses: daniel-mohr/i386_debian_latest@v0
