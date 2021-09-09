@@ -15,6 +15,7 @@ on:
 # Note a workflow can have 1+ jobs that can run sequentially or in parallel.
 jobs:
   run-test-suite-job_basic:
+    name: run test suite on ubuntu, macos with different python versions
 
     # Set-up the build matrix. We run on different distros and Python versions.
     strategy:
@@ -114,7 +115,7 @@ jobs:
         echo The cfunits test suite run has completed.
 
   run-test-suite-job_ubuntu_packages:
-    # run test suite on ubuntu with mostly ubuntu packages:
+    name: run test suite on ubuntu with mostly ubuntu packages
     # Instead of running against the conda packages, we use here the packages
     # from the used Linux distribution.
 
@@ -129,7 +130,10 @@ jobs:
     - uses: actions/checkout@v2
     # check environment
     - name: check environment
-      run: lsb_release -a
+      run: |
+        dpkg --print-architecture
+        lsb_release -a
+        lscpu
     - name: check python version
       run: python3 -V
     # install dependencies
@@ -160,8 +164,41 @@ jobs:
         cd cfunits/test
         ./run_tests_and_coverage --nohtml
 
+  run-test-suite-job_i386_debian:
+    name: run test suite on debian latest (32 bit)
+
+    # https://github.com/daniel-mohr/i386_debian_latest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: create test script for docker
+        run: |
+          echo "#!/bin/sh -l" > run_test_suite
+          echo "set -e -v" > run_test_suite
+          echo "echo 'install dependencies (debian packages)'" > run_test_suite
+          echo "DEBIAN_FRONTEND=noninteractive apt install -q -y lsb-release python3-setuptools python3-wheel python3-pip libudunits2-0 python3-pycodestyle python3-coverage python3-numpy" > run_test_suite
+          echo "echo 'check environment'" > run_test_suite
+          echo "uname -a" > run_test_suite
+          echo "dpkg --print-architecture" > run_test_suite
+          echo "lsb_release -a" > run_test_suite
+          echo "lscpu" > run_test_suite
+          echo "python3 -V" > run_test_suite
+          # Important! Must install our development version of cfunits to test:
+          echo "pip3 install --user --no-use-pep517 -e ." > run_test_suite
+          echo "mkdir foo" > run_test_suite
+          echo "(cd foo && python3 -c 'import cfunits; print(cfunits.__file__)')" > run_test_suite
+          echo "echo 'Run test suite and generate a coverage report'" > run_test_suite
+          echo "cd cfunits/test" > run_test_suite
+          echo "./run_tests_and_coverage --nohtml" > run_test_suite
+          chmod +x run_test_suite
+      - name: run test suite in docker image
+        uses: daniel-mohr/i386_debian_latest@v0
+        with:
+          cmdfile: ./run_test_suite
+
   run-test-suite-job_windows:
-    # run test suite on windows using Miniconda for package management
+    name: run test suite on windows using Miniconda for package management
 
     # Set-up the build matrix.
     strategy:
