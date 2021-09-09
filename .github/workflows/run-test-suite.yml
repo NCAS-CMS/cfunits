@@ -176,10 +176,10 @@ jobs:
         run: |
           echo "#!/bin/sh -l" > run_test_suite
           echo "set -e -v" >> run_test_suite
-          echo "echo 'install dependencies (debian packages)'" > run_test_suite
+          echo "echo 'install dependencies (debian packages)'" >> run_test_suite
           echo "DEBIAN_FRONTEND=noninteractive apt install -q -y lsb-release python3-setuptools python3-wheel python3-pip libudunits2-0 python3-pycodestyle python3-coverage python3-numpy" >> run_test_suite
           echo "echo 'check environment'" >> run_test_suite
-          echo "uname -a" > run_test_suite
+          echo "uname -a" >> run_test_suite
           echo "dpkg --print-architecture" >> run_test_suite
           echo "lsb_release -a" >> run_test_suite
           echo "lscpu" >> run_test_suite
