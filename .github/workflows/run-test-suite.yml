@@ -14,7 +14,7 @@ on:
 
 # Note a workflow can have 1+ jobs that can run sequentially or in parallel.
 jobs:
-  run-test-suite-job:
+  run-test-suite-job_basic:
 
     # Set-up the build matrix. We run on different distros and Python versions.
     strategy:
@@ -112,3 +112,112 @@ jobs:
     - name: Notify about a completed run
       run: |
         echo The cfunits test suite run has completed.
+
+  run-test-suite-job_ubuntu_packages:
+    # run test suite on ubuntu with mostly ubuntu packages:
+    # Instead of running against the conda packages, we use here the packages
+    # from the used Linux distribution.
+
+    # Set-up the build matrix. We run on different distros and Python versions.
+    strategy:
+      matrix:
+        # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1804-README.md
+        # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
+        os: [ubuntu-18.04, ubuntu-20.04]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v2
+    # check environment
+    - name: check environment
+      run: lsb_release -a
+    - name: check python version
+      run: python3 -V
+    # install dependencies
+    - name: install dependencies (ubuntu 18.04 packages)
+      if: matrix.os == 'ubuntu-18.04'
+      run: sudo apt install python3-setuptools python3-wheel libudunits2-0 python3-pycodestyle python3-coverage
+    - name: install dependencies (ubuntu 20.04 packages)
+      if: matrix.os == 'ubuntu-20.04'
+      run: sudo apt install python3-setuptools python3-wheel libudunits2-0 python3-pycodestyle python3-coverage python3-numpy
+    # Install cfunits
+    # Important! Must install our development version of cfunits to test:
+    # pip install -e .
+    - name: install cfunits (ubuntu 18.04)
+      if: matrix.os == 'ubuntu-18.04'
+      run: pip3 install -e .
+    - name: install cfunits (ubuntu 20.04)
+      if: matrix.os == 'ubuntu-20.04'
+      # https://github.com/pypa/pip/issues/7953
+      run: pip3 install --user --no-use-pep517 -e .
+    - name: python3 -c "import cfunits; print(cfunits.__file__)"
+      run: |
+        mkdir foo
+        cd foo
+        python3 -c "import cfunits; print(cfunits.__file__)"
+    # Finally run the test suite and generate a coverage report!
+    - name: Run test suite and generate a coverage report
+      run: |
+        cd cfunits/test
+        ./run_tests_and_coverage --nohtml
+
+  run-test-suite-job_windows:
+    # run test suite on windows using Miniconda for package management
+
+    # Set-up the build matrix.
+    strategy:
+      # due to error in cfunits we disable fail-fast to check CI configuration
+      fail-fast: false
+      matrix:
+        # https://github.com/actions/virtual-environments/blob/main/images/win/Windows2016-Readme.md
+        # https://github.com/actions/virtual-environments/blob/main/images/win/Windows2019-Readme.md
+        os: [windows-2016, windows-2019]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    # check environment
+    - name: check python version
+      run: python -V
+    # use conda to install dependencies
+    - name: conda init powershell
+      run: |
+        &($env:CONDA + "\Scripts\conda") init powershell
+    - name: install dependencies (via conda and pip from conda)
+      run: |
+        #conda install --yes --only-deps -c conda-forge cfunits
+        conda install -c conda-forge cftime numpy udunits2
+        conda install --yes -c conda-forge coverage
+        pip install pycodestyle
+    - name: set conda environment for cfunits
+      run: conda env config vars set UDUNITS2_XML_PATH=$env:CONDA"\Library\share\udunits\udunits2.xml"
+    # Ensure shell is configured with conda activated:
+    - name: Check conda config
+      run: |
+        conda info
+        conda list
+        conda config --show-sources
+        conda config --show
+    # Install cfunits
+    # Important! Must install our development version of cfunits to test:
+    # pip install -e .
+    - name: install cfunits
+      run: pip install -e .
+    - name: python -c "import cfunits; print(cfunits.__file__)"
+      run: |
+        mkdir foo
+        cd foo
+        python -c "import cfunits; print(cfunits.__file__)"
+    # Finally run the test suite and generate a coverage report!
+    - name: Run test suite
+      # coverage is not available in bash
+      # therefore run in powershell (it's windows!)
+      run: |
+        cd cfunits/test
+        coverage erase
+        coverage run --source=.. --omit="*/test/*" run_tests.py
+    - name: generate a coverage report
+      # coverage is not available in bash
+      # therefore run in powershell (it's windows!)
+      run: |
+        cd cfunits/test
+        coverage report
