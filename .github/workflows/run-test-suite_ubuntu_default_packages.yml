@@ -30,13 +30,16 @@ jobs:
       run: lsb_release -a
     - name: check python version
       run: python3 -V
+    # update ubuntu repositories
+    - name: apt-get update
+      run: sudo apt-get update
     # install dependencies
     - name: install dependencies (ubuntu 18.04 packages)
       if: matrix.os == 'ubuntu-18.04'
-      run: sudo apt install python3-setuptools python3-wheel libudunits2-0 python3-pycodestyle python3-coverage
+      run: sudo apt-get install python3-setuptools python3-wheel libudunits2-0 python3-pycodestyle python3-coverage
     - name: install dependencies (ubuntu 20.04 packages)
       if: matrix.os == 'ubuntu-20.04'
-      run: sudo apt install python3-setuptools python3-wheel libudunits2-0 python3-pycodestyle python3-coverage python3-numpy
+      run: sudo apt-get install python3-setuptools python3-wheel libudunits2-0 python3-pycodestyle python3-coverage python3-numpy
     # Install cfunits
     # Important! Must install our development version of cfunits to test:
     # pip install -e .
