@@ -1696,7 +1696,7 @@ class Units:
 
         >>> u = Units('days since 2001-01-01', calendar='360_day')
         >>> u.reftime
-        cftime.datetime(2001, 1, 1, 0, 0, 0, 0, calendar='360_day', has_year_zero=False)
+        cftime.datetime(2001, 1, 1, 0, 0, 0, 0, calendar='360_day', has_year_zero=True)
 
         """
         if self.isreftime:
