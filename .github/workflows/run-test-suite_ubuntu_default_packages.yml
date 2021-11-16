@@ -42,11 +42,10 @@ jobs:
       run: sudo apt-get install python3-setuptools python3-wheel libudunits2-0 python3-pycodestyle python3-coverage python3-numpy
     - name: install cfunits (ubuntu 18.04)
       if: matrix.os == 'ubuntu-18.04'
-      # Must upgrade and use a pip version of setuptools because the dist.
-      # config. of cftime=1.5.0 has a key set that fails to be built and
-      # causes an overall error with older setuptools.
+      # Config. of cftime=1.5.0 has a key set that fails to be built and
+      # causes an overall error with older setuptools get here, so bypass.
       run: |
-        pip3 install --upgrade setuptools
+        pip3 install cftime==1.5.1 --only-binary
         pip3 install -e .
     - name: install cfunits (ubuntu 20.04)
       if: matrix.os == 'ubuntu-20.04'
