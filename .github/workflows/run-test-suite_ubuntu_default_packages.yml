@@ -21,7 +21,7 @@ jobs:
       matrix:
         # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1804-README.md
         # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
-        os: [ubuntu-20.04,]  # TODO reinstate'ubuntu-18.04' job by uncommenting
+        os: [ubuntu-18.04, ubuntu-20.04]
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v2
@@ -34,17 +34,22 @@ jobs:
     - name: apt-get update
       run: sudo apt-get update
     # install dependencies
-    # - name: install dependencies (ubuntu 18.04 packages)
-    #   if: matrix.os == 'ubuntu-18.04'
-    #   run: sudo apt-get install python3-setuptools python3-wheel libudunits2-0 python3-pycodestyle python3-coverage python3-numpy
+    - name: install dependencies (ubuntu 18.04 packages)
+      if: matrix.os == 'ubuntu-18.04'
+      run: sudo apt-get install python3-setuptools python3-wheel libudunits2-0 python3-pycodestyle python3-coverage python3-numpy
+    - name: install cython (on ubuntu 18.04)
+      # This is a fix, since cftime needs a newer version of cython:
+      if: matrix.os == 'ubuntu-18.04'
+      run: pip3 install 'cython>0.26.1'
     - name: install dependencies (ubuntu 20.04 packages)
       if: matrix.os == 'ubuntu-20.04'
       run: sudo apt-get install python3-setuptools python3-wheel libudunits2-0 python3-pycodestyle python3-coverage python3-numpy
-    # - name: install cfunits (ubuntu 18.04)
-    #   if: matrix.os == 'ubuntu-18.04'
-    #   # Config. of cftime=1.5.0 has a key set that fails to be built and
-    #   # causes an overall error with older setuptools get here, so bypass.
-    #   run: pip3 install -e .
+    # Install cfunits
+    # Important! Must install our development version of cfunits to test:
+    # pip install -e .
+    - name: install cfunits (ubuntu 18.04)
+      if: matrix.os == 'ubuntu-18.04'
+      run: pip3 install -e .
     - name: install cfunits (ubuntu 20.04)
       if: matrix.os == 'ubuntu-20.04'
       # https://github.com/pypa/pip/issues/7953
