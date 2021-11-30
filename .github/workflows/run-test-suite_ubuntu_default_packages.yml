@@ -36,7 +36,7 @@ jobs:
     # install dependencies
     - name: install dependencies (ubuntu 18.04 packages)
       if: matrix.os == 'ubuntu-18.04'
-      run: sudo apt-get install python3-setuptools python3-wheel libudunits2-0 python3-pycodestyle python3-coverage
+      run: sudo apt-get install python3-setuptools python3-wheel libudunits2-0 python3-pycodestyle python3-coverage python3-numpy
     - name: install cython (on ubuntu 18.04)
       # This is a fix, since cftime needs a newer version of cython:
       if: matrix.os == 'ubuntu-18.04'
