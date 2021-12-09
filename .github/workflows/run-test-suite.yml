@@ -28,12 +28,12 @@ jobs:
         include:
           - os: [ubuntu-latest, macos-latest, macos-10.15]
             python-version: 3.6
-            deprecated: true
-            beta: false
+            deprecated: [true]
+            beta: [false]
           - os: ubuntu-18.04
             python-version: [3.6, 3.7, 3.8, 3.9]
-            deprecated: true
-            beta: false
+            deprecated: [true]
+            beta: [false]
 
     # ignore error on deprecated or beta versions
     continue-on-error: ${{ matrix.deprecated || matrix.beta }}
