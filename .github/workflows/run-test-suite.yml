@@ -21,7 +21,7 @@ jobs:
     # Set-up the build matrix. We run on different distros and Python versions.
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-10.15, macos-latest]
+        os: [ubuntu-18.04, ubuntu-latest, macos-10.15, macos-latest]
         python-version: [3.7, 3.8, 3.9]
         deprecated: [false]
         beta: [false]
