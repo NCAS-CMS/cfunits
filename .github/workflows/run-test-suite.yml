@@ -15,13 +15,38 @@ on:
 # Note a workflow can have 1+ jobs that can run sequentially or in parallel.
 jobs:
   run-test-suite-job_basic:
-    name: run test suite on ubuntu, macos with different python versions
+    #name: run test suite on ubuntu, macos with different python versions
+    name: unix-like, conda
 
     # Set-up the build matrix. We run on different distros and Python versions.
     strategy:
       matrix:
-        os: [ubuntu-latest, ubuntu-18.04, macos-latest, macos-10.15]
-        python-version: [3.6, 3.7, 3.8, 3.9]
+        os: [ubuntu-18.04, ubuntu-latest, macos-10.15, macos-latest]
+        python-version: [3.7, 3.8, 3.9]
+        deprecated: [false]
+        beta: [false]
+        include:
+          # python 3.6 reached EOL
+          # https://devguide.python.org/#status-of-python-branches
+          - os: ubuntu-18.04
+            python-version: 3.6
+            deprecated: true
+            beta: false
+          - os: ubuntu-latest
+            python-version: 3.6
+            deprecated: true
+            beta: false
+          - os: macos-10.15
+            python-version: 3.6
+            deprecated: true
+            beta: false
+          - os: macos-latest
+            python-version: 3.6
+            deprecated: true
+            beta: false
+
+    # ignore error on deprecated or beta versions
+    continue-on-error: ${{ matrix.deprecated || matrix.beta }}
 
     # Run on new and old(er) versions of the distros we support (Linux, Mac OS)
     runs-on: ${{ matrix.os }}
@@ -124,7 +149,17 @@ jobs:
       matrix:
         # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1804-README.md
         # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
-        os: [ubuntu-18.04, ubuntu-20.04]
+        os: [ubuntu-20.04]
+        deprecated: [false]
+        beta: [false]
+        include:
+          # python 3.6 reached EOL and this version is default on ubuntu-18.04,
+          # therefore ubuntu-18.04 is deprecated
+          - os: ubuntu-18.04
+            deprecated: true
+            beta: false
+    # ignore error on deprecated or beta versions
+    continue-on-error: ${{ matrix.deprecated || matrix.beta }}
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v2
