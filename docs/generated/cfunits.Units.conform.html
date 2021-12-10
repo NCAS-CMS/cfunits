@@ -3,7 +3,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>cfunits.Units.conform &#8212; Documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -119,7 +120,7 @@ and by <a href="https://ncas.ac.uk/">NCAS</a>.
 
           <div class="body" role="main">
             
-  <div class="section" id="cfunits-units-conform">
+  <section id="cfunits-units-conform">
 <h1>cfunits.Units.conform<a class="headerlink" href="#cfunits-units-conform" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="cfunits.Units.conform">
@@ -127,7 +128,7 @@ and by <a href="https://ncas.ac.uk/">NCAS</a>.
 <dd><p>Conforms values to equivalent values in a compatible unit.</p>
 <p>Returns the conformed values.</p>
 <p>The values may either be a <a class="reference external" href="https://numpy.org/doc/stable/reference/index.html#module-numpy" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy</span></code></a> array, a Python numeric type,
-or a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a>. The returned value is of the same type,
+or a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a>. The returned value is of the same type,
 except that input integers are converted to floats and Python
 sequences are converted to <a class="reference external" href="https://numpy.org/doc/stable/reference/index.html#module-numpy" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy</span></code></a> arrays (see the <em>inplace</em>
 keyword).</p>
@@ -140,18 +141,18 @@ interpretation of the data or an error.</p>
 </div>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p>x: <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> or Python numeric type or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a></p>
+<dd class="field-odd"><p>x: <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> or Python numeric type or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a></p>
 <dl>
 <dt>from_units: <a class="reference internal" href="../cfunits.Units.html#cfunits.Units" title="cfunits.Units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Units</span></code></a></dt><dd><p>The original units of <em>x</em></p>
 </dd>
 <dt>to_units: <a class="reference internal" href="../cfunits.Units.html#cfunits.Units" title="cfunits.Units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Units</span></code></a></dt><dd><p>The units to which <em>x</em> should be conformed to.</p>
 </dd>
-<dt>inplace: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>If True and <em>x</em> is a <a class="reference external" href="https://numpy.org/doc/stable/reference/index.html#module-numpy" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy</span></code></a> array then change it in place,
+<dt>inplace: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>If True and <em>x</em> is a <a class="reference external" href="https://numpy.org/doc/stable/reference/index.html#module-numpy" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy</span></code></a> array then change it in place,
 creating no temporary copies, with one exception: If <em>x</em>
 is of integer type and the conversion is not null, then it
 will not be changed inplace and the returned conformed
 array will be of float type.</p>
-<p>If <em>x</em> is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a> then the <em>inplace</em> parameter
+<p>If <em>x</em> is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a> then the <em>inplace</em> parameter
 is ignored and a <a class="reference external" href="https://numpy.org/doc/stable/reference/index.html#module-numpy" title="(in NumPy v1.21)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy</span></code></a> array is returned.</p>
 </dd>
 </dl>
@@ -189,7 +190,7 @@ is ignored and a <a class="reference external" href="https://numpy.org/doc/stabl
 </div>
 </dd></dl>
 
-</div>
+</section>
 
 
           </div>
@@ -199,7 +200,7 @@ is ignored and a <a class="reference external" href="https://numpy.org/doc/stabl
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2021, NCAS | Page built on 2021-08-09.
+      &copy;2021, NCAS | Page built on 2021-12-10.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>

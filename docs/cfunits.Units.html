@@ -3,7 +3,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>cfunits.Units &#8212; Documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -117,12 +118,12 @@ and by <a href="https://ncas.ac.uk/">NCAS</a>.
 
           <div class="body" role="main">
             
-  <div class="section" id="cfunits-units">
+  <section id="cfunits-units">
 <h1><strong>cfunits.Units</strong><a class="headerlink" href="#cfunits-units" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="cfunits.Units">
 <em class="property">class </em><code class="sig-prename descclassname">cfunits.</code><code class="sig-name descname">Units</code><span class="sig-paren">(</span><em class="sig-param">units=None</em>, <em class="sig-param">calendar=None</em>, <em class="sig-param">formatted=False</em>, <em class="sig-param">names=False</em>, <em class="sig-param">definition=False</em>, <em class="sig-param">_ut_unit=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/NCAS-CMS/cfunits/blob/v3.3.4/cfunits/units.py#L467"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Utilities for working with physical units.</p>
 <p>Store, combine and compare physical units and convert numeric
 values to different units.</p>
@@ -361,20 +362,20 @@ in place, without any copying overheads:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt>units: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="#cfunits.Units" title="cfunits.Units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Units</span></code></a>, optional</dt><dd><p>Set the new units from this string.</p>
+<dt>units: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="#cfunits.Units" title="cfunits.Units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Units</span></code></a>, optional</dt><dd><p>Set the new units from this string.</p>
 </dd>
-<dt>calendar: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional</dt><dd><p>Set the calendar for reference time units.</p>
+<dt>calendar: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional</dt><dd><p>Set the calendar for reference time units.</p>
 </dd>
-<dt>formatted: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>Format the string representation of the units in a
+<dt>formatted: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>Format the string representation of the units in a
 standardized manner. See the <a class="reference internal" href="generated/cfunits.Units.formatted.html#cfunits.Units.formatted" title="cfunits.Units.formatted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">formatted</span></code></a> method.</p>
 </dd>
-<dt>names: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>Format the string representation of the units using names
+<dt>names: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>Format the string representation of the units using names
 instead of symbols. See the <a class="reference internal" href="generated/cfunits.Units.formatted.html#cfunits.Units.formatted" title="cfunits.Units.formatted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">formatted</span></code></a> method.</p>
 </dd>
-<dt>definition: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>Format the string representation of the units using basic
+<dt>definition: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>Format the string representation of the units using basic
 units. See the <a class="reference internal" href="generated/cfunits.Units.formatted.html#cfunits.Units.formatted" title="cfunits.Units.formatted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">formatted</span></code></a> method.</p>
 </dd>
-<dt>_ut_unit: <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, optional</dt><dd><p>Set the new units from this Udunits binary unit
+<dt>_ut_unit: <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, optional</dt><dd><p>Set the new units from this Udunits binary unit
 representation. This should be an integer returned by a
 call to <code class="xref py py-obj docutils literal notranslate"><span class="pre">ut_parse</span></code> function of Udunits. Ignored if <em>units</em>
 is set.</p>
@@ -384,7 +385,7 @@ is set.</p>
 </dl>
 </dd></dl>
 
-<div class="section" id="units-attributes">
+<section id="units-attributes">
 <h2>Units attributes<a class="headerlink" href="#units-attributes" title="Permalink to this headline">¶</a></h2>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -430,8 +431,8 @@ is set.</p>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="units-methods">
+</section>
+<section id="units-methods">
 <h2>Units methods<a class="headerlink" href="#units-methods" title="Permalink to this headline">¶</a></h2>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -459,8 +460,8 @@ is set.</p>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="units-static-methods">
+</section>
+<section id="units-static-methods">
 <h2>Units static methods<a class="headerlink" href="#units-static-methods" title="Permalink to this headline">¶</a></h2>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -473,8 +474,8 @@ is set.</p>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -484,7 +485,7 @@ is set.</p>
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2021, NCAS | Page built on 2021-08-09.
+      &copy;2021, NCAS | Page built on 2021-12-10.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
