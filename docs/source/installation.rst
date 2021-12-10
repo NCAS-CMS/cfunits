@@ -135,6 +135,9 @@ The cfunits package requires:
 
 * `Python <https://www.python.org/>`_, version 3.6 or newer,
 
+  * note that use of 3.6 is discouraged because
+    `it is deprecated <https://endoflife.date/python>`_,
+
 * `numpy <http://www.numpy.org/>`_, version 1.15 or newer,
 
 * `cftime <https://pypi.org/project/cftime/>`_, version 1.5.0
