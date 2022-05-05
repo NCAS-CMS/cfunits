@@ -1202,7 +1202,7 @@ class Units:
         x.__ipow__(y) is logically equivalent to x**=y
 
         """
-        return self ** other
+        return self**other
 
     def __rsub__(self, other):
         """Binary arithmetic operation ``-`` with reflected operands.
@@ -1238,7 +1238,7 @@ class Units:
 
         """
         try:
-            return (self ** -1) * other
+            return (self**-1) * other
         except:
             raise ValueError(f"Can't do {other!r} / {self!r}")
 
@@ -1265,7 +1265,7 @@ class Units:
 
         """
         try:
-            return (self ** -1) * other
+            return (self**-1) * other
         except:
             raise ValueError(f"Can't do {other!r} // {self!r}")
 

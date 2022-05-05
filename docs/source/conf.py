@@ -130,7 +130,7 @@ source_suffix = ".rst"
 master_doc = "index"
 
 # General information about the project.
-project = u"Python cfunits package"
+project = "Python cfunits package"
 copyright = _get_year() + ", NCAS | Page built on " + _get_date()
 author = "David Hassell"
 
