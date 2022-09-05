@@ -1,3 +1,12 @@
+version 3.3.5
+-------------
+----
+
+**xxxx-xx-xx**
+
+* Remove calls to ``LooseVersion`` from ``distutils`` due to deprecation of that package,
+  replaced with ``pkg_resources.parse_version``.
+
 version 3.3.4
 -------------
 ----

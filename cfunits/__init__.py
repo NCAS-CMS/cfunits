@@ -19,25 +19,24 @@ __date__ = "2021-08-09"
 __version__ = "3.3.4"
 __cf_version__ = "1.8"
 
-import platform
-from distutils.version import LooseVersion
+import platform as _platform
+import sys as _sys
+from pkg_resources import parse_version as _parse_version
 
 try:
     import cftime
 except ImportError as error1:
     raise ImportError(error1)
 
-# Check the version of Python
-_minimum_vn = "3.6.0"
-if LooseVersion(platform.python_version()) < LooseVersion(_minimum_vn):
+if _sys.version_info < (3, 6):
     raise RuntimeError(
         f"Bad Python version: cfunits requires Python version {_minimum_vn} "
-        f"or later. Got {platform.python_version()}"
+        f"or later. Got {_platform.python_version()}"
     )
 
 # Check the version of cftime
 _minimum_vn = "1.5.0"
-if LooseVersion(cftime.__version__) < LooseVersion(_minimum_vn):
+if _parse_version(cftime.__version__) < _parse_version(_minimum_vn):
     raise ValueError(
         f"Bad cftime version: cfunits requires cftime>={_minimum_vn}. Got "
         f"{cftime.__version__} at {cftime.__file__}"
