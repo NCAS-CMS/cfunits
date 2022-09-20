@@ -319,11 +319,11 @@ _cached_ut_unit["1"] = _dimensionless_unit_one
 # --------------------------------------------------------------------
 # Set the default calendar type according to the CF conventions
 # --------------------------------------------------------------------
-_default_calendar = "gregorian"
+_default_calendar = "standard"
 _canonical_calendar = {
-    "gregorian": "gregorian",
-    "standard": "gregorian",
-    "none": "gregorian",
+    "gregorian": "standard",
+    "standard": "standard",
+    "none": "standard",
     "proleptic_gregorian": "proleptic_gregorian",
     "360_day": "360_day",
     "noleap": "365_day",
@@ -583,9 +583,9 @@ class Units:
     Traceback (most recent call last):
         ...
     AttributeError: Units has no attribute 'calendar'
-    >>> v = Units('days since 2000-1-1', 'gregorian')
+    >>> v = Units('days since 2000-1-1', 'standard')
     >>> v.calendar
-    'gregorian'
+    'standard'
     >>> v.equals(u)
     True
 
@@ -880,10 +880,10 @@ class Units:
 
         **Examples:**
 
-        >>> u = Units('days since 3-4-5', calendar='gregorian')
+        >>> u = Units('days since 3-4-5', calendar='standard')
         >>> u.__getstate__()
         {'_units': 'days since 3-4-5',
-         '_calendar': 'gregorian'}
+         '_calendar': 'standard'}
 
         """
         return dict(
@@ -1818,7 +1818,7 @@ class Units:
 
         >>> u = Units('days since 2000-1-1')
         >>> v = Units('days since 2000-1-1', calendar='366_day')
-        >>> w = Units('seconds since 1978-3-12', calendar='gregorian')
+        >>> w = Units('seconds since 1978-3-12', calendar='standard')
 
         >>> u.equivalent(v)
         False

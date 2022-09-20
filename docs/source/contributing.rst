@@ -106,5 +106,6 @@ ideas, code, and documentation to the cfunits library:
 * Daniel Mohr
 * David Hassell
 * Gareth Jones
+* Lars Bärring
 * Jonathan Gregory
 * Sadie Bartholomew  
