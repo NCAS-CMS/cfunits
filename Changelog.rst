@@ -6,6 +6,8 @@ version 3.3.5
 
 * Change default calendar from ``'gregorian'`` to ``'standard'``
   (https://github.com/NCAS-CMS/cfunits/issues/45)
+* Changed CF version to 1.10
+  (https://github.com/NCAS-CMS/cfunits/issues/47)
 
 version 3.3.4
 -------------
