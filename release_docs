@@ -7,7 +7,7 @@ if [[ $2 ]] ; then
   exit 1
 fi
 
-version=`python -c "import cfdm; print(cfdm.__version__)"`
+version=`python -c "import cfunits; print(cfunits.__version__)"`
 
 if [[ $1 = "latest" ]] ; then 
   dir=$PWD/docs
