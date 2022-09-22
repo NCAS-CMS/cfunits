@@ -20,13 +20,9 @@
    introduction
    installation
    contributing
+   api_reference
    releases
    Changelog
-
-.. toctree::
-   :maxdepth: 2
-
-   cfunits.Units API reference
 
 **Index and search**
 ====================

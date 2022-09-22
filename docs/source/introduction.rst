@@ -6,7 +6,7 @@
 
 ----
 
-Version |release|
+Version |release| for CF-|version|
 
 A Python interface to `UNIDATA's UDUNITS-2 library
 <http://www.unidata.ucar.edu/software/udunits>`_ with CF extensions

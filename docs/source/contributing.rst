@@ -8,7 +8,7 @@
 
 ----
 
-Version |release|
+Version |release| for CF-|version|
 
 .. contents::
    :local:
