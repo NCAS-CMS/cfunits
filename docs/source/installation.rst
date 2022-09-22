@@ -138,6 +138,8 @@ The cfunits package requires:
 * `cftime <https://pypi.org/project/cftime/>`_, version 1.5.0
   or newer, and
 
+* `packaging <https://pypi.org/project/packaging/>`_, version 20.0 or newer.
+
 * `UNIDATA UDUNITS-2 library
   <http://www.unidata.ucar.edu/software/udunits>`_, version 2.2.25 or
   newer.
@@ -165,8 +167,6 @@ The cfunits package requires:
   .. code:: console
 
      $ conda install -c conda-forge udunits2>=2.2.25
-
-* `packaging <https://pypi.org/project/packaging/>`_, version 20.0 or newer.
 
 ----
 

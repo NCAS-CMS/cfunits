@@ -1,7 +1,7 @@
 Version 3.3.5
 -------------
 
-**2022-09-??**
+**2022-09-22**
 
 * Change default calendar from ``'gregorian'`` to ``'standard'``
   (https://github.com/NCAS-CMS/cfunits/issues/45)
