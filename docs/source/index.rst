@@ -26,7 +26,7 @@
 .. toctree::
    :maxdepth: 2
 
-   cfunits.Units
+   cfunits.Units API reference
 
 **Index and search**
 ====================
