@@ -8,7 +8,7 @@
 
 ----
 
-Version |release|
+Version |release| for CF-|version|
 
 .. contents::
    :local:
@@ -29,9 +29,7 @@ systems.
 **Python versions**
 -------------------
 
-As of version 3.3.0, cfunits works only with Python 3.6 or newer.
-
-Version 1.9 of cfunits works for Python 2 and Python 3.
+cfunits works only with Python 3.6 or newer.
 
 ----
 
@@ -135,9 +133,6 @@ The cfunits package requires:
 
 * `Python <https://www.python.org/>`_, version 3.6 or newer,
 
-  * note that use of 3.6 is discouraged because
-    `it is deprecated <https://endoflife.date/python>`_,
-
 * `numpy <http://www.numpy.org/>`_, version 1.15 or newer,
 
 * `cftime <https://pypi.org/project/cftime/>`_, version 1.5.0
@@ -148,34 +143,28 @@ The cfunits package requires:
   newer.
 
   UDUNITS-2 is a C library that provides support for units of physical
-  quantities. If the UDUNITS-2 shared library file
-  (``libudunits2.so.0`` on GNU/Linux or ``libudunits2.0.dylibfile`` on
-  MacOS) is in a non-standard location then its directory path should
-  be added to the ``LD_LIBRARY_PATH`` environment variable. It may
-  also be necessary to specify the location (directory path *and* file
-  name) of the ``udunits2.xml`` file in the ``UDUNITS2_XML_PATH``
-  environment variable, although the default location is usually
-  correct. For example, ``export
+  quantities
+
+  If the UDUNITS-2 shared library file (``libudunits2.so.0`` on
+  GNU/Linux or ``libudunits2.0.dylibfile`` on MacOS) is in a
+  non-standard location then its directory path should be added to the
+  ``LD_LIBRARY_PATH`` environment variable. It may also be necessary
+  to specify the location (directory path *and* file name) of the
+  ``udunits2.xml`` file in the ``UDUNITS2_XML_PATH`` environment
+  variable, although the default location is usually correct. For
+  example, ``export
   UDUNITS2_XML_PATH=/home/user/anaconda3/share/udunits/udunits2.xml``.
+
   If you get an error that looks like ``assert(0 ==
   _ut_unmap_symbol_to_unit(_ut_system, _c_char_p(b'Sv'), _UT_ASCII))``
   then setting the ``UDUNITS2_XML_PATH`` environment variable is the
   likely solution.
 
-  UDUNITS is available via Anaconda with:
+  UDUNITS is available via conda with:
 
   .. code:: console
 
      $ conda install -c conda-forge udunits2>=2.2.25
-
-
-.. note::
-   Some dependencies have dropped support for Python 3.6 for their
-   newer versions, so it may be necessary to use at least Python 3.7 in
-   combination with those.
-
-   In particular, this is known to be the case if you are using `numpy` at
-   version 1.20 or above.
 
 ----
 

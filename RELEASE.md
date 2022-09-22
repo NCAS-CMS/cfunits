@@ -22,7 +22,7 @@
   the dev build.)
 
   ```bash
-  ./release_docs <vn> dev-clean # E.g. ./release_docs 3.2.6 dev-clean
+  ./release_docs dev-clean # E.g. ./release_docs dev-clean
   ```
 
 * Check that no typos or spelling mistakes have been introduced to the
@@ -84,13 +84,13 @@
 * Create an archived copy of the documentation:
 
   ```bash
-  ./release_docs <vn> archive # E.g. ./release_docs 3.2.6 archive
+  ./release_docs archive # E.g. ./release_docs archive
   ```
 
 * Update the latest documentation:
 
   ```bash
-  ./release_docs <vn> latest # E.g. ./release_docs 3.2.6 latest
+  ./release_docs latest # E.g. ./release_docs latest
   ```
 
 * Create a source tarball:
@@ -102,7 +102,7 @@
 * Test the tarball release using
 
   ```bash
-  ./test_release <vn> # E.g. ./test_release 3.2.6
+  ./test_release <vn> # E.g. ./test_release 3.3.5
   ```
 
 * Push recent commits using
@@ -114,7 +114,7 @@
 * Tag the release:
 
   ```bash
-  ./tag <vn> # E.g. ./tag 3.2.6
+  ./tag <vn> # E.g. ./tag 3.3.5
   ```
 
 * Upload the source tarball to PyPi. Note this requires the `twine`
@@ -122,5 +122,5 @@
   privileges on PyPi.
 
   ```bash
-  ./upload_to_pypi <vn> # E.g. ./upload_to_pypi 3.2.6
+  ./upload_to_pypi <vn> # E.g. ./upload_to_pypi 3.3.5
   ```

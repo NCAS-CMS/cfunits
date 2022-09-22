@@ -8,7 +8,7 @@
 
 ----
 
-Version |release|
+Version |release| for CF-|version|
 
 .. contents::
    :local:
@@ -107,4 +107,5 @@ ideas, code, and documentation to the cfunits library:
 * David Hassell
 * Gareth Jones
 * Jonathan Gregory
+* Lars Bärring
 * Sadie Bartholomew  

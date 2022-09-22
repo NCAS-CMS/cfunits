@@ -14,10 +14,10 @@ with the CF conventions.
 
 """
 
-__Conventions__ = "CF-1.8"
+__Conventions__ = "CF-1.10"
 __date__ = "2021-08-09"
 __version__ = "3.3.4"
-__cf_version__ = "1.8"
+__cf_version__ = "1.10"
 
 import platform as _platform
 import sys as _sys

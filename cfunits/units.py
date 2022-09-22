@@ -319,11 +319,11 @@ _cached_ut_unit["1"] = _dimensionless_unit_one
 # --------------------------------------------------------------------
 # Set the default calendar type according to the CF conventions
 # --------------------------------------------------------------------
-_default_calendar = "gregorian"
+_default_calendar = "standard"
 _canonical_calendar = {
-    "gregorian": "gregorian",
-    "standard": "gregorian",
-    "none": "gregorian",
+    "gregorian": "standard",
+    "standard": "standard",
+    "none": "standard",
     "proleptic_gregorian": "proleptic_gregorian",
     "360_day": "360_day",
     "noleap": "365_day",
@@ -362,7 +362,7 @@ def udunits_error_messages(flag):
 
         `None`
 
-    **Examples:**
+    **Examples**
 
     >>> udunits_error_messages(True)
     >>> udunits_error_messages(False)
@@ -583,9 +583,9 @@ class Units:
     Traceback (most recent call last):
         ...
     AttributeError: Units has no attribute 'calendar'
-    >>> v = Units('days since 2000-1-1', 'gregorian')
+    >>> v = Units('days since 2000-1-1', 'standard')
     >>> v.calendar
-    'gregorian'
+    'standard'
     >>> v.equals(u)
     True
 
@@ -878,12 +878,12 @@ class Units:
             `dict`
                 A dictionary of the instance's attributes
 
-        **Examples:**
+        **Examples**
 
-        >>> u = Units('days since 3-4-5', calendar='gregorian')
+        >>> u = Units('days since 3-4-5', calendar='standard')
         >>> u.__getstate__()
         {'_units': 'days since 3-4-5',
-         '_calendar': 'gregorian'}
+         '_calendar': 'standard'}
 
         """
         return dict(
@@ -1356,9 +1356,13 @@ class Units:
     def has_offset(self):
         """True if the units contain an offset.
 
-        Note that if a multiplicative component of the units had an offset
-        during instantiation, then the offset is ignored in the resulting
-        `Units` object. See below for examples.
+        .. note:: Currently, reference time units are not considered
+                  as having an offset.
+
+        .. note:: If a multiplicative component of the units had an
+                  offset during instantiation, then the offset is
+                  ignored in the resulting `Units` object. See below
+                  for examples.
 
         **Examples**
 
@@ -1392,8 +1396,15 @@ class Units:
         >>> Units('degC m s-1') == Units('K m s-1')
         True
 
+        >>> Units('days since 2000-01-01').has_offset
+        False
+
         """
-        return "@" in self.formatted()
+        offset = "@" in self.formatted()
+        if offset and self.isreftime:
+            offset = False
+
+        return offset
 
     @property
     def isreftime(self):
@@ -1405,7 +1416,7 @@ class Units:
         .. seealso:: `isdimensionless`, `islongitude`, `islatitude`,
                      `ispressure`, `istime`
 
-        **Examples:**
+        **Examples**
 
         >>> Units('days since 2000-12-1 03:00').isreftime
         True
@@ -1433,7 +1444,7 @@ class Units:
         .. seealso:: `isdimensionless`, `islongitude`, `islatitude`,
                      `ispressure`, `isreftime`, `istime`
 
-        **Examples:**
+        **Examples**
 
         >>> Units('calendar_months').iscalendartime
         True
@@ -1460,7 +1471,7 @@ class Units:
         .. seealso:: `islongitude`, `islatitude`, `ispressure`, `isreftime`,
                      `istime`
 
-        **Examples:**
+        **Examples**
 
         >>> Units('').isdimensionless
         True
@@ -1493,7 +1504,7 @@ class Units:
         .. seealso:: `isdimensionless`, `islongitude`, `islatitude`,
                      `isreftime`, `istime`
 
-        **Examples:**
+        **Examples**
 
         >>> Units('bar').ispressure
         True
@@ -1524,7 +1535,7 @@ class Units:
         .. seealso:: `isdimensionless`, `islongitude`, `ispressure`,
                      `isreftime`, `istime`
 
-        **Examples:**
+        **Examples**
 
         >>> Units('degrees_north').islatitude
         True
@@ -1560,7 +1571,7 @@ class Units:
         .. seealso:: `isdimensionless`, `islatitude`, `ispressure`,
                      `isreftime`, `istime`
 
-        **Examples:**
+        **Examples**
 
         >>> Units('degrees_east').islongitude
         True
@@ -1594,7 +1605,7 @@ class Units:
         .. seealso:: `iscalendartime`, `isdimensionless`, `islongitude`,
                      `islatitude`, `ispressure`, `isreftime`
 
-        **Examples:**
+        **Examples**
 
         >>> Units('days').istime
         True
@@ -1629,7 +1640,7 @@ class Units:
 
         .. seealso:: `reason_notvalid`
 
-        **Examples:**
+        **Examples**
 
         >>> u = Units('km')
         >>> u.isvalid
@@ -1659,7 +1670,7 @@ class Units:
 
         .. seealso:: `isvalid`
 
-        **Examples:**
+        **Examples**
 
         >>> u = Units('km')
         >>> u.isvalid
@@ -1692,7 +1703,7 @@ class Units:
 
             `cftime.datetime`
 
-        **Examples:**
+        **Examples**
 
         >>> u = Units('days since 2001-01-01', calendar='360_day')
         >>> u.reftime
@@ -1738,7 +1749,7 @@ class Units:
 
         .. seealso:: `units`
 
-        **Examples:**
+        **Examples**
 
         >>> Units(calendar='365_day').calendar
         '365_day'
@@ -1766,7 +1777,7 @@ class Units:
 
         .. seealso:: `calendar`
 
-        **Examples:**
+        **Examples**
 
         >>> Units('kg').units
         'kg'
@@ -1805,7 +1816,7 @@ class Units:
             `bool`
                 True if the units are equivalent, False otherwise.
 
-        **Examples:**
+        **Examples**
 
         >>> u = Units('m')
         >>> v = Units('km')
@@ -1818,7 +1829,7 @@ class Units:
 
         >>> u = Units('days since 2000-1-1')
         >>> v = Units('days since 2000-1-1', calendar='366_day')
-        >>> w = Units('seconds since 1978-3-12', calendar='gregorian')
+        >>> w = Units('seconds since 1978-3-12', calendar='standard')
 
         >>> u.equivalent(v)
         False
@@ -1948,7 +1959,7 @@ class Units:
                 The formatted string. If the units have not yet been set,
                 then `None` is returned.
 
-        **Examples:**
+        **Examples**
 
         >>> u = Units('W')
         >>> u.units
@@ -2068,7 +2079,7 @@ class Units:
             `numpy.ndarray` or Python numeric
                 The modified numeric values.
 
-        **Examples:**
+        **Examples**
 
         >>> Units.conform(2, Units('km'), Units('m'))
         2000.0
@@ -2155,13 +2166,7 @@ class Units:
                     calendar=getattr(to_units, "calendar", None),
                 )
 
-            #            to_jd0 = cftime.JulianDayFromDate(
-            #                to_units._utime.origin, calendar=to_units._utime.calendar
-            #            )
             to_jd0 = to_units._utime.toordinal(fractional=True)
-            #            from_jd0 = cftime.JulianDayFromDate(
-            #                from_units._utime.origin, calendar=from_units._utime.calendar
-            #           )
             from_jd0 = from_units._utime.toordinal(fractional=True)
 
             offset = to_jd0 - from_jd0
@@ -2295,7 +2300,7 @@ class Units:
 
                 The deep copy.
 
-        **Examples:**
+        **Examples**
 
         >>> u = Units('decibel')
         >>> v = u.copy()
@@ -2324,7 +2329,7 @@ class Units:
             `bool`
                 `True` if the units are equal, `False` otherwise.
 
-        **Examples:**
+        **Examples**
 
         >>> u = Units('km')
         >>> v = Units('1000m')
@@ -2469,7 +2474,7 @@ class Units:
                 The logarithmic unit corresponding to the given
                 logarithmic base.
 
-        **Examples:**
+        **Examples**
 
         >>> u = Units('W', names=True)
         >>> u
