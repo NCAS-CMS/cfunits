@@ -9,6 +9,7 @@ Version 3.3.5
   (https://github.com/NCAS-CMS/cfunits/issues/47)
 * Remove calls to ``LooseVersion`` from ``distutils`` due to deprecation of that package,
   replaced with ``pkg_resources.parse_version``.
+* New dependency: ``packaging>=20.0``
 
 ----
 

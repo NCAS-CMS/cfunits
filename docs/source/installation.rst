@@ -166,6 +166,8 @@ The cfunits package requires:
 
      $ conda install -c conda-forge udunits2>=2.2.25
 
+* `packaging <https://pypi.org/project/packaging/>`_, version 20.0 or newer.
+
 ----
 
 
