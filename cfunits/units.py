@@ -2166,13 +2166,7 @@ class Units:
                     calendar=getattr(to_units, "calendar", None),
                 )
 
-            #            to_jd0 = cftime.JulianDayFromDate(
-            #                to_units._utime.origin, calendar=to_units._utime.calendar
-            #            )
             to_jd0 = to_units._utime.toordinal(fractional=True)
-            #            from_jd0 = cftime.JulianDayFromDate(
-            #                from_units._utime.origin, calendar=from_units._utime.calendar
-            #           )
             from_jd0 = from_units._utime.toordinal(fractional=True)
 
             offset = to_jd0 - from_jd0
