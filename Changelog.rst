@@ -7,8 +7,7 @@ Version 3.3.5
   (https://github.com/NCAS-CMS/cfunits/issues/45)
 * Changed CF version to 1.10
   (https://github.com/NCAS-CMS/cfunits/issues/47)
-* Remove calls to ``LooseVersion`` from ``distutils`` due to deprecation of that package,
-  replaced with ``pkg_resources.parse_version``.
+* Remove calls to deprecated ``distutils``, using ``packaging`` instead
 * New dependency: ``packaging>=20.0``
 
 ----
