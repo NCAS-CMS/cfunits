@@ -7,6 +7,8 @@ Version 3.3.5
   (https://github.com/NCAS-CMS/cfunits/issues/45)
 * Changed CF version to 1.10
   (https://github.com/NCAS-CMS/cfunits/issues/47)
+* Remove calls to deprecated ``distutils``, using ``packaging`` instead
+* New dependency: ``packaging>=20.0``
 
 ----
 
