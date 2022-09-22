@@ -5,35 +5,31 @@
 #
 # Usage:
 #
-# $ ./test_release 1.8.9.0
+# $ ./test_release 3.3.5
 # --------------------------------------------------------------------
 
 set -x
 
 if [[ ! $1 ]] ; then 
-  echo "Must set version as \$1 (e.g. 1.7)"
+  echo "Must set version as \$1 (e.g. 1.9.0.1)"
   exit 1
 fi
 
 vn=$1
 
-# Get the major.minor Python version
-py=$(python -V | cut -d " " -f 2 | cut -d "." -f 1,2)
+dir=~/tmp/test_cfunits
+rm -fr $dir
 
-mkdir -p ~/tmp
+pip install dist/cfunits-$vn.tar.gz -t $dir --no-deps
 
-cp dist/cfunits-$vn.tar.gz ~/tmp
-cd ~/tmp
-rm -fr ~/tmp/test ~/tmp/bin ~/tmp/lib ~/tmp/cfunits-$vn
+export PYTHONPATH=$dir:$PYTHONPATH
+export PATH=$dir/bin:$PATH
 
-tar zxvf cfunits-$vn.tar.gz
-cd cfunits-$vn
+cd $dir/cfunits/test
 
-export PYTHONPATH=~/tmp/lib/python/cfunits-$vn-py$py.egg:$PYTHONPATH
-
-python setup.py install --home=~/tmp
-
-cd ~/tmp/lib/python/cfunits-$vn-py$py.egg/cfunits/test
 python run_tests.py
+test_result_status=$?
 
 set -x
+
+exit $test_result_status
