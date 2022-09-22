@@ -1356,9 +1356,13 @@ class Units:
     def has_offset(self):
         """True if the units contain an offset.
 
-        Note that if a multiplicative component of the units had an offset
-        during instantiation, then the offset is ignored in the resulting
-        `Units` object. See below for examples.
+        .. note:: Currently, reference time units are not considered
+                  as having an offset.
+
+        .. note:: If a multiplicative component of the units had an
+                  offset during instantiation, then the offset is
+                  ignored in the resulting `Units` object. See below
+                  for examples.
 
         **Examples**
 
@@ -1392,8 +1396,15 @@ class Units:
         >>> Units('degC m s-1') == Units('K m s-1')
         True
 
+        >>> Units('days since 2000-01-01').has_offset
+        False
+
         """
-        return "@" in self.formatted()
+        offset = "@" in self.formatted()
+        if offset and self.isreftime:
+            offset = False
+
+        return offset
 
     @property
     def isreftime(self):
