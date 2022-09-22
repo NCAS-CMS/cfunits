@@ -36,7 +36,7 @@
 
 
 
-<h1 class="logo"><a href="#">cfunits 3.3.4</a></h1>
+<h1 class="logo"><a href="#">cfunits 3.3.5</a></h1>
 
 
 
@@ -69,11 +69,9 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html"><strong>Installation</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html"><strong>API reference</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="releases.html"><strong>Releases</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="Changelog.html"><strong>Change log</strong></a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="cfunits.Units.html"><strong>cfunits.Units</strong></a></li>
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>
@@ -117,11 +115,11 @@ and by <a href="https://ncas.ac.uk/">NCAS</a>.
 <section id="introduction">
 <h2><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <hr class="docutils" />
-<p>Version 3.3.4</p>
+<p>Version 3.3.5 for CF-1.10</p>
 <p>A Python interface to <a class="reference external" href="http://www.unidata.ucar.edu/software/udunits">UNIDATA’s UDUNITS-2 library</a> with CF extensions</p>
 <p>Store, combine and compare physical units and convert numeric values to different units.</p>
 <p>Units are as defined in UNIDATA’s UDUNITS-2 library, except for
-reference time units (such as <code class="docutils literal notranslate"><span class="pre">'days</span> <span class="pre">since</span> <span class="pre">2000-12-1'</span></code> in the
+reference time units (such as <code class="docutils literal notranslate"><span class="pre">'days</span> <span class="pre">since</span> <span class="pre">2000-12-01'</span></code> in the
 <code class="docutils literal notranslate"><span class="pre">'proleptic_gregorian'</span></code> calendar), which are handled by the <a class="reference external" href="https://unidata.github.io/cftime">cftime
 Python package</a>.</p>
 <p>In addition, some units are either new to, modified from, or removed
@@ -136,18 +134,9 @@ with the <a class="reference external" href="http://cfconventions.org/">CF conve
 <li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html"><strong>Installation</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html"><strong>API reference</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="releases.html"><strong>Releases</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="Changelog.html"><strong>Change log</strong></a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="cfunits.Units.html"><strong>cfunits.Units</strong></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cfunits.Units.html#units-attributes">Units attributes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cfunits.Units.html#units-methods">Units methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cfunits.Units.html#units-static-methods">Units static methods</a></li>
-</ul>
-</li>
 </ul>
 </div>
 </section>
@@ -169,7 +158,7 @@ with the <a class="reference external" href="http://cfconventions.org/">CF conve
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2021, NCAS | Page built on 2021-12-10.
+      &copy;2022, NCAS | Page built on 2022-09-22.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
