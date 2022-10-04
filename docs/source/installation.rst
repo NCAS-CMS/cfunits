@@ -136,9 +136,10 @@ The cfunits package requires:
 * `numpy <http://www.numpy.org/>`_, version 1.15 or newer,
 
 * `cftime <https://pypi.org/project/cftime/>`_, version 1.5.0
-  or newer, and
+  or newer,
 
-* `packaging <https://pypi.org/project/packaging/>`_, version 20.0 or newer.
+* `packaging <https://pypi.org/project/packaging/>`_, version 20.0 or newer,
+  and
 
 * `UNIDATA UDUNITS-2 library
   <http://www.unidata.ucar.edu/software/udunits>`_, version 2.2.25 or
