@@ -108,7 +108,7 @@
 * Push recent commits using
 
   ```bash
-  git push origin master
+  git push origin main
   ```
 
 * Tag the release:
