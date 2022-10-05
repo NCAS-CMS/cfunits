@@ -53,13 +53,19 @@ Pull requests should follow on from a discussion in the issue tracker
 Fork the cfunits GitHub repository
 (https://github.com/NCAS-CMS/cfunits).
 
+..  note::
+    The cfunits GitHub repository uses ``main`` as the name of its
+    default branch, so you must refer to ``main`` when you need to
+    reference the default branch. It is useful to use this as the
+    name of the default branch on your folk, too.
+
 Clone your fork locally and create a branch:
 
 .. code-block:: console
 	  
     $ git clone git@github.com:<YOUR GITHUB USERNAME>/cfunits.git
     $ cd cfunits
-    $ git checkout -b <your-bugfix-feature-branch-name master>
+    $ git checkout -b <your-bugfix-feature-branch-name>
 
 Break your edits up into reasonably-sized commits, each representing
 a single logical change:
@@ -88,7 +94,7 @@ Add your name to the list of contributors list at
 
 Finally, make sure all commits have been pushed to the remote copy of
 your fork and submit the pull request via the GitHub website, to the
-``master`` branch of the ``NCAS-CMS/cfunits`` repository. Make sure to
+``main`` branch of the ``NCAS-CMS/cfunits`` repository. Make sure to
 reference the original issue in the pull request's description.
 
 Note that you can create the pull request while you're working on
