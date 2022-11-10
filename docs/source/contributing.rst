@@ -57,7 +57,7 @@ Fork the cfunits GitHub repository
     The cfunits GitHub repository uses ``main`` as the name of its
     default branch, so you must refer to ``main`` when you need to
     reference the default branch. It is useful to use this as the
-    name of the default branch on your folk, too.
+    name of the default branch on your fork, too.
 
 Clone your fork locally and create a branch:
 
