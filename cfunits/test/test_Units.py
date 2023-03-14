@@ -4,6 +4,7 @@ import os
 import unittest
 
 import numpy
+from dask.base import tokenize
 
 faulthandler.enable()  # to debug seg faults and timeouts
 
@@ -392,6 +393,33 @@ class UnitsTest(unittest.TestCase):
         """Tests the default calendar on `Units`."""
         u = Units("days since 2000-01-01")
         self.assertEqual(u._canonical_calendar, "standard")
+
+    def test_Units__dask_tokenize__(self):
+        """Tests dask tokenization."""
+        u = Units("m")
+        self.assertEqual(tokenize(u), tokenize(Units("m")))
+        self.assertNotEqual(tokenize(u), tokenize(Units("metre")))
+
+        u = Units("days since 2000-01-01")
+        self.assertEqual(tokenize(u), tokenize(Units("days since 2000-01-01")))
+        self.assertNotEqual(tokenize(u), tokenize(Units("d since 2000-01-01")))
+
+        u = Units("days since 2000-01-01", calendar="365_day")
+        self.assertEqual(
+            tokenize(u),
+            tokenize(Units("days since 2000-01-01", calendar="365_day")),
+        )
+        self.assertEqual(
+            tokenize(u),
+            tokenize(Units("days since 2000-01-01", calendar="noleap")),
+        )
+
+        u = Units("days since 2000-01-01", calendar="standard")
+        self.assertEqual(tokenize(u), tokenize(Units("days since 2000-01-01")))
+
+        u = Units("bad units")
+        self.assertEqual(tokenize(u), tokenize(Units("bad units")))
+        self.assertNotEqual(tokenize(u), tokenize(Units("worse units")))
 
 
 if __name__ == "__main__":
