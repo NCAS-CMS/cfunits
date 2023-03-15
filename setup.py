@@ -97,6 +97,7 @@ tests_require = [
     "pytest",
     "pycodestyle",
     "coverage",
+    "dask",
 ]
 
 setup(
