@@ -870,6 +870,13 @@ class Units:
         self._utime = None
         self._units_since_reftime = None
 
+    def __dask_tokenize__(self):
+        """Return a value fully representative of the object."""
+        if self._isvalid:
+            return (Units, self._units, self._utime)
+
+        return (Units, self._units)
+
     def __getstate__(self):
         """Called when pickling.
 
