@@ -15,8 +15,8 @@ with the CF conventions.
 """
 
 __Conventions__ = "CF-1.10"
-__date__ = "2022-09-22"
-__version__ = "3.3.5"
+__date__ = "2023-??-??"
+__version__ = "3.3.6"
 __cf_version__ = "1.10"
 
 import platform
