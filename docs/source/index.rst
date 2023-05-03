@@ -19,10 +19,10 @@
    
    introduction
    installation
-   contributing
    api_reference
    releases
    Changelog
+   contributing
 
 **Index and search**
 ====================

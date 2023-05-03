@@ -1,7 +1,7 @@
 Version 3.3.6
 -------------
 
-**2023-03-??**
+**2023-05-03**
 
 * New method: `Units.__dask_tokenization__`
   (https://github.com/NCAS-CMS/cfunits/issues/50)
