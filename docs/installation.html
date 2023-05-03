@@ -11,17 +11,17 @@
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/customise-alabaster.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script type="text/javascript" src="_static/clipboard.min.js"></script>
-    <script type="text/javascript" src="_static/copybutton.js"></script>
-    <script type="text/javascript" src="_static/toggleprompt.js"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/toggleprompt.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Contributing" href="contributing.html" />
+    <link rel="next" title="API reference" href="api_reference.html" />
     <link rel="prev" title="Introduction" href="introduction.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -37,7 +37,7 @@
 
 
 
-<h1 class="logo"><a href="index.html">cfunits 3.3.5</a></h1>
+<h1 class="logo"><a href="index.html">cfunits 3.3.6</a></h1>
 
 
 
@@ -65,21 +65,21 @@
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Installation</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="api_reference.html"><strong>API reference</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="releases.html"><strong>Releases</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="Changelog.html"><strong>Change log</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing</strong></a></li>
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="introduction.html" title="previous chapter"><strong>Introduction</strong></a></li>
-      <li>Next: <a href="contributing.html" title="next chapter"><strong>Contributing</strong></a></li>
+      <li>Next: <a href="api_reference.html" title="next chapter"><strong>API reference</strong></a></li>
   </ul></li>
 </ul>
 </div>
@@ -114,7 +114,7 @@ and by <a href="https://ncas.ac.uk/">NCAS</a>.
   <section id="installation">
 <span id="id1"></span><h1><strong>Installation</strong><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
-<p>Version 3.3.5 for CF-1.10</p>
+<p>Version 3.3.6 for CF-1.10</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#operating-systems" id="id13"><strong>Operating systems</strong></a></p></li>
@@ -143,19 +143,19 @@ systems.</p>
 example:</p>
 <div class="literal-block-wrapper docutils container" id="id9">
 <div class="code-block-caption"><span class="caption-text"><em>Install as root, with any missing dependencies.</em></span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install cfunits
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>cfunits
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id10">
 <div class="code-block-caption"><span class="caption-text"><em>Upgrade as root, with any missing dependencies.</em></span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install cfunits --upgrade
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>cfunits<span class="w"> </span>--upgrade
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id11">
 <div class="code-block-caption"><span class="caption-text"><em>Install as a user, with any missing dependencies.</em></span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install cfunits --user
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>cfunits<span class="w"> </span>--user
 </pre></div>
 </div>
 </div>
@@ -163,7 +163,7 @@ example:</p>
 <div class="literal-block-wrapper docutils container" id="id12">
 <div class="code-block-caption"><span class="caption-text"><em>Install as root without installing any of the
 dependencies.</em></span><a class="headerlink" href="#id12" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install cfunits --no-deps
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>cfunits<span class="w"> </span>--no-deps
 </pre></div>
 </div>
 </div>
@@ -178,8 +178,8 @@ options.</p>
 <li><p>Download the cfunits package from <a class="reference external" href="https://pypi.org/project/cfunits">https://pypi.org/project/cfunits</a></p></li>
 <li><p>Unpack the library (replacing <code class="docutils literal notranslate"><span class="pre">&lt;version&gt;</span></code> with the version that
 you want to install, e.g. <code class="docutils literal notranslate"><span class="pre">3.3.4</span></code>):</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>tar zxvf cfunits-&lt;version&gt;.tar.gz
-<span class="gp">$ </span><span class="nb">cd</span> cfunits-&lt;version&gt;
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>tar<span class="w"> </span>zxvf<span class="w"> </span>cfunits-&lt;version&gt;.tar.gz
+<span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>cfunits-&lt;version&gt;
 </pre></div>
 </div>
 </li>
@@ -188,18 +188,18 @@ you want to install, e.g. <code class="docutils literal notranslate"><span class
 <blockquote>
 <div><ul>
 <li><p>To install the cfunits package to a central location:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python setup.py install
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>setup.py<span class="w"> </span>install
 </pre></div>
 </div>
 </li>
 <li><p>To install the cfunits package locally to the user in the default
 location:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python setup.py install --user
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>setup.py<span class="w"> </span>install<span class="w"> </span>--user
 </pre></div>
 </div>
 </li>
 <li><p>To install the cfunits package in the &lt;directory&gt; of your choice:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python setup.py install --home<span class="o">=</span>&lt;directory&gt;
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>setup.py<span class="w"> </span>install<span class="w"> </span>--home<span class="o">=</span>&lt;directory&gt;
 </pre></div>
 </div>
 </li>
@@ -210,7 +210,7 @@ location:</p>
 <section id="tests">
 <span id="id6"></span><h2><a class="toc-backref" href="#id17"><strong>Tests</strong></a><a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h2>
 <p>Tests are run from within the <code class="docutils literal notranslate"><span class="pre">cfunits/test</span></code> directory:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python run_tests.py
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>run_tests.py
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -222,8 +222,9 @@ location:</p>
 <li><p><a class="reference external" href="https://www.python.org/">Python</a>, version 3.6 or newer,</p></li>
 <li><p><a class="reference external" href="http://www.numpy.org/">numpy</a>, version 1.15 or newer,</p></li>
 <li><p><a class="reference external" href="https://pypi.org/project/cftime/">cftime</a>, version 1.5.0
-or newer, and</p></li>
-<li><p><a class="reference external" href="https://pypi.org/project/packaging/">packaging</a>, version 20.0 or newer.</p></li>
+or newer,</p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/packaging/">packaging</a>, version 20.0 or newer,
+and</p></li>
 <li><p><a class="reference external" href="http://www.unidata.ucar.edu/software/udunits">UNIDATA UDUNITS-2 library</a>, version 2.2.25 or
 newer.</p>
 <p>UDUNITS-2 is a C library that provides support for units of physical
@@ -242,7 +243,7 @@ example, <code class="docutils literal notranslate"><span class="pre">export</sp
 then setting the <code class="docutils literal notranslate"><span class="pre">UDUNITS2_XML_PATH</span></code> environment variable is the
 likely solution.</p>
 <p>UDUNITS is available via conda with:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>conda install -c conda-forge udunits2&gt;<span class="o">=</span><span class="m">2</span>.2.25
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>udunits2&gt;<span class="o">=</span><span class="m">2</span>.2.25
 </pre></div>
 </div>
 </li>
@@ -263,11 +264,11 @@ likely solution.</p>
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2022, NCAS | Page built on 2022-09-22.
+      &copy;2023, NCAS | Page built on 2023-05-03.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       
     </div>
 

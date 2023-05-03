@@ -11,16 +11,17 @@
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/customise-alabaster.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script type="text/javascript" src="_static/clipboard.min.js"></script>
-    <script type="text/javascript" src="_static/copybutton.js"></script>
-    <script type="text/javascript" src="_static/toggleprompt.js"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/toggleprompt.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing" href="contributing.html" />
     <link rel="prev" title="Releases" href="releases.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -36,7 +37,7 @@
 
 
 
-<h1 class="logo"><a href="index.html">cfunits 3.3.5</a></h1>
+<h1 class="logo"><a href="index.html">cfunits 3.3.6</a></h1>
 
 
 
@@ -64,20 +65,21 @@
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html"><strong>Installation</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="api_reference.html"><strong>API reference</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="releases.html"><strong>Releases</strong></a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>Change log</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing</strong></a></li>
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="releases.html" title="previous chapter"><strong>Releases</strong></a></li>
+      <li>Next: <a href="contributing.html" title="next chapter"><strong>Contributing</strong></a></li>
   </ul></li>
 </ul>
 </div>
@@ -111,6 +113,15 @@ and by <a href="https://ncas.ac.uk/">NCAS</a>.
             
   <section id="change-log">
 <h1><strong>Change log</strong><a class="headerlink" href="#change-log" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<section id="version-3-3-6">
+<h2>Version 3.3.6<a class="headerlink" href="#version-3-3-6" title="Permalink to this headline">¶</a></h2>
+<p><strong>2023-05-03</strong></p>
+<ul class="simple">
+<li><p>New method: <code class="xref py py-obj docutils literal notranslate"><span class="pre">Units.__dask_tokenization__</span></code>
+(<a class="reference external" href="https://github.com/NCAS-CMS/cfunits/issues/50">https://github.com/NCAS-CMS/cfunits/issues/50</a>)</p></li>
+</ul>
+</section>
 <hr class="docutils" />
 <section id="version-3-3-5">
 <h2>Version 3.3.5<a class="headerlink" href="#version-3-3-5" title="Permalink to this headline">¶</a></h2>
@@ -187,10 +198,10 @@ object.</p></li>
 <h2>Version 3.2.8<a class="headerlink" href="#version-3-2-8" title="Permalink to this headline">¶</a></h2>
 <p><strong>2020-07-02</strong></p>
 <ul class="simple">
-<li><p>Fixed bug that caused failure when an <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> was input to
+<li><p>Fixed bug that caused failure when an <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> was input to
 <a class="reference internal" href="generated/cfunits.Units.conform.html#cfunits.Units.conform" title="cfunits.Units.conform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cfunits.Units.conform</span></code></a>
 (<a class="reference external" href="https://github.com/NCAS-CMS/cfunits/issues/9">https://github.com/NCAS-CMS/cfunits/issues/9</a>).</p></li>
-<li><p>Allowed <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> and <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a> to be input to <a class="reference internal" href="generated/cfunits.Units.conform.html#cfunits.Units.conform" title="cfunits.Units.conform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cfunits.Units.conform</span></code></a>
+<li><p>Allowed <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> and <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a> to be input to <a class="reference internal" href="generated/cfunits.Units.conform.html#cfunits.Units.conform" title="cfunits.Units.conform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cfunits.Units.conform</span></code></a>
 (<a class="reference external" href="https://github.com/NCAS-CMS/cfunits/issues/9">https://github.com/NCAS-CMS/cfunits/issues/9</a>).</p></li>
 </ul>
 </section>
@@ -364,11 +375,11 @@ calendars.</p></li>
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2022, NCAS | Page built on 2022-09-22.
+      &copy;2023, NCAS | Page built on 2023-05-03.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       
     </div>
 
