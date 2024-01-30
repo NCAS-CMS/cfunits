@@ -801,9 +801,17 @@ class Units:
                 # ----------------------------------------------------
                 ut_unit = _cached_ut_unit.get(units, None)
                 if ut_unit is None:
+                    try:
+                        # Try for units being bytes
+                        units = units.decode("utf-8")
+                    except AttributeError:
+                        # units is not bytes
+                        pass
+
                     ut_unit = _ut_parse(
                         _ut_system, _c_char_p(units.encode("utf-8")), _UT_ASCII
                     )
+
                     if not ut_unit:
                         ut_unit = None
                         self._isvalid = False

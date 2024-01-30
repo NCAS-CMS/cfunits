@@ -421,6 +421,10 @@ class UnitsTest(unittest.TestCase):
         self.assertEqual(tokenize(u), tokenize(Units("bad units")))
         self.assertNotEqual(tokenize(u), tokenize(Units("worse units")))
 
+    def test_Units_bytes(self):
+        """Tests initializing with bytes."""
+        self.assertEqual(Units("m"), Units(b"m"))
+
 
 if __name__ == "__main__":
     print("cfunits version:", cfunits.__version__)
