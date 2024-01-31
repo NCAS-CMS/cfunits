@@ -582,7 +582,7 @@ class Units:
     >>> u.calendar
     Traceback (most recent call last):
         ...
-    AttributeError: Units has no attribute 'calendar'
+    AttributeError: Units has no attribute 'calendar'...
     >>> v = Units('days since 2000-1-1', 'standard')
     >>> v.calendar
     'standard'
@@ -1773,7 +1773,7 @@ class Units:
         >>> Units('days since 2001-1-1').calendar
         Traceback (most recent call last):
             ...
-        AttributeError: Units has no attribute 'calendar'
+        AttributeError: Units has no attribute 'calendar'...
 
         """
         value = self._calendar
