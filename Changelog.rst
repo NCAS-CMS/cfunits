@@ -1,3 +1,13 @@
+Version 3.3.7
+-------------
+
+**2024-02-??**
+
+* Allow units to be defined by `bytes`
+  (https://github.com/NCAS-CMS/cfunits/issues/54)
+
+----
+
 Version 3.3.6
 -------------
 
