@@ -37,7 +37,7 @@
 
 
 
-<h1 class="logo"><a href="index.html">cfunits 3.3.6</a></h1>
+<h1 class="logo"><a href="index.html">cfunits 3.3.7</a></h1>
 
 
 
@@ -117,8 +117,8 @@ and by <a href="https://ncas.ac.uk/">NCAS</a>.
 <h1><strong>cfunits.Units</strong><a class="headerlink" href="#cfunits-units" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="cfunits.Units">
-<em class="property">class </em><code class="sig-prename descclassname">cfunits.</code><code class="sig-name descname">Units</code><span class="sig-paren">(</span><em class="sig-param">units=None</em>, <em class="sig-param">calendar=None</em>, <em class="sig-param">formatted=False</em>, <em class="sig-param">names=False</em>, <em class="sig-param">definition=False</em>, <em class="sig-param">_ut_unit=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/NCAS-CMS/cfunits/blob/v3.3.6/cfunits/units.py#L467"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">cfunits.</code><code class="sig-name descname">Units</code><span class="sig-paren">(</span><em class="sig-param">units=None</em>, <em class="sig-param">calendar=None</em>, <em class="sig-param">formatted=False</em>, <em class="sig-param">names=False</em>, <em class="sig-param">definition=False</em>, <em class="sig-param">_ut_unit=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/NCAS-CMS/cfunits/blob/v3.3.7/cfunits/units.py#L467"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cfunits.Units" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Utilities for working with physical units.</p>
 <p>Store, combine and compare physical units and convert numeric
 values to different units.</p>
@@ -267,7 +267,7 @@ defined by Udunits:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">calendar</span>
 <span class="gt">Traceback (most recent call last):</span>
 <span class="w">    </span><span class="o">...</span>
-<span class="gr">AttributeError</span>: <span class="n">Units has no attribute &#39;calendar&#39;</span>
+<span class="gr">AttributeError</span>: <span class="n">Units has no attribute &#39;calendar&#39;...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">Units</span><span class="p">(</span><span class="s1">&#39;days since 2000-1-1&#39;</span><span class="p">,</span> <span class="s1">&#39;standard&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">.</span><span class="n">calendar</span>
 <span class="go">&#39;standard&#39;</span>
@@ -357,20 +357,20 @@ in place, without any copying overheads:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt>units: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="#cfunits.Units" title="cfunits.Units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Units</span></code></a>, optional</dt><dd><p>Set the new units from this string.</p>
+<dt>units: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="#cfunits.Units" title="cfunits.Units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Units</span></code></a>, optional</dt><dd><p>Set the new units from this string.</p>
 </dd>
-<dt>calendar: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional</dt><dd><p>Set the calendar for reference time units.</p>
+<dt>calendar: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional</dt><dd><p>Set the calendar for reference time units.</p>
 </dd>
-<dt>formatted: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>Format the string representation of the units in a
+<dt>formatted: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>Format the string representation of the units in a
 standardized manner. See the <a class="reference internal" href="generated/cfunits.Units.formatted.html#cfunits.Units.formatted" title="cfunits.Units.formatted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">formatted</span></code></a> method.</p>
 </dd>
-<dt>names: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>Format the string representation of the units using names
+<dt>names: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>Format the string representation of the units using names
 instead of symbols. See the <a class="reference internal" href="generated/cfunits.Units.formatted.html#cfunits.Units.formatted" title="cfunits.Units.formatted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">formatted</span></code></a> method.</p>
 </dd>
-<dt>definition: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>Format the string representation of the units using basic
+<dt>definition: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional</dt><dd><p>Format the string representation of the units using basic
 units. See the <a class="reference internal" href="generated/cfunits.Units.formatted.html#cfunits.Units.formatted" title="cfunits.Units.formatted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">formatted</span></code></a> method.</p>
 </dd>
-<dt>_ut_unit: <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, optional</dt><dd><p>Set the new units from this Udunits binary unit
+<dt>_ut_unit: <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, optional</dt><dd><p>Set the new units from this Udunits binary unit
 representation. This should be an integer returned by a
 call to <code class="xref py py-obj docutils literal notranslate"><span class="pre">ut_parse</span></code> function of Udunits. Ignored if <em>units</em>
 is set.</p>
@@ -480,7 +480,7 @@ is set.</p>
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2023, NCAS | Page built on 2023-05-03.
+      &copy;2024, NCAS | Page built on 2024-04-23.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.5</a>
