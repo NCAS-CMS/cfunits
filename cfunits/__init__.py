@@ -14,10 +14,10 @@ with the CF conventions.
 
 """
 
-__Conventions__ = "CF-1.10"
-__date__ = "2023-05-03"
-__version__ = "3.3.6"
-__cf_version__ = "1.10"
+__Conventions__ = "CF-1.11"
+__date__ = "2024-04-23"
+__version__ = "3.3.7"
+__cf_version__ = "1.11"
 
 import platform
 

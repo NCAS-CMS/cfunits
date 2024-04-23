@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>cfunits.Units.isdimensionless &#8212; Documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/customise-alabaster.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/toggleprompt.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="cfunits.Units.islatitude" href="cfunits.Units.islatitude.html" />
+    <link rel="prev" title="cfunits.Units.has_offset" href="cfunits.Units.has_offset.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+
+
+<h1 class="logo"><a href="../index.html">cfunits 3.3.7</a></h1>
+
+
+
+<p class="blurb">A Python interface to the UDUNITS-2 library with CF extensions</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=NCAS-CMS&repo=cfunits&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html"><strong>Installation</strong></a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html"><strong>API reference</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html"><strong>Releases</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Changelog.html"><strong>Change log</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html"><strong>Contributing</strong></a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../api_reference.html"><strong>API reference</strong></a><ul>
+  <li><a href="../cfunits.Units.html"><strong>cfunits.Units</strong></a><ul>
+      <li>Previous: <a href="cfunits.Units.has_offset.html" title="previous chapter">cfunits.Units.has_offset</a></li>
+      <li>Next: <a href="cfunits.Units.islatitude.html" title="next chapter">cfunits.Units.islatitude</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+<br>
+cfunits development has been supported by
+the <a href="https://erc.europa.eu/">ERC</a>
+through <a href="https://cordis.europa.eu/project/id/247220">Seachange</a>
+and
+<a href="https://cordis.europa.eu/project/id/786427">Couplet</a>; by
+the <a href="https://ec.europa.eu/programmes/horizon2020/">EC Horizon
+2020 programme</a> through
+<a href="https://cordis.europa.eu/project/id/824084">IS-ENES3</a>;
+by <a href="https://nerc.ukri.org/">NERC</a> through
+<a href="https://gtr.ukri.org/project/0D95A6DB-0B95-48F7-8A8B-7B9A47DEA117">UKFAFMIP</a>;
+and by <a href="https://ncas.ac.uk/">NCAS</a>.
+<br>
+<br>
+<img src="../_templates/logo_EC.png" height="40">
+<img src="../_templates/logo_ERC.png" height="40">
+<img src="../_templates/logo_NERC.png" height="40">
+<br>
+<img src="../_templates/logo_NCAS.png" height="40">
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="cfunits-units-isdimensionless">
+<h1>cfunits.Units.isdimensionless<a class="headerlink" href="#cfunits-units-isdimensionless" title="Permalink to this headline">¶</a></h1>
+<dl class="attribute">
+<dt id="cfunits.Units.isdimensionless">
+<code class="sig-prename descclassname">Units.</code><code class="sig-name descname">isdimensionless</code><a class="headerlink" href="#cfunits.Units.isdimensionless" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if the units are dimensionless, false otherwise.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="cfunits.Units.islongitude.html#cfunits.Units.islongitude" title="cfunits.Units.islongitude"><code class="xref py py-obj docutils literal notranslate"><span class="pre">islongitude</span></code></a>, <a class="reference internal" href="cfunits.Units.islatitude.html#cfunits.Units.islatitude" title="cfunits.Units.islatitude"><code class="xref py py-obj docutils literal notranslate"><span class="pre">islatitude</span></code></a>, <a class="reference internal" href="cfunits.Units.ispressure.html#cfunits.Units.ispressure" title="cfunits.Units.ispressure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ispressure</span></code></a>, <a class="reference internal" href="cfunits.Units.isreftime.html#cfunits.Units.isreftime" title="cfunits.Units.isreftime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">isreftime</span></code></a>,
+<a class="reference internal" href="cfunits.Units.istime.html#cfunits.Units.istime" title="cfunits.Units.istime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">istime</span></code></a></p>
+</div>
+<p><strong>Examples</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">isdimensionless</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">isdimensionless</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="p">(</span><span class="s1">&#39;100&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">isdimensionless</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="p">(</span><span class="s1">&#39;m/m&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">isdimensionless</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="p">(</span><span class="s1">&#39;m km-1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">isdimensionless</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="p">()</span><span class="o">.</span><span class="n">isdimensionless</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">isdimensionless</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="p">(</span><span class="s1">&#39;m/s&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">isdimensionless</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Units</span><span class="p">(</span><span class="s1">&#39;days since 2000-1-1&#39;</span><span class="p">,</span> <span class="n">calendar</span><span class="o">=</span><span class="s1">&#39;noleap&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">isdimensionless</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2024, NCAS | Page built on 2024-04-23.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
